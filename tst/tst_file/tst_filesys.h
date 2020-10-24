@@ -2,7 +2,6 @@
 #include <io.h>
 #include <direct.h>
 #include <errno.h>
-#include <stdio.h>
 
 #include <vm_cfgs.h>
 
