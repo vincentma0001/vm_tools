@@ -1,0 +1,11 @@
+#ifndef __VM_TOOLS_CFG_H_IN__
+#define __VM_TOOLS_CFG_H_IN__
+
+#define vName                   "@PROJECT_NAME@"
+#define vVersion                "@PROJECT_VERSION@"
+#define vVerMajor               "@PROJECT_VERSION_MAJOR@"
+#define vVerMinor               "@PROJECT_VERSION_MINOR@"
+#define vVerPatch               "@PROJECT_VERSION_PATCH@"
+#define vVerTweak               "@PROJECT_VERSION_TWEAK@"
+
+#endif // __VM_TOOLS_CFG_H_IN__
