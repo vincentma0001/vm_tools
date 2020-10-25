@@ -3,7 +3,7 @@
 cmake_minimum_required (VERSION 3.8.0)
 
 # set working dirs:
-SET(HOME  /vm/vm_work/vm_tools)
+SET(HOME  /vm/vm_tools)
 SET(TNAME vm_tools)
 SET(VER   1.0.0.0)
 
@@ -39,10 +39,8 @@ project(${TNAME} VERSION ${VER})
 configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
-add_subdirectory(${HOME}/tst/tst_cstr)
+#add_subdirectory(${HOME}/tst/tst_cstr)
 #add_subdirectory(${HOME}/tst/tst_file)
-#add_subdirectory(${HOME}/tst/tst_cfgs)
-#add_subdirectory(${HOME}/tst/tst_cfgs_w)
 #add_subdirectory(${HOME}/tst/tst_util)
 #add_subdirectory(${HOME}/tst/tst_kernal)
 #add_subdirectory(${HOME}/tst/tst_cmds)
@@ -50,3 +48,5 @@ add_subdirectory(${HOME}/tst/tst_cstr)
 #add_subdirectory(${HOME}/tst/tst_lib/lib)
 #add_subdirectory(${HOME}/tst/tst_lib/bin)
 #add_subdirectory(${HOME}/tst/tst_cerr)
+#add_subdirectory(${HOME}/tst/tst_cfgs_w)
+add_subdirectory(${HOME}/tst/tst_cfgs)

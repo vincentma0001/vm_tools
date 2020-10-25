@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:48:58                                               == //
-// ==   Modify Time          : 2020-10-17 12:58:21                                               == //
+// ==   Modify Time          : 2020-10-25 12:06:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -48,7 +48,7 @@
 #   define vStrBool( bVal )  ((bVal)==true?vT("true"):vT("false"))
 #endif // !vStrBool
 
-#ifndef    vStrItoB( iVal )
+#ifndef    vStrItoB
 #   define vStrItoB( iVal )  ((iVal)==1?vT("true"):vT("false"))
 #endif // !vStrItoB( iVal )
 
