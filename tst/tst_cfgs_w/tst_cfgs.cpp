@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     std::wcout << L"tst_cfgs wcout is running! wstr = " << lsTmpw << " len = " << lsTmpw.length() << std::endl;
     std::wcout << L"tst_cfgs wcout is running! wstr = " << lsTmpw << " len = " << lsTmpw.size() << std::endl;
 
-    vstring lsTmpv = vT("this is text! 测试");
+    vString lsTmpv = vT("this is text! 测试");
     vCout      << vT("tst_cfgs vCout is running! vstr = ") << lsTmpv << " len = " << lsTmpv.length() << vEndl;
     vCout      << vT("tst_cfgs vCout is running! vstr = ") << lsTmpv << " len = " << lsTmpv.size() << vEndl;
     //*/
