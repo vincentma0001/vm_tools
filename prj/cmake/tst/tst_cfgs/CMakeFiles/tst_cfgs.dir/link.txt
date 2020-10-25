@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tst_cfgs.dir/tst_cfgs.cpp.o -o ../../../../bin/tst_cfgs 

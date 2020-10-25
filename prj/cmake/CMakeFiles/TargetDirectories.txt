@@ -1,0 +1,5 @@
+/vm/vm_tools/prj/cmake/CMakeFiles/rebuild_cache.dir
+/vm/vm_tools/prj/cmake/CMakeFiles/edit_cache.dir
+/vm/vm_tools/prj/cmake/tst/tst_cfgs/CMakeFiles/rebuild_cache.dir
+/vm/vm_tools/prj/cmake/tst/tst_cfgs/CMakeFiles/edit_cache.dir
+/vm/vm_tools/prj/cmake/tst/tst_cfgs/CMakeFiles/tst_cfgs.dir
