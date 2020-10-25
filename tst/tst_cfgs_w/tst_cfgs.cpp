@@ -1,3 +1,8 @@
+
+#include <limits.h>
+#include <stdio.h>
+#include <iostream>
+
 #include <vm_cfgs.h>
 
 int main(int argc, char *argv[])
