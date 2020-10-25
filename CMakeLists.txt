@@ -3,7 +3,7 @@
 cmake_minimum_required (VERSION 3.8.0)
 
 # set working dirs:
-SET(HOME  /vm/MyWork/vm_tools)
+SET(HOME  /vm/vm_work/vm_tools)
 SET(TNAME vm_tools)
 SET(VER   1.0.0.0)
 
