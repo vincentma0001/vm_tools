@@ -31,7 +31,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # add include directories for projects and submudules
-include_directories(${HOME} ${PROJECT_SOURCE_DIR})
+include_directories(${HOME} ${PROJECT_SOURCE_DIR} /usr/include)
 
 # create project
 project(${TNAME} VERSION ${VER})
