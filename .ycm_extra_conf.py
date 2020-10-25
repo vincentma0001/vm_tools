@@ -68,7 +68,7 @@ def DirectoryOfThisScript():
 
 def IsHeaderFile( filename ):
   extension = os.path.splitext( filename )[ 1 ]
-  return extension in [ '.h', '.hxx', '.hpp', '.hh', '.inl' ]
+  return extension in [ '.h', '.hxx', '.hpp', '.hh', '.h.inl' ]
 
 
 def GetCompilationInfoForFile( filename ):
