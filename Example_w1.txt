@@ -1,5 +1,0 @@
-This is a        text line for write string!
-E
-This is an other text line for write string!
-This is test for write 10:Tst string
-This is test for write 10:Tst stringEEE
