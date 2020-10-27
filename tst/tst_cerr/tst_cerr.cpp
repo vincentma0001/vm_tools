@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     tchar lsTmp[256] = { 0x00 };
     vm::CErrPtr loErr1(10, lsTmp, sizeof(lsTmp) );
     vCout << "Code1 : " << loErr1.toCode() << " str1 : " << loErr1.toString() << vEndl;
-
+    /*
     vm::CErr<256> loErr2;
     vCout << "Code2 : " << loErr2.toCode() << " str2 : " << loErr2.toString() << vEndl;
 
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     {
         vCout << vT("Err   : ") << lpErrStr << vEndl;
     }
+    //*/
 
     return 0;
 }
