@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 21:09:58                                               == //
-// ==   Modify Time          : 2020-10-03 19:23:12                                               == //
+// ==   Modify Time          : 2020-10-27 19:36:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -73,7 +73,7 @@
 // [ Assert macro define ] {{{
 #ifndef _DEBUG
 // {{{
-#define _V_ASSERT_( func, x )
+#define _ASSERT_( func, x )
 // }}}
 #else
 // {{{

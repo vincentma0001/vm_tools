@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-10-17 13:41:31                                               == //
+// ==   Modify Time          : 2020-10-27 19:40:29                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -65,16 +65,16 @@ void vm::v_toupper ( tchar* const pDst, const size_t csztDstSize, const tchar* c
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_tolower(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_toupper()"), pDst, cpSrc);
 
     // Change alpha letter to lower letter
     for (size_t lsztOffset = 0; lsztOffset < csztSrcLen; lsztOffset++)
     {
         tchar* pSrcValue = const_cast<tchar*>(cpSrc) + lsztOffset;
         tchar* pDstValue = const_cast<tchar*>( pDst) + lsztOffset;
-        if (isalpha(*pSrcValue))
+        if (vIsAlpha(*pSrcValue))
         {
-            *pDstValue = toupper(*pSrcValue);
+            *pDstValue = vToUpper(*pSrcValue);
         }else{
             if( pSrcValue != pDstValue )
                 *pDstValue = *pSrcValue;
@@ -127,16 +127,16 @@ inline void vm::v_tolower ( tchar* const pDst, const size_t csztDstSize, const t
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_tolower(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_tolower()"), pDst, cpSrc);
 
     // Change alpha letter to lower letter
     for (size_t lsztOffset = 0; lsztOffset < csztSrcLen; lsztOffset++)
     {
         tchar* pSrcValue = const_cast<tchar*>(cpSrc) + lsztOffset;
         tchar* pDstValue = const_cast<tchar*>( pDst) + lsztOffset;
-        if (isalpha(*pSrcValue))
+        if (vIsAlpha(*pSrcValue))
         {
-            *pDstValue = tolower(*pSrcValue);
+            *pDstValue = vToLower(*pSrcValue);
         }else{
             if( pSrcValue != pDstValue )
                 *pDstValue = *pSrcValue;
@@ -159,7 +159,7 @@ inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tc
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_sprintf(), pDst, cpFmt);
+    _VERIFY_2_(vT("v_sprintf()"), pDst, cpFmt);
 
     // format string
     va_list vlist;
@@ -185,16 +185,16 @@ inline int vm::v_vsprintf ( tchar* const pDst, const size_t csztDstSize, const t
 // {{{
 {
         // Verify input paramters
-        _VERIFY_2_(v_vsprintf(), pDst, cpFmt);
+        _VERIFY_2_(vT("v_vsprintf()"), pDst, cpFmt);
 
         // format string
     #if defined (_MSC_VER) && (_MSC_VER > 1300)
         int liRet = vVsprintf_s( pDst, csztDstSize, cpFmt, vList );
-        if (liRet < 0) { _ASSERT_(v_vsprintf(), (errno == 0)); };
+        if (liRet < 0) { _ASSERT_(vT("v_vsprintf()"), (errno == 0)); };
 
     #else
         int liRet = vVsprintf( pDst, cpFmt, vList );
-        if (liRet < 0) { _ASSERT_(v_vsprintf(), (errno == 0)); };
+        if (liRet < 0) { _ASSERT_(vT("v_vsprintf()"), (errno == 0)); };
     #endif
         return liRet;
 }
@@ -212,7 +212,7 @@ inline void vm::v_strzero ( tchar* const pBuf, const size_t csztDataLen )
 // {{{
 {
     // Verify input paramters
-    _VERIFY_(v_strzero(), pBuf);
+    _VERIFY_(vT("v_strzero()"), pBuf);
     vMemset((tchar* const)pBuf, 0x00, csztDataLen);
 }
 // }}} end of func v_strzero(...)
@@ -230,7 +230,7 @@ inline void vm::v_strset ( tchar* const pBuf, const int ciVal, const size_t cszt
 // {{{
 {
     // Verify input paramters
-    _VERIFY_(v_strset(), pBuf);
+    _VERIFY_(vT("v_strset()"), pBuf);
     vMemset(pBuf, ciVal, csztDataLen-sizeof(tchar));
 }
 // }}} end of func v_strset(...)
@@ -248,7 +248,7 @@ inline const tchar* vm::v_strchr ( const tchar* const cpBuf, const int ciVal )
 // {{{
 {
     // Verify input paramters
-    _VERIFY_(v_strchr(),cpBuf);
+    _VERIFY_(vT("v_strchr()"),cpBuf);
     return vStrchr((tchar* const)cpBuf, ciVal);
 }
 // }}} end of func v_strchr(...)
@@ -266,7 +266,7 @@ inline const tchar* vm::v_strrchr ( const tchar* const cpBuf, const int ciVal )
 // {{{
 {
     // Verify input paramters
-    _VERIFY_(v_strrchr(), cpBuf);
+    _VERIFY_(vT("v_strrchr()"), cpBuf);
     return vStrrchr((tchar* const)cpBuf, ciVal);
 }
 // }}} end of func v_strrchr(...)
@@ -285,7 +285,7 @@ inline const tchar* vm::v_strstr ( const tchar* const cpBuf, const tchar* const 
 // {{{
 {
     // Verify input paramters
-    _VERIFY_(v_strstr(), cpBuf);
+    _VERIFY_(vT("v_strstr()"), cpBuf);
     return vStrstr(cpBuf, cpSubStr);
 }
 // }}} end of func v_strstr(...)
@@ -303,7 +303,7 @@ inline bool vm::v_strcmp_equl ( const tchar* const pStr1, const tchar* const pSt
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strcmp_equl(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strcmp_equl()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet  = vStrcmp(pStr1, pStr2);
@@ -327,7 +327,7 @@ inline bool vm::v_strcmp_more ( const tchar* const pStr1, const tchar* const pSt
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strcmp_more(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strcmp_more()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet = vStrcmp(pStr1, pStr2);
@@ -351,7 +351,7 @@ inline bool vm::v_strcmp_less ( const tchar* const pStr1, const tchar* const pSt
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strcmp_less(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strcmp_less()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet = vStrcmp(pStr1, pStr2);
@@ -376,7 +376,7 @@ inline bool vm::v_strncmp_equl ( const tchar* const pStr1, const tchar* const pS
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strncmp_equl(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strncmp_equl()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet = vStrncmp(pStr1, pStr2, csztDataLen);
@@ -401,7 +401,7 @@ inline bool vm::v_strncmp_more ( const tchar* const pStr1, const tchar* const pS
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strncmp_more(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strncmp_more()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet = vStrncmp(pStr1, pStr2,csztDataLen);
@@ -426,7 +426,7 @@ inline bool vm::v_strncmp_less ( const tchar* const pStr1, const tchar* const pS
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strncmp_less(), pStr1, pStr2);
+    _VERIFY_2_(vT("v_strncmp_less()"), pStr1, pStr2);
 
     // Compare pStr1 with pStr2
     int liRet = vStrncmp(pStr1, pStr2, csztDataLen);
@@ -450,12 +450,12 @@ inline tchar* vm::v_strcat ( tchar* const pDst, const size_t csztDstSize, const 
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strcat(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strcat()"), pDst, cpSrc);
 
     // cat cpSrc to pDst
 #if defined (_MSC_VER) && (_MSC_VER>=1300)
-    errno_t loRet = vStrcat_s(pDst, csztDstSize, cpSrc);
-    _ASSERT_(v_strncpy(), (loRet==0) );
+    vErrno_t loRet = vStrcat_s(pDst, csztDstSize, cpSrc);
+    _ASSERT_(vT("v_strncpy()"), (loRet==0) );
 
     return pDst;
 #else
@@ -478,10 +478,10 @@ inline tchar* vm::v_strncat ( tchar* const pDst, const size_t csztDstSize, const
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strncat(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strncat()"), pDst, cpSrc);
 
 #if defined (_MSC_VER) && (_MSC_VER>=1300)
-    errno_t loRet = vStrncat_s(pDst, csztDstSize, cpSrc, csztDataLen);
+    vErrno_t loRet = vStrncat_s(pDst, csztDstSize, cpSrc, csztDataLen);
     _ASSERT_(v_strncat(), (loRet==0) );
 
     return pDst;
@@ -504,23 +504,23 @@ inline size_t vm::v_strcpy ( tchar* const pDst, const size_t csztDstSize, const 
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strcpy(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strcpy()"), pDst, cpSrc);
 
     size_t lsztSrcLen = vStrlen(cpSrc);
     size_t lsztDataLen = vMin( csztDstSize, lsztSrcLen );
 
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
-    //errno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
-    errno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
+    //vErrno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
+    vErrno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
     _ASSERT_(v_strcpy(), (loRet==0) );
 
     return lsztDataLen;
 #else
     //tchar* lpEnd = vStrcpy(pDst, cpSrc)
-    tchar* lpEnd = vMemcpy(pDst, cpSrc, lsztSrcLen);
-    _VERIFY_(v_strncpy(), lpEnd);
+    tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztSrcLen);
+    _VERIFY_(vT("v_strncpy()"), lpEnd);
 
-    size_t lsztCopied = lpEnd = pDst;
+    size_t lsztCopied = (size_t)(lpEnd - pDst);
     return lsztCopied;
 #endif
 }
@@ -540,20 +540,20 @@ inline size_t vm::v_strncpy ( tchar* const pDst, const size_t csztDstSize, const
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strncpy(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strncpy()"), pDst, cpSrc);
 
     size_t lsztDatalen = vMin((csztDstSize-sizeof(tchar)),csztDataLen);
 
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
-    // errno_t loRet = strncpy_s(pDst, csztDstSize, cpSrc, csztDataLen);
-    errno_t loRet = vMemcpy_s(pDst, csztDstSize, cpSrc, lsztDatalen);
+    // vErrno_t loRet = strncpy_s(pDst, csztDstSize, cpSrc, csztDataLen);
+    vErrno_t loRet = vMemcpy_s(pDst, csztDstSize, cpSrc, lsztDatalen);
     _ASSERT_(v_strncpy(), (loRet==0) );
 
     *(pDst+lsztDatalen) = tchar(0x00);
     return csztDataLen;
 #else
     //tchar* lpEnd = vStrcpy(pDst, cpSrc)
-    tchar* lpEnd = vMemcpy(pDst, cpSrc, lsztDatalen)
+    tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztDatalen);
     if ( lpEnd == nullptr ){ return 0; }
     _VERIFY_(v_strncpy(), lpEnd);
 
@@ -621,7 +621,7 @@ inline size_t vm::v_strtrim ( tchar* const pDst, const size_t csztDstSize, const
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_strtrim(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strtrim()"), pDst, cpSrc);
 
     // Verify data buffer length
     if (csztDstSize <= 0) return 0;
@@ -633,7 +633,7 @@ inline size_t vm::v_strtrim ( tchar* const pDst, const size_t csztDstSize, const
     tchar* lpStartPos = const_cast<tchar*>(cpSrc);
     size_t lsztStartOffset = 0;
     // while ((lpStartPos != lpEnd) && ((*lpStartPos == ' ') || (*lpStartPos == '\n') || (*lpStartPos == '\t')))
-    while ((lpStartPos != lpEnd) && (isspace(*lpStartPos)))
+    while ((lpStartPos != lpEnd) && (vIsSpace(*lpStartPos)))
     {
         lsztStartOffset++;
         lpStartPos = const_cast<tchar*>(cpSrc) + lsztStartOffset;
@@ -643,7 +643,7 @@ inline size_t vm::v_strtrim ( tchar* const pDst, const size_t csztDstSize, const
     tchar* lpEndPos = lpEnd-sizeof(tchar);
     size_t lsztEndOffset = 0;
     // while ((lpEndPos != lpStartPos) && ((*lpEndPos == ' ') || (*lpEndPos == '\t') || (*lpEndPos == '\n')))
-    while ((lpEndPos != lpStartPos) && (isspace(*lpEndPos)))
+    while ((lpEndPos != lpStartPos) && (vIsSpace(*lpEndPos)))
     {
         lsztEndOffset++;
         lpEndPos = lpEnd - lsztEndOffset-sizeof(tchar);
@@ -716,7 +716,7 @@ inline size_t vm::v_strtrim_left ( tchar* const pDst, const size_t csztDstSize, 
 // {{{
 {
     // Verify input paramter
-    _VERIFY_2_(v_strtrim_left(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strtrim_left()"), pDst, cpSrc);
 
     // Get Src string length
     tchar* lpEnd = const_cast<tchar*>(cpSrc) + csztSrcLen;
@@ -725,7 +725,7 @@ inline size_t vm::v_strtrim_left ( tchar* const pDst, const size_t csztDstSize, 
     tchar* lpPos = (tchar*)cpSrc;
     size_t lsztOffset = 0;
     // while ((lpPos != lpEnd) && ((*lpPos == ' ') || (*lpPos == '\n') || (*lpPos == '\t')))
-    while ((lpPos != lpEnd) && (isspace(*lpPos)))
+    while ((lpPos != lpEnd) && (vIsSpace(*lpPos)))
     {
         lsztOffset++;
         lpPos = (tchar*)cpSrc + lsztOffset;
@@ -787,7 +787,7 @@ inline size_t vm::v_strtrim_right ( tchar* const pDst, const size_t csztDstSize,
 // {{{
 {
     // Verify input paramter
-    _VERIFY_2_(v_strtrim_right(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_strtrim_right()"), pDst, cpSrc);
 
     // Get Src string length
     tchar* lpEnd = const_cast<tchar*>(cpSrc) + csztSrcLen;
@@ -796,7 +796,7 @@ inline size_t vm::v_strtrim_right ( tchar* const pDst, const size_t csztDstSize,
     tchar* lpPos = lpEnd-sizeof(tchar);
     size_t lsztOffset = 0;
     // while ((lpPos != pSrc) && ((*lpPos == ' ') || (*lpPos == '\t') || (*lpPos == '\n')))
-    while ((lpPos != cpSrc) && (isspace(*lpPos)))
+    while ((lpPos != cpSrc) && (vIsSpace(*lpPos)))
     {
         lsztOffset++;
         lpPos = lpEnd - lsztOffset;
@@ -880,7 +880,7 @@ inline size_t vm::v_str_substr (       tchar* const    pDst , const size_t csztD
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_str_substr(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_str_substr()"), pDst, cpSrc);
 
     // If Src string length is zero, return zero
     if (csztSrcLen == 0) return 0;
@@ -979,7 +979,7 @@ inline size_t vm::v_str_substr_first (       tchar* const     pDst, const size_t
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_str_substr_first(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_str_substr_first()"), pDst, cpSrc);
 
     // If Src string length is zero, return zero
     if (csztSrcLen == 0) return 0;
@@ -1080,7 +1080,7 @@ inline size_t vm::v_str_substr_last (       tchar* const     pDst, const size_t 
 // {{{
 {
     // Verify input paramters
-    _VERIFY_2_(v_str_substr_last(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_str_substr_last()"), pDst, cpSrc);
 
     // If Src string length is zero, return zero
     if (csztSrcLen == 0) return 0;

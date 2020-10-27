@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-10-27 13:51:51                                               == //
+// ==   Modify Time          : 2020-10-27 19:17:37                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,6 +25,7 @@
 // [ Include files ] {{{
 
 // std & crt function file included 
+#include <ctype.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
