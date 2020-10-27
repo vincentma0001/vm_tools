@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     CA lA;
     lA.toCode();
 
+
     std::vector<int>    lV;
     lV.push_back(19);
     lV.push_back(20);

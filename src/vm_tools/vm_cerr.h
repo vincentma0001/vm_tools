@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:41:17                                               == //
-// ==   Modify Time          : 2020-10-17 20:52:10                                               == //
+// ==   Modify Time          : 2020-10-27 14:11:21                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,6 +24,11 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
+// std & crt function file included 
+#include <limits.h>
+#include <string.h>
+#include <errno.h>
+
 // vm's configure files included
 #include <vm_cfgs.h>
 
@@ -34,7 +39,7 @@
 #include <vm_tools/vm_cerr/CErrPtr.h>
 #include <vm_tools/vm_cerr/CErr.hpp>
 
-#include <vm_tools/vm_cerr/CWinErr.hpp>
+//#include <vm_tools/vm_cerr/CWinErr.hpp>
 
 // }}} ! Include files
 // ================================================================================================ //

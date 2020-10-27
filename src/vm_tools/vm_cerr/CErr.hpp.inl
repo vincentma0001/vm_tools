@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-10-05 18:35:29                                               == //
+// ==   Modify Time          : 2020-10-27 14:17:07                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -36,19 +36,6 @@ inline vm::CErr<tszBufSize>::CErr(  ) : vm::CErrPtr( errno, mBuf, sizeof(mBuf) )
 {
 }
 // }}} End of func CErr::CErr()
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CErr::CErr(...)                                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Construct define with enErr
-// ==  Params  : cenErrCode        - [X] error number
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>::CErr( const errno_t cenErrCode ) : vm::CErrPtr( cenErrCode, mBuf, sizeof(mBuf) ),mBuf{0x00}
-// {{{
-{
-}
-// }}} end of func CErr::CErr(...)
 // ================================================================================================ //
 
 // ================================================================================================ //

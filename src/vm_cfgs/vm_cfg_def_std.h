@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 23:04:22                                               == //
-// ==   Modify Time          : 2020-10-17 20:56:45                                               == //
+// ==   Modify Time          : 2020-10-27 18:17:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -44,9 +44,9 @@
 // {{{
 #   define vString          std::string
 
-#   define vLocale_o(x)
-#   define vLocale_e(x)
-#   define vLocale_l(x)
+#   define vLocale_o(x)     std::cout.imbue(std::locale(x))
+#   define vLocale_e(x)     std::cerr.imbue(std::locale(x))
+#   define vLocale_l(x)     std::clog.imbue(std::locale(x))
 #   define vCin             std::cin
 #   define vCout            std::cout
 #   define vCerrr           std::cerr

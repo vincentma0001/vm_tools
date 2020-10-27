@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-10-17 20:25:40                                               == //
+// ==   Modify Time          : 2020-10-27 14:27:42                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,7 +25,7 @@
 // == Include files :                                                                            == //
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
-#ifndef     _INC_STRING
+#if !defined(_INC_STRING) && !defined(_STRING_H)
 #   error this file need #include <string.h>
 #endif  // !_INC_STRING
 // }}}

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 10:45:11                                               == //
-// ==   Modify Time          : 2020-10-17 20:27:05                                               == //
+// ==   Modify Time          : 2020-10-27 14:17:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -48,8 +48,6 @@ class CErr : public CErrPtr
 public:
     // Construct define
     inline          CErr();
-    // Construct define
-    inline          CErr( const errno_t   cenErrCode );
     // Construct define
     inline          CErr( const long long cllErrCode );
     // Destruct define

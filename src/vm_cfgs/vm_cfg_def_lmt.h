@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:02:26                                               == //
-// ==   Modify Time          : 2020-10-25 12:48:57                                               == //
+// ==   Modify Time          : 2020-10-27 14:34:09                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,15 +20,6 @@
 
 #ifndef  __VM_CFG_DEF_LMT_H__
 #define  __VM_CFG_DEF_LMT_H__
-
-// ================================================================================================ //
-// == Include files :                                                                            == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Include files ] {{{
-#if !defined(_INC_LIMITS) && !defined(_LIBC_LIMITS_H_)
-#   error this file need #include <limits.h>
-#endif  // !_INC_LIMITS
-// }}}
 
 // ================================================================================================ //
 // Type's min & max value redefines : {{{

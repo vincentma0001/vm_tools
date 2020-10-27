@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:59:49                                               == //
-// ==   Modify Time          : 2020-10-07 12:02:17                                               == //
+// ==   Modify Time          : 2020-10-27 14:00:25                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,7 +20,6 @@
 
 #ifndef  __VM_UTIL_STR_H__
 #define  __VM_UTIL_STR_H__
-
 
 // ================================================================================================ //
 // using namespace vm {{{
