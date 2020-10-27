@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-10-27 14:27:42                                               == //
+// ==   Modify Time          : 2020-10-27 20:04:55                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -21,35 +21,13 @@
 #ifndef  __CERRPTR_H_INL__
 #define  __CERRPTR_H_INL__
 
-// ================================================================================================ //
-// == Include files :                                                                            == //
-// ------------------------------------------------------------------------------------------------ //
-// [ Include files ] {{{
-#if !defined(_INC_STRING) && !defined(_STRING_H)
-#   error this file need #include <string.h>
-#endif  // !_INC_STRING
-// }}}
 
 // ================================================================================================ //
-#if defined( _V_USE_WCHAR_ ) && ( _V_USE_WCHAR != 0 )
-// ------------------------------------------------------------------------------------------------ //
-// wchar funcs defines {{{
-#define vStrErrNo       _wcserror
-#define vStrErrStr      __wcserror
-#define vStrErrNo_s     _wcserror_s
-#define vStrErrStr_s    __wcserror_s
-#define vPntErrStr      _wperror
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include "CErrPtr_def.inl"
 // }}}
-#else // default defined : _V_USE_WCHAR_ == 0 
-//  char funcs defines {{{
-#define vStrErrNo       strerror
-#define vStrErrStr      _strerror
-#define vStrErrNo_s     strerror_s
-#define vStrErrStr_s    _strerror_s
-#define vPntErrStr      perror
-// }}}
-#endif // !#if defined(...)
-// ================================================================================================ //
 
 // ================================================================================================ //
 // ==  Class CErrPtr Construct && Destruct realization                                           == //
@@ -181,14 +159,26 @@ inline tchar* vm::CErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSiz
     // Init memory buffer
     vm::v_memzero( pBuf, csztBufSize );
 
+#if defined (_MSC_VER) && (_MSC_VER>1200)
     // Get error message string
-    errno_t leRet = vStrErrNo_s( pBuf, csztBufSize, (int)mllErrCode );
+    vErrno_t leRet = vStrErrNo_s( pBuf, csztBufSize, (int)mllErrCode );
     if( leRet != 0 ) 
     {
         // if can't get error message, return empty string
         vm::v_memzero( pBuf, csztBufSize );
         return pBuf;
     }
+#else
+    tchar* lpRet = vStrErrNo( (int)mllErrCode );
+    if( lpRet == nullptr )
+    {
+        // if can't get error message, return empty string
+        vm::v_memzero( pBuf, csztBufSize );
+        return pBuf;
+    }
+
+    vm::v_strcpy( pBuf, csztBufSize, lpRet );
+#endif
 
     // Get error message string length
     sztStrLen = vStrlen( pBuf );
