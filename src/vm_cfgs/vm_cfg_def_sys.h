@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:31:31                                               == //
-// ==   Modify Time          : 2020-10-27 18:54:14                                               == //
+// ==   Modify Time          : 2020-10-28 09:12:49                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -39,60 +39,44 @@
 // }}}
 
 // ================================================================================================ //
-// Window platform macro define
-#ifdef _WIN32
-// {{{
-
-// Platform define : {{{
-#ifdef    _V_SYS_
-#   error Macro _V_SYS_ has defined!
-#else  // _V_PLATFORM
-#   define _V_SYS_  _V_WIN_
-#endif // _V_PLATFORM
+// system defines {{{
+#if  defined _WIN32
+#   define _V_SYS_          _V_WIN_
+#else
+#   define _V_SYS_          _V_LUX_
+#endif // !_WIN32
 // }}}
-
-// ------------------------------------------------------------------------------------------------ //
-
-// Platform target define : {{{
-#ifdef    _WIN64
-#   define _V_SYS_TG_ _V_WIN64_
-#else  // _WIN64
-#   define _V_SYS_TG_ _V_WIN32_
-#endif // _WIN64
-// }}}
-
-// ------------------------------------------------------------------------------------------------ //
+// ================================================================================================ //
 
 // ================================================================================================ //
-// include files :
+#if        ( _V_SYS_ == _V_WIN_ )
+// windows system defines {{{
+// x64 or x86 defined
+#   if defined _WIN64
+#       define  _V_SYS_TG_  _V_WIN64_
+#   else   // !defined _WIN64
+#       define  _V_SYS_TG_  _V_WIN32_
+#   endif  // !_WIN64
+
+// windows header include
 #ifndef   _WINDOWS_
 #   include <windows.h>
 #endif // _WINDOWS_
 
-// ------------------------------------------------------------------------------------------------ //
 // }}}
-#else  // !_WIN32
-// ------------------------------------------------------------------------------------------------ //
-
-// Platform define : {{{
-#ifdef     _V_SYS_
-#   define _V_SYS_
-#   error Macor _V_SYS_ has defined!
-#else
-#   define _V_SYS_  _V_LUX_
-#endif // !_V_SYS_
+#elif      ( _V_SYS_ == _V_LUX_ )
+// linux system defines {{{
 // }}}
-
-// ------------------------------------------------------------------------------------------------ //
-
-#endif //  _WIN32
+#endif // !( _V_SYS == ... )
 // ================================================================================================ //
 
-// Redefine _V_USE_WCHAR_
+// ================================================================================================ //
+// wchar defines
 #if defined ( UNICODE ) || defined (_USE_WCHAR_) 
 #   undef  _V_USE_WCHAR_
 #   define _V_USE_WCHAR_ 1
 #endif // _V_USE_WCHAR_
+// ================================================================================================ //
 
 // ================================================================================================ //
 #endif // __VM_CFG_DEF_SYS_H__
