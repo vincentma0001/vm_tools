@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-10-28 11:51:23                                               == //
+// ==   Modify Time          : 2020-10-28 12:22:03                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -483,7 +483,7 @@ inline tchar* vm::v_strncat ( tchar* const pDst, const size_t csztDstSize, const
 
 #if defined (_MSC_VER) && (_MSC_VER>=1300)
     vErrno_t loRet = vStrncat_s(pDst, csztDstSize, cpSrc, csztDataLen);
-    _ASSERT_(v_strncat(), (loRet==0) );
+    _ASSERT_(vT("v_strncat()"), (loRet==0) );
 
     return pDst;
 #else
@@ -513,7 +513,7 @@ inline size_t vm::v_strcpy ( tchar* const pDst, const size_t csztDstSize, const 
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
     //vErrno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
     vErrno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
-    _ASSERT_(v_strcpy(), (loRet==0) );
+    _ASSERT_(vT("v_strcpy()"), (loRet==0) );
 
     return lsztDataLen;
 #else
@@ -548,7 +548,7 @@ inline size_t vm::v_strncpy ( tchar* const pDst, const size_t csztDstSize, const
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
     // vErrno_t loRet = strncpy_s(pDst, csztDstSize, cpSrc, csztDataLen);
     vErrno_t loRet = vMemcpy_s(pDst, csztDstSize, cpSrc, lsztDatalen);
-    _ASSERT_(v_strncpy(), (loRet==0) );
+    _ASSERT_(vT("v_strncpy()"), (loRet==0) );
 
     *(pDst+lsztDatalen) = tchar(0x00);
     return csztDataLen;
@@ -556,7 +556,7 @@ inline size_t vm::v_strncpy ( tchar* const pDst, const size_t csztDstSize, const
     //tchar* lpEnd = vStrcpy(pDst, cpSrc)
     tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztDatalen);
     if ( lpEnd == nullptr ){ return 0; }
-    _VERIFY_(v_strncpy(), lpEnd);
+    _VERIFY_(vT("v_strncpy()"), lpEnd);
 
     size_t lsztCopied= lpEnd -pDst;
     return lsztCopied;
