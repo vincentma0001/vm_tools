@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 20:36:11                                               == //
-// ==   Modify Time          : 2020-10-27 19:32:32                                               == //
+// ==   Modify Time          : 2020-10-28 12:17:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,9 +25,9 @@
 // Type redefines : {{{
 
 #if        ( _V_SYS_ == _V_WIN_ )
-#   define vErrno_t     errno_t
+#   define verrno_t     errno_t
 #elif      ( _V_SYS_ == _V_LUX_ )
-#   define vErrno_t     error_t
+#   define verrno_t     error_t
 #endif // !( _V_SYS_ == _V_WIN_ )
 
 typedef unsigned char tByte;

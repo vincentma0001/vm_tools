@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-10-27 19:40:29                                               == //
+// ==   Modify Time          : 2020-10-28 11:51:23                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,6 +28,7 @@
 // ==  Brief   : Change string's alpha letter to upper
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : pData            - [O] Data buffer address
+#include "vm_tools/vm_util/vm_util_mem.h"
 inline void vm::v_toupper ( tchar* const pData )
 // {{{
 {
@@ -1117,6 +1118,49 @@ inline size_t vm::v_str_substr_last (       tchar* const     pDst, const size_t 
 }
 // }}} end of func v_str_substr_last(...)
 // ================================================================================================ //
+
+
+// ================================================================================================ //
+// ==  Methord : v_strerrno(...)                                                                 == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Convert errno value to string
+// ==  Return  : size_t           - [O] Output string's length
+// ==  Params  : cllErrCode       - [I] Errno code
+// ==            pBuf             - [O] Output string's buffer
+// ==            csztBufSize      - [I] Output string's buffer size
+size_t vm::v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize )
+// {{{
+{
+    // Verify input buffer
+    _VERIFY_( vT("v_strerrno()"), pBuf );
+
+#if        ( _V_SYS_ == _V_WIN_ )
+    // Get errno string
+    vm::v_memzero( pBuf,csztBufSize );
+    vErrno_t loRet = vStrErrNo_s( pBuf, csztBufSize, cllErrCode );
+    if( loRet == 0 )
+    {
+        vm::v_memzero( pBuf, csztBufSize );
+    }
+    // Get errno string length and return
+    size_t lsztErrStrlen = vStrlen( pBuf );
+    return lsztErrStrlen; 
+#elif      ( _V_SYS_ == _V_LUX_ )
+    // Get errno string
+    vm::v_memzero( pBuf, csztBufSize );
+    int liRet = vStrErrNo_s( cllErrCode, pBuf, csztBufSize );
+    if( liRet == 0 )
+    {
+        vm::v_memzero( pBuf, csztBufSize );
+    }
+    // Get errno string length and return
+    size_t lsztErrStrlen = vStrlen( pBuf );
+    return lsztErrStrlen;
+#endif // !( _V_SYS_ == _V_WIN_ )
+}
+// }}} end of func v_strerrno(...)
+// ================================================================================================ //
+
 
 #endif // ! __VM_UTIL_STR_H_INL__
 // ================================================================================================ //
