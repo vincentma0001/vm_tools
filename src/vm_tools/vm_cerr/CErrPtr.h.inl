@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-10-28 12:33:45                                               == //
+// ==   Modify Time          : 2020-10-28 12:35:28                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -39,7 +39,7 @@ inline vm::CErrPtr::CErrPtr(const long long cllErrCode, tchar* const pBuf, const
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::~CErrPtr()                                                      == //
+// ==  Methord : CErrPtr::~CErrPtr()                                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
 inline vm::CErrPtr::~CErrPtr(  )
