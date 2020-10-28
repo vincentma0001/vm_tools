@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-04 21:39:49                                               == //
-// ==   Modify Time          : 2020-10-04 21:53:52                                               == //
+// ==   Modify Time          : 2020-10-28 09:23:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,7 +26,6 @@
 
 #define vTry            try{
 #define vCatch(x)       }catch(x){
-#define vCatch_d        }catch(...){
 #define vEnd            };
 
 // }}} ! exception configure
