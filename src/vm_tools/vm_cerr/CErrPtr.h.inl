@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-10-27 20:04:55                                               == //
+// ==   Modify Time          : 2020-10-28 10:42:36                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -21,14 +21,6 @@
 #ifndef  __CERRPTR_H_INL__
 #define  __CERRPTR_H_INL__
 
-
-// ================================================================================================ //
-// == Include files :                                                                            == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Include files ] {{{
-#include "CErrPtr_def.inl"
-// }}}
-
 // ================================================================================================ //
 // ==  Class CErrPtr Construct && Destruct realization                                           == //
 // ================================================================================================ //
@@ -39,7 +31,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CErrPtr::CErrPtr(const long long cllErrCode, tchar* const pBuf, const size_t csztBufSize)
-                           :mllErrCode( cllErrCode ), mpBuf(pBuf), msztBufSize( csztBufSize )
+                           :mpBuf(pBuf), msztBufSize( csztBufSize ), mllErrCode(cllErrCode)
 // {{{
 {
 }
@@ -61,7 +53,7 @@ inline vm::CErrPtr::~CErrPtr(  )
 // ==  Methord : CErrPtr::CErrPtr()                                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline vm::CErrPtr::CErrPtr( const vm::CErrPtr &obj )
+inline vm::CErrPtr::CErrPtr( const CErrPtr &obj )
 // {{{
 {
     *this = obj;
@@ -83,7 +75,7 @@ inline vm::CErrPtr::CErrPtr( const vm::CErrPtr &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CErrPtr&         - [O] this object
-inline vm::CErrPtr& vm::CErrPtr::operator = ( const vm::CErrPtr &obj )
+inline vm::CErrPtr& vm::CErrPtr::operator = ( const CErrPtr &obj )
 // {{{
 {
     mllErrCode = obj.mllErrCode;

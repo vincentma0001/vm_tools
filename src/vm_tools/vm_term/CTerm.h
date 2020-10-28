@@ -77,7 +77,7 @@ public:
 // == ------------------------------------------------------------------------------------------ == //
 // [ Usage ] {{{ /*
 //      vm::CTerm loTerm;
-//      loTerm.Write( vT("[ $COL{red:step 1} ] this is a test! %d %s "), 10, vT("$COL{green:OK}") )
+//      loTerm.Write( vT("[ $CSI{red;light:step 1} ] this is a test! %d %s "), 10, vT("$CSI{green:OK}") )
 // }}} */
 // ================================================================================================ //
 // ==                                        End of file                                         == //
