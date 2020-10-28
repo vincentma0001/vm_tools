@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:48:58                                               == //
-// ==   Modify Time          : 2020-10-25 12:06:53                                               == //
+// ==   Modify Time          : 2020-10-28 12:52:23                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,12 +25,17 @@
 // In/Out macro define : {{{
 
 // input paramter
+#ifndef    _vIn_
 #define _vIn_
+#endif // !_vIn_
 // ouput paramter
+#ifndef    _vOt_
 #define _vOt_
+#endif // !_vOt_
 // input && output paramter
+#ifndef    _vIO_
 #define _vIO_
-
+#endif // !_vIO_
 // }}}
 // ================================================================================================ //
 
