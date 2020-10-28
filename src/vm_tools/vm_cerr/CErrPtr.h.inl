@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-10-28 10:42:36                                               == //
+// ==   Modify Time          : 2020-10-28 12:33:45                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -132,6 +132,12 @@ inline tchar* vm::CErrPtr::toString(  )
 inline tchar* vm::CErrPtr::Fmt( const tchar* const cpFmt )
 // {{{
 {
+    // Verify input 
+    _VERIFY_( vT("vm::CErrPtr::Fmt()"), cpFmt );
+
+    // Format string
+    // TODO : Add format string;
+
     return mpBuf;
 }
 // }}} end of func CErrPtr::Fmt(...)
@@ -148,32 +154,12 @@ inline tchar* vm::CErrPtr::Fmt( const tchar* const cpFmt )
 inline tchar* vm::CErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen )
 // {{{
 {
-    // Init memory buffer
+    // Verify input
+    _VERIFY_( vT("vm::CErrPtr::GetErrStr()"), pBuf );
+
+    // Convert errno value to string
     vm::v_memzero( pBuf, csztBufSize );
-
-#if defined (_MSC_VER) && (_MSC_VER>1200)
-    // Get error message string
-    vErrno_t leRet = vStrErrNo_s( pBuf, csztBufSize, (int)mllErrCode );
-    if( leRet != 0 ) 
-    {
-        // if can't get error message, return empty string
-        vm::v_memzero( pBuf, csztBufSize );
-        return pBuf;
-    }
-#else
-    tchar* lpRet = vStrErrNo( (int)mllErrCode );
-    if( lpRet == nullptr )
-    {
-        // if can't get error message, return empty string
-        vm::v_memzero( pBuf, csztBufSize );
-        return pBuf;
-    }
-
-    vm::v_strcpy( pBuf, csztBufSize, lpRet );
-#endif
-
-    // Get error message string length
-    sztStrLen = vStrlen( pBuf );
+    sztStrLen = vm::v_strerrno( mllErrCode, pBuf, csztBufSize );
     return pBuf;
 }
 // }}} end of func CErrPtr::GetErrStr(...)
