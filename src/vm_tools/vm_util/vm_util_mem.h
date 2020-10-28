@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 20:54:57                                               == //
-// ==   Modify Time          : 2020-10-05 20:07:46                                               == //
+// ==   Modify Time          : 2020-10-28 12:44:54                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -45,33 +45,33 @@ namespace vm {
 // [ Function defines ] {{{
 
 // set memory value to 0x00 from pBuf to pBuf+csztDataLen
-inline void  v_memzero   ( void* const pBuf,                    const size_t csztDataLen );
+inline void  v_memzero   ( _vIO_ void* const pBuf,                          _vIn_ const size_t csztDataLen );
 // set mem value
-inline void  v_memset    ( void* const pBuf, const short csVal, const size_t csztDataLen );
+inline void  v_memset    ( _vIO_ void* const pBuf, _vIn_ const short csVal, _vIn_ const size_t csztDataLen );
 
 // look for the first ciVal value from memory address pBuf to pBuf+csztLookforLen
-inline void* v_memchr    ( void* const pBuf, const short csVal, const size_t csztLookforLen );
+inline void* v_memchr    ( _vIn_ void* const pBuf, _vIn_ const short csVal, _vIn_ const size_t csztLookforLen );
 
 // move date from cpSrc tp pDst
-inline size_t v_memmove  ( void* const pDst, const size_t csztDstSize, const void* const cpSrc,                  const size_t csztDataLen );
+inline size_t v_memmove  ( _vOt_ void* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const void* const cpSrc,                        _vIn_ const size_t csztDataLen );
 // copy data from cpSrc to pDst
-inline size_t v_memcpy   ( void* const pDst, const size_t csztDstSize, const void* const cpSrc,                  const size_t csztDataLen );
+inline size_t v_memcpy   ( _vOt_ void* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const void* const cpSrc,                        _vIn_ const size_t csztDataLen );
 // copy data from cpSrc to pDst until meet ciVal
-inline size_t v_memccpy  ( void* const pDst, const size_t csztDstSize, const void* const cpSrc, const int ciVal, const size_t csztDataLen );
+inline size_t v_memccpy  ( _vOt_ void* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const void* const cpSrc, _vIn_ const int ciVal, _vIn_ const size_t csztDataLen );
 
 // decide cpBuf1 is less than cpBuf2 or not. case sensitive
-inline bool v_memcmp_less ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memcmp_less ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 // decide cpBuf1 is more than cpBuf2 or not. case sensitive
-inline bool v_memcmp_more ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memcmp_more ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 // decide cpBuf1 is equal than cpBuf2 or not. case sensitive
-inline bool v_memcmp_equl ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memcmp_equl ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 
 // decide cpBuf1 is less than cpBuf2 or not. case insensitive
-inline bool v_memicmp_less ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memicmp_less ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 // decide cpBuf1 is more than cpBuf2 or not. case insensitive
-inline bool v_memicmp_more ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memicmp_more ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 // decide cpBuf1 is equal than cpBuf2 or not. case insensitive
-inline bool v_memicmp_equl ( const void* const cpBuf1, const void* const cpBuf2, const size_t csztDataLen );
+inline bool v_memicmp_equl ( _vIn_ const void* const cpBuf1, _vIn_ const void* const cpBuf2, _vIn_ const size_t csztDataLen );
 
 // }}} ![ Function defines ]
 // ================================================================================================ //
