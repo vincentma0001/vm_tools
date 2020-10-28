@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 21:29:54                                               == //
-// ==   Modify Time          : 2020-10-04 19:03:37                                               == //
+// ==   Modify Time          : 2020-10-28 12:26:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,7 +32,7 @@ inline void vm::v_memzero ( void* const pBuf, const size_t csztDataLen )
 // {{{
 {
     // verify input paramters
-    _VERIFY_(v_memzero(), pBuf);
+    _VERIFY_(vT("v_memzero()"), pBuf);
 
     memset(pBuf, 0x00, csztDataLen);
 } // }}} end of func vm::v_memzero(...)
@@ -50,7 +50,7 @@ inline void vm::v_memset ( void* const pBuf, const short csVal, const size_t csz
 // {{{
 {
     // verify input paramters
-    _VERIFY_(v_memset(), pBuf);
+    _VERIFY_(vT("v_memset()"), pBuf);
 
     memset(pBuf, csVal, csztDataLen);
 } // }}} end of func vm::v_memset(...)
@@ -69,7 +69,7 @@ inline void* vm::v_memchr ( void* const pBuf, const short csVal, const size_t cs
 // {{{
 {
     // verify input paramters
-    _VERIFY_(v_memchr(), pBuf);
+    _VERIFY_(vT("v_memchr()"), pBuf);
 
     return vMemchr((tchar* const)pBuf, csVal, csztLookforLen);
 } // }}} end of func vm::v_memchr(...)
@@ -90,7 +90,7 @@ size_t vm::v_memmove ( void* const pDst, const size_t csztDstSize, const void* c
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memmove(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_memmove()"), pDst, cpSrc);
 
     // reset data len need to been moved
     size_t lsztDatalen = vMin(csztDstSize, csztDataLen);
@@ -123,7 +123,7 @@ inline size_t vm::v_memcpy ( void* const pDst, const size_t csztDstSize, const v
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memcpy(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_memcpy()"), pDst, cpSrc);
 
     // reset data len need to been copyed
     size_t lsztDatalen = vMin(csztDstSize, csztDataLen);
@@ -157,7 +157,7 @@ size_t vm::v_memccpy ( void* const pDst, const size_t csztDstSize, const void* c
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memccpy(), pDst, cpSrc);
+    _VERIFY_2_(vT("v_memccpy()"), pDst, cpSrc);
 
     // reset data len need to been copyed
     size_t lsztDatalen = vMin(csztDstSize, csztDataLen);
@@ -186,7 +186,7 @@ bool vm::v_memcmp_less ( const void* const cpBuf1, const void* const cpBuf2, con
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memcmp_less(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memcmp_less()"), cpBuf1, cpBuf2);
 
     // compare buffer
     int liRet = vMemcmp((const tchar* const)cpBuf1, (const tchar* const)cpBuf2, csztDataLen);
@@ -210,7 +210,7 @@ bool vm::v_memcmp_more ( const void* const cpBuf1, const void* const cpBuf2, con
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memcmp_more(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memcmp_more()"), cpBuf1, cpBuf2);
 
     // compare buffer
     int liRet = vMemcmp((const tchar* const)cpBuf1, (const tchar* const)cpBuf2, csztDataLen);
@@ -234,7 +234,7 @@ bool vm::v_memcmp_equl ( const void* const cpBuf1, const void* const cpBuf2, con
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memcmp_equl(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memcmp_equl()"), cpBuf1, cpBuf2);
     
     // compare buffer
     int liRet = vMemcmp((tchar*)cpBuf1, (tchar*)cpBuf2, csztDataLen);
@@ -258,7 +258,7 @@ bool vm::v_memicmp_less ( const void* const cpBuf1, const void* const cpBuf2, co
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memicmp_less(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memicmp_less()"), cpBuf1, cpBuf2);
     
     // compare buffer
     int liRet = vMemicmp((const tchar* const)cpBuf1, (const tchar* const)cpBuf2, csztDataLen);
@@ -282,7 +282,7 @@ bool vm::v_memicmp_more ( const void* const cpBuf1, const void* const cpBuf2, co
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memicmp_more(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memicmp_more()"), cpBuf1, cpBuf2);
 
     // compare buffer
     int liRet = vMemicmp((const tchar* const)cpBuf1, (const tchar* const)cpBuf2, csztDataLen);
@@ -306,7 +306,7 @@ bool vm::v_memicmp_equl ( const void* const cpBuf1, const void* const cpBuf2, co
 // {{{
 {
     // verify input paramters
-    _VERIFY_2_(v_memicmp_equl(), cpBuf1, cpBuf2);
+    _VERIFY_2_(vT("v_memicmp_equl()"), cpBuf1, cpBuf2);
 
     // compare buffer
     int liRet = vMemicmp((const tchar* const)cpBuf1, (const tchar* const)cpBuf2, csztDataLen);
