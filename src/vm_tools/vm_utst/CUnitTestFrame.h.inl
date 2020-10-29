@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 16:03:01                                               == //
-// ==   Modify Time          : 2020-10-29 10:56:54                                               == //
+// ==   Modify Time          : 2020-10-29 11:30:17                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,7 +33,6 @@
 // ==  Methord : CUnit::CUnit()                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include "vm_tools/vm_term/CTerm.h"
 inline CUnit::CUnit( const tchar* const cpName )
 // {{{
 {
@@ -41,7 +40,7 @@ inline CUnit::CUnit( const tchar* const cpName )
     _VERIFY_( CUnit::CUnit(), cpName );
 
     // Copy input name to name buffer
-    vStrcpy( mszName, cpName );
+    vm::v_strcpy( mszName, sizeof(mszName), cpName );
 }
 // }}} End of func CUnit::CUnit()
 // ================================================================================================ //
