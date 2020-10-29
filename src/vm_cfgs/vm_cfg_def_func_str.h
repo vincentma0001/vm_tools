@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 23:07:31                                               == //
-// ==   Modify Time          : 2020-10-29 11:43:35                                               == //
+// ==   Modify Time          : 2020-10-29 12:40:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -210,6 +210,33 @@
 // --------------------------------------------------------------------------------------
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ======================================================================================
+
+// ================================================================================================ //
+#if        ( _V_SYS_ == _V_WIN_ )
+// {{{
+#if        ( _V_USE_WCHAR_ == 0 )
+#   define vStrErrNo    _strerror
+#   define vStrErrNo_s  _strerror_s
+#else  //  ( _V_USE_WCHAR_ != 0 )
+#   define vStrErrNo    _wstrerror
+#   define vStrErrNo_s  _wstrerror_s
+#endif // !( _V_USE_WCHAR_ == 0 ) 
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// {{{
+#ifndef    vStrErrNo_s
+#if        ( _V_USE_WCHAR_ == 0 )
+#   define vStrErrNo    ::strerror
+#   define vStrErrNo_s  ::strerror_r
+#else  //  ( _V_USE_WCHAR_ != 0 )
+// ISSUE : there are streror_r wchar version in linux ?
+#   define vStrErrNo    ::strerror
+#   define vStrErrNo_s  ::strerror_r
+#endif // !( _V_USE_WCHAR_ == 0 ) 
+#endif // !vStrErrNo_s
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
+// ================================================================================================ //
 
 // }}}
 // ================================================================================================ //

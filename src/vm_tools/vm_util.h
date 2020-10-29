@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-10-29 11:33:04                                               == //
+// ==   Modify Time          : 2020-10-29 11:45:23                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -31,6 +31,7 @@
 #include <stdarg.h>
 #include <limits.h>
 #include <string.h>
+#include <errno.h>
 
 // vm's configure files included
 #include <vm_cfgs.h>
