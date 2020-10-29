@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 16:03:01                                               == //
-// ==   Modify Time          : 2020-10-29 11:30:17                                               == //
+// ==   Modify Time          : 2020-10-29 12:45:51                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -200,7 +200,7 @@ inline void CUnitTestFrame::Run(  )
     
         Log( vT("\n"));
         Log( vT("--------------------------------------------------------------------------------------\n"));
-        if  ( lbRet == TRUE )
+        if  ( lbRet == true )
         {
             Log( vT("%s is %s\n"), lpFunc->mszName, vT("Succeed"));
         }
