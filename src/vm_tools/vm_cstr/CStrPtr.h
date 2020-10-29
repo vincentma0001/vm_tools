@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:04                                               == //
-// ==   Modify Time          : 2020-10-17 19:53:07                                               == //
+// ==   Modify Time          : 2020-10-29 13:15:43                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -112,18 +112,18 @@ public:
 
     // [ Fmt func ] {{{
     // Format string
-    inline tchar* Fmt   (                            const tchar* const cpFmt,           ...);
+    inline tchar* Fmt   (                            const tchar* const cpFmt,            ...);
     // Format string
-    inline tchar* Fmt   (const size_t csztBufOffset, const tchar* const cpFmt,           ...);
+    inline tchar* Fmt   (const size_t csztBufOffset, const tchar* const cpFmt,            ...);
     // Format string
-    inline tchar* Fmt   (const size_t csztBufOffset, const tchar* const cpFmt, va_list vList);
+    inline tchar* Fmt   (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
 
     // Format string
-    inline int    Fmt2  (                            const tchar* const cpFmt,           ...);
+    inline int    Fmt2  (                            const tchar* const cpFmt,            ...);
     // Format string
-    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt,           ...);
+    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt,            ...);
     // Format string
-    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt, va_list vList);
+    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
     // }}}
 
     // [ Cmp func ] {{{

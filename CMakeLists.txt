@@ -39,9 +39,9 @@ project(${TNAME} VERSION ${VER})
 configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
-#add_subdirectory(${HOME}/tst/tst_cstr)
+add_subdirectory(${HOME}/tst/tst_cstr)
 #add_subdirectory(${HOME}/tst/tst_file)
-#add_subdirectory(${HOME}/tst/tst_util)
+add_subdirectory(${HOME}/tst/tst_util)
 #add_subdirectory(${HOME}/tst/tst_kernal)
 #add_subdirectory(${HOME}/tst/tst_cmds)
 add_subdirectory(${HOME}/tst/tst_utst)

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 16:25:05                                               == //
-// ==   Modify Time          : 2020-10-28 10:15:01                                               == //
+// ==   Modify Time          : 2020-10-29 13:16:28                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -412,8 +412,8 @@ inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const 
 // ==  Return  : tchar*           - [O] New string's address
 // ==  Params  : csztBufOffset    - [I] Buffer's offset
 // ==            cpFmt            - [I] String's format
-// ==            vList            - [I] Format paramters
-inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list vList )
+// ==            vList&           - [I] Format paramters
+inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     tchar* lpPos = mpBuf + csztBufOffset;
@@ -471,8 +471,8 @@ inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cp
 // ==  Return  : int              - [O] New string's length
 // ==  Params  : csztBufOffset    - [I] Buffer's offset
 // ==            cpFmt            - [I] String's format
-// ==            vList            - [I] Format paramters
-inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list vList )
+// ==            vList&           - [I] Format paramters
+inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     tchar* lpPos = mpBuf + csztBufOffset;
