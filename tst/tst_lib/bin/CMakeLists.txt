@@ -13,6 +13,6 @@ add_executable(${MODULE_NAME} ${SRCS})
 
 # link library
 target_link_libraries(${MODULE_NAME}
-    ${PROJECT_SOURCE_DIR}/lib/tst_lib.lib
+    ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libtst_lib.so
 )
 
