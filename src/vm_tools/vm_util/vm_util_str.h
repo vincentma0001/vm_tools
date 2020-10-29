@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:59:49                                               == //
-// ==   Modify Time          : 2020-10-28 12:38:49                                               == //
+// ==   Modify Time          : 2020-10-29 10:34:17                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef  __VM_UTIL_STR_H__
 #define  __VM_UTIL_STR_H__
+
 
 // ================================================================================================ //
 // using namespace vm {{{
@@ -161,7 +162,7 @@ inline size_t v_str_substr_last  ( _vOt_       tchar* const          pDst, _vIn_
                                    _vIn_ const int ciBFlag = vStrPosBegin, _vIn_ const int ciEFlag = vStrPosEnded );
 
 // Convert errno value to string
-inline size_t vm::v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize );
+inline size_t v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize );
 
 // }}} ![ Function defines ]
 // ================================================================================================ //

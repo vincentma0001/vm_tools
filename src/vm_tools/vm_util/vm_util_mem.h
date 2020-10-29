@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 20:54:57                                               == //
-// ==   Modify Time          : 2020-10-28 12:44:54                                               == //
+// ==   Modify Time          : 2020-10-29 10:34:03                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef __VM_UTIL_MEM_H__
 #define __VM_UTIL_MEM_H__
+
 
 // ================================================================================================ //
 // using namespace vm : {{{
@@ -45,6 +46,7 @@ namespace vm {
 // [ Function defines ] {{{
 
 // set memory value to 0x00 from pBuf to pBuf+csztDataLen
+inline void  v_memzero   ( _vIO_ void* const pBuf,                          _vIn_ const size_t csztDataLen );
 inline void  v_memzero   ( _vIO_ void* const pBuf,                          _vIn_ const size_t csztDataLen );
 // set mem value
 inline void  v_memset    ( _vIO_ void* const pBuf, _vIn_ const short csVal, _vIn_ const size_t csztDataLen );

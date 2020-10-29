@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-10-28 12:22:03                                               == //
+// ==   Modify Time          : 2020-10-29 10:34:44                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,7 +28,6 @@
 // ==  Brief   : Change string's alpha letter to upper
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : pData            - [O] Data buffer address
-#include "vm_tools/vm_util/vm_util_mem.h"
 inline void vm::v_toupper ( tchar* const pData )
 // {{{
 {

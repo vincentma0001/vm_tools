@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 21:29:54                                               == //
-// ==   Modify Time          : 2020-10-28 12:26:33                                               == //
+// ==   Modify Time          : 2020-10-29 10:33:38                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,9 @@
 
 #ifndef   __VM_UTIL_MEM_H_INL__
 #define   __VM_UTIL_MEM_H_INL__
+
+#include <stddef.h>
+#include <vm_cfgs/vm_cfg_def_str.h>
 
 // ================================================================================================ //
 // ==  Methord : vm::v_memzero(...)                                                              == //
