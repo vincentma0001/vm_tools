@@ -4,7 +4,7 @@
 #include <map>
 #include <iostream>
 
-#include <tst_test/tst_test.h>
+#include "tst_test.h"
 
 int main(int argc, char *argv[])
 {
