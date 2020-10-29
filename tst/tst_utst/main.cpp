@@ -1,6 +1,7 @@
 
 
 #include <vm_tools/vm_utst.h>
+#include <iostream>
 
 UT_FUNC_BEGIN(ut_utst_1)
     std::cout << "This is a unit test 1 function!" << std::endl;

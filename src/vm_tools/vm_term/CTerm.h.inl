@@ -23,103 +23,108 @@
 
 
 // ================================================================================================ //
-// ==  Class CTerm Construct && Destruct realization                                             == //
+// ==  Class CTerm<tsztBufSize> Construct && Destruct realization                                == //
 // ================================================================================================ //
-// [ Class CTerm Construct && Destruct realization ] {{{
+// [ Class CTerm<tsztBufSize> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CTerm::CTerm()                                                                  == //
+// ==  Methord : CTerm<tsztBufSize>::CTerm()                                                     == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline vm::CTerm::CTerm(  ):mszBuf{0x00}
+#include "vm_tools/vm_term/CTerm.h"
+template< size_t tsztBufSize >
+inline vm::CTerm<tsztBufSize>::CTerm(  ):mszBuf{0x00}
 // {{{
 {
 }
-// }}} End of func CTerm::CTerm()
+// }}} End of func CTerm<tsztBufSize>::CTerm()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CTerm::CTerm()                                                          == //
+// ==  Methord : virtual CTerm<tsztBufSize>::CTerm()                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline vm::CTerm::~CTerm(  )
+template< size_t tsztBufSize >
+inline vm::CTerm<tsztBufSize>::~CTerm(  )
 // {{{
 {
 }
-// }}} End of func CTerm::~CTerm()
+// }}} End of func CTerm<tsztBufSize>::~CTerm()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CTerm::CTerm()                                                                  == //
+// ==  Methord : CTerm<tsztBufSize>::CTerm()                                                     == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline vm::CTerm::CTerm( const vm::CTerm &obj )
+template< size_t tsztBufSize >
+inline vm::CTerm<tsztBufSize>::CTerm( const CTerm &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CTerm::CTerm()
+// }}} End of func CTerm<tsztBufSize>::CTerm()
 // ================================================================================================ //
 
-// }}} ![ Class CTerm Construct && Destruct realization ]
+// }}} ![ Class CTerm<tsztBufSize> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CTerm operator realization                                                          == //
+// ==  Class CTerm<tsztBufSize> operator realization                                             == //
 // ================================================================================================ //
-// [ Class CTerm operator realization ] {{{
+// [ Class CTerm<tsztBufSize> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CTerm::operator = ()                                                            == //
+// ==  Methord : CTerm<tsztBufSize>::operator = ()                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CTerm&           - [O] this object
-inline vm::CTerm& vm::CTerm::operator = ( const vm::CTerm &obj )
+// ==  Return  : CTerm<tsztBufSize>& - [O] this object
+template< size_t tsztBufSize >
+inline vm::CTerm<tsztBufSize>& vm::CTerm<tsztBufSize>::operator = ( const CTerm &obj )
 // {{{
 {
     return *this;
 }
-// }}} End of func CTerm::operator=()
+// }}} End of func CTerm<tsztBufSize>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CTerm operator realization ]
+// }}} ![ Class CTerm<tsztBufSize> operator realization ]
 // ================================================================================================ //
-
-
-// ================================================================================================ //
-// ==  Class CTerm Functional realization                                                        == //
-// ================================================================================================ //
-// [ Class CTerm Functional realization ] {{{
 
 
 // ================================================================================================ //
-// ==  Methord : CTerm(...)                                                                      == //
+// ==  Class CTerm<tsztBufSize> Functional realization                                           == //
+// ================================================================================================ //
+// [ Class CTerm<tsztBufSize> Functional realization ] {{{
+
+// ================================================================================================ //
+// ==  Methord : CTerm<tsztBufSize>::Write(...)                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Wrtie letters to terminal
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : cpFmt            - [I] String's format
 // ==            ...              - [I] String's format paramters
-void vm::CTerm ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
+template< size_t tsztBufSize >
+inline void vm::CTerm<tsztBufSize>::Write ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
     va_list lvList;
-    va_start( cpFmt, lvList );
+    va_start( lvList, cpFmt );
     Write( cpFmt, lvList );
     va_end(lvList);
 }
 // }}} end of func CTerm(...)
 // ================================================================================================ //
 
-
 // ================================================================================================ //
-// ==  Methord : CTerm(...)                                                                      == //
+// ==  Methord : CTerm<tsztBufSize>::Write(...)                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Write letters to terminal
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : cpFmt            - [I] String's format
 // ==            vList            - [I] String's format paramters
-void vm::CTerm ( _vIn_ const tchar* const cpFmt, _vIn_ const va_list& vList )
+template< size_t tsztBufSize >
+inline void vm::CTerm<tsztBufSize>::Write( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList )
 // {{{
 {
     vVprintf( cpFmt, vList );
@@ -127,10 +132,8 @@ void vm::CTerm ( _vIn_ const tchar* const cpFmt, _vIn_ const va_list& vList )
 // }}} end of func CTerm(...)
 // ================================================================================================ //
 
-
-// }}} ![ Class CTerm Functional realization ]
+// }}} ![ Class CTerm<tsztBufSize> Functional realization ]
 // ================================================================================================ //
-
 
 #endif // ! __CTERM_H_INL__
 // ================================================================================================ //

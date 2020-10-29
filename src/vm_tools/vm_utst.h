@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 17:20:04                                               == //
-// ==   Modify Time          : 2020-10-17 20:43:46                                               == //
+// ==   Modify Time          : 2020-10-29 11:25:24                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -31,7 +31,7 @@
 #include <vm_cfgs.h>
 
 // vm's function depend on files included
-#include <vm_tools/vm_cmds.h>
+#include <vm_tools/vm_term.h>
 
 // vm's function files inlcuded
 #include <vm_tools/vm_utst/CUnitTestFrame.h>

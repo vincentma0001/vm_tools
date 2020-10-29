@@ -21,6 +21,9 @@
 #ifndef  __CTERM_H__
 #define  __CTERM_H__
 
+#include <stddef.h>
+#include <stdarg.h>
+#include <vm_cfgs.h>
 
 // ================================================================================================ //
 // using namespace vm {{{
@@ -59,9 +62,9 @@ private:
 // Methods   : {{{
 public:
     // Write letters to terminal
-    void Write( _vIn_ const tchar* const cpFmt, _vIn_ ... );
+    inline void Write( _vIn_ const tchar* const cpFmt, _vIn_ ... );
     // Write letters to terminal
-    void Write( _vIn_ const tchar* const cpFmt, _vIn_ const va_list& cvList );
+    inline void Write( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 // }}} ! Methods
 
 };
