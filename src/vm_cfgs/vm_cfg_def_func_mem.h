@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 23:10:18                                               == //
-// ==   Modify Time          : 2020-10-28 09:20:18                                               == //
+// ==   Modify Time          : 2020-10-29 11:43:13                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef  __VM_CFG_DEF_FUNC_MEM_H__
 #define  __VM_CFG_DEF_FUNC_MEM_H__
+
 
 // ================================================================================================ //
 // Memory function macro define : {{{

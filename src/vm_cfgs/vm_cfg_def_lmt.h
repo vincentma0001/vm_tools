@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:02:26                                               == //
-// ==   Modify Time          : 2020-10-27 14:34:09                                               == //
+// ==   Modify Time          : 2020-10-29 11:43:43                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef  __VM_CFG_DEF_LMT_H__
 #define  __VM_CFG_DEF_LMT_H__
+
 
 // ================================================================================================ //
 // Type's min & max value redefines : {{{

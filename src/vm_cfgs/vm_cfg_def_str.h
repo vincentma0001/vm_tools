@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:38:24                                               == //
-// ==   Modify Time          : 2020-10-27 19:52:59                                               == //
+// ==   Modify Time          : 2020-10-29 11:44:05                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef __VM_CFG_DEF_STR_H__
 #define __VM_CFG_DEF_STR_H__
+
 
 // ================================================================================================ //
 // String's types macro define : {{{

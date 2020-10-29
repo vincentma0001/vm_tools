@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 20:36:11                                               == //
-// ==   Modify Time          : 2020-10-28 12:17:53                                               == //
+// ==   Modify Time          : 2020-10-29 11:44:14                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,7 @@
 
 #ifndef __VM_CFG_DEF_TYP_H__
 #define __VM_CFG_DEF_TYP_H__
+
 
 // ================================================================================================ //
 // Type redefines : {{{
