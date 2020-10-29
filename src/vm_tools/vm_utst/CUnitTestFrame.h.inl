@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 16:03:01                                               == //
-// ==   Modify Time          : 2020-10-29 12:45:51                                               == //
+// ==   Modify Time          : 2020-10-29 12:48:42                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,7 +33,7 @@
 // ==  Methord : CUnit::CUnit()                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline CUnit::CUnit( const tchar* const cpName )
+inline vm::CUnit::CUnit( const tchar* const cpName )
 // {{{
 {
     // verify input
@@ -49,7 +49,7 @@ inline CUnit::CUnit( const tchar* const cpName )
 // ==  Methord : virtual CUnit::CUnit()                                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline CUnit::~CUnit(  )
+inline vm::CUnit::~CUnit(  )
 // {{{
 {
 }
@@ -60,7 +60,7 @@ inline CUnit::~CUnit(  )
 // ==  Methord : CUnit::CUnit()                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline CUnit::CUnit( const CUnit &obj )
+inline vm::CUnit::CUnit( const CUnit &obj )
 // {{{
 {
     *this = obj;
@@ -82,7 +82,7 @@ inline CUnit::CUnit( const CUnit &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CUnit&           - [O] this object
-inline CUnit& CUnit::operator = ( const CUnit &obj )
+inline vm::CUnit& CUnit::operator = ( const CUnit &obj )
 // {{{
 {
     return *this;
@@ -108,7 +108,7 @@ inline CUnit& CUnit::operator = ( const CUnit &obj )
 // ==  Methord : CUnitTestFrame::CUnitTestFrame()                                                == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline CUnitTestFrame::CUnitTestFrame(  )
+inline vm::CUnitTestFrame::CUnitTestFrame(  )
 // {{{
 {
 }
@@ -119,7 +119,7 @@ inline CUnitTestFrame::CUnitTestFrame(  )
 // ==  Methord : virtual CUnitTestFrame::CUnitTestFrame()                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline CUnitTestFrame::~CUnitTestFrame(  )
+inline vm::CUnitTestFrame::~CUnitTestFrame(  )
 // {{{
 {
     tListItor loIter = mListUnits.begin();
@@ -137,7 +137,7 @@ inline CUnitTestFrame::~CUnitTestFrame(  )
 // ==  Methord : CUnitTestFrame::CUnitTestFrame()                                                == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline CUnitTestFrame::CUnitTestFrame( const CUnitTestFrame &obj )
+inline vm::CUnitTestFrame::CUnitTestFrame( const CUnitTestFrame &obj )
 // {{{
 {
     *this = obj;
@@ -159,7 +159,7 @@ inline CUnitTestFrame::CUnitTestFrame( const CUnitTestFrame &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CUnitTestFrame&  - [O] this object
-inline CUnitTestFrame& CUnitTestFrame::operator = ( const CUnitTestFrame &obj )
+inline vm::CUnitTestFrame& vm::CUnitTestFrame::operator = ( const CUnitTestFrame &obj )
 // {{{
 {
     return *this;
@@ -181,7 +181,7 @@ inline CUnitTestFrame& CUnitTestFrame::operator = ( const CUnitTestFrame &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Run all unit test
 // ==  Return  : void             - [O] Nothing for return
-inline void CUnitTestFrame::Run(  )
+inline void vm::CUnitTestFrame::Run(  )
 // {{{
 {
     Regist();
@@ -223,7 +223,7 @@ inline void CUnitTestFrame::Run(  )
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : cpFmt            - [I] text format string
 // ==            ...              - [I] text format string paramters
-inline void CUnitTestFrame::Log( _vIn_ const tchar* const cpFmt, _vIn_ ... )
+inline void vm::CUnitTestFrame::Log( _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
     vm::CTerm<2048> loTerminal;
