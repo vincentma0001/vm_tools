@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 15:24:04                                               == //
-// ==   Modify Time          : 2020-10-24 20:35:34                                               == //
+// ==   Modify Time          : 2020-10-29 10:57:07                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -129,7 +129,7 @@ public:
     inline void Run(  );
 private:
     // Write text to console
-    inline void Log( const short csTxtColor, const tchar* const cpFmt, ... );
+    inline void Log( const tchar* const cpFmt, ... );
 public:
     // Regist a unit test function class to test frame
     virtual void Regist( void ) = 0;

@@ -1,6 +1,9 @@
 
-
+#include <vm_tools/vm_util.h>
 #include <vm_tools/vm_utst.h>
+
+#include <iostream>
+
 
 // ================================================================================================ //
 // [ ut_mem ] {{{

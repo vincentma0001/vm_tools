@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 16:03:01                                               == //
-// ==   Modify Time          : 2020-10-04 20:40:26                                               == //
+// ==   Modify Time          : 2020-10-29 10:56:54                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,6 +33,7 @@
 // ==  Methord : CUnit::CUnit()                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
+#include "vm_tools/vm_term/CTerm.h"
 inline CUnit::CUnit( const tchar* const cpName )
 // {{{
 {
@@ -190,27 +191,27 @@ inline void CUnitTestFrame::Run(  )
     for ( ;loIter!=mListUnits.end(); loIter++ )
     {
         CUnit* lpFunc = (*loIter);
-        Log( vm::emColor::vf_lYellow , vT("\n") );
-        Log( vm::emColor::vf_lYellow , vT("======================================================================================\n"));
-        Log( vm::emColor::vf_lYellow , vT("%s is running ... \n"), lpFunc->mszName );
-        Log( vm::emColor::vf_lYellow , vT("--------------------------------------------------------------------------------------\n"));
-        Log( vm::emColor::vf_lWhite  , vT("\n"));
+        Log( vT("\n") );
+        Log( vT("======================================================================================\n"));
+        Log( vT("%s is running ... \n"), lpFunc->mszName );
+        Log( vT("--------------------------------------------------------------------------------------\n"));
+        Log( vT("\n"));
     
         bool lbRet = lpFunc->todo();
     
-        Log( vm::emColor::vf_lWhite  , vT("\n"));
-        Log( vm::emColor::vf_lYellow , vT("--------------------------------------------------------------------------------------\n"));
+        Log( vT("\n"));
+        Log( vT("--------------------------------------------------------------------------------------\n"));
         if  ( lbRet == TRUE )
         {
-            Log(vm::emColor::vf_lGreen, vT("%s is %s\n"), lpFunc->mszName, vT("Succeed"));
+            Log( vT("%s is %s\n"), lpFunc->mszName, vT("Succeed"));
         }
         else
         {
-            Log(vm::emColor::vf_lRed, vT("%s is %s\n"), lpFunc->mszName, vT("Failed"));
+            Log( vT("%s is %s\n"), lpFunc->mszName, vT("Failed"));
         }
          // End of if () ...
-        Log( vm::emColor::vf_lYellow , vT("======================================================================================\n") );
-        Log( vm::emColor::vf_lWhite  , vT("\n") );
+        Log( vT("======================================================================================\n") );
+        Log( vT("\n") );
     } // End of for( ; loIter..
 }
 // }}} end of func CUnitTestFrame:::Run(...)
@@ -221,17 +222,16 @@ inline void CUnitTestFrame::Run(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Write text to console
 // ==  Return  : void             - [O] Nothing for return
-// ==  Params  : csTxtColor       - [X] text color
-// ==            cpFmt            - [X] text format string
-// ==            ...              - [X] text format string paramters
-inline void CUnitTestFrame::Log( const short csTxtColor, const tchar* const cpFmt, ... )
+// ==  Params  : cpFmt            - [I] text format string
+// ==            ...              - [I] text format string paramters
+inline void CUnitTestFrame::Log( _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
-    vm::CWinCmd loCmd;
+    vm::CTerm<2048> loTerminal;
     
     va_list vList;
     va_start(vList, cpFmt);
-    loCmd.Write( csTxtColor, cpFmt, vList );
+    loTerminal.Write( cpFmt, vList );
     va_end(vList);
 }
 // }}} end of func CUnitTestFrame::Log(...)

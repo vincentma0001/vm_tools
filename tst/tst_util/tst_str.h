@@ -1,10 +1,9 @@
 
 
-#include <vm_cfgs.h>
-#include <vm_tools/vm_util/vm_util_mem.h>
-#include <vm_tools/vm_util/vm_util_str.h>
-
+#include <vm_tools/vm_util.h>
 #include <vm_tools/vm_utst.h>
+
+#include <iostream>
 
 // ================================================================================================ //
 // [ ut_strset ] {{{

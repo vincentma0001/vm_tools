@@ -93,6 +93,40 @@ inline vm::CTerm& vm::CTerm::operator = ( const vm::CTerm &obj )
 // [ Class CTerm Functional realization ] {{{
 
 
+// ================================================================================================ //
+// ==  Methord : CTerm(...)                                                                      == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Wrtie letters to terminal
+// ==  Return  : void             - [O] Nothing for return
+// ==  Params  : cpFmt            - [I] String's format
+// ==            ...              - [I] String's format paramters
+void vm::CTerm ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
+// {{{
+{
+    va_list lvList;
+    va_start( cpFmt, lvList );
+    Write( cpFmt, lvList );
+    va_end(lvList);
+}
+// }}} end of func CTerm(...)
+// ================================================================================================ //
+
+
+// ================================================================================================ //
+// ==  Methord : CTerm(...)                                                                      == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write letters to terminal
+// ==  Return  : void             - [O] Nothing for return
+// ==  Params  : cpFmt            - [I] String's format
+// ==            vList            - [I] String's format paramters
+void vm::CTerm ( _vIn_ const tchar* const cpFmt, _vIn_ const va_list& vList )
+// {{{
+{
+    vVprintf( cpFmt, vList );
+}
+// }}} end of func CTerm(...)
+// ================================================================================================ //
+
 
 // }}} ![ Class CTerm Functional realization ]
 // ================================================================================================ //

@@ -58,6 +58,10 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
+    // Write letters to terminal
+    void Write( _vIn_ const tchar* const cpFmt, _vIn_ ... );
+    // Write letters to terminal
+    void Write( _vIn_ const tchar* const cpFmt, _vIn_ const va_list& cvList );
 // }}} ! Methods
 
 };
