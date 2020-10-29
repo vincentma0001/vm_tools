@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 16:03:01                                               == //
-// ==   Modify Time          : 2020-10-29 12:48:42                                               == //
+// ==   Modify Time          : 2020-10-29 12:50:05                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -82,7 +82,7 @@ inline vm::CUnit::CUnit( const CUnit &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CUnit&           - [O] this object
-inline vm::CUnit& CUnit::operator = ( const CUnit &obj )
+inline vm::CUnit& vm::CUnit::operator = ( const CUnit &obj )
 // {{{
 {
     return *this;
