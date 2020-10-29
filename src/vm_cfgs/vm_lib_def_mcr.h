@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:13:18                                               == //
-// ==   Modify Time          : 2020-10-16 12:04:26                                               == //
+// ==   Modify Time          : 2020-10-29 12:59:48                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,12 +23,22 @@
 
 // ================================================================================================ //
 
+#if        ( _V_SYS_ == _V_WIN_ )
+// {{{
 #if defined(_WINDLL) || defined(_USRDLL) || defined(__USE_DLL__) 
 #   define DLL_API _declspec(dllexport)
 #else
 //#   define DLL_API _declspec(dllimport)
 #   define DLL_API
 #endif
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// {{{
+#ifndef    DLL_API
+#   define DLL_API
+#endif // !DLL_API
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
 
 // ================================================================================================ //
 
