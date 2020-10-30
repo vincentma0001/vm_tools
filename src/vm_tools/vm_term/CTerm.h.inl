@@ -31,7 +31,6 @@
 // ==  Methord : CTerm<tsztBufSize>::CTerm()                                                     == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include "vm_tools/vm_term/CTerm.h"
 template< size_t tsztBufSize >
 inline vm::CTerm<tsztBufSize>::CTerm(  ):mszBuf{0x00}
 // {{{
