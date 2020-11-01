@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 23:17:47                                               == //
-// ==   Modify Time          : 2020-10-17 20:54:22                                               == //
+// ==   Modify Time          : 2020-11-01 08:45:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -197,11 +197,11 @@
 // Write formatted data from variable argument list to sized buffer(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // --------------------------------------------------------------------------------------
-#   define vVsprintf           vsprintf
-#   define vVsprintf_s         vsprintf_s
+#   define vVsprintf           ::vsprintf
+#   define vVsprintf_s         ::vsprintf_s
 #else  // _V_USE_WCHAR_ != 0
-#   define vVsprintf           vswprintf
-#   define vVsprintf_s         vswprintf_s
+#   define vVsprintf           ::vswprintf
+#   define vVsprintf_s         ::vswprintf_s
 // --------------------------------------------------------------------------------------
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ======================================================================================

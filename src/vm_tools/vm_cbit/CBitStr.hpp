@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                          CErr.h                                            == //
+// ==                                        CBitStr.hpp                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 10:45:11                                               == //
-// ==   Modify Time          : 2020-10-31 19:58:39                                               == //
+// ==   Create Time          : 2020-10-30 14:07:00                                               == //
+// ==   Modify Time          : 2020-11-01 12:57:53                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,65 +18,112 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERR_H__
-#define  __CERR_H__
+#ifndef  __CBITSTR_HPP__
+#define  __CBITSTR_HPP__
+
 
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
-// ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    _V_CERR_DFT_BUF_SIZE_
-#   define _V_CERR_DFT_BUF_SIZE_ 1024
-#endif // !_V_CERR_DFT_BUF_SIZE_
-
-#ifndef    vErrThrow
-#   define vErrThrow(tBufSize, eErrCode) vm::CErr<tBufSize>(eErrCode).Throw()
-#endif // !vErrThrow
-// }}} ! Macrodefs
 
 // ================================================================================================ //
-// ==  Class CErr : this class deal with error operattion                                        == //
+// ==  Class CBitStr : This class convert CBitType's valu to string                              == //
 // ------------------------------------------------------------------------------------------------ //
-template< size_t tszBufSize >
-class CErr : public CErrPtr
+//template< typename CBitType, size_t tsztBufSize >
+template< typename CBitType >
+class CBitStr
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Macrodefs : {{{
+#ifndef    _V_CBITSTR_MAX_BUF_
+#   define _V_CBITSTR_MAX_BUF_ 128
+#endif // !_V_CBITSTR_MAX_BUF_
+// }}} ! Macrodefs
+
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CErr();
-    // Construct define
-    inline          CErr( const long long cllErrCode );
+    inline          CBitStr( const CBitType &obj );
     // Destruct define
-    inline virtual ~CErr();
+    inline virtual ~CBitStr();
 
 private:
     // Copy construct define
-    inline CErr( const CErr &obj );
+    inline CBitStr             ( const CBitStr &obj );
     // Assignment operation
-    inline CErr& operator = ( const CErr &obj );
+    inline CBitStr& operator = ( const CBitStr &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    tchar       mBuf[tszBufSize];
+    const CBitType& mBitType;
+    tchar           mszBuf[ _V_CBITSTR_MAX_BUF_ ];
+    //tchar             mszBuf[ tsztBufSize ];
 // }}} ! Members
-};
-// }}} ! [ class CErr ]
-// ================================================================================================ //
 
-} 
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+// Methods   : {{{
+public:
+    // Output bit value by bin string
+    inline tchar* toBin();
+
+    // Output bit value by oct string
+    inline tchar* toOct04();
+    // Output bit value by oct string
+    inline tchar* toOct08();
+
+    // Output bit value by dec string
+    inline tchar* toDec();
+    // Output bit value by dec string
+    inline tchar* toDec04();
+    // Output bit value by dec string
+    inline tchar* toDec08();
+
+    // Output bit value by hex string
+    inline tchar* toHex02();
+    // Output bit value by hex string
+    inline tchar* toHex04();
+    // Output bit value by hex string
+    inline tchar* toHex08();
+    // Output bit value by hex string
+    inline tchar* toHeX02();
+    // Output bit value by hex string
+    inline tchar* toHeX04();
+    // Output bit value by hex string
+    inline tchar* toHeX08();
+
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHex02();
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHex04();
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHex08();
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHeX02();
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHeX04();
+    // Output bit value by hex string, and start by 0x
+    inline tchar* to0xHeX08();
+
+// }}} ! Methods
+
+};
+// }}} ! [ class CBitStr ]
 // ================================================================================================ //
 // Class realization :
-#include "CErr.hpp.inl"
+#include "CBitStr.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __CERR_H__
+};
+// }}} End of namespace vm
+// ================================================================================================ //
+
+
+#endif // ! __CBITSTR_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

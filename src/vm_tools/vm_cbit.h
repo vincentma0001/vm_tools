@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        vm_util.h                                           == //
+// ==                                         vm_cbit.h                                          == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-11-01 08:49:36                                               == //
+// ==   Create Time          : 2020-10-31 20:06                                                  == //
+// ==   Modify Time          : 2020-10-31 20:06                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,32 +18,35 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __VM_UTIL_H__
-#define  __VM_UTIL_H__
+#ifndef  __VM_CBIT_H__
+#define  __VM_CBIT_H__
+
 
 // ================================================================================================ //
 // [ Include files ] {{{
 
 // std & crt function file included 
-#include <ctype.h>
-#include <limits.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <errno.h>
 
 // vm's configure files included
 #include <vm_cfgs.h>
 
+// vm's function depend on included
+#include <vm_tools//vm_util.h>
+
 // vm's function files inlcuded
-#include <vm_tools/vm_util/vm_util_mem.h>
-#include <vm_tools/vm_util/vm_util_str.h>
+#include <vm_tools/vm_cbit/CBitStr.hpp>
+#include <vm_tools/vm_cbit/CBit08.h>
+#include <vm_tools/vm_cbit/CBit16.h>
+#include <vm_tools/vm_cbit/CBit32.h>
+#include <vm_tools/vm_cbit/CBit64.h>
+
+//#include <vm_tools/vm_cerr/CWinErr.hpp>
 
 // }}} ! Include files
 // ================================================================================================ //
 
-#endif // ! __VM_UTIL_H__
+
+#endif // ! __VM_CBIT_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
