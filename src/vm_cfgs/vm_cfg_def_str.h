@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:38:24                                               == //
-// ==   Modify Time          : 2020-10-29 11:44:05                                               == //
+// ==   Modify Time          : 2020-11-02 22:26:17                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,11 +32,7 @@
 // string macro
 #   define vT(x)         L##x
 // mbstrlen
-#   define vStrSizeof(x) sizeof(x)/sizeof(tchar)
-#   define vIsAlpha     ::iswalpha
-#   define vIsSpace     ::iswspace
-#   define vToUpper     ::towupper
-#   define vToLower     ::towlower
+#   define vStrSizeof(x) (sizeof(x)/sizeof(tchar))
 
 // char type redefine 
 #   define tchar         wchar_t
@@ -48,10 +44,6 @@
 // string macro
 #   define vT(x)         x
 #   define vStrSizeof(x) sizeof(x)
-#   define vIsAlpha     ::isalpha
-#   define vIsSpace     ::isspace
-#   define vToUpper     ::toupper
-#   define vToLower     ::tolower
 
 // char type redefine
 #   define tchar         char

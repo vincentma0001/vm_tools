@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:18:50                                               == //
-// ==   Modify Time          : 2020-10-17 20:39:34                                               == //
+// ==   Modify Time          : 2020-11-02 23:22:46                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,6 +32,7 @@
 // vm's configure files included
 #include <vm_cfgs/vm_cfg_def_sys.h>
 
+#include <vm_cfgs/vm_cfg_def_err.h>
 #include <vm_cfgs/vm_cfg_def_exp.h>
 #include <vm_cfgs/vm_cfg_def_mcr.h>
 #include <vm_cfgs/vm_cfg_def_typ.h>
