@@ -24,11 +24,6 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
-// std & crt function file included 
-#include <stddef.h>
-#include <stdarg.h>
-#include <stdio.h>
-
 // vm's configure included
 #include <vm_cfgs.h>
 

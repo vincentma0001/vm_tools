@@ -31,7 +31,7 @@
 #include <vm_cfgs.h>
 
 // vm's function depend on included
-#include <vm_tools//vm_util.h>
+#include <vm_tools/vm_cstr.h>
 
 // vm's function files inlcuded
 #include <vm_tools/vm_cbit/CBitStr.hpp>
