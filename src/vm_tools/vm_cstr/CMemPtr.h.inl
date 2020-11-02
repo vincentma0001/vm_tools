@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                          CMemPtr.h.inl                                           == //
+// ==                                       CMemPtr.h.inl                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-10-08 13:37:30                                               == //
+// ==   Modify Time          : 2020-11-02 23:49:34                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -21,6 +21,17 @@
 #ifndef  __CMEMPTR_H_INL__
 #define  __CMEMPTR_H_INL__
 
+
+// ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <stddef.h>
+#include <vm_cfgs/vm_cfg_def_mcr.h>
+#include <vm_cfgs/vm_cfg_def_func_mem.h>
+#include "vm_util_mem.h"
+// }}}
+// ================================================================================================ //
 
 // ================================================================================================ //
 // ==  Class CMemPtr Construct && Destruct realization                                           == //
@@ -56,7 +67,7 @@ inline vm::CMemPtr::~CMemPtr(  )
 // ==  Methord : CMemPtr::CMemPtr()                                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline vm::CMemPtr::CMemPtr( const vm::CMemPtr &obj )
+inline vm::CMemPtr::CMemPtr( const CMemPtr &obj )
 // {{{
 {
     *this = obj;
@@ -78,7 +89,7 @@ inline vm::CMemPtr::CMemPtr( const vm::CMemPtr &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CMemPtr&         - [O] this object
-inline vm::CMemPtr& vm::CMemPtr::operator = ( const vm::CMemPtr &obj )
+inline vm::CMemPtr& vm::CMemPtr::operator = ( const CMemPtr &obj )
 // {{{
 {
     vm::v_memmove( mpBuf, msztBufSize, obj.mpBuf, obj.msztBufSize );
