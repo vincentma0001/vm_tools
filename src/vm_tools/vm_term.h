@@ -25,7 +25,6 @@
 // [ Include files ] {{{
 
 // vm's configure included
-#include <vm_cfgs.h>
 
 // vm's function depend on files included
 

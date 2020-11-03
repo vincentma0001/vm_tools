@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-02 23:49:34                                               == //
+// ==   Modify Time          : 2020-11-03 08:58:50                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,9 +27,9 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <stddef.h>
-#include <vm_cfgs/vm_cfg_def_mcr.h>
-#include <vm_cfgs/vm_cfg_def_func_mem.h>
+#include <vm_cfgs.h>
 #include "vm_util_mem.h"
+#include "vm_util_str.h"
 // }}}
 // ================================================================================================ //
 
@@ -188,8 +188,8 @@ inline size_t vm::CMemPtr::size(  )
 inline size_t vm::CMemPtr::len (  )
 // {{{
 {
-    return vStrlen( mpBuf );
-
+    return vStrlen( (tchar*)mpBuf ); 
+}
 // }}} end of func CMemPtr::len(...)
 // ================================================================================================ //
 
@@ -313,7 +313,7 @@ inline size_t vm::CMemPtr::MoveTo ( void* const pDst, const size_t csztDstSize, 
 {
     // Get data length
     size_t lsztBufLeft = msztBufSize - csztBufOffset;
-    size_t lsztBufLen  = vMan(lsztBufLeft,0);
+    size_t lsztBufLen  = vMax(lsztBufLeft,0);
     size_t lsztDataLen = vMin(lsztBufLen,csztDataLen);
 
     // Copy data to dst buf
@@ -591,7 +591,7 @@ inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const c
 // ==  Params  : csztBufOffset    - [I] Buffer's address (string's start address)
 // ==            cpFmt            - [I] String's format
 // ==            vList            - [I] Format's paramters
-inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list vList )
+inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
@@ -651,7 +651,7 @@ inline int vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cp
 // ==  Params  : csztBufOffset    - [I] Buffer's address (string's start address)
 // ==            cpFmt            - [I] String's format
 // ==            vList            - [I] Format's paramters
-inline int vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list, vList )
+inline int vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;

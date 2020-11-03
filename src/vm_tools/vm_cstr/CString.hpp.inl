@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 20:35:43                                               == //
-// ==   Modify Time          : 2020-10-17 21:41:51                                               == //
+// ==   Modify Time          : 2020-11-03 09:21:44                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,6 +23,17 @@
 
 
 // ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <vm_cfgs.h>
+#include "vm_util_mem.h"
+#include "vm_util_str.h"
+// }}}
+// ================================================================================================ //
+
+
+// ================================================================================================ //
 // ==  Class CString<tsztBufSize> Construct && Destruct realization                              == //
 // ================================================================================================ //
 // [ Class CString<tsztBufSize> Construct && Destruct realization ] {{{
@@ -31,7 +42,6 @@
 // ==  Methord : CString<tsztBufSize>::CString()                                                 == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include <system_error>
 template< size_t tsztBufSize >
 inline vm::CString<tsztBufSize>::CString(  ) 
     : CStrPtr( mBuf, sizeof(mBuf) ), mBuf{0x00}

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-02 12:33:57                                               == //
+// ==   Modify Time          : 2020-11-03 09:39:06                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,10 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#include <stddef.h>
-
-#include <vm_cfgs/vm_cfg_def_str.h>
-#include <vm_cfgs/vm_cfg_def_func_str.h>
+#include <vm_cfgs.h>
 // }}}
 
 
@@ -517,18 +514,18 @@ inline size_t vm::v_strcpy ( tchar* const pDst, const size_t csztDstSize, const 
     // Verify input paramters
     _VERIFY_2_(vT("v_strcpy()"), pDst, cpSrc);
 
-    size_t lsztSrcLen = vStrlen(cpSrc);
-    size_t lsztDataLen = vMin( csztDstSize, lsztSrcLen );
-
+    //size_t lsztSrcLen = vStrlen(cpSrc);
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
-    //vErrno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
-    vErrno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
+    //size_t lsztDataLen = vMin( csztDstSize, lsztSrcLen );
+
+    vErrno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
+    //vErrno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
     _ASSERT_(vT("v_strcpy()"), (loRet==0) );
 
     return lsztDataLen;
 #else
-    //tchar* lpEnd = vStrcpy(pDst, cpSrc)
-    tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztSrcLen);
+    tchar* lpEnd = vStrcpy(pDst, cpSrc)
+    //tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztSrcLen);
     _VERIFY_(vT("v_strncpy()"), lpEnd);
 
     size_t lsztCopied = (size_t)(lpEnd - pDst);

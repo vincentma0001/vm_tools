@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:41:17                                               == //
-// ==   Modify Time          : 2020-11-02 23:32:55                                               == //
+// ==   Modify Time          : 2020-11-03 09:05:59                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,10 +27,8 @@
 // std & crt function file included 
 
 // vm's configure files included
-#include <vm_cfgs.h>
 
 // vm's function depend on included
-#include <vm_tools/vm_cstr.h>
 
 // vm's function files inlcuded
 #include <vm_tools/vm_cerr/CErrPtr.h>

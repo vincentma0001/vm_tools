@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:36                                               == //
-// ==   Modify Time          : 2020-11-02 23:44:15                                               == //
+// ==   Modify Time          : 2020-11-03 08:58:38                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,7 +28,8 @@
 // [ Include files ] {{{
 #include <stddef.h>
 #include <stdarg.h>
-#include <vm_cfgs/vm_cfg_def_str.h>
+
+#include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
 
@@ -143,18 +144,18 @@ public:
 
     // [ Fmt func ] {{{
     // Format string
-    inline void*  Fmt    (                             const tchar* const cpFmt,           ... );
+    inline void*  Fmt    (                             const tchar* const cpFmt,            ... );
     // Format string
-    inline void*  Fmt    ( const size_t csztBufOffset, const tchar* const cpFmt,           ... );
+    inline void*  Fmt    ( const size_t csztBufOffset, const tchar* const cpFmt,            ... );
     // Format string
-    inline void*  Fmt    ( const size_t csztBufOffset, const tchar* const cpFmt, va_list vList );
+    inline void*  Fmt    ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
 
     // Format string, return new string's length
-    inline int    Fmt2   (                             const tchar* const cpFmt,           ... );
+    inline int    Fmt2   (                             const tchar* const cpFmt,            ... );
     // Format string, return new string's length
-    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt,           ... );
+    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt,            ... );
     // Format string, return new string's length
-    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt, va_list vList );
+    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
     // }}}
 // }}} ! Methods
 

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-02 19:35:29                                               == //
-// ==   Modify Time          : 2020-10-17 20:51:57                                               == //
+// ==   Modify Time          : 2020-11-03 08:25:52                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -31,7 +31,14 @@
 #include <vm_tools/vm_util.h>
 
 // vm's function files inlcuded
+#if        ( _V_SYS_ == _V_WIN_ )
+// Win coders {{{
 #include <vm_tools/vm_ckernal/CWinKernal.h>
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// Lux codes {{{
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
 
 // }}} ! Include files
 // ================================================================================================ //
