@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-03 09:47:20                                               == //
+// ==   Modify Time          : 2020-11-03 18:56:19                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -595,7 +595,7 @@ inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const c
 {
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
     size_t lsztBufLeft   = msztBufSize-csztBufOffset;
-    int liRet = vm::v_vsprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
+    vm::v_vsprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
     return lpPos;
 }
 // }}} end of func CMemPtr::Fmt (...)

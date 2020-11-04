@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CBitStr.hpp                                         == //
+// ==                                           CLog.h                                           == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-04 10:28:33                                               == //
+// ==   Create Time          : 2020-11-02 08:22                                                  == //
+// ==   Modify Time          : 2020-11-02 08:22                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,17 +18,9 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CBITSTR_HPP__
-#define  __CBITSTR_HPP__
+#ifndef  __CLOG_H__
+#define  __CLOG_H__
 
-
-// ================================================================================================ //
-// == Include files :                                                                            == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Include files ] {{{
-#include <vm_cfgs.h>
-// }}}
-// ================================================================================================ //
 
 // ================================================================================================ //
 // using namespace vm {{{
@@ -36,105 +28,113 @@ namespace vm
 {
 
 // ================================================================================================ //
-// ==  Class CBitStr : This class convert CBitType's valu to string                              == //
+// ==  Class CLog : This class deal with log info                                                == //
 // ------------------------------------------------------------------------------------------------ //
-//template< typename CBitType, size_t tsztBufSize >
-template< typename CBitType >
-class CBitStr
+class CLog 
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    _V_CBITSTR_MAX_BUF_
-#   define _V_CBITSTR_MAX_BUF_ 128
-#endif // !_V_CBITSTR_MAX_BUF_
-// }}} ! Macrodefs
+// Typedefs  : {{{
+public:
+    // enum emLogLevel : this enum list log levels
+    enum emLogLevel
+    // {{{
+    {
+        ALL = 0xFF,
+        NUL = 0x00,
 
+        ERR = 0x01,
+        DBG = 0x02,
+        WAN = 0x04,
+        INF = 0x08
+    };
+    // }}} End of def enum emLogLevel
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CBitStr( const CBitType &obj );
+    inline          CLog( const emLogLevel eLevel ) : mLevel(eLevel), mpLogPrev(nullptr), mpLogNext(nullptr);
     // Destruct define
-    inline virtual ~CBitStr();
+    inline virtual ~CLog();
 
 private:
     // Copy construct define
-    inline CBitStr             ( const CBitStr &obj );
+    inline CLog             ( const CLog &obj );
     // Assignment operation
-    inline CBitStr& operator = ( const CBitStr &obj );
+    inline CLog& operator = ( const CLog &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    const CBitType& mBitType;
-    tchar           mszBuf[ _V_CBITSTR_MAX_BUF_ ];
-    //tchar             mszBuf[ tsztBufSize ];
+    CLog*               mpLogNext;
+    CLog*               mpLogPrev;
+
+    const emLogLevel    mLevel;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // Output bit value by bin string
-    inline tchar* toBin();
+    CLog*   Prev( )
+    {
+        return mpLogPrev;
+    }
+    CLog*   Next( )
+    {
+        return mpLogNext;
+    };
+    CLog*   Root( )
+    {
+        CLog* lpPrev = mpLogPrev;
+        CLog* lpNow  = this;
+        while ( lpPrev != nullptr )
+        {
+            lpNow  = lpPrev;
+            lpPrev = lpPrev->mpLogPrev;
+        }
 
-    // Output bit value by oct string
-    inline tchar* toOct04();
-    // Output bit value by oct string
-    inline tchar* toOct08();
+        return lpNow;
+    };
+    CLog*   Tail( )
+    {
+        CLog* lpNext = mpLogNext;
+        CLog* lpNow  = this;
+        while ( lpNext != nullptr  )
+        {
+            lpNow  = lpNext;
+            lpNext = lpNext->mpLogNext;
+        }
 
-    // Output bit value by dec string
-    inline tchar* toDec();
-    // Output bit value by dec string
-    inline tchar* toDec04();
-    // Output bit value by dec string
-    inline tchar* toDec08();
+        return lpNow;
+    }
 
-    // Output bit value by hex string
-    inline tchar* toHex02();
-    // Output bit value by hex string
-    inline tchar* toHex04();
-    // Output bit value by hex string
-    inline tchar* toHex08();
-    // Output bit value by hex string
-    inline tchar* toHeX02();
-    // Output bit value by hex string
-    inline tchar* toHeX04();
-    // Output bit value by hex string
-    inline tchar* toHeX08();
 
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex08();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX08();
+    bool    Push( const CLog& oNote );
 
-    // Output string by hex mode
-    //template< size_t tsztLineLen, size_t tsztSpliteLen >
-    //inline static void Output( FILE* pHandle, const char* const cpStr, const size_t csztSreLen );
 
+    virtual bool    Output( const tchar* cpFmt, ... )
+    {
+        
+    }
+    virtual bool    Output( const tchar* cpFmt, va_list& vList );
+    /* TODO Add class's Methods here */
 // }}} ! Methods
 
 };
-// }}} ! [ class CBitStr ]
+// }}} ! [ class CLog ]
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CBitStr.hpp.inl"
-// ================================================================================================ //
+#include "CLog.h.inl"
+// ================================================================================================ //      
 
-#endif // ! __CBITSTR_HPP__
+
+#endif // ! __CLOG_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

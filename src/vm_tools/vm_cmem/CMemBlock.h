@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CBitStr.hpp                                         == //
+// ==                                        CMemBlock.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-04 10:28:33                                               == //
+// ==   Create Time          : 2020-11-03 10:01                                                  == //
+// ==   Modify Time          : 2020-11-03 10:01                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CBITSTR_HPP__
-#define  __CBITSTR_HPP__
+#ifndef  __CMEMBLOCK_H__
+#define  __CMEMBLOCK_H__
 
 
 // ================================================================================================ //
@@ -30,111 +30,63 @@
 // }}}
 // ================================================================================================ //
 
+
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
 
 // ================================================================================================ //
-// ==  Class CBitStr : This class convert CBitType's valu to string                              == //
+// ==  Class CMemBlock : This class include a memory block and this block info                   == //
 // ------------------------------------------------------------------------------------------------ //
-//template< typename CBitType, size_t tsztBufSize >
-template< typename CBitType >
-class CBitStr
+template< size_t tsztBlockSize >
+class CMemBlock
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    _V_CBITSTR_MAX_BUF_
-#   define _V_CBITSTR_MAX_BUF_ 128
-#endif // !_V_CBITSTR_MAX_BUF_
-// }}} ! Macrodefs
-
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CBitStr( const CBitType &obj );
+    inline          CMemBlock();
     // Destruct define
-    inline virtual ~CBitStr();
+    inline virtual ~CMemBlock();
 
 private:
     // Copy construct define
-    inline CBitStr             ( const CBitStr &obj );
+    inline CMemBlock             ( const CMemBlock &obj );
     // Assignment operation
-    inline CBitStr& operator = ( const CBitStr &obj );
+    inline CMemBlock& operator = ( const CMemBlock &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    const CBitType& mBitType;
-    tchar           mszBuf[ _V_CBITSTR_MAX_BUF_ ];
-    //tchar             mszBuf[ tsztBufSize ];
+    char*                      mpBlock;
+    size_t*                    mpsztBlockSize;
+    CMemBlock<tsztBlockSize>*  mpNext;
+    CMemBlock<tsztBlockSize>*  mpPrev;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // Output bit value by bin string
-    inline tchar* toBin();
-
-    // Output bit value by oct string
-    inline tchar* toOct04();
-    // Output bit value by oct string
-    inline tchar* toOct08();
-
-    // Output bit value by dec string
-    inline tchar* toDec();
-    // Output bit value by dec string
-    inline tchar* toDec04();
-    // Output bit value by dec string
-    inline tchar* toDec08();
-
-    // Output bit value by hex string
-    inline tchar* toHex02();
-    // Output bit value by hex string
-    inline tchar* toHex04();
-    // Output bit value by hex string
-    inline tchar* toHex08();
-    // Output bit value by hex string
-    inline tchar* toHeX02();
-    // Output bit value by hex string
-    inline tchar* toHeX04();
-    // Output bit value by hex string
-    inline tchar* toHeX08();
-
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex08();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX08();
-
-    // Output string by hex mode
-    //template< size_t tsztLineLen, size_t tsztSpliteLen >
-    //inline static void Output( FILE* pHandle, const char* const cpStr, const size_t csztSreLen );
-
+    size_t  size(  ){ return *mpsztBlockSize; }
+    /* TODO Add class's Methods here */
 // }}} ! Methods
 
 };
-// }}} ! [ class CBitStr ]
+// }}} ! [ class CMemBlock ]
+// ================================================================================================ //
+// Class realization :
+#include "CMemBlock.h.inl"
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
-#include "CBitStr.hpp.inl"
-// ================================================================================================ //
 
-#endif // ! __CBITSTR_HPP__
+
+#endif // ! __CMEMBLOCK_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

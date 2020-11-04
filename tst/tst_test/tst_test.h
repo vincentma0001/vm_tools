@@ -26,10 +26,11 @@ private:
 // Menbers   : {{{
 private:
 public:
-    int miA;
-    int miB;
-    char* mszC;
-    /* TODO Add class's menbers here */
+    char  miA;
+    char  miA1;
+    short miB;
+    int miC;
+    int miD;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
@@ -37,7 +38,6 @@ public:
 public:
     char* toString(){return nullptr;};
     int toCode(){return 10;};
-    /* TODO Add class's Methods here */
 // }}} ! Methods
 
 };

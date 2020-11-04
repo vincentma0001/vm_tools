@@ -1,0 +1,51 @@
+{
+    "rootname" : "log"
+    "levels"   :
+    [ // level setting {{{
+
+        { // Error output setting {{{
+            "leveltype"   : "error",
+            "levelname"   : "ERR",
+            "enable"      : "true"
+            "outputs"     : 
+            [ // output setting {{{
+                { // consle output setting {{{ 
+                    "type"       : "consle",
+                    "lfmt"       : "[ ${levelname} ${time} ] - ${msg}",
+                    "color_name" : "red",
+                    "color_time" : "green",
+                    "color_msg"  : "yellow"
+                }, // }}}
+
+                { // file output setting {{{
+                    "type"       : "file",
+                    "file_name"  : "${rootname}-${date}.log",
+                    "lfmt"       : "[ ${levelname} ${time} ] - ${msg}"
+                } // }}}
+
+            ] // }}}
+
+        },//}}}
+
+        { // Debug output setting {{{
+            "leveltype"   : "debug"
+            "levelname"   : "DBG"
+            "enable"      : "true"
+            "output"      :
+            [ 
+                { // console output setting {{{
+                    "type"       : "consle",
+                    "lfmt"       : "${levelname} ${time} - ${msg}",
+                    "color_name" : "yellow",
+                    "color_time" : "green",
+                    "color_msg"  : "yellow"
+                } // }}}
+            ]
+        } // }}}
+
+    ] // }}}
+
+    "submodules" : 
+    [ // submodules setting {{{
+    ] // }}}
+}

@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CBitStr.hpp                                         == //
+// ==                                      CSingleton.hpp                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-04 10:28:33                                               == //
+// ==   Create Time          : 2020-11-04 08:26                                                  == //
+// ==   Modify Time          : 2020-11-04 08:26                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,123 +18,86 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CBITSTR_HPP__
-#define  __CBITSTR_HPP__
+#ifndef  __CSINGLETON_HPP__
+#define  __CSINGLETON_HPP__
 
-
-// ================================================================================================ //
-// == Include files :                                                                            == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Include files ] {{{
-#include <vm_cfgs.h>
-// }}}
-// ================================================================================================ //
 
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
-
-// ================================================================================================ //
-// ==  Class CBitStr : This class convert CBitType's valu to string                              == //
-// ------------------------------------------------------------------------------------------------ //
-//template< typename CBitType, size_t tsztBufSize >
-template< typename CBitType >
-class CBitStr
-// {{{
-{
 // ------------------------------------------------------------------------------------------------ //
 // Macrodefs : {{{
-#ifndef    _V_CBITSTR_MAX_BUF_
-#   define _V_CBITSTR_MAX_BUF_ 128
-#endif // !_V_CBITSTR_MAX_BUF_
+#ifndef    vSingleTon
+#   define vSingleTon( tInstance, tMutex )          vm::CSingleton<tInstance,tMutex>::Instance()
+#endif  // vSingleTon
+
 // }}} ! Macrodefs
 
+// ================================================================================================ //
+// ==  Class CSingleton : this class define singleton object                                     == //
+// ------------------------------------------------------------------------------------------------ //
+template< class tInstance, class tMutex >
+class CSingleton
+// {{{
+{
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CBitStr( const CBitType &obj );
+    inline          CSingleton();
     // Destruct define
-    inline virtual ~CBitStr();
+    inline virtual ~CSingleton();
 
 private:
     // Copy construct define
-    inline CBitStr             ( const CBitStr &obj );
+    inline CSingleton             ( const CSingleton &obj );
     // Assignment operation
-    inline CBitStr& operator = ( const CBitStr &obj );
+    inline CSingleton& operator = ( const CSingleton &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
-private:
-    const CBitType& mBitType;
-    tchar           mszBuf[ _V_CBITSTR_MAX_BUF_ ];
-    //tchar             mszBuf[ tsztBufSize ];
+public:
+    // Mutex object 
+    static tMutex        mtMutex;
+    // Instance object
+    static tInstance*    mptInstance;
+    //
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // Output bit value by bin string
-    inline tchar* toBin();
-
-    // Output bit value by oct string
-    inline tchar* toOct04();
-    // Output bit value by oct string
-    inline tchar* toOct08();
-
-    // Output bit value by dec string
-    inline tchar* toDec();
-    // Output bit value by dec string
-    inline tchar* toDec04();
-    // Output bit value by dec string
-    inline tchar* toDec08();
-
-    // Output bit value by hex string
-    inline tchar* toHex02();
-    // Output bit value by hex string
-    inline tchar* toHex04();
-    // Output bit value by hex string
-    inline tchar* toHex08();
-    // Output bit value by hex string
-    inline tchar* toHeX02();
-    // Output bit value by hex string
-    inline tchar* toHeX04();
-    // Output bit value by hex string
-    inline tchar* toHeX08();
-
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex08();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX08();
-
-    // Output string by hex mode
-    //template< size_t tsztLineLen, size_t tsztSpliteLen >
-    //inline static void Output( FILE* pHandle, const char* const cpStr, const size_t csztSreLen );
-
+    // Create a new instance
+    inline static tInstance* Instance();
+    // Destory instance object
+    inline static void Destory();
 // }}} ! Methods
 
 };
-// }}} ! [ class CBitStr ]
+// }}} ! [ class CSingleton ]
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CBitStr.hpp.inl"
+#include "CSingleton.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __CBITSTR_HPP__
+// ================================================================================================ //
+// [ CSingleton init ] {{{
+#ifndef    vSingleTonInit
+#   define vSingleTonInit
+template<class tInstance,class tMutex>tInstance* vm::CSingleton<tInstance,tMutex>::mptInstance = nullptr;
+template<class tInstance,class tMutex>tMutex     vm::CSingleton<tInstance,tMutex>::mtMutex;
+#endif // !vSingleTonInit
+// }}} ! CSingleton init
+// ================================================================================================ //
+
+
+#endif // ! __CSINGLETON_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
