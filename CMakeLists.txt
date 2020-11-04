@@ -43,6 +43,7 @@ project(${TNAME} VERSION ${VER})
 configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
+add_subdirectory(${HOME}/tst/tst_cycbuf)
 add_subdirectory(${HOME}/tst/tst_singleton)
 add_subdirectory(${HOME}/tst/tst_cbit)
 add_subdirectory(${HOME}/tst/tst_cstr)
