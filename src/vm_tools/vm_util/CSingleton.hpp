@@ -31,7 +31,6 @@ namespace vm
 #ifndef    vSingleTon
 #   define vSingleTon( tInstance, tMutex )          vm::CSingleton<tInstance,tMutex>::Instance()
 #endif  // vSingleTon
-
 // }}} ! Macrodefs
 
 // ================================================================================================ //
