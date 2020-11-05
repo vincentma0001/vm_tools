@@ -40,13 +40,13 @@ public:
     // Construct define
     inline          CLocker( tMutex& oMutex ):mMutex(oMutex){ mMutex.Enter(); };
     // Destruct define
-    inline virtual ~CLocker(                      ){ mMutex.Leave(); };
+    inline virtual ~CLocker(                )               { mMutex.Leave(); };
 
 private:
     // Copy construct define
-    inline CLocker             ( const CLocker &obj ){             };
+    inline CLocker             ( const CLocker &obj ){               };
     // Assignment operation
-    inline CLocker& operator = ( const CLocker &obj ){return *this;};
+    inline CLocker& operator = ( const CLocker &obj ){ return *this; };
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
