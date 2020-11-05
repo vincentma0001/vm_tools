@@ -26,7 +26,6 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#include "vm_tools/vm_cstr/vm_util_mem.h"
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
@@ -75,13 +74,8 @@ public:
     // normal funcs {{{
     // Get buffer size
     size_t Size  (  );
-    void   Reset (  )
-    {
-        mpStartPos = const_cast<tchar*>(mpBufStart);
-        mpEndedPos = const_cast<tchar*>(mpBufStart);
-        msztLen    = 0;
-        vm::v_memzero( mpStartPos, msztSize );
-    };
+    // Reset cyc buffer
+    void   Reset (  );
     // }}}
 
     // Size funcs {{{
