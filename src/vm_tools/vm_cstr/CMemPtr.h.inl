@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-03 18:56:19                                               == //
+// ==   Modify Time          : 2020-11-05 09:12:00                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,8 +27,8 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include "vm_util_mem.h"
-#include "vm_util_str.h"
+#include "v_funcs_mem.h"
+#include "v_funcs_str.h"
 // }}}
 // ================================================================================================ //
 
