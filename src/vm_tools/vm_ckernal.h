@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-02 19:35:29                                               == //
-// ==   Modify Time          : 2020-11-03 08:25:52                                               == //
+// ==   Modify Time          : 2020-11-05 09:19:03                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,11 +24,7 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
-// vm's configure files included
-#include <vm_cfgs.h>
-
 // vm's function depend on included
-#include <vm_tools/vm_util.h>
 
 // vm's function files inlcuded
 #if        ( _V_SYS_ == _V_WIN_ )

@@ -25,10 +25,6 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
-// std & crt function file included 
-
-// vm's configure files included
-
 // vm's function depend on included
 
 // vm's function files inlcuded

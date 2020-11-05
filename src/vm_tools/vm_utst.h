@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 17:20:04                                               == //
-// ==   Modify Time          : 2020-11-03 09:05:04                                               == //
+// ==   Modify Time          : 2020-11-05 09:20:01                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,9 +24,7 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
-// vm's configure included
-
-// vm's function depend on files included
+// vm's function depend on included
 
 // vm's function files inlcuded
 #include <vm_tools/vm_utst/CUnitTestFrame.h>

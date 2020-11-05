@@ -25,6 +25,9 @@
 // ================================================================================================ //
 // [ inlucde files ] {{{
 
+// vm's function depend on included
+
+// vm's function files inlcuded
 #include <vm_tools/vm_ipcs/CLocker.hpp>
 
 #include <vm_tools/vm_ipcs/CMutex_null.h>

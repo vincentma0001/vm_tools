@@ -24,9 +24,7 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 
-// vm's configure included
-
-// vm's function depend on files included
+// vm's function depend on included
 
 // vm's function files inlcuded
 #include <vm_tools/vm_term/CTerm.h>
