@@ -68,7 +68,7 @@ private:
 // Methods   : {{{
 public:
     // Write letters to terminal
-    inline void Write( _vIn_ const tchar* const cpFmt, _vIn_ ... );
+    inline void Write( _vIn_ const tchar* const cpFmt, _vIn_            ... );
     // Write letters to terminal
     inline void Write( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 // }}} ! Methods
