@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-04 10:28:33                                               == //
+// ==   Modify Time          : 2020-11-05 08:49:39                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -116,10 +116,6 @@ public:
     inline tchar* to0xHeX04();
     // Output bit value by hex string, and start by 0x
     inline tchar* to0xHeX08();
-
-    // Output string by hex mode
-    //template< size_t tsztLineLen, size_t tsztSpliteLen >
-    //inline static void Output( FILE* pHandle, const char* const cpStr, const size_t csztSreLen );
 
 // }}} ! Methods
 
