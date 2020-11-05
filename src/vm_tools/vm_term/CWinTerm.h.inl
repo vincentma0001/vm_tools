@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CWinCmd.inl                                         == //
+// ==                                        CWinTerm.inl                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 19:46:15                                               == //
-// ==   Modify Time          : 2020-10-04 19:05:58                                               == //
+// ==   Modify Time          : 2020-11-05 08:58:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,89 +18,99 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef   __CWINCMD_H_INL__
-#define   __CWINCMD_H_INL__
+#ifndef   __CWINTERM_H_INL__
+#define   __CWINTERM_H_INL__
+
 
 // ================================================================================================ //
-// ==  Class CWinCmd Construct && Destruct realization                                           == //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <vm_cfgs.h>
+// }}}
 // ================================================================================================ //
-// [ Class CWinCmd Construct && Destruct realization ] {{{
+
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::CWinCmd()                                                              == //
+// ==  Class CWinTerm Construct && Destruct realization                                          == //
+// ================================================================================================ //
+// [ Class CWinTerm Construct && Destruct realization ] {{{
+
+// ================================================================================================ //
+// ==  Methord : CWinTerm::CWinTerm()                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline CWinCmd::CWinCmd(  )
+inline CWinTerm::CWinTerm(  )
 // {{{
 {
     mhHandle =::GetStdHandle(STD_OUTPUT_HANDLE);
 }
-// }}} End of func CWinCmd::CWinCmd()
+// }}} End of func CWinTerm::CWinTerm()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CWinCmd::CWinCmd()                                                      == //
+// ==  Methord : virtual CWinTerm::CWinTerm()                                                    == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline CWinCmd::~CWinCmd(  )
+inline CWinTerm::~CWinTerm(  )
 // {{{
 {
     mhHandle = nullptr;
 }
-// }}} End of func CWinCmd::~CWinCmd()
+// }}} End of func CWinTerm::~CWinTerm()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::CWinCmd()                                                              == //
+// ==  Methord : CWinTerm::CWinTerm()                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline CWinCmd::CWinCmd( const CWinCmd &obj )
+inline CWinTerm::CWinTerm( const CWinTerm &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CWinCmd::~CWinCmd()
+// }}} End of func CWinTerm::~CWinTerm()
 // ================================================================================================ //
 
-// }}} ![ Class CWinCmd Construct && Destruct realization ]
+// }}} ![ Class CWinTerm Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CWinCmd operator realization                                                        == //
+// ==  Class CWinTerm operator realization                                                       == //
 // ================================================================================================ //
-// [ Class CWinCmd operator realization ] {{{
+// [ Class CWinTerm operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::operator = ()                                                          == //
+// ==  Methord : CWinTerm::operator = ()                                                         == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CWinCmd&         - [O] this object
-inline CWinCmd& CWinCmd::operator = ( const CWinCmd &obj )
+// ==  Return  : CWinTerm&         - [O] this object
+inline CWinTerm& CWinTerm::operator = ( const CWinTerm &obj )
 // {{{
 {
     return *this;
 }
-// }}} End of func CWinCmd::~CWinCmd()
+// }}} End of func CWinTerm::~CWinTerm()
 // ================================================================================================ //
 
-// }}} ![ Class CWinCmd operator realization ]
+// }}} ![ Class CWinTerm operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CWinCmd Functional realization                                                      == //
+// ==  Class CWinTerm Functional realization                                                     == //
 // ================================================================================================ //
-// [ Class CWinCmd Functional realization ] {{{
+// [ Class CWinTerm Functional realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::SetTxtColor(...)                                                       == //
+// ==  Methord : CWinTerm::SetTxtColor(...)                                                      == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Set console text color
 // ==  Return  : bool             - [O] true  for sucess
 // ==                                   false fot failed
 // ==  Params  : csColor          - [I] txt color, for example emColor::vf_lWhitr|emColore::vb_lYellow
-inline bool CWinCmd::SetTxtColor( const short csColor )
+inline bool CWinTerm::SetTxtColor( const short csColor )
 // {{{
 {
     mulErrCode = 0;
@@ -110,11 +120,11 @@ inline bool CWinCmd::SetTxtColor( const short csColor )
     mulErrCode = ::GetLastError();
     return false;
 }
-// }}} end of func CWinCmd::SetTxtColor(...)
+// }}} end of func CWinTerm::SetTxtColor(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::Write(...)                                                             == //
+// ==  Methord : CWinTerm::Write(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : W
 // ==  Return  : int              - [O] emRet::vError for failed.
@@ -122,7 +132,7 @@ inline bool CWinCmd::SetTxtColor( const short csColor )
 // ==  Params  : csColor          - [X] Text color
 // ==            cpFmt            - [X] Letter format string
 // ==            ...              - [X] Letter format string paramters
-inline int CWinCmd::Write( const short csColor, const tchar* const cpFmt, ... )
+inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, ... )
 // {{{
 {
     bool lbRet = SetTxtColor( csColor );
@@ -140,11 +150,11 @@ inline int CWinCmd::Write( const short csColor, const tchar* const cpFmt, ... )
 
     return liRetForPrintf;
 }
-// }}} end of func CWinCmd::Write(...)
+// }}} end of func CWinTerm::Write(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::Write(...)                                                             == //
+// ==  Methord : CWinTerm::Write(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Write string to screen
 // ==  Return  : int              - [O] emRet::vError for failed.
@@ -152,7 +162,7 @@ inline int CWinCmd::Write( const short csColor, const tchar* const cpFmt, ... )
 // ==  Params  : csColor          - [X] Text color
 // ==            cpFmt            - [X] Letter format string
 // ==            vList            - [X] Letter format string paramters
-inline int CWinCmd::Write( const short csColor, const tchar* const cpFmt, va_list& vList )
+inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     bool lbRet = SetTxtColor(csColor);
@@ -167,17 +177,17 @@ inline int CWinCmd::Write( const short csColor, const tchar* const cpFmt, va_lis
 
     return liRetForPrintf;
 }
-// }}} end of func CWinCmd::Write(...)
+// }}} end of func CWinTerm::Write(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::SetTitile(...)                                                         == //
+// ==  Methord : CWinTerm::SetTitile(...)                                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Set console titile
 // ==  Return  : void             - [O] true  for sucess
 // ==                                   false for failed
 // ==  Params  : cpTitile         - [X] Console titile string
-inline bool CWinCmd::SetTitile( const tchar* const cpTitile )
+inline bool CWinTerm::SetTitile( const tchar* const cpTitile )
 // {{{
 {
     BOOL lbRet = ::SetConsoleTitle( cpTitile );
@@ -187,29 +197,29 @@ inline bool CWinCmd::SetTitile( const tchar* const cpTitile )
     mulErrCode = ::GetLastError();
     return false;
 }
-// }}} end of func CWinCmd::SetTitile(...)
+// }}} end of func CWinTerm::SetTitile(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinCmd::GetTitile(...)                                                         == //
+// ==  Methord : CWinTerm::GetTitile(...)                                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get console titile
 // ==  Return  : tchar*           - [O] Current console titile
 // ==  Params  : 
-inline tchar* CWinCmd::GetTitile(  )
+inline tchar* CWinTerm::GetTitile(  )
 // {{{
 {
     vMemZero(mszBuf);
     DWORD ldwRet = ::GetConsoleTitle(mszBuf, sizeof(mszBuf));
     return mszBuf;
 }
-// }}} end of func CWinCmd::GetTitile(...)
+// }}} end of func CWinTerm::GetTitile(...)
 // ================================================================================================ //
 
-// }}} ![ Class CWinCmd Functional realization ]
+// }}} ![ Class CWinTerm Functional realization ]
 // ================================================================================================ //
 
-#endif // __CWINCMD_H_INL__
+#endif // __CWINTERM_H_INL__
 // ================================================================================================ //
 // ==                                        End of file                                         == //
 // ================================================================================================ //
