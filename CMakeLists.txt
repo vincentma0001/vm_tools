@@ -14,7 +14,7 @@ SET(PROJECT_SOURCE_DIR ${HOME}/src)
 # set libs output dirs
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY          ${HOME}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG    ${HOME}/lib)
- set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE  ${HOME}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE  ${HOME}/lib)
 
 # set libs file (debug release) output dirs
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY          ${HOME}/lib)

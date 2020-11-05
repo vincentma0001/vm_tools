@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:18:50                                               == //
-// ==   Modify Time          : 2020-11-02 23:22:46                                               == //
+// ==   Modify Time          : 2020-11-05 09:41:35                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -39,6 +39,7 @@
 #include <vm_cfgs/vm_cfg_def_str.h>
 #include <vm_cfgs/vm_cfg_def_lmt.h>
 #include <vm_cfgs/vm_cfg_def_mth.h>
+#include <vm_cfgs/vm_cfg_def_time.h>
 #include <vm_cfgs/vm_cfg_def_file.h>
 
 #include <vm_cfgs/vm_cfg_def_func_str.h>
