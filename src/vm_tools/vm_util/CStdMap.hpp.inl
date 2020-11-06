@@ -193,7 +193,7 @@ inline tData* vm::CStdMap< tKey,tData >::Find( tKey oKey )
     if (iter == mMap.end())
         return nullptr;
     else
-        pData = &vStdMapValue(iter);
+        pData = &vStdMapVal(iter);
 
     return pData;
 }

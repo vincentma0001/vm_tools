@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:18:50                                               == //
-// ==   Modify Time          : 2020-11-05 09:41:35                                               == //
+// ==   Modify Time          : 2020-11-06 12:22:07                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,11 +26,12 @@
 
 // vm's verify file included
 #include <vm_verify.h>
-// vm's library macro define file include
-#include <vm_cfgs/vm_lib_def_mcr.h>
 
 // vm's configure files included
 #include <vm_cfgs/vm_cfg_def_sys.h>
+
+// vm's library macro define file include
+#include <vm_cfgs/vm_lib_def_mcr.h>
 
 #include <vm_cfgs/vm_cfg_def_err.h>
 #include <vm_cfgs/vm_cfg_def_exp.h>
