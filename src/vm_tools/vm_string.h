@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        vm_kernal.h                                         == //
+// ==                                        vm_string.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-02 19:35:29                                               == //
-// ==   Modify Time          : 2020-11-05 09:19:03                                               == //
+// ==   Create Time          : 2020-10-08 20:53:24                                               == //
+// ==   Modify Time          : 2020-11-06 11:41:28                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __VM_KERNAL_H__
-#define  __VM_KERNAL_H__
+#ifndef  __VM_STRING_H__
+#define  __VM_STRING_H__
 
 // ================================================================================================ //
 // [ Include files ] {{{
@@ -27,19 +27,18 @@
 // vm's function depend on included
 
 // vm's function files inlcuded
-#if        ( _V_SYS_ == _V_WIN_ )
-// Win coders {{{
-#include <vm_tools/vm_ckernal/CWinKernal.h>
-// }}}
-#elif      ( _V_SYS_ == _V_LUX_ )
-// Lux codes {{{
-// }}}
-#endif // !( _V_SYS_ == _V_WIN_ )
+#include <vm_tools/vm_string/v_funcs_mem.h>
+#include <vm_tools/vm_string/CMemPtr.h>
+#include <vm_tools/vm_string/CMem.hpp>
+
+#include <vm_tools/vm_string/v_funcs_str.h>
+#include <vm_tools/vm_string/CStrPtr.h>
+#include <vm_tools/vm_string/CString.hpp>
 
 // }}} ! Include files
 // ================================================================================================ //
 
-#endif // ! __VM_KERNAL_H__
+#endif // ! __VM_STRING_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

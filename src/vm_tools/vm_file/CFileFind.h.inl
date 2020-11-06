@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-18 21:51:31                                               == //
-// ==   Modify Time          : 2020-10-18 22:03:30                                               == //
+// ==   Modify Time          : 2020-11-06 11:43:56                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,7 +23,6 @@
 
 // ------------------------------------------------------------------------------------------------ //
 // Macrodefs : {{{
-#include <vm_tools/vm_util/vm_util_mem.h>
 #if        ( _V_USE_WCHAR_ == 0 )
 // {{{
 #   define vFindFirst  _findfirst
@@ -48,7 +47,6 @@
 // ==  Methord : CFileFind::CFileFind()                                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include <vm_tools/vm_file/CFileFind.h>
 inline vm::CFileFind::CFileFind(  ) : mllErrCode(0),mhFile(-1)
 // {{{
 {

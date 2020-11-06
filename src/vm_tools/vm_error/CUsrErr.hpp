@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                       CWinTerm..h                                          == //
+// ==                                        CUsrErr.hpp                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-01 19:38:42                                               == //
-// ==   Modify Time          : 2020-11-06 11:49:04                                               == //
+// ==   Create Time          : 2020-11-06 08:30                                                  == //
+// ==   Modify Time          : 2020-11-06 08:30                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CWINTERM_H__
-#define  __CWINTERM_H__
+#ifndef  __CUSRERR_HPP__
+#define  __CUSRERR_HPP__
 
 
 // ================================================================================================ //
@@ -27,7 +27,6 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include <vm_tools/vm_system.h>
 // }}}
 // ================================================================================================ //
 
@@ -38,62 +37,52 @@ namespace vm
 {
 
 // ================================================================================================ //
-// ==  Class CWinTerm : this class deal with window console output func                           == //
+// ==  Class CUsrErr : this class deal with usr defined error info                               == //
 // ------------------------------------------------------------------------------------------------ //
-class CWinTerm : public CWinKernal
+template< class tType, size_t tsztBufSize >
+class CUsrErr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
-    // Construct & Destruct define
-    inline          CWinTerm();
-    inline virtual ~CWinTerm();
+    // Construct define
+    inline          CUsrErr();
+    // Destruct define
+    inline virtual ~CUsrErr();
 
 private:
     // Copy construct define
-    inline CWinTerm( const CWinTerm &obj );
+    inline CUsrErr             ( const CUsrErr &obj );
     // Assignment operation
-    inline CWinTerm& operator = ( const CWinTerm &obj );
+    inline CUsrErr& operator = ( const CUsrErr &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
-// Menbers  : {{{
+// Menbers   : {{{
 private:
-    tchar       mszBuf[_V_FILE_MAX_PATH_];
-    CONSOLE_SCREEN_BUFFER_INFO mstBufInfo;
+    tchar       mszBuf[tsztBufSize];
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
-// Methods  : {{{
+// Methods   : {{{
 public:
-    // Set Text color
-    bool SetTxtColor( const short csColor = 0x0f );
-
-    // Write string to screen
-    int Write( const short csColor, const tchar* const cpFmt,            ... );
-    // Write string to screen
-    int Write( const short csColor, const tchar* const cpFmt, va_list& vList );
-
-    // Set screen titile
-    bool   SetTitile( const tchar* const cpTitile );
-    // Get screen titile
-    tchar* GetTitile();
-
+    /* TODO Add class's Methods here */
 // }}} ! Methods
 
 };
-// }}} ! [ class CWinTerm ]
+// }}} ! [ class CUsrErr ]
+// ================================================================================================ //
+
+};
+// }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CWinTerm.h.inl"
-// ================================================================================================ /
-
-}
-// }}} ! End of namespace vm
+#include "CUsrErr.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __CWINTERM_H__
+
+#endif // ! __CUSRERR_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                         vm_cstr.h                                          == //
+// ==                                        vm_memory.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-08 20:53:24                                               == //
-// ==   Modify Time          : 2020-11-05 09:19:23                                               == //
+// ==   Create Time          : 2020-10-08 20:51:37                                               == //
+// ==   Modify Time          : 2020-11-06 11:40:21                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __VM_CSTR_H__
-#define  __VM_CSTR_H__
+#ifndef  __VM_MEMORY_H__
+#define  __VM_MEMORY_H__
 
 // ================================================================================================ //
 // [ Include files ] {{{
@@ -27,18 +27,13 @@
 // vm's function depend on included
 
 // vm's function files inlcuded
-#include <vm_tools/vm_cstr/v_funcs_mem.h>
-#include <vm_tools/vm_cstr/CMemPtr.h>
-#include <vm_tools/vm_cstr/CMem.hpp>
-
-#include <vm_tools/vm_cstr/v_funcs_str.h>
-#include <vm_tools/vm_cstr/CStrPtr.h>
-#include <vm_tools/vm_cstr/CString.hpp>
+#include <vm_tools/vm_memory/CCycBufPtr.h>
+#include <vm_tools/vm_memory/CMemMgr.h>
 
 // }}} ! Include files
 // ================================================================================================ //
 
-#endif // ! __VM_CSTR_H__
+#endif // ! __VM_MEMORY_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
