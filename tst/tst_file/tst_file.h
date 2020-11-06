@@ -1,13 +1,9 @@
 
 #include <vm_cfgs.h>
 
-#include <vm_tools/vm_cerr.h>
+#include <vm_tools/vm_error.h>
+#include <vm_tools/vm_files.h>
 #include <vm_tools/vm_util.h>
-
-#include <vm_tools/vm_file/vm_cfg_def_file.h>
-#include <vm_tools/vm_file/CFileMode.h>
-#include <vm_tools/vm_file/CFileSys.h>
-#include <vm_tools/vm_file/CFile.h>
 
 #include <vm_tools/vm_utst.h>
 

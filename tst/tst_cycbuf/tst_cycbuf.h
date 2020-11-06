@@ -1,7 +1,5 @@
 
-#include "vm_tools/vm_cmem/CCycBufPtr.h"
-#include "vm_tools/vm_cmem/CMemMgr.h"
-#include <vm_tools/vm_cmem.h>
+#include <vm_tools/vm_memory.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //

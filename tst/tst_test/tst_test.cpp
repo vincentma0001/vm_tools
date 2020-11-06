@@ -7,7 +7,7 @@
 #include "tst_test.h"
 
 #include <vm_cfgs.h>
-#include <vm_tools/vm_cbit.h>
+#include <vm_tools/vm_bits.h>
 
 template< unsigned int uiLineLen, unsigned int uiSpliteLen >
 void print_str( FILE* pHandle, char* szBuf, size_t tsztBufSize )

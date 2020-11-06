@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include <vm_tools/vm_cstr.h>
+#include <vm_tools/vm_string.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //

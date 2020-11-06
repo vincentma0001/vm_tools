@@ -1,5 +1,5 @@
 
-#include <vm_tools/vm_cbit.h>
+#include <vm_tools/vm_bits.h>
 #include <vm_tools/vm_utst.h>
 
 #include <iostream>

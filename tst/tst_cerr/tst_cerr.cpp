@@ -1,5 +1,5 @@
 
-#include <vm_tools/vm_cerr.h>
+#include <vm_tools/vm_error.h>
 #include <iostream>
 
 int main(int argc, char *argv[])
