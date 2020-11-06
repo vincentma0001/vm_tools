@@ -1,6 +1,6 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CStdMap.hpp                                         == //
+// ==                                      CStdMapPtr.hpp                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CSTDMAP_HPP__
-#define  __CSTDMAP_HPP__
+#ifndef  __CSTDMAPPTR_HPP__
+#define  __CSTDMAPPTR_HPP__
 
 
 // ================================================================================================ //
@@ -37,48 +37,48 @@ namespace vm
 {
 // ------------------------------------------------------------------------------------------------ //
 // Macrodefs : {{{
-#ifndef    vStdMapKey
-#   define vStdMapKey(oIter)         (oIter->first)
-#endif // !vStdMapKey
+#ifndef    vStdMapPtrKey
+#   define vStdMapPtrKey(oIter)           (oIter->first)
+#endif // !vStdMapPtrKey
 
-#ifndef    vStdMapVal
-#   define vStdMapVal(oIter)        (oIter->second)
-#endif // !vStdMapVal
+#ifndef    vStdMapPtrVal
+#   define vStdMapPtrVal(oIter)       (*(oIter->second))
+#endif // !vStdMapPtrVal
 // }}} ! Macrodefs
 
 // ================================================================================================ //
-// ==  Class CStdMap : this class has simplified std::map                                        == //
+// ==  Class CStdMapPtr : this class has simplified std::map                                     == //
 // ------------------------------------------------------------------------------------------------ //
 template< typename tKey, typename tData >
-class CStdMap
+class CStdMapPtr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
 // Typedefs  : {{{
 public:
     // Redefined std::map
-    typedef typename std::map < tKey, tData >                    tMap;
+    typedef typename std::map < tKey, tData* >                    tMap;
     // Redefined std::iterator
-    typedef typename std::map < tKey, tData >::iterator          tMapItor;
+    typedef typename std::map < tKey, tData* >::iterator          tMapItor;
     // Redfined std::map::value_type
-    typedef typename std::map < tKey, tData >::value_type        tMapValue;
+    typedef typename std::map < tKey, tData* >::value_type        tMapValue;
     // Redfeined std::map::const_iterator
-    typedef typename std::map < tKey, tData >::const_iterator    tcMapItor;
+    typedef typename std::map < tKey, tData* >::const_iterator    tcMapItor;
 // }}} ! Typedefs
 
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CStdMap();
+    inline          CStdMapPtr();
     // Destruct define
-    inline virtual ~CStdMap();
+    inline virtual ~CStdMapPtr();
 
 private:
     // Copy construct define
-    inline CStdMap             ( const CStdMap &obj );
+    inline CStdMapPtr             ( const CStdMapPtr &obj );
     // Assignment operation
-    inline CStdMap& operator = ( const CStdMap &obj );
+    inline CStdMapPtr& operator = ( const CStdMapPtr &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
@@ -99,7 +99,7 @@ public:
     inline bool     IsExist(tKey oKey) const;
 
     // Add data to map
-    inline bool     Insert (tKey oKey, tData oData);
+    inline bool     Insert (tKey oKey, tData* oData);
     // Get data pointer by key from map 
     inline tData*   Find   (tKey oKey);
     // Rempve data by key from map
@@ -115,18 +115,18 @@ public:
 // }}} ! Methods
 
 };
-// }}} ! [ class CStdMap ]
+// }}} ! [ class CStdMapPtr ]
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CStdMap.hpp.inl"
+#include "CStdMapPtr.hpp.inl"
 // ================================================================================================ //
 
 
-#endif // ! __CSTDMAP_HPP__
+#endif // ! __CSTDMAPPTR_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

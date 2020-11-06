@@ -1,6 +1,6 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                    CStdMap.hpp.inl                                         == //
+// ==                                  CStdMapPtr.hpp.inl                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CSTDMAP_HPP_INL__
-#define  __CSTDMAP_HPP_INL__
+#ifndef  __CSTDMAPPTR_HPP_INL__
+#define  __CSTDMAPPTR_HPP_INL__
 
 
 // ================================================================================================ //
@@ -27,117 +27,117 @@
 
 
 // ================================================================================================ //
-// ==  Class CStdMap<tKey,tData> Construct && Destruct realization                               == //
+// ==  Class CStdMapPtr<tKey,tData> Construct && Destruct realization                            == //
 // ================================================================================================ //
-// [ Class CStdMap<tKey,tData> Construct && Destruct realization ] {{{
+// [ Class CStdMapPtr<tKey,tData> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::CStdMap()                                                  == //
+// ==  Methord : CStdMapPtr<tKey,tData>::CStdMapPtr()                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 template< typename tKey,typename tData >
-inline vm::CStdMap< tKey,tData >::CStdMap(  )
+inline vm::CStdMapPtr< tKey,tData >::CStdMapPtr(  )
 // {{{
 {
 }
-// }}} End of func CStdMap<tKey,tData>::CStdMap()
+// }}} End of func CStdMapPtr<tKey,tData>::CStdMapPtr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CStdMap<tKey,tData>::~CStdMap()                                         == //
+// ==  Methord : virtual CStdMapPtr<tKey,tData>::~CStdMapPtr()                                   == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
 template< typename tKey,typename tData >
-inline vm::CStdMap< tKey,tData >::~CStdMap(  )
+inline vm::CStdMapPtr< tKey,tData >::~CStdMapPtr(  )
 // {{{
 {
 }
-// }}} End of func CStdMap<tKey,tData>::~CStdMap()
+// }}} End of func CStdMapPtr<tKey,tData>::~CStdMapPtr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::CStdMap( const CStdMap &obj )                              == //
+// ==  Methord : CStdMapPtr<tKey,tData>::CStdMapPtr( const CStdMapPtr &obj )                     == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
 template< typename tKey,typename tData >
-inline vm::CStdMap< tKey,tData >::CStdMap( const CStdMap &obj )
+inline vm::CStdMapPtr< tKey,tData >::CStdMapPtr( const CStdMapPtr &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CStdMap<tKey,tData>::CStdMap()
+// }}} End of func CStdMapPtr<tKey,tData>::CStdMapPtr()
 // ================================================================================================ //
 
-// }}} ![ Class CStdMap<tKey,tData> Construct && Destruct realization ]
+// }}} ![ Class CStdMapPtr<tKey,tData> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CStdMap<tKey,tData> operator realization                                            == //
+// ==  Class CStdMapPtr<tKey,tData> operator realization                                         == //
 // ================================================================================================ //
-// [ Class CStdMap<tKey,tData> operator realization ] {{{
+// [ Class CStdMapPtr<tKey,tData> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::operator = ()                                              == //
+// ==  Methord : CStdMapPtr<tKey,tData>::operator = ()                                           == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CStdMap<tKey,tData>& - [O] this object
+// ==  Return  : CStdMapPtr<tKey,tData>& - [O] this object
 template< typename tKey,typename tData >
-inline vm::CStdMap< tKey,tData >& vm::CStdMap< tKey,tData >::operator = ( const CStdMap &obj )
+inline vm::CStdMapPtr< tKey,tData >& vm::CStdMapPtr< tKey,tData >::operator = ( const CStdMapPtr &obj )
 // {{{
 {
     return *this;
 }
-// }}} End of func CStdMap<tKey,tData>::operator=()
+// }}} End of func CStdMapPtr<tKey,tData>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CStdMap<tKey,tData> operator realization ]
+// }}} ![ Class CStdMapPtr<tKey,tData> operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CStdMap<tKey,tData> Functional realization                                          == //
+// ==  Class CStdMapPtr<tKey,tData> Functional realization                                       == //
 // ================================================================================================ //
-// [ Class CStdMap<tKey,tData> Functional realization ] {{{
+// [ Class CStdMapPtr<tKey,tData> Functional realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Size(...)                                                  == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Size(...)                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get data count in map
 // ==  Return  : size_t           - [O] Data count in map
 template< typename tKey, typename tData >
-inline size_t vm::CStdMap< tKey,tData >::Size( void ) const
+inline size_t vm::CStdMapPtr< tKey,tData >::Size( void ) const
 // {{{ 
 {
     return mMap.size();
 }
-// }}} end of func CStdMap<tKey,tData>::Size(...)
+// }}} end of func CStdMapPtr<tKey,tData>::Size(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::IsEmpty(...)                                               == //
+// ==  Methord : CStdMapPtr<tKey,tData>::IsEmpty(...)                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Decide map is empty or not
 // ==  Return  : bool             - [O] true  - map is empty
 // ==                                   false - map isn't empty
 template< typename tKey, typename tData >
-inline bool vm::CStdMap< tKey,tData >::IsEmpty( void ) const
+inline bool vm::CStdMapPtr< tKey,tData >::IsEmpty( void ) const
 // {{{ 
 {
     return mMap.empty();
 }
-// }}} end of func CStdMap<tKey,tData>::IsEmpty(...)
+// }}} end of func CStdMapPtr<tKey,tData>::IsEmpty(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::IsExist(...)                                               == //
+// ==  Methord : CStdMapPtr<tKey,tData>::IsExist(...)                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Decide Key is in map or not
 // ==  Return  : bool             - [O] true  - key is in map
 // ==                                   false - key isn't in map
 // ==  Params  : oKey             - [I] key object
 template< typename tKey, typename tData >
-inline bool vm::CStdMap< tKey,tData >::IsExist( tKey oKey ) const
+inline bool vm::CStdMapPtr< tKey,tData >::IsExist( tKey oKey ) const
 // {{{ 
 {
     // confirm map isn't empty
@@ -151,35 +151,35 @@ inline bool vm::CStdMap< tKey,tData >::IsExist( tKey oKey ) const
 
     return true;
 }
-// }}} end of func CStdMap<tKey,tData>::IsExist(...)
+// }}} end of func CStdMapPtr<tKey,tData>::IsExist(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Insert(...)                                                == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Insert(...)                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Add data to map 
 // ==  Return  : bool             - [O] true  - sucess
 // ==                                   false - failed
 // ==  Params  : oKey             - [I] key object
-// ==            oData            - [I] Data object
+// ==            pData            - [I] Data object
 template< typename tKey, typename tData >
-inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData oData )
+inline bool vm::CStdMapPtr< tKey,tData >::Insert( tKey oKey, tData* pData )
 // {{{ 
 {
-    std::pair<tMapItor, bool> temp_pair = mMap.insert(tMapValue(oKey,oData));
+    std::pair<tMapItor, bool> temp_pair = mMap.insert(tMapValue(oKey,pData));
     return temp_pair.second;
 }
-// }}} end of func CStdMap<tKey,tData>::Insert(...)
+// }}} end of func CStdMapPtr<tKey,tData>::Insert(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Find(...)                                                  == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Find(...)                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get data pointer by key from map 
 // ==  Return  : tData*           - [O] Data pointer
 // ==  Params  : oKey             - [I] Key object
 template< typename tKey, typename tData >
-inline tData* vm::CStdMap< tKey,tData >::Find( tKey oKey )
+inline tData* vm::CStdMapPtr< tKey,tData >::Find( tKey oKey )
 // {{{ 
 {
     tData* pData = nullptr;
@@ -197,18 +197,18 @@ inline tData* vm::CStdMap< tKey,tData >::Find( tKey oKey )
 
     return pData;
 }
-// }}} end of func CStdMap<tKey,tData>::GetDA(...)
+// }}} end of func CStdMapPtr<tKey,tData>::GetDA(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Remove(...)                                                == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Remove(...)                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Remove data by key from map 
 // ==  Return  : bool             - [O] true  - sucess
 // ==                                   false - failed
 // ==  Params  : oKey             - [I] Key object
 template< typename tKey, typename tData >
-inline bool  vm::CStdMap< tKey,tData >::Remove( tKey oKey )
+inline bool  vm::CStdMapPtr< tKey,tData >::Remove( tKey oKey )
 // {{{ 
 {
     // Confirm map is empty or not
@@ -224,59 +224,59 @@ inline bool  vm::CStdMap< tKey,tData >::Remove( tKey oKey )
     mMap.erase(iter);
     return true;
 }
-// }}} end of func CStdMap<tKey,tData>::Remove(...)
+// }}} end of func CStdMapPtr<tKey,tData>::Remove(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Clean(...)                                                 == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Clean(...)                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Delete all data in map 
 // ==  Return  : void             - [O] Nothing for return
 template< typename tKey, typename tData >
-inline void vm::CStdMap< tKey,tData >::Clean( void )
+inline void vm::CStdMapPtr< tKey,tData >::Clean( void )
 // {{{ 
 {
     mMap.clear();
 }
-// }}} end of func CStdMap<tKey,tData>::Clean(...)
+// }}} end of func CStdMapPtr<tKey,tData>::Clean(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::First(...)                                                 == //
+// ==  Methord : CStdMapPtr<tKey,tData>::First(...)                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get first data in map 
-// ==  Return  : vm::CStdMap::tMapItor - [O] the first data in map 
+// ==  Return  : vm::CStdMapPtr::tMapItor - [O] the first data in map 
 template< typename tKey, typename tData >
-inline typename vm::CStdMap<tKey,tData>::tMapItor vm::CStdMap<tKey,tData>::First( void )
+inline typename vm::CStdMapPtr<tKey,tData>::tMapItor vm::CStdMapPtr<tKey,tData>::First( void )
 // {{{ 
 {
     return mMap.begin();
 }
-// }}} end of func CStdMap<tKey,tData>::First(...)
+// }}} end of func CStdMapPtr<tKey,tData>::First(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CStdMap<tKey,tData>::Last(...)                                                  == //
+// ==  Methord : CStdMapPtr<tKey,tData>::Last(...)                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get last data in map 
-// ==  Return  : vm::CStdMap::tMapItor - [O] the last data in map
+// ==  Return  : vm::CStdMapPtr::tMapItor - [O] the last data in map
 template< typename tKey, typename tData >
-inline typename vm::CStdMap<tKey,tData>::tMapItor vm::CStdMap<tKey,tData>::Last( void )
+inline typename vm::CStdMapPtr<tKey,tData>::tMapItor vm::CStdMapPtr<tKey,tData>::Last( void )
 // {{{ 
 {
     return mMap.end();
 }
-// }}} end of func CStdMap<tKey,tData>::Last(...)
+// }}} end of func CStdMapPtr<tKey,tData>::Last(...)
 // ================================================================================================ //
 
-// }}} ![ Class CStdMap<tKey,tData> Functional realization ]
+// }}} ![ Class CStdMapPtr<tKey,tData> Functional realization ]
 // ================================================================================================ //
 
 // }}} ! Comment info
 // ================================================================================================ //
 
 
-#endif // ! __CSTDMAP_HPP_INL__
+#endif // ! __CSTDMAPPTR_HPP_INL__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
