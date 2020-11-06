@@ -1,6 +1,6 @@
 
 # set module name
-set(MODULE_NAME tst_cerr)
+set(MODULE_NAME tst_error)
 
 # define txt encoding
 #ADD_DEFINITIONS(-DUNICODE)

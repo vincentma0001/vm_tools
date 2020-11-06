@@ -1,6 +1,6 @@
 
 
-#include "tst_cstr.h"
+#include "tst_string.h"
 #include <vm_tools/vm_utst.h>
 
 int main(int argc, char *argv[])

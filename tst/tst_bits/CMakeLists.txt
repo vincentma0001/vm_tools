@@ -1,6 +1,6 @@
 
 # set module name
-set(MODULE_NAME tst_cbit)
+set(MODULE_NAME tst_bits)
 
 # define txt encoding
 #ADD_DEFINITIONS(-DUNICODE)

@@ -1,7 +1,7 @@
 
 
 # set module name
-set(MODULE_NAME tst_cstr)
+set(MODULE_NAME tst_string)
 
 # define txt encoding
 #ADD_DEFINITIONS(-DUNICODE)
