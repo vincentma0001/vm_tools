@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_cstr/v_funcs_str.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_cstr.h>
 // }}}
@@ -74,6 +75,7 @@ public:
         emDouble    = 13,
         emLDouble   = 14,
 
+        emSize      = 15,
         emStr       = 99
     };
     // }}} End of def enum emType
@@ -83,6 +85,7 @@ public:
     // {{{
     {
         bool                bValue;
+        size_t              sztValue;
 
         char                cValue;
         unsigned char       ucValue;
@@ -107,12 +110,22 @@ public:
     };
     // }}} End of def union unVal
 
+    // enum emRet : this enum define ret info for CAny
+    enum emRet
+    // {{{
+    {
+        emSuccess = 0,
+        emWarning = -1
+    };
+    // }}} End of def enum emRet
 // }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construc define 
     inline CAny(const bool               cVal ) :memType(emType::emBool)   { munValue.bValue   = cVal; vMemZero(mszBuf); };
+    // Construc define 
+    inline CAny(const size_t             cVal ) :memType(emType::emSize)   { munValue.sztValue = cVal; vMemZero(mszBuf); };
     // Construc define
     inline CAny(const char               cVal ) :memType(emType::emChar)   { munValue.cValue   = cVal; vMemZero(mszBuf); };
     // Construc define
@@ -164,12 +177,141 @@ private:
     emType          memType;
     // 转义后字符串缓存
     tchar           mszBuf[tsztBufSize];
+
+    long long       mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    /* TODO Add class's Methods here */
+
+    bool                   toBool()
+    {
+        
+    };
+    size_t                 toSize();
+    wchar_t               toWchar();
+
+    char                   toChar()
+    {
+        mllErrCode = emRet::emSuccess;
+
+        if(memType==emType::emStr)
+        {
+            char liRet =(char)vStod( mszBuf );
+            return liRet;
+        }
+
+        if(memType!=emType::emChar)
+            mllErrCode = emRet::emWarning;
+
+        return munValue.cValue;
+    }
+    unsigned char         toUChar();
+
+    short                 toShort();
+    unsigned short       toUShort();
+
+    int                     toInt();
+    unsigned int           toUInt();
+
+    long                   toLong();
+    unsigned long         toULong();
+
+    long long             toLLong();
+    unsigned long long   toULLong();
+
+    float                 toFloat();
+    double               toDouble();
+    long double         toLDouble();
+
+
+public:
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const bool   bVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%s"), vStrBool(bVal) );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const size_t sztVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%zu"), vStrBool(sztVal) );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const char ccVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%hc"), ccVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned char cucVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%hc"), cucVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const wchar_t ccVal )
+    {
+        // ISSUE : has problem ?
+        vm::v_sprintf( pDst, csztDstSize, vT("%hc"), ccVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const short csVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%hd"), csVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned short cusVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%hu"), cusVal );
+        return pDst;
+    }
+
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const int ciVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%d"), ciVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned int cuiVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%u"), cuiVal );
+        return pDst;
+    }
+
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const long clVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%ld"), clVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned long culVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%lu"), culVal );
+        return pDst;
+    }
+
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const long long cllVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%lld"), cllVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned long long cullVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%llu"), cullVal );
+        return pDst;
+    }
+
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const float cfVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%f"), cfVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const double cdVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%f"), cdVal );
+        return pDst;
+    }
+    inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const long double cldVal )
+    {
+        vm::v_sprintf( pDst, csztDstSize, vT("%Lf"), cldVal );
+        return pDst;
+    }
 // }}} ! Methods
 
 };

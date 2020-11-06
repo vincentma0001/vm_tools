@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                          CErr.h                                            == //
+// ==                                        CStdMap.hpp                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 10:45:11                                               == //
-// ==   Modify Time          : 2020-11-06 10:13:50                                               == //
+// ==   Create Time          : 2020-11-06 08:46                                                  == //
+// ==   Modify Time          : 2020-11-06 08:46                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,16 +18,16 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERR_H__
-#define  __CERR_H__
+#ifndef  __CSTDMAP_HPP__
+#define  __CSTDMAP_HPP__
 
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include <map>
 #include <vm_cfgs.h>
-#include "CErrPtr.h"
 // }}}
 // ================================================================================================ //
 
@@ -36,58 +36,92 @@
 // using namespace vm {{{
 namespace vm
 {
+
 // ------------------------------------------------------------------------------------------------ //
 // Macrodefs : {{{
-#ifndef    _V_CERR_DFT_BUF_SIZE_
-#   define _V_CERR_DFT_BUF_SIZE_ 1024
-#endif // !_V_CERR_DFT_BUF_SIZE_
-
-#ifndef    vErrThrow
-#   define vErrThrow(tBufSize, eErrCode) vm::CErr<tBufSize>(eErrCode).Throw()
-#endif // !vErrThrow
+    #define vStdMapValue(oIter) (oIter->second)
 // }}} ! Macrodefs
-
 // ================================================================================================ //
-// ==  Class CErr : this class deal with error operattion                                        == //
+// ==  Class CStdMap : this class has simplified std::map                                        == //
 // ------------------------------------------------------------------------------------------------ //
-template< size_t tsztBufSize >
-class CErr : public CErrPtr
+template< typename tKey, typename tData >
+class CStdMap
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // Redefined std::map
+    typedef typename std::map < tKey, tData >                    tMap;
+    // Redefined std::iterator
+    typedef typename std::map < tKey, tData >::iterator          tMapItor;
+    // Redfined std::map::value_type
+    typedef typename std::map < tKey, tData >::value_type        tMapValue;
+    // Redfeined std::map::const_iterator
+    typedef typename std::map < tKey, tData >::const_iterator    tcMapItor;
+// }}} ! Typedefs
+
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CErr();
-    // Construct define
-    inline          CErr( const long long cllErrCode );
+    inline          CStdMap();
     // Destruct define
-    inline virtual ~CErr();
+    inline virtual ~CStdMap();
 
 private:
     // Copy construct define
-    inline CErr( const CErr &obj );
+    inline CStdMap             ( const CStdMap &obj );
     // Assignment operation
-    inline CErr& operator = ( const CErr &obj );
+    inline CStdMap& operator = ( const CStdMap &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    tchar       mszBuf[tsztBufSize];
+    tMap                            mMap;
 // }}} ! Members
+
+// ------------------------------------------------------------------------------------------------ //
+// Methods   : {{{
+public:
+    // Get data's count in map
+    inline size_t   GetSize(void) const;
+    // Decide map is empty or not
+    inline bool     IsEmpty(void) const;
+
+    // Decide key is in map or not
+    inline bool     IsExist(tKey oKey) const;
+
+    // Add data to map
+    inline bool     AddData(tKey oKey, tData oData);
+    // Get data pointer by key from map 
+    inline tData*   GetData(tKey oKey);
+    // Rempve data by key from map
+    inline bool     DelData(tKey oKey);
+
+    // Delete all data in map
+    inline void     DelAll(void);
+
+    // Get first data in map
+    inline tMapItor GetFirst(void);
+    // Get last data in map
+    inline tMapItor GetLast (void);
+// }}} ! Methods
+
 };
-// }}} ! [ class CErr ]
+// }}} ! [ class CStdMap ]
 // ================================================================================================ //
 
-} 
+};
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CErr.hpp.inl"
+#include "CStdMap.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __CERR_H__
+
+#endif // ! __CSTDMAP_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

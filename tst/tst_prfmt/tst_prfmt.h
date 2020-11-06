@@ -256,13 +256,40 @@ vEnd
 UT_FUNC_ENDED
 // }}} ! ut_prfmt_1
 // ================================================================================================ //
+// ================================================================================================ //
+// [ ut_prfmt_2 ] {{{
+UT_FUNC_BEGIN( ut_prfmt_2 )
 
+vTry
+
+    // Add unit test coder here
+    char lcVal = vT('*');
+    vPrintf( vT("Print char(%hhd)"),      lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( vT("Print char(%c)"),        lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char(                 ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 0, true         ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 0, true , true  ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 0, false, true  ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 8               ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 8, true         ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 8, true , true  ),   lcVal ); vPrintf( vT("vEnd\n") );
+    vPrintf( *vm::CPrFmt<128>().Char( 8, false, true  ),   lcVal ); vPrintf( vT("vEnd\n") );
+
+vCatch(...)
+    return false;
+vEnd
+    return true;
+
+UT_FUNC_ENDED
+// }}} ! ut_prfmt_2
+// ================================================================================================ //
 // ================================================================================================ //
 // ==  unit test frame tst_frame_prfmt                                                           == //
 // ================================================================================================ //
 // [ tst_frame_prfmt ] {{{
 UT_FRAME_BEGIN ( tst_frame_prfmt )
-UT_FRAME_REGIST( ut_prfmt_1 )
+//UT_FRAME_REGIST( ut_prfmt_1 )
+UT_FRAME_REGIST( ut_prfmt_2 )
 UT_FRAME_ENDED
 // }}} ![ tst_frame_prfmt ]
 // ================================================================================================ //

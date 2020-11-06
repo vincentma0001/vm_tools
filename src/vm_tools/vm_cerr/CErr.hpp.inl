@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-03 09:10:34                                               == //
+// ==   Modify Time          : 2020-11-06 10:13:46                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -41,8 +41,8 @@
 // ==  Methord : CErr::CErr()                                                                    == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>::CErr(  ) : vm::CErrPtr( errno, mBuf, sizeof(mBuf) ),mBuf{0x00}
+template< size_t tsztBufSize >
+inline vm::CErr<tsztBufSize>::CErr(  ) : vm::CErrPtr( errno, mszBuf, sizeof(mszBuf) ),mszBuf{0x00}
 // {{{
 {
 }
@@ -55,8 +55,8 @@ inline vm::CErr<tszBufSize>::CErr(  ) : vm::CErrPtr( errno, mBuf, sizeof(mBuf) )
 // ==  Brief   : # TODO : Add function brief #
 // ==  Return  :                  - [O] Nothing for return
 // ==  Params  : cllErrCode       - [X] error number
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>::CErr( const long long cllErrCode ) : vm::CErrPtr( cllErrCode, mBuf, sizeof(mBuf) ),mBuf{0x00}
+template< size_t tsztBufSize >
+inline vm::CErr<tsztBufSize>::CErr( const long long cllErrCode ) : vm::CErrPtr( cllErrCode, mszBuf, sizeof(mszBuf) ),mszBuf{0x00}
 // {{{
 {
 }
@@ -68,8 +68,8 @@ inline vm::CErr<tszBufSize>::CErr( const long long cllErrCode ) : vm::CErrPtr( c
 // ==  Methord : virtual CErr::CErr()                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>::~CErr(  )
+template< size_t tsztBufSize >
+inline vm::CErr<tsztBufSize>::~CErr(  )
 // {{{
 {
 }
@@ -80,8 +80,8 @@ inline vm::CErr<tszBufSize>::~CErr(  )
 // ==  Methord : CErr::CErr()                                                                    == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>::CErr( const vm::CErr<tszBufSize> &obj )
+template< size_t tsztBufSize >
+inline vm::CErr<tsztBufSize>::CErr( const CErr &obj )
 // {{{
 {
     *this = obj;
@@ -103,12 +103,12 @@ inline vm::CErr<tszBufSize>::CErr( const vm::CErr<tszBufSize> &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CErr&            - [O] this object
-template< size_t tszBufSize >
-inline vm::CErr<tszBufSize>& vm::CErr<tszBufSize>::operator = ( const vm::CErr<tszBufSize> &obj )
+template< size_t tsztBufSize >
+inline vm::CErr<tsztBufSize>& vm::CErr<tsztBufSize>::operator = ( const CErr &obj )
 // {{{
 {
     mllErrCode = obj.mllErrCode;
-    vm::v_memcpy( mBuf, sizeof(mBuf), obj.mBuf, sizeof(obj.mBuf) );
+    vm::v_memcpy( mszBuf, sizeof(mszBuf), obj.mszBuf, sizeof(obj.mszBuf) );
     return *this;
 }
 // }}} End of func CErr::~CErr()

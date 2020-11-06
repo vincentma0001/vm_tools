@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_cstr/v_funcs_str.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_cstr.h>
 // }}}
@@ -44,18 +45,6 @@ template< size_t tsztBufSize >
 class CPrFmt
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
-// Typedefs  : {{{
-public:
-    // enum emFlag : this enum flag define printf flag
-    enum emFlag
-    // {{{
-    {
-        emLeft  = '+',
-        emRight = '-'
-    };
-    // }}} End of def enum emFlag
-// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
@@ -88,20 +77,40 @@ public:
     size_t Size(){ return tsztBufSize;     };
     size_t Len (){ return vStrlen(mszBuf); };
 
-    CPrFmt&      Char(  )
+    CPrFmt&      Char( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false )
     {
         vMemZero(mszBuf);
-
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
 
+        mszBuf[lsztOffset] = vT('%');
         lsztOffset += sizeof(tchar);
+
+        if( csztWidth != 0 )
+        {
+            if( bLeft == true )
+            {
+                mszBuf[lsztOffset] = vT('-');
+                lsztOffset += sizeof(tchar);
+            }
+
+            if( bFillZero == true )
+            {
+                mszBuf[lsztOffset] = vT('0');
+                lsztOffset += sizeof(tchar);
+            }
+
+            tchar* lpPos = mszBuf+lsztOffset;
+            vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
+            lsztOffset += vStrlen(lpPos);
+        }
+
         mszBuf[lsztOffset] = vT('h');
         lsztOffset += sizeof(tchar);
         mszBuf[lsztOffset] = vT('h');
         lsztOffset += sizeof(tchar);
         mszBuf[lsztOffset] = vT('d');
 
+        printf( "Step 1 : %s\n", mszBuf );
         return *this;
     };
     CPrFmt&     UChar()
