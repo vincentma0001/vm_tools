@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-06 11:52:03                                               == //
+// ==   Modify Time          : 2020-11-07 21:02:09                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -55,7 +55,7 @@ inline vm::CBitStr< CBitType >::CBitStr( const CBitType &obj ) : mBitType(obj), 
 // ================================================================================================ //
 // ==  Methord : virtual CBitStr<CBitType>::CBitStr()                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Destruct define
+// ==  Brief   : Destruct 
 template< typename CBitType >
 inline vm::CBitStr<CBitType>::~CBitStr(  )
 // {{{
@@ -141,6 +141,7 @@ inline tchar* vm::CBitStr< CBitType >::toOct04( )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04o"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toOct04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toOct04(...)
@@ -157,6 +158,7 @@ inline tchar* vm::CBitStr< CBitType >::toOct08(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08o"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toOct08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<tsztBufSize>::toOct08(...)
@@ -174,6 +176,7 @@ inline tchar* vm::CBitStr< CBitType >::toDec(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%d"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toDec()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toDec(...)
@@ -190,6 +193,7 @@ inline tchar* vm::CBitStr< CBitType >::toDec04(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04d"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toDec04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toDec04(...)
@@ -206,6 +210,7 @@ inline tchar* vm::CBitStr< CBitType >::toDec08(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08d"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toDec08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toDec08(...)
@@ -222,6 +227,7 @@ inline tchar* vm::CBitStr< CBitType >::toHex02(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex02()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHex02(...)
@@ -238,6 +244,7 @@ inline tchar* vm::CBitStr< CBitType >::toHex04(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHex04(...)
@@ -254,6 +261,7 @@ inline tchar* vm::CBitStr< CBitType >::toHex08(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHex08(...)
@@ -270,6 +278,7 @@ inline tchar* vm::CBitStr< CBitType >::toHeX02(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX02()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHeX02(...)
@@ -286,6 +295,7 @@ inline tchar* vm::CBitStr< CBitType >::toHeX04(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHeX04(...)
@@ -302,6 +312,7 @@ inline tchar* vm::CBitStr< CBitType >::toHeX08(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHeX08(...)
@@ -318,6 +329,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHex02(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex02()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHex02(...)
@@ -334,6 +346,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHex04(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%04x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHex04(...)
@@ -350,6 +363,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHex08(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%08x"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHex08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHex08(...)
@@ -366,6 +380,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHeX02(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX02()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHeX02(...)
@@ -382,6 +397,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHeX04(  )
 {
     vMemZero(mszBuf);
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%04X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX04()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHeX04(...)
@@ -398,6 +414,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHeX08(  )
 {
     vMemZero(mszBuf); 
     int liRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%08X"), mBitType.mBit);
+    _ASSERT_( vT("CBitStr::toHeX08()"), (liRet==0) );
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHeX08(...)
