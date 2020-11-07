@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-05 09:09:28                                               == //
+// ==   Modify Time          : 2020-11-07 20:47:55                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,6 +28,7 @@
 // [ Include files ] {{{
 #include <vm_cfgs.h>
 #include "v_funcs_mem.h"
+#include "vm_tools/vm_string/v_funcs_str.h"
 // }}}
 
 
@@ -571,6 +572,49 @@ inline size_t vm::v_strncpy ( tchar* const pDst, const size_t csztDstSize, const
 #endif
 }
 // }}} end of func v_strncpy(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_isinstr(...)                                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Decide tchar cVal is in string cpStr or not
+// ==  Return  : bool             - [O] Nothing for return
+// ==  Params  : cVal             - [I] Dst value
+// ==            cpStr            - [I] Src string#
+bool vm::v_isinstr ( _vIn_ const tchar cVal, _vIn_ const tchar* const cpStr )
+// {{{
+{
+    return vm::v_isinstr( cVal, cpStr, vStrlen(cpStr) );
+}
+// }}} end of func v_isinstr(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_isinstr(...)                                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Decide tchar cVal is in string cpStr or not
+// ==  Return  : bool             - [O] true  - cVal is in string cpStr
+// ==                                   false - cVal isn't in string cpStr
+// ==  Params  : cVal             - [I] Dst value
+// ==            cpStr            - [I] Src string#
+// ==            csztStrLen       - [X] Src string's length
+bool vm::v_isinstr ( _vIn_ const tchar cVal, _vIn_ const tchar* const cpStr, const size_t csztStrLen )
+// {{{
+{
+    // Verify input
+    _VERIFY_( vT("v_isinstr()"), cpStr );
+
+    // compary cVal and letter in string cpStr
+    for( size_t i=0; i<csztStrLen; i++ )
+    {
+        const tchar* lpPos = cpStr +i;
+        if ( *lpPos == cVal )
+            return true;
+    }
+
+    return false;
+}
+// }}} end of func v_isinstr(...)
 // ================================================================================================ //
 
 // ================================================================================================ //

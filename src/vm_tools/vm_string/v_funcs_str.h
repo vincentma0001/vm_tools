@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:59:49                                               == //
-// ==   Modify Time          : 2020-11-05 09:09:57                                               == //
+// ==   Modify Time          : 2020-11-07 20:46:21                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -117,6 +117,11 @@ inline bool v_strncmp_equl ( _vIn_ const tchar* const pStr1, _vIn_ const tchar* 
 inline bool v_strncmp_more ( _vIn_ const tchar* const pStr1, _vIn_ const tchar* const pStr2, _vIn_ const size_t csztDataLen );
 // Decide pStr1 is less than pStr2, compare csztDataLen letters
 inline bool v_strncmp_less ( _vIn_ const tchar* const pStr1, _vIn_ const tchar* const pStr2, _vIn_ const size_t csztDataLen );
+
+// Decide tchar cVal is in string cpStr or not
+inline bool v_isinstr ( _vIn_ const tchar cVal, _vIn_ const tchar* const cpStr                                );
+// Decide tchar cVal is in string cpStr or not
+inline bool v_isinstr ( _vIn_ const tchar cVal, _vIn_ const tchar* const cpStr, _vIn_ const size_t csztStrLen );
 
 // Trim string head and tail's space char(' ','\n','\t')
 inline size_t v_strtrim       ( _vIO_ tchar* const pData );
