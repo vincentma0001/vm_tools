@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-10 15:06:36                                               == //
-// ==   Modify Time          : 2020-10-10 15:29:58                                               == //
+// ==   Modify Time          : 2020-11-08 11:38:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -20,6 +20,16 @@
 
 #ifndef  __CFILEMODE_H_INL__
 #define  __CFILEMODE_H_INL__
+
+
+// ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <vm_cfgs.h>
+#include <vm_tools/vm_string.h>
+// }}}
+// ================================================================================================ //
 
 
 // ================================================================================================ //
@@ -135,7 +145,7 @@ inline tchar* vm::CFileMode::Tranformat( const short csFileMode )
         mszFileMode[lusPos++] = vT('+');
     } // Enf of if(...)
 
-    if(csFileMode | emExist )
+    if( csFileMode | emExist )
     {
         mszFileMode[lusPos++] = vT('x');
     } // End of if(...)
