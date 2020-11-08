@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:18:50                                               == //
-// ==   Modify Time          : 2020-11-06 12:22:07                                               == //
+// ==   Modify Time          : 2020-11-08 09:15:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -47,7 +47,7 @@
 #include <vm_cfgs/vm_cfg_def_func_mem.h>
 #include <vm_cfgs/vm_cfg_def_func_fmt.h>
 #include <vm_cfgs/vm_cfg_def_func_cvt.h>
-#include <vm_cfgs/vm_cfg_def_func_io.h>
+#include <vm_cfgs/vm_cfg_def_func_file.h>
 
 // std c++ configur file included
 #include <vm_cfgs/vm_cfg_def_std.h>
