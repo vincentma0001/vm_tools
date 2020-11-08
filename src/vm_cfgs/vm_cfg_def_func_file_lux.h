@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-08 08:44:00                                               == //
-// ==   Modify Time          : 2020-11-08 09:18:16                                               == //
+// ==   Modify Time          : 2020-11-08 09:29:20                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -37,9 +37,9 @@
 // define vFopen {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFopen        fopen
+#   define vFopen           fopen
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFopen        fopen
+#   define vFopen           fopen
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -49,9 +49,9 @@
 // define vFclose {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFclose       fclose
+#   define vFclose          fclose
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFclose       fclose
+#   define vFclose          fclose
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -61,9 +61,27 @@
 // define vFEof {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFEof         EOF
+#   define vFeof            feof
+#   define vFEOF            EOF
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFEof         WEOF
+#   define vFeof            feof
+#   define vFEOF            WEOF
+// ------------------------------------------------------------------------------------------------ //
+#endif // !( _V_USE_WCHAR_ == 0 )
+// }}}
+// ================================================================================================ //
+
+// ================================================================================================ //
+// defile vFerror {{{
+#if        ( _V_USE_WCHAR_ == 0 )
+// ------------------------------------------------------------------------------------------------ //
+#   define vFclearErr       clearerr
+#   define vFerror          ferror
+#   define vFileno          fileno
+#else  //  ( _V_USE_WCHAR_ != 0 )
+#   define vFclearErr       clearerr
+#   define vFerror          ferror
+#   define vFileno          fileno
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -73,9 +91,9 @@
 // define vFprintf {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFprintf      fprintf
+#   define vFprintf         fprintf
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFprintf      fwprintf
+#   define vFprintf         fwprintf
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -85,9 +103,9 @@
 // define vVfprintf {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vVfprintf     vfprintf
+#   define vVfprintf        vfprintf
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vVfprintf     vfwprintf
+#   define vVfprintf        vfwprintf
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -97,9 +115,9 @@
 // define vFScanf {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFscanf       fscanf
+#   define vFscanf          fscanf
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFscanf       fwscanf
+#   define vFscanf          fwscanf
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -109,9 +127,9 @@
 // define vFputc {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFputc        fputc
+#   define vFputc           fputc
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFputc        fputwc
+#   define vFputc           fputwc
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -121,9 +139,9 @@
 // define vFputs {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFputs        fputs
+#   define vFputs           fputs
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFputs        fputws
+#   define vFputs           fputws
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -133,9 +151,9 @@
 // define vFgetc {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFgetc        fgetc
+#   define vFgetc           fgetc
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFgetc        fgetwc
+#   define vFgetc           fgetwc
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -145,9 +163,9 @@
 // define vFgets {{{
 #if        ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vFgets        fgets
+#   define vFgets           fgets
 #else  //  ( _V_USE_WCHAR_ != 0 )
-#   define vFgets        fgetws
+#   define vFgets           fgetws
 // ------------------------------------------------------------------------------------------------ //
 #endif // !( _V_USE_WCHAR_ == 0 )
 // }}}
@@ -157,9 +175,9 @@
 // Get character from stream(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vGetc               getc
+#   define vGetc            getc
 #else  // _V_USE_WCHAR_ != 0
-#   define vGetc               getwc
+#   define vGetc            getwc
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //
@@ -168,9 +186,9 @@
 // Get character from stdin(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vGetchar            getchar
+#   define vGetchar         getchar
 #else  // _V_USE_WCHAR_ != 0
-#   define vGetchar            getwchar
+#   define vGetchar         getwchar
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //
@@ -179,9 +197,9 @@
 // Write character to stream(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vPutc               putc
+#   define vPutc            putc
 #else  // _V_USE_WCHAR_ != 0
-#   define vPutc               putwc
+#   define vPutc            putwc
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //
@@ -190,9 +208,9 @@
 // Write character to stdout(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vPutchar            putchar
+#   define vPutchar         putchar
 #else  // _V_USE_WCHAR_ != 0
-#   define vPutchar            putwchar
+#   define vPutchar         putwchar
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //
@@ -201,9 +219,9 @@
 // Unget character from stream(function)
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
-#   define vUngetc             ungetc
+#   define vUngetc          ungetc
 #else  // _V_USE_WCHAR_ != 0
-#   define vUngetc             ungetwc
+#   define vUngetc          ungetwc
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //
