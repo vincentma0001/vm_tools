@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:10:23                                               == //
-// ==   Modify Time          : 2020-10-19 11:40:49                                               == //
+// ==   Modify Time          : 2020-11-08 09:07:46                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -21,56 +21,17 @@
 #ifndef  __CFILE_H__
 #define  __CFILE_H__
 
+
+// ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <vm_cfgs.h>
+// }}}
+// ================================================================================================ //
+
 #include <stdio.h>
 
-// ================================================================================================ //
-#if( _V_USE_WCHAR_ == 0 )
-// {{{
-// file end flag
-#   define vFopen        fopen
-#   define vFopen_s      fopen_s
-#   define vFclose       fclose
-
-#   define vFprintf      fprintf
-#   define vFprintf_s    fprintf_s
-#   define vVfprintf     vfprintf
-#   define vVfprintf_s   vfprintf_s
-#   define vFscanf       fscanf
-#   define vFscanf_s     fscanf_s
-
-#   define vFputc        fputc
-#   define vFputs        fputs
-
-#   define vFgetc        fgetc
-#   define vFgets        fgets
-
-#   define vFEof         EOF
-// }}}
-#else
-// {{{
-// file end flag
-// ISSUE : _wfopen is windows functiong?
-#   define vFopen        _wfopen
-#   define vFopen_s      _wfopen_s
-#   define vFclose       _wfclose
-
-#   define vFprintf      fwprintf
-#   define vFprintf_s    fwprintf_s
-#   define vVfprintf     vfwprintf
-#   define vVfprintf_s   vfwprintf_s
-#   define vFscanf       fwscanf
-#   define vFscanf_s     fwscanf_s
-
-#   define vFputc        fputwc
-#   define vFputs        fputws
-
-#   define vFgetc        fgetwc
-#   define vFgets        fgetws
-
-#   define vFEof         WEOF
-// }}}
-#endif
-// ================================================================================================ //
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
