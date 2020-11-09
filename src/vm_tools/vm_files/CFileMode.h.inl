@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-10 15:06:36                                               == //
-// ==   Modify Time          : 2020-11-08 11:45:57                                               == //
+// ==   Modify Time          : 2020-11-09 12:38:57                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -125,17 +125,17 @@ inline tchar* vm::CFileMode::Tranformat( const short csFileMode )
         mszFileMode[lusPos++] = vT('w');
     } // End of if(...)
 
-    if( csFileMode | emFileMod::emAppend )
+    if( csFileMode | emFileMode::emAppend )
     {
         mszFileMode[lusPos++] = vT('a');
     } // Enf of if(...)
 
-    if ( csFileMode | emFileMod::emBinary )
+    if ( csFileMode | emFileMode::emBinary )
     {
         mszFileMode[lusPos++] = vT('b');
     } // End of if(...)
 
-    if( csFileMode | emFileMod::emText )
+    if( csFileMode | emFileMode::emText )
     {
         mszFileMode[lusPos++] = vT('t');
     } // Enf of if(...)
