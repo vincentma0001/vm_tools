@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:09:55                                               == //
-// ==   Modify Time          : 2020-11-06 12:05:30                                               == //
+// ==   Modify Time          : 2020-11-09 11:25:05                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -131,35 +131,35 @@ public:
 
     // [ Dir && file funcs ] {{{
     // Remove a file by name
-    static inline bool    Remove     ( _vIn_ const tchar* const cpFileName );
+    static inline bool         Remove     ( _vIn_ const tchar* const cpFileName                                     );
     // Rename file name from oldname to newname
-    static inline bool    Rename     ( _vIn_ const tchar* const cpOldName , _vIn_ const tchar* const cpNewName );
+    static inline bool         Rename     ( _vIn_ const tchar* const  cpOldName, _vIn_ const tchar* const cpNewName );
     // Make dirtory
-    static inline bool    MkDir      ( _vIn_ const tchar* const cpDirName );
+    static inline bool         MkDir      ( _vIn_ const tchar* const  cpDirName, _vIn_ const tMode             mode );
     // Remove dirtory
-    static inline bool    RmDir      ( _vIn_ const tchar* const cpDirName );
+    static inline bool         RmDir      ( _vIn_ const tchar* const  cpDirName                                     );
     // Change current work dirtory
-    static inline bool    ChgWorkDir ( _vIn_ const tchar* const cpWorkDir );
+    static inline bool         ChgWorkDir ( _vIn_ const tchar* const  cpWorkDir                                     );
     // Get curent work dirtory
-    static inline tchar*  GetWorkDir ( _vIn_ const tchar* const cpBuf, const size_t csztBufSize );
+    static inline const tchar* GetWorkDir ( _vIn_       tchar* const      cpBuf, _vIn_ const size_t     csztBufSize );
     // }}}
 
     // [ IsXXX funcs && CanXXX funcs ] {{{
     // Decide name is exist or not    , 1 is exist, 0 isn;t exist, -1 error.
-    static inline int IsExist( _vIn_ const tchar* const cpName )
+    static inline int IsExist( _vIn_ const tchar* const cpName );
     // Decide name is exectable or not, 1 is bin  , 0 isn's bin  , -1 error. if cpName is dirtory, it's means can be searched
-    static inline int IsBin( _vIn_ const tchar* const cpName )
+    static inline int IsBin  ( _vIn_ const tchar* const cpName );
     // Decide name is dirtory or not  , 1 is dir  , 0 isn't dir  , -1 error.
-    static inline int IsDir  ( _vIn_ const tchar* const cpName )
+    static inline int IsDir  ( _vIn_ const tchar* const cpName );
     // Decide name is file or not     , 1 is file , 0 isn'f file , -1 error.
-    static inline int IsFile ( _vIn_ const tchar* const cpName )
+    static inline int IsFile ( _vIn_ const tchar* const cpName );
 
     // Dicide name has read right
-    static inline bool CanRead      ( _vIn_ const tchar* const cpName )
+    static inline bool CanRead      ( _vIn_ const tchar* const cpName );
     // Dicide name has write right
-    static inline bool CanWrite     ( _vIn_ const tchar* const cpName )
+    static inline bool CanWrite     ( _vIn_ const tchar* const cpName );
     // Dicide name has write/read right
-    static inline bool CanReadWrite ( _vIn_ const tchar* const cpName )
+    static inline bool CanReadWrite ( _vIn_ const tchar* const cpName );
     // }}}
 
 // }}} ! Methods

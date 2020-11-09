@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-10 15:06:36                                               == //
-// ==   Modify Time          : 2020-11-08 11:38:47                                               == //
+// ==   Modify Time          : 2020-11-08 11:45:57                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -115,37 +115,37 @@ inline tchar* vm::CFileMode::Tranformat( const short csFileMode )
     vMemZero( mszFileMode );
     unsigned short lusPos = 0;
 
-    if( csFileMode | emRead )
+    if( csFileMode | emFileMode::emRead )
     {
         mszFileMode[lusPos++] = vT('r');
     } // End of if(...)
 
-    if( csFileMode | emWrite )
+    if( csFileMode | emFileMode::emWrite )
     {
         mszFileMode[lusPos++] = vT('w');
     } // End of if(...)
 
-    if( csFileMode | emAppend )
+    if( csFileMode | emFileMod::emAppend )
     {
         mszFileMode[lusPos++] = vT('a');
     } // Enf of if(...)
 
-    if ( csFileMode | emBinary )
+    if ( csFileMode | emFileMod::emBinary )
     {
         mszFileMode[lusPos++] = vT('b');
     } // End of if(...)
 
-    if( csFileMode | emText )
+    if( csFileMode | emFileMod::emText )
     {
         mszFileMode[lusPos++] = vT('t');
     } // Enf of if(...)
 
-    if( csFileMode | emUpdate )
+    if( csFileMode | emFileMode::emUpdate )
     {
         mszFileMode[lusPos++] = vT('+');
     } // Enf of if(...)
 
-    if( csFileMode | emExist )
+    if( csFileMode | emFileMode::emExist )
     {
         mszFileMode[lusPos++] = vT('x');
     } // End of if(...)

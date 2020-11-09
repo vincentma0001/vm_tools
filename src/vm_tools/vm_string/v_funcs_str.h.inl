@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-07 20:47:55                                               == //
+// ==   Modify Time          : 2020-11-09 10:08:10                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -516,21 +516,20 @@ inline size_t vm::v_strcpy ( tchar* const pDst, const size_t csztDstSize, const 
     // Verify input paramters
     _VERIFY_2_(vT("v_strcpy()"), pDst, cpSrc);
 
-    //size_t lsztSrcLen = vStrlen(cpSrc);
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
+    //size_t lsztSrcLen = vStrlen(cpSrc);
     //size_t lsztDataLen = vMin( csztDstSize, lsztSrcLen );
 
-    vErrno_t loRet = strcpy_s(pDst,csztDstSize,cpSrc);
-    //vErrno_t loRet = vMemcpy_s(pDst,csztDstSize,cpSrc, lsztDataLen);
+    vErrno_t loRet = vStrcpy_s(pDst,csztDstSize,cpSrc);
     _ASSERT_(vT("v_strcpy()"), (loRet==0) );
 
-    return lsztDataLen;
+    size_t lsztCopied = vStrlen(pDst);
+    return lsztCopied;
 #else
     tchar* lpEnd = vStrcpy(pDst, cpSrc)
-    //tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztSrcLen);
     _VERIFY_(vT("v_strncpy()"), lpEnd);
 
-    size_t lsztCopied = (size_t)(lpEnd - pDst);
+    size_t lsztCopied = vStrlen(lpEnd);
     return lsztCopied;
 #endif
 }

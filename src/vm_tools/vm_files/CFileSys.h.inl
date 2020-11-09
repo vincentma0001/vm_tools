@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-11 10:37:28                                               == //
-// ==   Modify Time          : 2020-10-18 21:44:42                                               == //
+// ==   Modify Time          : 2020-11-09 11:24:14                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,13 +26,10 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#ifndef     _INC_DIRECT
-#   error this file need #include <direct.h>
-#endif  // !_INC_DIRECT
+#include <unistd.h>
 
-#include <sys/stat.h>
-
-#include "CFileSys_def.inl"
+#include <vm_cfgs.h>
+#include <vm_tools/vm_string.h>
 // }}}
 
 
@@ -49,7 +46,7 @@ inline vm::CFileSys::CFileSys(  )
     : mszFullName{0x00}, mszFilePath{0x00}, mszFileName{0x00}, mszFileBase{0x00}, mszFileExt{0x00}, mllErrCode(0)
 // {{{
 {
-    Analyz();
+    //Analyz();
 }
 // }}} End of func CFileSys::CFileSys()
 // ================================================================================================ //
@@ -233,6 +230,11 @@ inline bool vm::CFileSys::Analyz( _vIn_ const tchar* const cpFileName )
         // if it hasn't direct struct, get current execute file's direct as direct
         vMemZero(mszFilePath);
         size_t lsztDirLen = vm::CFileSys::GetExecPath(mszFilePath, sizeof(mszFilePath));
+        if( lsztDirLen == 0 )
+        {
+            mllErrCode = errno;
+            return false;
+        }
         // rebuild the file's path with input file's string and current execute file's direct
         vMemZero(mszFullName);
         lsztExecNameLen = vm::v_sprintf(mszFullName, sizeof(mszFullName), vT("%s%c%s"), mszFilePath, _V_DIR_SPLITE_, lpFName);
@@ -283,7 +285,7 @@ inline bool vm::CFileSys::Analyz( _vIn_ const tchar* const cpFileName )
     // Get file's base name with path
     vMemZero(mszFileBase);
     size_t lsztFileBase = vm::CFileSys::GetFileBase(mszFileBase, sizeof(mszFileBase), mszFullName, lsztExecNameLen);
-    if (lsztFileName == 0)
+    if (lsztFileBase == 0)
     {
         mllErrCode = errno; 
         return false;
@@ -292,7 +294,7 @@ inline bool vm::CFileSys::Analyz( _vIn_ const tchar* const cpFileName )
     // Get file's ext name with path
     vMemZero(mszFileExt);
     size_t lsztFileExt = vm::CFileSys::GetFileExt(mszFileExt, sizeof(mszFileExt), mszFullName, lsztExecNameLen);
-    if (lsztFileName == 0)
+    if (lsztFileExt == 0)
     {
         mllErrCode = errno; 
         return false;
@@ -369,9 +371,29 @@ inline bool vm::CFileSys::HasExt( _vIn_ const tchar* const cpFileName )
 inline size_t vm::CFileSys::GetExecFull( _vOt_ tchar* const pFullName, _vIn_ const size_t csztFullNameSize )
 // {{{
 {
+#if        ( _V_SYS_ == _V_WIN_ )
+// Win coders {{{
+    // reset environment
+    vm::v_memzero( pFullName, csztFullNameSize );
+
     // Get full path.
     size_t lsztFullNameLen = ::GetModuleFileName(NULL, pFullName, csztFullNameSize);
     return lsztFullNameLen;
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// Lux codes {{{
+    // reset environment
+    vm::v_memzero( pFullName, csztFullNameSize );
+
+    // Get current execut module full name
+    if( ::readlink( "/proc/self/exe", pFullName, csztFullNameSize-1 ) == -1 )
+        return 0;
+
+    // Get current name length
+    size_t lsztFullNameLen = vStrlen( pFullName );
+    return lsztFullNameLen;
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
 }
 // }}} end of func CFileSys::GetExecName(...)
 // ================================================================================================ //
@@ -386,11 +408,34 @@ inline size_t vm::CFileSys::GetExecFull( _vOt_ tchar* const pFullName, _vIn_ con
 inline size_t vm::CFileSys::GetExecPath( _vOt_ tchar* const pFilePath, _vIn_ const size_t csztFilePathSize )
 // {{{
 {
+#if        ( _V_SYS_ == _V_WIN_ )
+// Win coders {{{
+    // reset environment
+    vm::v_memzero( pFilePath, csztFilePathSize );
+
     // Get full path.
-    size_t lsztFullNameLen = ::GetModuleFileName( NULL, pFilePath, csztFilePathSize );
+    size_t lsztFullNameLen = ::GetModuleFileName(NULL, pFullName, csztFullNameSize);
     // Get file path
     size_t lsztFilePathLen = vm::v_str_substr( pFilePath, lsztFullNameLen, vStrPosBegin, _V_DIR_SPLITE_ );
     return lsztFilePathLen;
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// Lux codes {{{
+    // reset environment
+    vm::v_memzero( pFilePath, csztFilePathSize );
+
+    // Get current execut module full name
+    if( ::readlink( "/proc/self/exe", pFilePath, csztFilePathSize-1 ) == -1 )
+        return 0;
+
+    // Get current name length
+    size_t lsztFullNameLen = vStrlen( pFilePath );
+
+    // Get file path
+    size_t lsztFilePathLen = vm::v_str_substr( pFilePath, lsztFullNameLen, vStrPosBegin, _V_DIR_SPLITE_ );
+    return lsztFilePathLen;
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
 }
 // }}} end of func CFileSys::GetExecPath(...)
 // ================================================================================================ //
@@ -405,12 +450,34 @@ inline size_t vm::CFileSys::GetExecPath( _vOt_ tchar* const pFilePath, _vIn_ con
 inline size_t vm::CFileSys::GetExecName( _vOt_ tchar* const pFileName, _vIn_ const size_t csztFileNameSize )
 // {{{
 {
+#if        ( _V_SYS_ == _V_WIN_ )
+// Win coders {{{
+    // reset environment
+    vm::v_memzero( pFileName, csztFileNameSize );
 
     // Get full path.
-    size_t lsztFullNameLen = ::GetModuleFileName( NULL, pFileName, csztFileNameSize );
+    size_t lsztFullNameLen = ::GetModuleFileName(NULL, pFullName, csztFullNameSize);
     // Get file name
     size_t lsztFileNameLen = vm::v_str_substr_last( pFileName, lsztFullNameLen, _V_DIR_SPLITE_, vStrPosEnded );
     return lsztFileNameLen;
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+// Lux codes {{{
+    // reset environment
+    vm::v_memzero( pFileName, csztFileNameSize );
+
+    // Get current execut module full name
+    if( ::readlink( "/proc/self/exe", pFileName, csztFileNameSize-1 ) == -1 )
+        return 0;
+
+    // Get current name length
+    size_t lsztFullNameLen = vStrlen( pFileName );
+
+    // Get file name
+    size_t lsztFileNameLen = vm::v_str_substr_last( pFileName, lsztFullNameLen, _V_DIR_SPLITE_, vStrPosEnded );
+    return lsztFileNameLen;
+// }}}
+#endif // !( _V_SYS_ == _V_WIN_ )
 }
 // }}} end of func CFileSys::GetExecName(...)
 // ================================================================================================ //
@@ -449,9 +516,19 @@ inline size_t vm::CFileSys::GetFileBase( _vOt_       tchar* const pFileBase , _v
                                          _vIn_ const tchar* const cpFullName, _vIn_ const size_t csztFullNameLen  )
 // {{{
 {
-    size_t lsztFileBaseLen = vm::v_str_substr_last(      pFileBase, csztFileBaseSize,
-                                                        cpFullName, csztFullNameLen ,
-                                                    _V_DIR_SPLITE_, _V_EXT_SPLITE_    );
+    size_t lsztFileBaseLen = 0;
+    if( vm::CFileSys::HasExt( cpFullName ) )
+    {
+        lsztFileBaseLen = vm::v_str_substr_last(      pFileBase, csztFileBaseSize,
+                                                     cpFullName, csztFullNameLen ,
+                                                 _V_DIR_SPLITE_, _V_EXT_SPLITE_    );
+    }
+    else
+    {
+        lsztFileBaseLen = vm::v_str_substr_last(      pFileBase, csztFileBaseSize,
+                                                     cpFullName, csztFullNameLen ,
+                                                 _V_DIR_SPLITE_, vStrPosEnded      );
+    }
     return lsztFileBaseLen;
 }
 // }}} end of func CFileSys::GetFileBase(...)
@@ -491,9 +568,13 @@ inline size_t vm::CFileSys::GetFileExt( _vOt_       tchar* const pFileExt  , _vI
                                         _vIn_ const tchar* const cpFullName, _vIn_ const size_t csztFullNameLen  )
 // {{{
 {
-    size_t lsztFileExtLen = vm::v_str_substr_last(       pFileExt, csztFileExtSize,
-                                                       cpFullName, csztFullNameLen,
-                                                   _V_EXT_SPLITE_, vStrPosEnded     );
+    size_t lsztFileExtLen = 0;
+    if( vm::CFileSys::HasExt( cpFullName ) )
+    {
+        lsztFileExtLen = vm::v_str_substr_last(       pFileExt, csztFileExtSize,
+                                                    cpFullName, csztFullNameLen,
+                                                _V_EXT_SPLITE_, vStrPosEnded     );
+    }
     return lsztFileExtLen;
 }
 // }}} end of func CFileSys::GetFileExt(...)
@@ -537,10 +618,10 @@ inline bool vm::CFileSys::Rename( _vIn_ const tchar* const cpOldName, _vIn_ cons
 // ==  Return  : bool             - [O] true  - for sucess
 // ==                                   false - for failed, use errno get failed info
 // ==  Params  : cpDirName        - [I] Dirtory name
-inline bool vm::CFileSys::MkDir( _vIn_ const tchar* const cpDirName )
+inline bool vm::CFileSys::MkDir( _vIn_ const tchar* const cpDirName, _vIn_ const tMode mode )
 // {{{
 {
-    return vMkDir( cpDirName ) == 0 ? true:false;
+    return vMkDir( cpDirName, mode ) == 0 ? true:false;
 }
 // }}} end of func CFileSys::MkDir(...)
 // ================================================================================================ //
@@ -570,7 +651,7 @@ inline bool vm::CFileSys::RmDir( _vIn_ const tchar* const cpDirName )
 inline bool vm::CFileSys::ChgWorkDir( _vIn_ const tchar* const cpWorkDir )
 // {{{
 {
-    int liRet = vChDir( cpWorkDir );
+    int liRet = vChangeDir( cpWorkDir );
     if( liRet == -1L )
         return false;
 
@@ -586,7 +667,7 @@ inline bool vm::CFileSys::ChgWorkDir( _vIn_ const tchar* const cpWorkDir )
 // ==  Return  : const tchar*     - [O] Current work dirtory
 // ==  Params  : cpBuf            - [I] Buffer for work dirtory
 // ==          : csztBufSize      - [I] Buffer's size
-inline const tchar* vm::CFileSys::GetWorkDir( _vIn_ const tchar* const cpBuf, const size_t csztBufSize )
+inline const tchar* vm::CFileSys::GetWorkDir( _vOt_ tchar* const cpBuf, _vIn_ const size_t csztBufSize )
 // {{{
 {
     vm::v_memzero( cpBuf, csztBufSize );
@@ -610,7 +691,7 @@ inline int vm::CFileSys::IsExist( _vIn_ const tchar* const cpName )
     if( liRet == 0 )
         return 1;
 
-    errno_t leErr = errno;
+    tErrno leErr = errno;
     if( leErr == ENOENT )
         return 0;
 
@@ -645,7 +726,7 @@ inline int vm::CFileSys::IsBin( _vIn_ const tchar* const cpName )
     if( liRet == 0 )
         return 1;
 
-    errno_t leErr = errno;
+    tErrno leErr = errno;
     if( leErr == EACCES )
         return 0;
 
@@ -666,7 +747,7 @@ inline int vm::CFileSys::IsBin( _vIn_ const tchar* const cpName )
 inline int vm::CFileSys::IsDir( _vIn_ const tchar* const cpName )
 // {{{
 {
-    struct _stat lstFileStat;
+    struct vStat lstFileStat;
     int liRet = vStat( cpName, &lstFileStat );
     if( liRet == -1L )
         return -1L;
@@ -690,7 +771,7 @@ inline int vm::CFileSys::IsDir( _vIn_ const tchar* const cpName )
 inline int vm::CFileSys::IsFile( _vIn_ const tchar* const cpName )
 // {{{
 {
-    struct _stat lstFileStat;
+    struct vStat lstFileStat;
     int liRet = vStat( cpName, &lstFileStat );
     if( liRet == -1L )
         return -1L;
@@ -756,7 +837,6 @@ inline bool vm::CFileSys::CanReadWrite( _vIn_ const tchar* const cpName )
 }
 // }}} end of func CFileSys::CanReadWrite(...)
 // ================================================================================================ //
-
 
 // }}} ![ Class CFileSys Functional realization ]
 // ================================================================================================ //

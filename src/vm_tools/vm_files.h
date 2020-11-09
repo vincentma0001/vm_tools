@@ -28,8 +28,8 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_tools/vm_files/CFileSys.h>
-#include <vm_tools/vm_files/CFileMode.h>
-#include <vm_tools/vm_files/CFile.h>
+//#include <vm_tools/vm_files/CFileMode.h>
+//#include <vm_tools/vm_files/CFile.h>
 // }}}
 // ================================================================================================ //
 
