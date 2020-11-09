@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:09:55                                               == //
-// ==   Modify Time          : 2020-11-09 11:42:55                                               == //
+// ==   Modify Time          : 2020-11-09 20:58:29                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,6 +26,8 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_string/v_funcs_str.h"
+#include <dirent.h>
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
@@ -42,6 +44,31 @@ namespace vm
 class CFileSys
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // enum emRet : this enum define class CFileSys error info
+    enum emRet
+    // {{{
+    {
+        emSucess        = 0,
+
+        emGetPathFailed = vMaxsLong-1,
+        emOpenDirFailed = vMaxsLong-2
+    };
+    // }}} End of def enum emRet
+    // enum emType : this enum defined file type
+    enum emType
+    // {{{
+    {
+        emFile     = 0x01,
+        emDir      = 0x02,
+
+        emThisDir  = 0x04,
+        emUperDir  = 0x08
+    };
+    // }}} End of def enum emType
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
@@ -72,6 +99,16 @@ private:
     // file ext
     tchar       mszFileExt [  _V_FILE_MAX_EXT_  ];
 
+#if        ( _V_SYS_ == _V_WIN_ )
+#elif      ( _V_SYS_ == _V_LUX_ )
+    // dirtory pointer for scan
+    DIR                  *mpDir;
+    // file's info for scan
+    struct dirent       *mpFile;
+#endif // !( _V_SYS_ == _V_WIN_ )
+    // File filter for scan
+    short              msFilter;
+
     // Error code
     long long   mllErrCode;
 // }}} ! Members
@@ -95,9 +132,104 @@ public:
     // [ AnlySis file name ] {{{
     // Anlysis file name
     inline bool Analyz ( _vIn_ const tchar* const cpFullName = nullptr );
+    inline bool Scan   ( _vIn_ const tchar* const cpDirName  = nullptr, const short csFilter=emType::emDir|emType::emFile )
+    {
+        Reset();
+
+        if( cpDirName == nullptr )
+        {
+            bool lbRetForGetCurPath = vm::CFileSys::GetExecPath( mszFilePath, sizeof(mszFilePath) );
+            if ( lbRetForGetCurPath == false )
+            {
+                mllErrCode = vMakeLLong( emRet::emGetPathFailed, errno );
+                return false;
+            }
+        }
+        else
+        {
+            size_t lsztRetForStrCpy = vm::v_strcpy( mszFilePath, sizeof(mszFilePath), cpDirName );
+            if ( lsztRetForStrCpy == 0 )
+            {
+                mllErrCode = vMakeLLong( emRet::emGetPathFailed, errno );
+            }
+        }
+
+        mpDir = opendir( cpDirName );
+        if ( mpDir == nullptr ) 
+        {
+            Reset();
+            mllErrCode = vMakeLLong( emRet::emOpenDirFailed, errno );
+            return false;
+        }
+
+        msFilter = csFilter;
+        return true;
+    };
+    inline bool Next()
+    {
+        while ((mpFile = readdir(mpDir)) != NULL) 
+        {
+            if( mpFile->d_type == DT_DIR )
+            {
+                if( (msFilter & emType::emDir) != true )
+                    continue;
+
+                if( strcmp(mpFile->d_name, vT("."))==0 )
+                {
+                    if( (msFilter & emType::emThisDir ) != true )
+                        continue;
+                }
+
+                if( strcmp(mpFile->d_name, vT(".."))==0 )
+                {
+                    if( (msFilter & emType::emUperDir)  != true )
+                        continue;
+                }
+            }
+
+            if( mpFile->d_type == DT_REG )
+            {
+                if( (msFilter & emType::emFile) != true )
+                    continue;
+            }
+        }
+
+        if( mpFile == NULL )
+            return true;
+
+        vm::v_strcpy( mszFullName, sizeof(mszFullName), mszFilePath );
+        vm::v_strcat( mszFullName, sizeof(mszFullName), _V_DIR_SPLITE_ );
+        vm::v_strcat( mszFullName, sizeof(mszFullName), mpFile->d_name );
+
+        size_t lsztFileNameLen = vm::v_strcpy( mszFileName, sizeof(mszFileName), mpFile->d_name );
+        vm::CFileSys::GetFileExt( mszFileExt, sizeof(mszFileExt), mszFileName, lsztFileNameLen );
+
+        return true;
+    }
     // }}}
 
 public:
+    // [ Normal funcs ] {{{
+    inline void Reset( void )
+    {
+        vMemZero( mszFullName );
+        vMemZero( mszFilePath );
+        vMemZero( mszFileName );
+        vMemZero( mszFileBase );
+        vMemZero( mszFileExt  );
+
+#if        ( _V_SYS_ == _V_WIN_ )
+#elif      ( _V_SYS_ == _V_LUX_ )
+        if( mpDir != nullptr )
+            ::closedir( mpDir );
+
+        mpDir   = nullptr;
+        mpFile  = nullptr;
+#endif // !( _V_SYS_ == _V_WIN_ )
+
+        mllErrCode = 0;
+    }
+    // }}}
     // [ Check file full name funcs ] {{{
     // Check has path name in file name or not
     static inline bool HasDir  ( _vIn_ const tchar* const cpFileName );

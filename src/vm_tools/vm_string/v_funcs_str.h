@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:59:49                                               == //
-// ==   Modify Time          : 2020-11-07 20:46:21                                               == //
+// ==   Modify Time          : 2020-11-09 21:13:22                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -97,6 +97,8 @@ inline const tchar* v_strstr  ( _vIn_ const tchar* const cpBuf, _vIn_ const tcha
 
 // Cat src string to the end of dst string
 inline tchar* v_strcat  ( _vIO_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpSrc );
+// Cat tchar cVal to the end of dst string
+inline tchar* v_strcat  ( _vIO_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar         cVal );
 // Cat src string to the end of dst string, copy csztDataLen letters
 inline tchar* v_strncat ( _vIO_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpSrc, _vIn_ const size_t csztDataLen );
 
@@ -177,6 +179,12 @@ inline size_t v_str_substr_last  ( _vOt_       tchar* const          pDst, _vIn_
 
 // Convert errno value to string
 inline size_t v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize );
+
+// Replace cpOldStr in cpSrc with cpNewStr, and write new string to pDst
+inline size_t v_str_replace ( _vOt_       tchar* const     pDst, _vIn_ const size_t   csztDstSize, 
+                              _vIn_ const tchar* const    cpSrc, _vIn_ const size_t    csztSrcLen,
+                              _vIn_ const tchar* const cpOldStr, _vIn_ const size_t csztOldStrLen,
+                              _vIn_ const tchar* const cpNewStr, _vIn_ const size_t csztNewStrLen  );
 
 // }}} ![ Function defines ]
 // ================================================================================================ //

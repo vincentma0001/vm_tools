@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-16 10:21:20                                               == //
-// ==   Modify Time          : 2020-10-18 22:04:04                                               == //
+// ==   Modify Time          : 2020-11-09 13:04:25                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -68,7 +68,7 @@ public:
     // Get next  file with spec in dirtory
     inline bool Next  (  );
     // Close current fineding
-    inline void Close (  )
+    inline void Close (  );
 // }}} ! Methods
 
 };

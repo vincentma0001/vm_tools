@@ -47,7 +47,7 @@ class CUsrErr
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CUsrErr();
+    inline          CUsrErr( const long long llErrCode ):mclSysErrCode( vLowLong(llErrCode) ),mclUsrErrCode( vHighLong(llErrCode) );
     // Destruct define
     inline virtual ~CUsrErr();
 
@@ -61,12 +61,18 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    tchar       mszBuf[tsztBufSize];
+    const long        mclSysErrCode;
+    const long        mclUsrErrCode;
+
+    tchar             mszBuf[tsztBufSize];
+
+    vm::CStdMap<long, std::string>      mpUsrErrInfoMap;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
+
     /* TODO Add class's Methods here */
 // }}} ! Methods
 

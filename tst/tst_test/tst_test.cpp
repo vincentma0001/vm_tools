@@ -3,35 +3,45 @@
 #include <vm_cfgs.h>
 #include <dlfcn.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <dirent.h>
 
+void scanFile(const char *szDir)
+{
+    DIR *pDir            = NULL;
+    struct dirent *pFile = NULL;
+
+    pDir                 = opendir(szDir);
+    if (pDir == NULL) return;
+
+    while ((pFile = readdir(pDir)) != NULL) 
+    {
+        if (pFile->d_type & DT_DIR) 
+        {
+        
+            if (strcmp(pFile->d_name, ".") == 0 || strcmp(pFile->d_name, "..") == 0) 
+                continue;
+
+            char Path[256];
+            int len = strlen(szDir);
+            strncpy(Path, szDir, len + 1);
+            if (szDir[len - 1] != '/') strncat(Path, "/", 2);
+            strncat(Path, pFile->d_name, strlen(pFile->d_name) + 1);
+            scanFile(Path);
+        } 
+        else 
+        {
+            printf("path:%s     fileName:%s\n", szDir, pFile->d_name);
+        }
+    }
+
+    closedir(pDir);
+}
 int main(int argc, char *argv[])
 {
 
-    ::Dl_info loInfo;
-    int liRet = dladdr( (void*)main, &loInfo );
-    if( liRet == 0 )
-    {
-        vCout << "dl err  : " << dlerror() << vEndl;
-    }
-    else
-    {
-        vCout << "dl name : " << loInfo.dli_fname << vEndl;
-    }
-
-    char cwd_path[1024] = {0x00};
-    ::getcwd( cwd_path, sizeof(cwd_path) );
-    vCout << "Cwd : " << cwd_path << vEndl;
-
-
-    char file_path[1024] = {0x00};
-    if (readlink("/proc/self/exe", file_path, sizeof(file_path) - 1) != -1) 
-    {
-        printf("%s\n", file_path);
-    }else
-    {
-        printf("%s\n", strerror(errno));
-    }
-
+    const char* lpDir = "/vm/vm_tools/bin";
+    scanFile( lpDir );
 
     return 0;
 }

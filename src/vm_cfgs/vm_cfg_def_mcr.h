@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:48:58                                               == //
-// ==   Modify Time          : 2020-10-28 12:52:23                                               == //
+// ==   Modify Time          : 2020-11-09 14:04:05                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -57,6 +57,42 @@
 #   define vStrItoB( iVal )  ((iVal)==1?vT("true"):vT("false"))
 #endif // !vStrItoB( iVal )
 
+// }}}
+// ================================================================================================ //
+
+// ================================================================================================ //
+// Make type defines : {{{ 
+#define vMakeShort( low, high )  ((short)(((tByte)(((short)(low)) & 0xff)) | ((short)((tByte)(((short)(high)) & 0xff))) << 8))
+#define vLowShort ( val )        ((tByte)((  (short)(w))       & 0xff ))
+#define vHighShort( val )        ((tByte)(( ((short)(w)) >> 8) & 0xff ))
+
+#define vMakeInt( low, high )    ((int)(((short)(((unsigned short)(low)) & 0xffff)) | ((int)((short)(((unsigned short)(high)) & 0xffff))) << 16))
+#define vLowInt ( val )          ((short)((  (unsigned int)(w))       & 0xffff ))
+#define vHighInt( val )          ((short)(( ((unsigned int)(w)) >> 8) & 0xffff ))
+
+#define vMakeLong( low, high )   ((long)(((short)(((unsigned short)(low)) & 0xffff)) | ((long)((short)(((unsigned short)(high)) & 0xffff))) << 16))
+#define vLowLong ( val )         ((short)((  (unsigned long)(w))       & 0xffff ))
+#define vHighLong( val )         ((short)(( ((unsigned long)(w)) >> 8) & 0xffff ))
+
+#define vMakeLLong( low, high )  ((long long)(((long)(((unsigned long)(low)) & 0xffffffff)) | ((long long)((long)(((unsigned long)(high)) & 0xffffffff))) << 32))
+#define vLowLLong ( val )        ((long)((  (unsigned long long)(w))       & 0xffffffff ))
+#define vHighLLong( val )        ((long)(( ((unsigned long long)(w)) >> 8) & 0xffffffff ))
+
+#define vMakeuShort( low, high ) ((unsigned short)(((tByte)(((unsigned short)(low)) & 0xff)) | ((unsigned short)((tByte)(((unsigned short)(high)) & 0xff))) << 8))
+#define vLowuShort ( val )       ((tByte)((  (unsigned short)(w))       & 0xff ))
+#define vHighuShort( val )       ((tByte)(( ((unsigned short)(w)) >> 8) & 0xff ))
+
+#define vMakeuInt( low, high )   ((unsigned int)(((unsigned short)(((unsigned short)(low)) & 0xffff)) | ((unsigned int)((unsigned short)(((unsigned short)(high)) & 0xffff))) << 16))
+#define vLowuInt ( val )         ((unsigned short)((  (unsigned int)(w))       & 0xffff ))
+#define vHighuInt( val )         ((unsigned short)(( ((unsigned int)(w)) >> 8) & 0xffff ))
+
+#define vMakeuLong( low, high )  ((unsigned long)(((unsigned short)(((unsigned short)(low)) & 0xffff)) | ((unsigned long)((unsigned short)(((unsigned short)(high)) & 0xffff))) << 16))
+#define vLowuLong ( val )        ((unsigned short)((  (unsigned long)(w))       & 0xffff ))
+#define vHighuLong( val )        ((unsigned short)(( ((unsigned long)(w)) >> 8) & 0xffff ))
+
+#define vMakeullong( low, high ) ((unsigned long long)(((long)(((unsigned long)(low)) & 0xffffffff)) | ((long long)((long)(((unsigned long)(high)) & 0xffffffff))) << 32))
+#define vLowullong ( val )       ((unsigned long)((  (unsigned long long)(w))       & 0xffffffff ))
+#define vHighullong( val )       ((unsigned long)(( ((unsigned long long)(w)) >> 8) & 0xffffffff ))
 // }}}
 // ================================================================================================ //
 

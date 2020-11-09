@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-11 10:37:28                                               == //
-// ==   Modify Time          : 2020-11-09 11:24:14                                               == //
+// ==   Modify Time          : 2020-11-09 13:44:09                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -72,6 +72,18 @@ inline vm::CFileSys::CFileSys( _vIn_ const tchar* const cpName )
 inline vm::CFileSys::~CFileSys(  )
 // {{{
 {
+#if        ( _V_SYS_ == _V_WIN_ )
+// Win coders {{{
+//  TODO : add windows codes
+// }}}
+#elif      ( _V_SYS_ == _V_LUX_ )
+    if( mpDir != nullptr )
+    {
+        ::closedir( mpDir );
+        mpDir  = nullptr;
+        mpFile = nullptr;
+    }
+#endif // !( _V_SYS_ == _V_WIN_ )
 }
 // }}} End of func CFileSys::~CFileSys()
 // ================================================================================================ //

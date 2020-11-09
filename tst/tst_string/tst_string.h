@@ -1,7 +1,4 @@
 
-#include <stdio.h>
-#include <iostream>
-
 #include <vm_tools/vm_string.h>
 #include <vm_tools/vm_utst.h>
 
@@ -10,9 +7,6 @@
 UT_FUNC_BEGIN( ut_cstr_1 )
 
 vTry
-    vCout << vEndl;
-    vCout << vT("*********************************************************************") << vEndl;
-
     // Add unit test coder here
     vm::CString<256> lstrString1;
     lstrString1 = vT("This is string 1!");
@@ -33,8 +27,6 @@ vTry
     vPrintf( vT( "Str4 (%zd:%zd) [%s]\n" ), lstrString4.size(), lstrString4.len(), *lstrString4 );
     vm::CString<128> lstrString41 = lstrString1;
     vPrintf( vT( "Str41(%zd:%zd) [%s]\n" ), lstrString41.size(), lstrString41.len(), *lstrString41 );
-    vCout << vT("*********************************************************************") << vEndl;
-    vCout << vEndl;
 vCatch(...)
     return false;
 vEnd
@@ -49,8 +41,6 @@ UT_FUNC_ENDED
 UT_FUNC_BEGIN( ut_cstr_2 )
 
 vTry
-    vCout << vEndl;
-    vCout << vT("*********************************************************************") << vEndl;
 
     // Add unit test coder here
     vm::CString<256> lstrString1 = vT("B1");
@@ -61,8 +51,6 @@ vTry
     lstrString1 += vT('\\');
     vCout << vT("Str : ") << *lstrString1 << vEndl;
 
-    vCout << vT("*********************************************************************") << vEndl;
-    vCout << vEndl;
 vCatch(...)
     return false;
 vEnd
@@ -77,15 +65,11 @@ UT_FUNC_ENDED
 UT_FUNC_BEGIN( ut_cstr_3 )
 
 vTry
-    vCout << vEndl;
-    vCout << vT("*********************************************************************") << vEndl;
 
     // Add unit test coder here
     vm::CString<1024>  lstrString;
     
 
-    vCout << vT("*********************************************************************") << vEndl;
-    vCout << vEndl;
 vCatch(...)
     return false;
 vEnd

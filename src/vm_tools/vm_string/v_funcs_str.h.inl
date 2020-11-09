@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-09 10:08:10                                               == //
+// ==   Modify Time          : 2020-11-09 21:35:32                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -471,6 +471,35 @@ inline tchar* vm::v_strcat ( tchar* const pDst, const size_t csztDstSize, const 
 #else
     return strcat(pDst, cpSrc);
 #endif
+}
+// }}} end of func v_strcat(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_strcat(...)                                                                   == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Cate tchar cVal to the end of dst string
+// ==  Return  : tchar*           - [O] New string
+// ==  Params  : pDst             - [O] Dst string buffer
+// ==            csztDstSize      - [I] Dst string buffer's size
+// ==            cVal             - [I] Cat tchar value
+inline tchar* vm::v_strcat ( _vIO_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar cVal )
+// {{{
+{
+    // Verify input paramters
+    _VERIFY_(vT("v_strcat()"), pDst);
+
+    // cat cpSrc to pDst
+    size_t lsztDstLen = vStrlen(pDst);
+    size_t lsztDstLeftLen = csztDstSize - lsztDstLen;
+    if( lsztDstLeftLen+1 <=0 )
+        return pDst;
+
+    tchar* lpDstEnd = pDst+lsztDstLen;
+    *(lpDstEnd)     = cVal;
+    *(lpDstEnd+1)   = 0x00;
+
+    return pDst;
 }
 // }}} end of func v_strcat(...)
 // ================================================================================================ //
@@ -1170,7 +1199,6 @@ inline size_t vm::v_str_substr_last (       tchar* const     pDst, const size_t 
 // }}} end of func v_str_substr_last(...)
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // ==  Methord : v_strerrno(...)                                                                 == //
 // == ------------------------------------------------------------------------------------------ == //
@@ -1210,6 +1238,55 @@ size_t vm::v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBu
 #endif // !( _V_SYS_ == _V_WIN_ )
 }
 // }}} end of func v_strerrno(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_str_replace(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Replace cpOldStr in cpSrc with cpNewStr, and write new string to pDst
+// ==  Return  : inline size_t    - [O] New string length
+// ==  Params  : pDst             - [O] Dst string buffer
+// ==            csztDstSize      - [I] Dst string buffer size
+// ==            cpSrc            - [I] Src string 
+// ==            csztSrcLen       - [I] Src string's length
+// ==            cpOldStr         - [I] Old string need to be replace
+// ==            csztOldStrLen    - [I] Old string's length
+// ==            cpNewStr         - [I] New string 
+// ==            csztNewStrLen    - [I] New string's length
+inline size_t vm::v_str_replace( _vOt_       tchar* const     pDst, _vIn_ const size_t   csztDstSize, 
+                                 _vIn_ const tchar* const    cpSrc, _vIn_ const size_t    csztSrcLen,
+                                 _vIn_ const tchar* const cpOldStr, _vIn_ const size_t csztOldStrLen,
+                                 _vIn_ const tchar* const cpNewStr, _vIn_ const size_t csztNewStrLen  )
+// {{{
+{
+    vm::v_memzero( pDst, csztDstSize );
+    size_t lsztDstSize = csztDstSize-1;
+
+    const char* lpPos = vm::v_strstr( cpSrc, cpOldStr );
+    if( lpPos == nullptr )
+    {
+        return vm::v_memmove( pDst, lsztDstSize, cpSrc, csztSrcLen );
+    }
+
+    // Move src string part1 to dst string
+    size_t lsztSrcPart1     = lpPos - cpSrc;
+    lsztSrcPart1            = vMax( lsztSrcPart1, 0 );
+    size_t lsztNewStrlen    = vm::v_memmove( pDst, lsztDstSize, cpSrc, lsztSrcPart1 );
+
+    // Move new string to dst string
+    size_t lsztDstLeftLen   = vMax( (lsztDstSize-lsztNewStrlen), 0 );
+    lsztNewStrlen          += vm::v_memmove( pDst+lsztNewStrlen, lsztDstLeftLen, cpNewStr, csztNewStrLen );
+
+    // Move src string part2 to dst string
+    const char * lpPosPart2 = cpSrc + lsztSrcPart1 + csztOldStrLen;
+    size_t     lsztSrcPart2 = csztSrcLen - lsztSrcPart1 - csztOldStrLen;
+    lsztSrcPart2            = vMax( lsztSrcPart2, 0 );
+    lsztDstLeftLen          = vMax( (lsztDstSize-lsztNewStrlen), 0 );
+    lsztNewStrlen          += vm::v_memmove( pDst+lsztNewStrlen, lsztDstLeftLen, lpPosPart2, lsztSrcPart2  );
+
+    return lsztNewStrlen;
+}
+// }}} end of func v_str_replace(...)
 // ================================================================================================ //
 
 
