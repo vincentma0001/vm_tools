@@ -89,27 +89,27 @@ inline stListNote<tType>* vl_remove      ( _vIn_ stListNote<tType>*   pNote, _vI
 
 // Get list head note
 template< typename tType >
-inline stListNote<tType>* vl_head   ( _vIn_ stListNote<tType>* pNote );
+inline stListNote<tType>* vl_head ( _vIn_ stListNote<tType>* pNote );
 // Get list tail note
 template< typename tType >
-inline stListNote<tType>* vl_tail   ( _vIn_ stListNote<tType>* pNote );
+inline stListNote<tType>* vl_tail ( _vIn_ stListNote<tType>* pNote );
 
 // Set note's data
 template< typename tType >
-inline void               vl_set    ( _vIn_ stListNote<tType>* pNote, const tType        oData );
+inline void               vl_set  ( _vIn_ stListNote<tType>* pNote, const tType        oData );
 // Set note's data
 template< typename tType >
-inline void               vl_set    ( _vIn_ stListNote<tType>* pNote, const tType* const pData );
+inline void               vl_set  ( _vIn_ stListNote<tType>* pNote, const tType* const pData );
 
 // Get note's data pointer
 template< typename tType >
-inline tType*             vl_data   ( _vIn_ const stListNote<tType>* const pNote );
+inline tType*             vl_data ( _vIn_ const stListNote<tType>* const pNote );
 // Get note's prev pointer
 template< typename tType >
-inline stListNote<tType>* vl_prev   ( _vIn_ const stListNote<tType>* const pNote );
+inline stListNote<tType>* vl_prev ( _vIn_ const stListNote<tType>* const pNote );
 // Get note's next pointer
 template< typename tType >
-inline stListNote<tType>* vl_next   ( _vIn_ const stListNote<tType>* const pNote );
+inline stListNote<tType>* vl_next ( _vIn_ const stListNote<tType>* const pNote );
 
 // }}} ! list funcs
 // ================================================================================================ //
