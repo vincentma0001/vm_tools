@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-06 11:51:56                                               == //
+// ==   Modify Time          : 2020-11-10 10:29:32                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -107,7 +107,7 @@ template< size_t tsztBufSize >
 inline vm::CErr<tsztBufSize>& vm::CErr<tsztBufSize>::operator = ( const CErr &obj )
 // {{{
 {
-    mllErrCode = obj.mllErrCode;
+    mlErrCode = obj.mlErrCode;
     vm::v_memcpy( mszBuf, sizeof(mszBuf), obj.mszBuf, sizeof(obj.mszBuf) );
     return *this;
 }

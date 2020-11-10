@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-11-06 11:43:09                                               == //
+// ==   Modify Time          : 2020-11-10 10:28:35                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -41,8 +41,8 @@
 // ==  Methord : CErrPtr::CErrPtr()                                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline vm::CErrPtr::CErrPtr(const long long cllErrCode, tchar* const pBuf, const size_t csztBufSize)
-                           :mpBuf(pBuf), msztBufSize( csztBufSize ), mllErrCode(cllErrCode)
+inline vm::CErrPtr::CErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize)
+                           : mlErrCode( clErrCode ),mpBuf(pBuf), msztBufSize( csztBufSize )
 // {{{
 {
 }
@@ -89,7 +89,7 @@ inline vm::CErrPtr::CErrPtr( const CErrPtr &obj )
 inline vm::CErrPtr& vm::CErrPtr::operator = ( const CErrPtr &obj )
 // {{{
 {
-    mllErrCode = obj.mllErrCode;
+    mlErrCode = obj.mlErrCode;
     vm::v_memcpy(mpBuf, msztBufSize, obj.mpBuf, obj.msztBufSize);
     return *this;
 }
@@ -109,12 +109,11 @@ inline vm::CErrPtr& vm::CErrPtr::operator = ( const CErrPtr &obj )
 // ==  Methord : CErrPtr::toCode(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Output error code
-// ==  Return  : long long    - [O] Error code
-// ==  Params  : 
-inline long long vm::CErrPtr::toCode(  )
+// ==  Return  : long       - [O] Error code
+inline long vm::CErrPtr::toCode(  )
 // {{{
 {
-    return mllErrCode;
+    return mlErrCode;
 }
 // }}} end of func vm::CErrPtr::toCode(...)
 // ================================================================================================ //
@@ -170,7 +169,7 @@ inline tchar* vm::CErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSiz
 
     // Convert errno value to string
     vm::v_memzero( pBuf, csztBufSize );
-    sztStrLen = vm::v_strerrno( mllErrCode, pBuf, csztBufSize );
+    sztStrLen = vm::v_strerrno( mlErrCode, pBuf, csztBufSize );
     return pBuf;
 }
 // }}} end of func CErrPtr::GetErrStr(...)
@@ -185,7 +184,7 @@ inline tchar* vm::CErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSiz
 inline bool vm::CErrPtr::Check(  )
 // {{{
 {
-    return mllErrCode == 0 ? true : false;
+    return mlErrCode == 0 ? true : false;
 }
 // }}} end of func CErrPtr::Check(...)
 // ================================================================================================ //
@@ -198,12 +197,12 @@ inline bool vm::CErrPtr::Check(  )
 inline void vm::CErrPtr::Throw(  )
 // {{{
 {
-    if( mllErrCode != 0 )
+    if( mlErrCode != 0 )
     {
         tchar  lszErrStr[1024] = {0x00};
         size_t lsztErrStrlen = 0;
         tchar* lpErrStr = vm::CErrPtr::GetErrStr( lszErrStr, sizeof(lszErrStr), lsztErrStrlen );
-        vm::v_sprintf( mpBuf, msztBufSize, vT("%lld:%s"), mllErrCode, lpErrStr );
+        vm::v_sprintf( mpBuf, msztBufSize, vT("%lld:%s"), mlErrCode, lpErrStr );
         throw mpBuf;
     } // End of if(...)
 }

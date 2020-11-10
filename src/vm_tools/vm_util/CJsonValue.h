@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                         CErrPtr.h                                          == //
+// ==                                       CJsonValue.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 09:29:11                                               == //
-// ==   Modify Time          : 2020-11-10 10:26:30                                               == //
+// ==   Create Time          : 2020-11-07 14:53                                                  == //
+// ==   Modify Time          : 2020-11-07 14:53                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERRPTR_H__
-#define  __CERRPTR_H__
+#ifndef  __CJSONVALUE_H__
+#define  __CJSONVALUE_H__
 
 
 // ================================================================================================ //
@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include "CStdMap.hpp"
 // }}}
 // ================================================================================================ //
 
@@ -37,70 +38,84 @@ namespace vm
 {
 
 // ================================================================================================ //
-// ==  Class CErrPtr : This class deal with sys error info                                       == //
+// ==  Class CJsonValue : this class deal with json value                                        == //
 // ------------------------------------------------------------------------------------------------ //
-class CErrPtr
+class CJsonValue
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // enum emValType : the enum defined class CJsonValue's type
+    enum emValType
+    // {{{
+    {
+        emString = 1,
+        emIntger = 2,
+        emFloat  = 3,
+        emArrag  = 4,
+        emValue  = 5
+    };
+    // }}} End of def enum emValType
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize);
+    inline explicit CJsonValue();
     // Destruct define
-    inline virtual ~CErrPtr();
+    inline virtual ~CJsonValue();
 
 private:
     // Copy construct define
-    inline CErrPtr( const CErrPtr &obj );
+    inline CJsonValue             ( const CJsonValue &obj );
     // Assignment operation
-    inline CErrPtr& operator = ( const CErrPtr &obj );
+    inline CJsonValue& operator = ( const CJsonValue &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
-protected:
-    // Error string buffer
-    tchar*          mpBuf;
-    // Error string buffer size
-    size_t          msztBufSize;
+private:
+    // CJsonValue's type
+    emValType           mType;
+    // CJsonValue's commit
+    std::string         mstrCmt;
+    // CJsonValue's value map
+    vm::CStdMap< std::string, std::string > mValMap;
 
     // Error code
-    long            mlErrCode;
+    long long           mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // Output sys defined error code
-    inline long     toCode();
-    inline tchar*   toString();
-    // Format output error message, 
-    //   %EC = sys err code, %ESM = sys err msg,
-    inline tchar*   Fmt( _vIn_ const tchar* const cpFmt = vT("%EC:%EM") );
-    // Check has error or not
-    inline bool     Check();
-    // Check error and throw erorr string
-    inline void     Throw();
+    emValType   Prase( const std::string strVal )
+    {
+        
+    }
+    bool        IsArrag   ( const std::string strVal )
+    {
 
-protected:
-    // Reload error infomation for different system
-    virtual tchar*  GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen );
-
+    }
+    bool        IsValue( const std::string strVal )
+    {
+    }
 // }}} ! Methods
 
 };
-// }}} ! [ class CErrPtr ]
+// }}} ! [ class CJsonValue ]
+// ================================================================================================ //
+// Class realization :
+#include "CJsonValue.h.inl"
 // ================================================================================================ //
 
-}
+};
 // }}} End of namespace vm
 // ================================================================================================ //
-// elass realization :
-#include "CErrPtr.h.inl"
-// ================================================================================================ //
 
-#endif // ! __CERRPTR_H__
+
+#endif // ! __CJSONVALUE_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
