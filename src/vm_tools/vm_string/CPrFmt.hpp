@@ -81,21 +81,18 @@ public:
         vMemZero(mszBuf);
         size_t lsztOffset = 0;
 
-        mszBuf[lsztOffset] = vT('%');
-        lsztOffset += sizeof(tchar);
+        mszBuf[lsztOffset++] = vT('%');
 
         if( csztWidth != 0 )
         {
             if( bLeft == true )
             {
-                mszBuf[lsztOffset] = vT('-');
-                lsztOffset += sizeof(tchar);
+                mszBuf[lsztOffset++] = vT('-');
             }
 
             if( bFillZero == true )
             {
-                mszBuf[lsztOffset] = vT('0');
-                lsztOffset += sizeof(tchar);
+                mszBuf[lsztOffset++] = vT('0');
             }
 
             tchar* lpPos = mszBuf+lsztOffset;
@@ -103,11 +100,9 @@ public:
             lsztOffset += vStrlen(lpPos);
         }
 
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('d');
 
         printf( "Step 1 : %s\n", mszBuf );
         return *this;
@@ -117,14 +112,11 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
+        mszBuf[lsztOffset++] = vT('%');
 
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('u');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('u');
 
         return *this;
     };
@@ -134,12 +126,10 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
+        mszBuf[lsztOffset++] = vT('%');
 
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('d');
 
         return *this;
     };
@@ -148,12 +138,10 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
+        mszBuf[lsztOffset++] = vT('%');
 
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('h');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('u');
+        mszBuf[lsztOffset++] = vT('h');
+        mszBuf[lsztOffset++] = vT('u');
 
         return *this;
     };
@@ -163,10 +151,8 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('d');
 
         return *this;
     };
@@ -175,10 +161,8 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('u');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('u');
 
         return *this;
     };
@@ -188,12 +172,9 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('d');
 
         return *this;
     };
@@ -202,12 +183,9 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('u');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('u');
 
         return *this;
     };
@@ -217,14 +195,10 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('d');
 
         return *this;
     };
@@ -233,14 +207,10 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('u');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('u');
 
         return *this;
     };
@@ -250,10 +220,8 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('f');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('f');
 
         return *this;
     };
@@ -262,10 +230,8 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('f');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('f');
 
         return *this;
     };
@@ -274,12 +240,9 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('l');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('f');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('l');
+        mszBuf[lsztOffset++] = vT('f');
 
         return *this;
     };
@@ -289,12 +252,9 @@ public:
         vMemZero(mszBuf);
 
         size_t lsztOffset = 0;
-        mszBuf[lsztOffset] = vT('%');
-
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('z');
-        lsztOffset += sizeof(tchar);
-        mszBuf[lsztOffset] = vT('d');
+        mszBuf[lsztOffset++] = vT('%');
+        mszBuf[lsztOffset++] = vT('z');
+        mszBuf[lsztOffset++] = vT('d');
 
         return *this;
     }
