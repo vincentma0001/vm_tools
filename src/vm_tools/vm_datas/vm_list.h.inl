@@ -415,6 +415,7 @@ inline vm::stListNote<tType>* vm::vl_prev ( _vIn_ const vm::stListNote<tType>* c
 // ==  Params  : pNote              - [I] note's pointer
 template< typename tType >
 inline vm::stListNote<tType>* vm::vl_next( _vIn_ const vm::stListNote<tType>* const pNote )
+// {{{
 {
     _VERIFY_( vT("vl_next()"), pNote );
 
