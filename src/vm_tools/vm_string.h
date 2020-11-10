@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 20:53:24                                               == //
-// ==   Modify Time          : 2020-11-06 11:41:28                                               == //
+// ==   Modify Time          : 2020-11-11 02:50:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -35,6 +35,8 @@
 #include <vm_tools/vm_string/CStrPtr.h>
 #include <vm_tools/vm_string/CString.hpp>
 
+#include <vm_tools/vm_string/CAnyPtr.h>
+#include <vm_tools/vm_string/CAny.hpp>
 // }}} ! Include files
 // ================================================================================================ //
 

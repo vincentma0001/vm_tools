@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:48:08                                               == //
-// ==   Modify Time          : 2020-11-04 10:53:12                                               == //
+// ==   Modify Time          : 2020-11-10 23:01:40                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -253,7 +253,7 @@ inline void vm::CParser::Regist( vm::CPattern& oFlag )
         mpPatterns = &oFlag; 
         return;
     }; // End of if(...)
-    
+
     vm::CPattern*& lpFlag = mpPatterns->GetLast();
     lpFlag = &oFlag
 }

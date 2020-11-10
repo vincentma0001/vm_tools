@@ -43,6 +43,7 @@ project(${TNAME} VERSION ${VER})
 configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
+add_subdirectory(${HOME}/tst/tst_any)
 add_subdirectory(${HOME}/tst/tst_list)
 add_subdirectory(${HOME}/tst/tst_stdmap)
 add_subdirectory(${HOME}/tst/tst_prfmt)
