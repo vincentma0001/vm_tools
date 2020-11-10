@@ -37,7 +37,7 @@ namespace vm{
 // ================================================================================================ //
 // Typedefs  : {{{
 // struct stListNote : This struct defined list note
-template< typename tType >  
+template< typename tType >
 struct stListNote
 {
     // Data pointer
