@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-05 09:12:00                                               == //
+// ==   Modify Time          : 2020-11-11 20:08:06                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,8 +27,9 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util/v_funcs_io.h>
 #include "v_funcs_mem.h"
-#include "v_funcs_str.h"
+#include "vm_tools/vm_string/CMemPtr.h"
 // }}}
 // ================================================================================================ //
 
@@ -42,7 +43,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CMemPtr::CMemPtr( void* const pBuf, const size_t csztBufSize )
-                           : mpBuf(pBuf), msztBufSize(csztBufSize)
+                           : mpBuf(pBuf), msztBufSize(csztBufSize), mllErrCode(emRet::emSucess)
 // {{{
 {
 }
@@ -252,6 +253,594 @@ inline void vm::CMemPtr::Set ( const int ciValue, const size_t csztDataLen, cons
     vm::v_memset( lpBufPos, ciValue, lsztDataLen );
 }
 // }}} end of func CMemPtr::Set (...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a wchar_t to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] wchar_t value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const wchar_t cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(wchar_t) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(wchar_t), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a char to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] char value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const char cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(char) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(char), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a unsigned char to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] unsigned char value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const unsigned char cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned char) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(unsigned char), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a short to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] short value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const short cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(short) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(short), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a unsigned short to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] unsigned short value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const unsigned short cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned short) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(unsigned short), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a int to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] int value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const int cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(int) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(int), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a unsigned int to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] unsigned int value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const unsigned int cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned int) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(unsigned int), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a long to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] long value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const long cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(long), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a unsigned long to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] unsigned long value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const unsigned long cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned long) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(unsigned long), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a long long to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] long long value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const long long cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long long) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(long long), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a unsigned long long to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] unsigned long long value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const unsigned long long cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned long long) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(unsigned long long), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a float to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] float value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const float cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(float) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(float), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a double to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] double value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const double cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(double) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(double), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr:::Put(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Write a long double to memory buffer
+// ==  Return  : bool             - [O] truc  - write sucess
+// ==                                   false - write failed
+// ==  Params  : cVal             - [I] long double value
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Put( const long double cVal, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long double) )
+        return false;
+
+    CopyFm((void*)&cVal, sizeof(long double), csztBufOffset);
+    return true;
+}
+// }}} end of func CMemPtr:::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a wchar_t from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] wchar_t buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( wchar_t& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(wchar_t) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(wchar_t), sizeof(wchar_t), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a char from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] char buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( char& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(char) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(char), sizeof(char), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a unsigned char from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] unsigned char buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( unsigned char& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned char) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(unsigned char), sizeof(unsigned char), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a short from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] short buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( short& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(short) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(short), sizeof(short), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a unsigned short from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] unsigned short buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( unsigned short& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned short) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(unsigned short), sizeof(unsigned short), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a int from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] int buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( int& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(int) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(int), sizeof(int), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a unsigned int from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] unsigned int buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( unsigned int& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned int) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(unsigned int), sizeof(unsigned int), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a long from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] long buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( long& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(long), sizeof(long), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a unsigned long from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] unsigned long buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( unsigned long& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned long) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(unsigned long), sizeof(unsigned long), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a long long from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] long long buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( long long& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long long) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(long long), sizeof(long long), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a unsigned long long from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] unsigned long long buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( unsigned long long& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(unsigned long long) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(unsigned long long), sizeof(unsigned long long), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a float from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] float buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( float& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(float) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(float), sizeof(float), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a double from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] double buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( double& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(double) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(double), sizeof(double), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CMemPtr::Get(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a long double from memory buffer
+// ==  Return  : bool             - [O] true  - get sucess
+// ==                                   false - get failed
+// ==  Params  : Val              - [O] long double buffer
+// ==            csztBufOffset    - [I] memory buffer offset
+inline bool vm::CMemPtr::Get( long double& Val, const size_t csztBufOffset )
+// {{{
+{
+    size_t lszBufLeft = msztBufSize - csztBufSize;
+    if( lszBufLeft < sizeof(long double) )
+        return false;
+
+    CopyTo( (void*)&Val, sizeof(long double), sizeof(long double), csztBufOffset );
+    return true;
+}
+// }}} end of func CMemPtr::Get(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
@@ -593,9 +1182,14 @@ inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const c
 inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
+    
+
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
     size_t lsztBufLeft   = msztBufSize-csztBufOffset;
-    vm::v_vsprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
+
+    bool lbRet = vm::v_sprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
+    if( lbRet != true )
+        m
     return lpPos;
 }
 // }}} end of func CMemPtr::Fmt (...)

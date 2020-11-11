@@ -1,5 +1,5 @@
 
-#include "vm_tools/vm_error/CSysErrPtr.h"
+#include "vm_tools/vm_error/CSysErr.hpp"
 #include <vm_tools/vm_error.h>
 #include <vm_tools/vm_util.h>
 #include <vm_tools/vm_utst.h>
@@ -12,9 +12,11 @@ vTry
 
     // Add unit test coder here
     tchar lsztBuf[1024] = {0x00};
-    vm::CSysErrPtr  loSysErr( 10, lsztBuf, sizeof(lsztBuf) );
-    vm::v_output_line( vT("SysErr [%d:%s]"), loSysErr.toCode(), loSysErr.toString() );
+    vm::CSysErrPtr  loSysErr1( 10, lsztBuf, sizeof(lsztBuf) );
+    vm::v_output_line( vT("SysErr1 [%d:%s]"), loSysErr1.toCode(), loSysErr1.toString() );
 
+    vm::CSysErr<_V_CSYSERR_BUF_SIZE_> loSysErr2( 20 );
+    vm::v_output_line( vT("SysErr2 [%d:%s]"), loSysErr2.toCode(), loSysErr2.toString() );
 vCatch(...)
     return false;
 vEnd
@@ -22,6 +24,24 @@ vEnd
 
 UT_FUNC_ENDED
 // }}} ! ut_syserr_1
+// ================================================================================================ //
+
+// ================================================================================================ //
+// [ ut_syserr_2 ] {{{
+UT_FUNC_BEGIN( ut_syserr_2 )
+
+vTry
+
+    // Add unit test coder here
+    
+
+vCatch(...)
+    return false;
+vEnd
+    return true;
+
+UT_FUNC_ENDED
+// }}} ! ut_syserr_2
 // ================================================================================================ //
 
 // ================================================================================================ //

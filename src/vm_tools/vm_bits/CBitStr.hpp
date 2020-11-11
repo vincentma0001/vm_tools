@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-05 08:49:39                                               == //
+// ==   Modify Time          : 2020-11-11 20:24:02                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -35,6 +35,13 @@
 namespace vm
 {
 
+// ------------------------------------------------------------------------------------------------ //
+// Macrodefs : {{{
+#ifndef    _V_CBITSTR_MAX_BUF_
+#   define _V_CBITSTR_MAX_BUF_ 128
+#endif // !_V_CBITSTR_MAX_BUF_
+// }}} ! Macrodefs
+
 // ================================================================================================ //
 // ==  Class CBitStr : This class convert CBitType's valu to string                              == //
 // ------------------------------------------------------------------------------------------------ //
@@ -44,12 +51,21 @@ class CBitStr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    _V_CBITSTR_MAX_BUF_
-#   define _V_CBITSTR_MAX_BUF_ 128
-#endif // !_V_CBITSTR_MAX_BUF_
-// }}} ! Macrodefs
+// Typedefs  : {{{
+public:
+    // enum emRet : this enum define return value for class CBitStr
+    enum emRet
+    // {{{
+    {
+        emSucess = 0,
 
+        emError         = vMaxsLong -1,
+        emErrFmtFailed  =    emError-1,
+
+        emWarns         = vMaxsLong -20
+    };
+    // }}} End of def enum emRet
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
@@ -68,9 +84,13 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
+    // BitType
     const CBitType& mBitType;
+    // string buffer
     tchar           mszBuf[ _V_CBITSTR_MAX_BUF_ ];
-    //tchar             mszBuf[ tsztBufSize ];
+
+    // Error code
+    long long       mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //

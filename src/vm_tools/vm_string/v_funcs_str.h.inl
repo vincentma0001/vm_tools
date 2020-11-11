@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-11 14:11:55                                               == //
+// ==   Modify Time          : 2020-11-11 18:23:14                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,8 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include "v_funcs_mem.h"
-#include "vm_tools/vm_string/v_funcs_str.h"
+#include <vm_tools/vm_memory/v_funcs_mem.h>
 // }}}
 
 
@@ -154,61 +153,6 @@ inline void vm::v_tolower ( tchar* const pDst, const size_t csztDstSize, const t
     } // Enf of for (...)
 }
 // }}} end of func v_tolower(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : v_sprintf(...)                                                                  == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Format string, and copy new string to dst buffer
-// ==  Return  : int              - [O] New string's length
-// ==  Params  : pDst             - [O] Dst buffer
-// ==            csztDstSize      - [I] Dst buffer's size
-// ==            cpFmt            - [I] string's format
-// ==            ...              - [I] string's format paramters
-inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, ... )
-// {{{
-{
-    // Verify input paramters
-    _VERIFY_2_(vT("v_sprintf()"), pDst, cpFmt);
-
-    // format string
-    va_list vlist;
-    va_start( vlist, cpFmt );
-    int liRet = vm::v_vsprintf( pDst, csztDstSize, cpFmt, vlist);
-    va_end(vlist);
-
-    return liRet;
-}
-// }}} end of func v_sprintf(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : v_vsprintf(...)                                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Format string, and copy new string to dst buffer
-// ==  Return  : int              - [O] New string's length
-// ==  Params  : pDst             - [O] Dst buffer
-// ==            csztDstSize      - [I] Dst buffer's size
-// ==            cpFmt            - [I] String's format
-// ==            vList            - [I] String's format paramters
-inline int vm::v_vsprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, va_list& vList )
-// {{{
-{
-        // Verify input paramters
-        _VERIFY_2_(vT("v_vsprintf()"), pDst, cpFmt);
-
-        // format string
-    #if defined (_MSC_VER) && (_MSC_VER > 1300)
-        int liRet = vVsprintf_s( pDst, csztDstSize, cpFmt, vList );
-        if (liRet < 0) { _ASSERT_(vT("v_vsprintf()"), (errno == 0)); };
-
-    #else
-        int liRet = vVsprintf( pDst, cpFmt, vList );
-        if (liRet < 0) { _ASSERT_(vT("v_vsprintf()"), (errno == 0)); };
-    #endif
-        return liRet;
-}
-// }}} end of func v_vsprintf(...)
 // ================================================================================================ //
 
 // ================================================================================================ //

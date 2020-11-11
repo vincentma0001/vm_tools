@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:59:49                                               == //
-// ==   Modify Time          : 2020-11-09 21:13:22                                               == //
+// ==   Modify Time          : 2020-11-11 20:32:51                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -49,13 +49,6 @@ namespace vm
 #   define vStrSet(szBuf, ciFlag)   vm::v_strset(szBuf,ciFlg,vStrSizeof(szBuf))
 #endif  // vStrSet
 
-#ifndef    vStrPosBegin
-#   define vStrPosBegin             vMaxsInt
-#endif  // vStrPosBegin
-
-#ifndef    vStrPosEnded
-#   define vStrPosEnded             vMaxsInt
-#endif  // vStrPosEnded
 
 // }}} ![ Macro defines ]
 // ================================================================================================ //
@@ -77,11 +70,6 @@ inline void v_tolower ( _vIO_ tchar* const pData );
 inline void v_tolower ( _vIO_ tchar* const pData, _vIn_ const size_t csztDataLen );
 // Change string's alpha letter to lower, and copy it to dst buffer
 inline void v_tolower ( _vOt_ tchar* const pDst , _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpSrc, _vIn_ const size_t csztSrcLen );
-
-// Format string, and copy new string to dst buffer
-inline int v_sprintf  ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ ... );
-// Format string, and copy new string to dst buffer
-inline int v_vsprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 
 // Set memory block to 0x00 from pBuf to pBuf+csztDataLen
 inline void v_strzero ( _vIO_ tchar* const pBuf,                        _vIn_ const size_t csztDataLen );

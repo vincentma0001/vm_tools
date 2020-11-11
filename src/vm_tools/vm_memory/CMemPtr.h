@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:36                                               == //
-// ==   Modify Time          : 2020-11-03 09:47:11                                               == //
+// ==   Modify Time          : 2020-11-11 20:15:17                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -43,6 +43,20 @@ class CMemPtr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // enum emRet : this enum define return value for class CMemPtr
+    enum emRet
+    // {{{
+    {
+        emSucess = 0,
+
+        emError = vMaxsLong -1,
+        emWarns = vMaxsLong -20
+    };
+    // }}} End of def enum emRet
+// }}} ! Typedefs
+// ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -70,6 +84,9 @@ private:
     void*  mpBuf;
     // Buffer's size
     size_t msztBufSize;
+
+    // Error code
+    long long mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
@@ -88,28 +105,79 @@ public:
     // }}}
 
 public:
-    // [ At func ] {{{
     // Get buffer offset's address
     inline void*  At     ( const size_t csztBufOffset );
-    // }}}
 
-    // [ Set func ] {{{
     // Set value in buffer
     inline void   Set    ( const int ciValue,                           const size_t csztBufOffset = 0 );
     // Set value in buffer
     inline void   Set    ( const int ciValue, const size_t csztDataLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Move func ] {{{
+    // Write a wchar_t to memory buffer
+    inline bool Put     ( const wchar_t            cVal, const size_t csztBufOffset = 0 );
+    // Write a char to memory buffer
+    inline bool Put     ( const char               cVal, const size_t csztBufOffset = 0 );
+    // Write a unsigned char to memory buffer
+    inline bool Put     ( const unsigned char      cVal, const size_t csztBufOffset = 0 );
+    // Write a short to memory buffer
+    inline bool Put     ( const short              cVal, const size_t csztBufOffset = 0 );
+    // Write a unsigned short to memory buffer
+    inline bool Put     ( const unsigned short     cVal, const size_t csztBufOffset = 0 );
+    // Write a int to memory buffer
+    inline bool Put     ( const int                cVal, const size_t csztBufOffset = 0 );
+    // Write a unsigned int to memory buffer
+    inline bool Put     ( const unsigned int       cVal, const size_t csztBufOffset = 0 );
+    // Write a long to memory buffer
+    inline bool Put     ( const long               cVal, const size_t csztBufOffset = 0 );
+    // Write a unsigned long to memory buffer
+    inline bool Put     ( const unsigned long      cVal, const size_t csztBufOffset = 0 );
+    // Write a long long to memory buffer
+    inline bool Put     ( const long long          cVal, const size_t csztBufOffset = 0 );
+    // Write a unsigned long long to memory buffer
+    inline bool Put     ( const unsigned long long cVal, const size_t csztBufOffset = 0 );
+    // Write a float to memory buffer
+    inline bool Put     ( const float              cVal, const size_t csztBufOffset = 0 );
+    // Write a double to memory buffer
+    inline bool Put     ( const double             cVal, const size_t csztBufOffset = 0 );
+    // Write a long double to memory buffer
+    inline bool Put     ( const long double        cVal, const size_t csztBufOffset = 0 );
+
+    // Get a wchar_t from memory buffer
+    inline bool Get     ( wchar_t                  &Val, const size_t csztBufOffset = 0 );
+    // Get a char from memory buffer
+    inline bool Get     ( char                     &Val, const size_t csztBufOffset = 0 );
+    // Get a unsigned char from memory buffer
+    inline bool Get     ( unsigned char            &Val, const size_t csztBufOffset = 0 );
+    // Get a short from memory buffer
+    inline bool Get     ( short                    &Val, const size_t csztBufOffset = 0 );
+    // Get a unsigned short from memory buffer
+    inline bool Get     ( unsigned short           &Val, const size_t csztBufOffset = 0 );
+    // Get a int from memory buffer
+    inline bool Get     ( int                      &Val, const size_t csztBufOffset = 0 );
+    // Get a unsigned int from memory buffer
+    inline bool Get     ( unsigned int             &Val, const size_t csztBufOffset = 0 );
+    // Get a long from memory buffer
+    inline bool Get     ( long                     &Val, const size_t csztBufOffset = 0 );
+    // Get a unsigned long from memory buffer
+    inline bool Get     ( unsigned long            &Val, const size_t csztBufOffset = 0 );
+    // Get a long long from memory buffer
+    inline bool Get     ( long long                &Val, const size_t csztBufOffset = 0 );
+    // Get a unsigned long long from memory buffer
+    inline bool Get     ( unsigned long long       &Val, const size_t csztBufOffset = 0 );
+    // Get a float from memory buffer
+    inline bool Get     ( float                    &Val, const size_t csztBufOffset = 0 );
+    // Get a double from memory buffer
+    inline bool Get     ( double                   &Val, const size_t csztBufOffset = 0 );
+    // Get a long double from memory buffer
+    inline bool Get     ( long double              &Val, const size_t csztBufOffset = 0 );
+
     // Move data from src data buffer
     inline size_t MoveFm ( const void* const cpSrc,  const size_t csztDataLen,                           const size_t csztBufOffset = 0 );
     // Move data to dst data buffer
     inline size_t MoveTo (       void* const  pDst,  const size_t csztDstSize,                           const size_t csztBufOffset = 0 );
     // Nove data to dst data buffer
     inline size_t MoveTo (       void* const  pDst,  const size_t csztDstSize, const size_t csztDataLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Copy func ] {{{
     // Copy data from src data buffer
     inline size_t CopyFm ( const void* const cpSrc, const size_t csztDataLen,                            const size_t csztBufOffset = 0 );
     // Copy data to dst data buffer
@@ -123,23 +191,17 @@ public:
     inline size_t CCopyTo( const int ciFlag,       void* const  pDst, const size_t csztDstSize,                           const size_t csztBufOffset = 0 );
     // Copy data to dst data buffer, until data length equal csztDataLen or meet ciFlag
     inline size_t CCopyTo( const int ciFlag,       void* const  pDst, const size_t csztDstSize, const size_t csztDataLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Cmp func ] {{{
     // Compare data with cpData that length is csztDataLen, case sensitive.
     inline bool   Cmp    ( const void* const cpData, const size_t csztDataLen, const size_t csztBufOffset = 0 );
     // Compare date with cpData that length is csztDataLen, case insensitive.
     inline bool   iCmp   ( const void* const cpData, const size_t csztDataLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Find func ] {{{
     // Find letter ciValue in buffer from buffer beginning
     inline void*  Find   ( const int ciValue,                              const size_t csztBufOffset = 0 );
     // Find letter ciValue in buffer from buffer beginning, until search length csztLookforLen
     inline void*  Find   ( const int ciValue, const size_t csztLookforLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Fmt func ] {{{
     // Format string
     inline void*  Fmt    (                             const tchar* const cpFmt,            ... );
     // Format string
@@ -148,12 +210,11 @@ public:
     inline void*  Fmt    ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
 
     // Format string, return new string's length
-    inline int    Fmt2   (                             const tchar* const cpFmt,            ... );
+    inline size_t Fmt2   (                             const tchar* const cpFmt,            ... );
     // Format string, return new string's length
-    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt,            ... );
+    inline size_t Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt,            ... );
     // Format string, return new string's length
-    inline int    Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
-    // }}}
+    inline size_t Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
 // }}} ! Methods
 
 };

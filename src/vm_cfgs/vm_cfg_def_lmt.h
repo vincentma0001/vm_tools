@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 00:02:26                                               == //
-// ==   Modify Time          : 2020-11-05 12:55:10                                               == //
+// ==   Modify Time          : 2020-11-11 18:27:19                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -101,6 +101,20 @@
 #define vMaxWchar      WCHAR_MAX
 
 // }}}
+// ================================================================================================ //
+
+// ================================================================================================ //
+// [ String postion define ] {{{
+
+#ifndef    vStrPosBegin
+#   define vStrPosBegin             vMaxsInt
+#endif  // vStrPosBegin
+
+#ifndef    vStrPosEnded
+#   define vStrPosEnded             vMaxsInt
+#endif  // vStrPosEnded
+
+// }}} ! String postion define
 // ================================================================================================ //
 
 #endif // ! __VM_CFG_DEF_LMT_H__

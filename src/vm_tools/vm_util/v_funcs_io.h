@@ -36,6 +36,11 @@
 namespace vm
 {
 
+// Format string, and copy new string to dst buffer
+inline bool v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_            ... );
+// Format string, and copy new string to dst buffer
+inline bool v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
+
 // Output a formated string
 inline bool v_output( const tchar* const cpFmt, va_list& vList );
 // Output a formated string
