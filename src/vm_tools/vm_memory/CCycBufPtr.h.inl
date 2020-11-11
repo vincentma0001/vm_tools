@@ -199,57 +199,76 @@ inline unsigned int vm::CCycBufPtr::EndedPos(  )
 // ================================================================================================ //
 // ==  Methord : CCycBufPtr::Put(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Write a char to cyc buffer
-// ==  Return  : bool             - [O] true  - sucess
-// ==                               [O] false - failed  
-// ==  Params  : cVal             - [I] The letter need to write
-inline bool vm::CCycBufPtr::Put( const tchar cVal )
+// ==  Brief   : Write datas (length=csztDatalen) to cyc buffer
+// ==  Return  : bool             - [O] true  - write sucess
+// ==                                   false - write failed, lookfor mllErrCode for error info
+// ==  Params  : pData            - [I] data start pointer
+// ==            csztDataLen      - [I] data length
+inline bool vm::CCycBufPtr::Put( const void* const cpData, const size_t csztDataLen )
 // {{{
 {
-    size_t lsztVal      = sizeof(cVal);
+    // Check left buffer space for data
+    size_t lsztVal      = csztDataLen;
     size_t lsztUnused   = SizeUnused();
     if( lsztVal > lsztUnused )
         return false;
 
+
     if( mpEndedPos > mpStartPos )
     {
-        if( (mpEndedPos+lsztVal) < mpBufEnded )
+        size_t lsztBufLenPart1 = mpBufEnded - mpEndedPos;
+        vm::CMemPtr loMemPart1( mpEndedPos, lsztBufLenPart1 );
+
+        size_t lsztCopied1 = loMemPart1.CopyFm( cpData, csztDataLen );
+        if( lsztCopied1 <= lsztBufLenPart1 )
         {
-            *mpEndedPos = cVal;
-            mpEndedPos  = mpEndedPos + lsztVal;
-            msztLen     += lsztVal;
+            msztLen     += lsztCopied1;
+            mpBufEnded  += lsztCopied1;
+            return true;
         }
-        else if( (mpEndedPos+lsztVal) > mpBufEnded )
-        {
-            mpEndedPos  = const_cast<tchar*>(mpBufStart);
-            *mpEndedPos = cVal;
-            mpEndedPos  = mpEndedPos+lsztVal;
-            msztLen     += lsztVal;
-        }
-        else
-        {
-            *mpEndedPos = cVal;
-            mpEndedPos  = const_cast<tchar*>(mpBufStart);
-            msztLen     += lsztVal;
-        }
+
+        size_t lsztDataLeftLen = csztDataLen - lsztCopied1;
+        size_t lsztBufLenPart2 = mpStartPos  - mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztBufLenPart2 );
+        size_t     lsztCopied2 = loMemPart2.CopyFm( (void*)((char*)cpData+lsztCopied1), lsztDataLeftLen );
+
+        msztLen += (lsztCopied1+lsztCopied2);
+        mpEndedPos = (char*)(mpBufStart+lsztCopied2);
+        return true;
     }
     else if( mpEndedPos < mpStartPos )
     {
-        *mpEndedPos = cVal;
-        mpEndedPos  = mpEndedPos + lsztVal;
-        msztLen     += lsztVal;
+        vm::CMemPtr loMem( mpEndedPos, lsztUnused );
+        size_t lsztCopied = loMem.CopyFm( cpData, csztDataLen );
+
+        msztLen   += lsztCopied;
+        mpEndedPos = mpEndedPos+lsztCopied;
+        return true;
     }
     else
     {
         if( lsztUnused == 0 )
             return false;
 
-        *mpEndedPos = cVal;
-        msztLen     += lsztVal;
-        if( (mpEndedPos+lsztVal)>=mpBufEnded )
-        { mpEndedPos = const_cast<tchar*>(mpBufStart); }
-        else
-        { mpEndedPos  = mpEndedPos+lsztVal; }
+        size_t lsztBufLenPart1 = mpBufEnded - mpEndedPos;
+        vm::CMemPtr loMemPart1( mpEndedPos, lsztBufLenPart1 );
+
+        size_t lsztCopied1 = loMemPart1.CopyFm( cpData, csztDataLen );
+        if( lsztCopied1 <= lsztBufLenPart1 )
+        {
+            msztLen     += lsztCopied1;
+            mpBufEnded  += lsztCopied1;
+            return true;
+        }
+
+        size_t lsztDataLeftLen = csztDataLen - lsztCopied1;
+        size_t lsztBufLenPart2 = mpStartPos  - mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztBufLenPart2 );
+        size_t     lsztCopied2 = loMemPart2.CopyFm( (void*)((char*)cpData+lsztCopied1), lsztDataLeftLen );
+
+        msztLen   += (lsztCopied1+lsztCopied2);
+        mpEndedPos = (char*)(mpBufStart+lsztCopied2);
+        return true;
     }
 
     return true;
@@ -258,70 +277,251 @@ inline bool vm::CCycBufPtr::Put( const tchar cVal )
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CCycBufPtr::Get(...)                                                            == //
+// ==  Methord : CCycBufPtr::Put(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Get a letter from cyc buffer, and remove it form cyc buffer
-// ==  Return  : bool             - [O] true  - success
-// ==                                   false - failed
-// ==  Params  : cVal             - [O] the letter buffer for get
-inline bool vm::CCycBufPtr::Get( tchar &cVal )
+// ==  Brief   : Write a tType object to cyc buffer
+// ==  Return  : bool             - [O] true  - write sucess
+// ==                                   false - write failed, lookfor mllErrCode for error info
+// ==  Params  : tData            - [I] The object need to write
+template<typename tType>
+inline bool vm::CCycBufPtr::Put( const tType tData )
 // {{{
 {
-    size_t lsztVal      = sizeof(cVal);
+    return Put( (void*)&tData, sizeof(tType) );
+}
+// }}} end of func CCycBufPtr::Put(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CCycBufPtr::Get(...)                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get datas (length=csztDataLen) from cyc buffer
+// ==  Return  : bool             - [O] true  - get success
+// ==                                   false - get failed, lookfor mllErrcode for error code
+// ==  Params  : pData            - [O] data buffer for get
+// ==            csztDataLen      - [i] data buffer's size for get
+inline bool vm::CCycBufPtr::Get( void* const pData, const size_t csztDataLen )
+// {{{
+{
+    // Check have enough data for get
+    size_t lsztVal      = csztDataLen;
     size_t lsztUsed     = SizeUsed();
-
     if( lsztVal > lsztUsed )
+    {
+        mllErrCode = vMakeLLong( emRet::emErrNoEnoughData, 0 );
         return false;
+    }
 
+    // Get data
     if( mpStartPos < mpEndedPos )
     {
-        cVal        = *mpStartPos;
-        *mpStartPos = 0;
-        mpStartPos  = mpStartPos + lsztVal;
-        msztLen     -= lsztVal;
+        size_t lsztDataLenInBuf = mpEndedPos - mpStartPos;
+        vm::CMemPtr loMem( mpStartPos, lsztDataLenInBuf );
+        size_t lsztCopied = loMem.CopyTo( pData, csztDataLen );
+
+#if       (vCycBufRemoveAfterGet==1)
+        loMem.Set( 0x00, lsztCopied, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+
+        msztLen    -= lsztCopied;
+        mpStartPos  = mpStartPos+lsztCopied;
+
+        return true;
     }
     else if( mpStartPos > mpEndedPos )
     {
-        if( (mpStartPos+lsztVal) < mpBufEnded )
+        size_t lsztDataLenInBufPart1 = mpBufEnded - mpStartPos;
+        vm::CMemPtr loMemPart1( mpStartPos, lsztDataLenInBufPart1 );
+        size_t lsztCopied1 = loMemPart1.CopyTo( pData, csztDataLen );
+        
+        if( lsztCopied1 <= csztDataLen )
         {
-            cVal        = *mpStartPos;
-            *mpStartPos = 0;
-            mpStartPos  = mpStartPos + lsztVal;
-            msztLen     -= lsztVal;
+
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart1.Set( 0x00, lsztCopied1,0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+
+            msztLen  -= lsztCopied1;
+            mpStartPos = mpStartPos+lsztCopied1;
+            return true;
         }
-        else if( (mpStartPos+lsztVal) > mpBufEnded )
-        {
-            mpStartPos  = const_cast<tchar*>(mpBufStart);
-            cVal        = *mpStartPos;
-            *mpStartPos = 0;
-            mpStartPos  = mpStartPos + lsztVal;
-            msztLen     -= lsztVal;
-        }
-        else
-        {
-            cVal        = *mpStartPos;
-            *mpStartPos = 0;
-            mpStartPos  = const_cast<tchar*>(mpBufStart);
-            msztLen     -= lsztVal;
-        }
+
+        size_t lsztDataLenInBufPart2 = mpEndedPos -mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztDataLenInBufPart2 );
+        size_t lsztDataLeftLen = csztDataLen -lsztCopied1;
+        size_t lsztCopied2 = loMemPart2.CopyTo( (void*)((char*)pData+lsztCopied1), lsztDataLeftLen );
+
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart2.Set( 0x00, lsztCopied2, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+        
+        msztLen -= (lsztCopied1+lsztCopied2);
+        mpStartPos = const_cast<tchar*>(mpBufStart)+lsztCopied2;
+        return true;
     }
     else
     {
         if( lsztUsed == 0 )
+        {
+            mllErrCode = vMakeLLong( emRet::emWrnBufIsFull, 0 );
             return false;
+        }
 
-        cVal        = *mpStartPos;
-        *mpStartPos = 0;
-        msztLen     -= lsztVal;
-        if( (mpStartPos+lsztVal) >= mpBufEnded )
-        { mpStartPos = const_cast<tchar*>(mpBufStart); }
-        else
-        { mpStartPos  = mpStartPos + lsztVal; }
+        size_t lsztDataLenInBufPart1 = mpBufEnded - mpStartPos;
+        vm::CMemPtr loMemPart1( mpStartPos, lsztDataLenInBufPart1 );
+        size_t lsztCopied1 = loMemPart1.CopyTo( pData, csztDataLen );
+        
+        if( lsztCopied1 <= csztDataLen )
+        {
+
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart1.Set( 0x00, lsztCopied1, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+
+            msztLen  -= lsztCopied1;
+            mpStartPos = mpStartPos+lsztCopied1;
+            return true;
+        }
+
+        size_t lsztDataLenInBufPart2 = mpEndedPos -mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztDataLenInBufPart2 );
+        size_t lsztDataLeftLen = csztDataLen -lsztCopied1;
+        size_t lsztCopied2 = loMemPart2.CopyTo( (void*)((char*)pData+lsztCopied1), lsztDataLeftLen );
+
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart2.Set( 0x00, lsztCopied2, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+        
+        msztLen -= (lsztCopied1+lsztCopied2);
+        mpStartPos = const_cast<tchar*>(mpBufStart)+lsztCopied2;
+        return true;
     }
 
     return true;
 }
 // }}} end of func CCycBufPtr::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CCycBufPtr<tType>::Get(...)                                                     == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get tType object from cyc buffer
+// ==  Return  : bool             - [O] true  - get success
+// ==                                   false - get failed, lookfor mllErrcode for error code
+// ==  Params  : tData            - [O] tType object buffer
+template< typename tType >
+inline bool vm::CCycBufPtr::Get( tType &tData )
+// {{{ 
+{
+    return Get( (void*)&tData, sizeof(tType) );
+}
+// }}} end of func CCycBufPtr<tType>::Get(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CCycBufPtr::Peek(...)                                                           == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Peek datas (length=csztDataLen) from cyc buffer
+// ==  Return  : bool             - [O] true  - Peek success
+// ==                                   false - Peek failed, lookfor mllErrcode for error code
+// ==  Params  : pData            - [O] data buffer for get
+// ==            csztDataLen      - [i] data buffer's size for get
+inline bool vm::CCycBufPtr::Peek( void* const pData, const size_t csztDataLen )
+// {{{
+{
+    // Check have enough data for get
+    size_t lsztVal      = csztDataLen;
+    size_t lsztUsed     = SizeUsed();
+    if( lsztVal > lsztUsed )
+    {
+        mllErrCode = vMakeLLong( emRet::emErrNoEnoughData, 0 );
+        return false;
+    }
+
+    // Get data
+    if( mpStartPos < mpEndedPos )
+    {
+        size_t lsztDataLenInBuf = mpEndedPos - mpStartPos;
+        vm::CMemPtr loMem( mpStartPos, lsztDataLenInBuf );
+        size_t lsztCopied = loMem.CopyTo( pData, csztDataLen );
+        if( lsztCopied != csztDataLen )
+        {
+            mllErrCode = vMakeLLong( emRet::emErrPeekFailed, errno );
+            return false;
+        }
+
+        return true;
+    }
+    else if( mpStartPos > mpEndedPos )
+    {
+        size_t lsztDataLenInBufPart1 = mpBufEnded - mpStartPos;
+        vm::CMemPtr loMemPart1( mpStartPos, lsztDataLenInBufPart1 );
+        size_t lsztCopied1 = loMemPart1.CopyTo( pData, csztDataLen );
+
+        if( lsztCopied1 <= csztDataLen )
+            return true;
+
+        size_t lsztDataLenInBufPart2 = mpEndedPos -mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztDataLenInBufPart2 );
+        size_t lsztDataLeftLen = csztDataLen -lsztCopied1;
+        size_t lsztCopied2 = loMemPart2.CopyTo( (void*)((char*)pData+lsztCopied1), lsztDataLeftLen );
+        size_t lsztCopied = lsztCopied1 + lsztCopied2;
+        if( lsztCopied != csztDataLen )
+        {
+            mllErrCode = vMakeLLong( emRet::emErrPeekFailed, errno );
+            return false;
+        }
+
+        return true;
+    }
+    else
+    {
+        if( lsztUsed == 0 )
+        {
+            mllErrCode = vMakeLLong( emRet::emWrnBufIsFull, 0 );
+            return false;
+        }
+
+        size_t lsztDataLenInBufPart1 = mpBufEnded - mpStartPos;
+        vm::CMemPtr loMemPart1( mpStartPos, lsztDataLenInBufPart1 );
+        size_t lsztCopied1 = loMemPart1.CopyTo( pData, csztDataLen );
+
+        if( lsztCopied1 <= csztDataLen )
+            return true;
+
+        size_t lsztDataLenInBufPart2 = mpEndedPos -mpBufStart;
+        vm::CMemPtr loMemPart2( (void*)mpBufStart, lsztDataLenInBufPart2 );
+        size_t lsztDataLeftLen = csztDataLen -lsztCopied1;
+        size_t lsztCopied2 = loMemPart2.CopyTo( (void*)((char*)pData+lsztCopied1), lsztDataLeftLen );
+        size_t lsztCopied = lsztCopied1 + lsztCopied2;
+        if( lsztCopied != csztDataLen )
+        {
+            mllErrCode = vMakeLLong( emRet::emErrPeekFailed, errno );
+            return false;
+        }
+
+        return true;
+    }
+
+    return true;
+}
+// }}} end of func CCycBufPtr::Peek(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CCycBufPtr::Peek(...)                                                           == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Peek tType object from cyc buffer
+// ==  Return  : bool             - [O] true  - get success
+// ==                                   false - get failed, lookfor mllErrcode for error code
+// ==  Params  : tData            - [O] tType object buffer
+template<typename tType>
+inline bool vm::CCycBufPtr::Peek( tType &tData )
+// {{{
+{
+    return Peek( (void*)&tData, sizeof(tData) );
+}
+// }}} end of func CCycBufPtr::Peek(...)
 // ================================================================================================ //
 
 // }}} ![ Class CCycBufPtr Functional realization ]
