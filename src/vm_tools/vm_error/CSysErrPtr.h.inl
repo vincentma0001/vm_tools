@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                       CErrPtr.h.inl                                        == //
+// ==                                     CSysErrPtr.h.inl                                       == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-11-10 10:28:35                                               == //
+// ==   Modify Time          : 2020-11-11 13:49:44                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERRPTR_H_INL__
-#define  __CERRPTR_H_INL__
+#ifndef  __CSYSERRPTR_H_INL__
+#define  __CSYSERRPTR_H_INL__
 
 
 // ================================================================================================ //
@@ -33,187 +33,133 @@
 
 
 // ================================================================================================ //
-// ==  Class CErrPtr Construct && Destruct realization                                           == //
+// ==  Class CSysErrPtr Construct && Destruct realization                                        == //
 // ================================================================================================ //
-// [ Class CErrPtr Construct && Destruct realization ] {{{
+// [ Class CSysErrPtr Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::CErrPtr()                                                              == //
+// ==  Methord : CSysErrPtr::CSysErrPtr()                                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline vm::CErrPtr::CErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize)
-                           : mlErrCode( clErrCode ),mpBuf(pBuf), msztBufSize( csztBufSize )
+inline vm::CSysErrPtr::CSysErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize)
+    : mpBuf(pBuf), msztBufSize(csztBufSize), mlErrCode(clErrCode)
 // {{{
 {
 }
-// }}} End of func CErrPtr::CErrPtr()
+// }}} End of func CSysErrPtr::CSysErrPtr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::~CErrPtr()                                                             == //
+// ==  Methord : CSysErrPtr::~CSysErrPtr()                                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline vm::CErrPtr::~CErrPtr(  )
+inline vm::CSysErrPtr::~CSysErrPtr(  )
 // {{{
 {
 }
-// }}} End of func CErrPtr::~CErrPtr()
+// }}} End of func CSysErrPtr::~CSysErrPtr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::CErrPtr()                                                              == //
+// ==  Methord : CSysErrPtr::CSysErrPtr()                                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline vm::CErrPtr::CErrPtr( const CErrPtr &obj )
+inline vm::CSysErrPtr::CSysErrPtr( const CSysErrPtr &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CErrPtr::~CErrPtr()
+// }}} End of func CSysErrPtr::~CSysErrPtr()
 // ================================================================================================ //
 
-// }}} ![ Class CErrPtr Construct && Destruct realization ]
+// }}} ![ Class CSysErrPtr Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CErrPtr operator realization                                                        == //
+// ==  Class CSysErrPtr operator realization                                                     == //
 // ================================================================================================ //
-// [ Class CErrPtr operator realization ] {{{
+// [ Class CSysErrPtr operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::operator = ()                                                          == //
+// ==  Methord : CSysErrPtr::operator = ()                                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CErrPtr&         - [O] this object
-inline vm::CErrPtr& vm::CErrPtr::operator = ( const CErrPtr &obj )
+// ==  Return  : CSysErrPtr&         - [O] this object
+inline vm::CSysErrPtr& vm::CSysErrPtr::operator = ( const CSysErrPtr &obj )
 // {{{
 {
-    mlErrCode = obj.mlErrCode;
     vm::v_memcpy(mpBuf, msztBufSize, obj.mpBuf, obj.msztBufSize);
+    mlErrCode = obj.mlErrCode;
     return *this;
 }
-// }}} End of func CErrPtr::~CErrPtr()
+// }}} End of func CSysErrPtr::~CSysErrPtr()
 // ================================================================================================ //
 
-// }}} ![ Class CErrPtr operator realization ]
+// }}} ![ Class CSysErrPtr operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CErrPtr Functional realization                                                      == //
+// ==  Class CSysErrPtr Functional realization                                                   == //
 // ================================================================================================ //
-// [ Class CErrPtr Functional realization ] {{{
+// [ Class CSysErrPtr Functional realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::toCode(...)                                                            == //
+// ==  Methord : CSysErrPtr::toCode(...)                                                         == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Output error code
 // ==  Return  : long       - [O] Error code
-inline long vm::CErrPtr::toCode(  )
+inline long vm::CSysErrPtr::toCode(  )
 // {{{
 {
     return mlErrCode;
 }
-// }}} end of func vm::CErrPtr::toCode(...)
+// }}} end of func vm::CSysErrPtr::toCode(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::toString(...)                                                          == //
+// ==  Methord : CSysErrPtr::toString(...)                                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Output error message
 // ==  Return  : tchar*           - [O] Error message
 // ==  Params  : 
-inline tchar* vm::CErrPtr::toString(  )
+inline tchar* vm::CSysErrPtr::toString(  )
 // {{{
 {
     size_t lsztStrLen = 0;
     return GetErrStr(mpBuf, msztBufSize, lsztStrLen);
 }
-// }}} end of func CErrPtr::toString(...)
+// }}} end of func CSysErrPtr::toString(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErrPtr::Fmt(...)                                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output error message    with format
-// ==  Return  : tchar*           - [O] Error message
-// ==  Params  : cpFmt            - [I] Message format
-inline tchar* vm::CErrPtr::Fmt( const tchar* const cpFmt )
-// {{{
-{
-    // Verify input 
-    _VERIFY_( vT("vm::CErrPtr::Fmt()"), cpFmt );
-
-    // Format string
-    // TODO : Add format string;
-
-    return mpBuf;
-}
-// }}} end of func CErrPtr::Fmt(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CErrPtr::GetErrStr(...)                                                         == //
+// ==  Methord : CSysErrPtr::GetErrStr(...)                                                      == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get error string
 // ==  Return  : tchar*           - [O] Error message
 // ==  Params  : pBuf             - [O] Error message buffer address
 // ==            csztBufSize      - [I] Error message buffer size
 // ==            sztStrLen        - [O] Error message length
-inline tchar* vm::CErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen )
+inline tchar* vm::CSysErrPtr::GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen )
 // {{{
 {
     // Verify input
-    _VERIFY_( vT("vm::CErrPtr::GetErrStr()"), pBuf );
+    _VERIFY_( vT("vm::CSysErrPtr::GetErrStr()"), pBuf );
 
     // Convert errno value to string
     vm::v_memzero( pBuf, csztBufSize );
     sztStrLen = vm::v_strerrno( mlErrCode, pBuf, csztBufSize );
     return pBuf;
 }
-// }}} end of func CErrPtr::GetErrStr(...)
+// }}} end of func CSysErrPtr::GetErrStr(...)
 // ================================================================================================ //
 
-// ================================================================================================ //
-// ==  Methord : CErrPtr::Check(...)                                                             == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Check has error or not
-// ==  Return  : bool             - [O] true  for has error
-// ==                                   false for hasn't error
-inline bool vm::CErrPtr::Check(  )
-// {{{
-{
-    return mlErrCode == 0 ? true : false;
-}
-// }}} end of func CErrPtr::Check(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CErrPtr::Throw(...)                                                             == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Check error and throw error string
-// ==  Return  : void             - [O] Nothing for return
-inline void vm::CErrPtr::Throw(  )
-// {{{
-{
-    if( mlErrCode != 0 )
-    {
-        tchar  lszErrStr[1024] = {0x00};
-        size_t lsztErrStrlen = 0;
-        tchar* lpErrStr = vm::CErrPtr::GetErrStr( lszErrStr, sizeof(lszErrStr), lsztErrStrlen );
-        vm::v_sprintf( mpBuf, msztBufSize, vT("%lld:%s"), mlErrCode, lpErrStr );
-        throw mpBuf;
-    } // End of if(...)
-}
-// }}} end of func CErrPtr::Throw(...)
-// ================================================================================================ //
-
-// }}} ![ Class CErrPtr Functional realization ]
+// }}} ![ Class CSysErrPtr Functional realization ]
 // ================================================================================================ //
 
 
-#endif // ! __CERRPTR_H_INL__
+#endif // ! __CSYSERRPTR_H_INL__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

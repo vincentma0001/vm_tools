@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                         CErrPtr.h                                          == //
+// ==                                        CSysErr.hpp                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 09:29:11                                               == //
-// ==   Modify Time          : 2020-11-10 10:26:30                                               == //
+// ==   Create Time          : 2020-11-11 10:45                                                  == //
+// ==   Modify Time          : 2020-11-11 10:45                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERRPTR_H__
-#define  __CERRPTR_H__
+#ifndef  __CSYSERR_HPP__
+#define  __CSYSERR_HPP__
 
 
 // ================================================================================================ //
@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include "CSysErrPtr.h"
 // }}}
 // ================================================================================================ //
 
@@ -35,72 +36,73 @@
 // using namespace vm {{{
 namespace vm
 {
+// ------------------------------------------------------------------------------------------------ //
+// Macrodefs : {{{
+#ifndef    _V_CSYSERR_BUF_SIZE_
+#   define _V_CSYSERR_BUF_SIZE_      256
+#endif // !_V_CSYSERR_BUF_SIZE_
+
+#ifndef    vSysErrCode
+#   define vSysErrCode( tsztBufSize, llErrCode )        vm:CSysErr<tsztBufSize>(llErrCode).toCode()
+#endif // !vSysErrCode
+
+#ifndef    vSysErrCodeD
+#   define vSysErrCodeD( llErrCode )                    vm::CSysErr<_V_CSYSERR_BUF_SIZE_>(llErrCode).toCode()
+#endif // !vSysErrCodeD
+
+#ifndef    vSysErrMsg
+#   define vSysErrMsg( tsztBufSize, llErrCode )         vm::CSysErr<tsztBufSize>(llErrCode).toString()
+#endif // !vSysErrMsg
+
+#ifndef    vSysErrMsgD
+#   define vSysErrMsgD( llErrCode )                     vm::CSysErr<_V_CSYSERR_BUF_SIZE_>(llErrCode).toString()
+#endif // !vSysErrMsgD
+
+// }}} ! Macrodefs
 
 // ================================================================================================ //
-// ==  Class CErrPtr : This class deal with sys error info                                       == //
+// ==  Class CSysErr : this class deal with systime error                                        == //
 // ------------------------------------------------------------------------------------------------ //
-class CErrPtr
+template< size_t tsztBufSize >
+class CSysErr : public CSysErrPtr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize);
+    inline          CSysErr(                      );
+    // Construct define
+    inline          CSysErr( const long clErrCode );
     // Destruct define
-    inline virtual ~CErrPtr();
+    inline virtual ~CSysErr(                      );
 
 private:
     // Copy construct define
-    inline CErrPtr( const CErrPtr &obj );
+    inline CSysErr             ( const CSysErr &obj );
     // Assignment operation
-    inline CErrPtr& operator = ( const CErrPtr &obj );
+    inline CSysErr& operator = ( const CSysErr &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
-protected:
-    // Error string buffer
-    tchar*          mpBuf;
-    // Error string buffer size
-    size_t          msztBufSize;
-
-    // Error code
-    long            mlErrCode;
+private:
+    tchar       mszBuf[tsztBufSize];
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
-// Methods   : {{{
-public:
-    // Output sys defined error code
-    inline long     toCode();
-    inline tchar*   toString();
-    // Format output error message, 
-    //   %EC = sys err code, %ESM = sys err msg,
-    inline tchar*   Fmt( _vIn_ const tchar* const cpFmt = vT("%EC:%EM") );
-    // Check has error or not
-    inline bool     Check();
-    // Check error and throw erorr string
-    inline void     Throw();
-
-protected:
-    // Reload error infomation for different system
-    virtual tchar*  GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen );
-
-// }}} ! Methods
+};
+// }}} ! [ class CSysErr ]
+// ================================================================================================ //
 
 };
-// }}} ! [ class CErrPtr ]
-// ================================================================================================ //
-
-}
 // }}} End of namespace vm
 // ================================================================================================ //
-// elass realization :
-#include "CErrPtr.h.inl"
+// Class realization :
+#include "CSysErr.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __CERRPTR_H__
+
+#endif // ! __CSYSERR_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

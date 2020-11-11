@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        vm_util.h                                           == //
+// ==                                       v_funcs_io.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-11-11 13:48:41                                               == //
+// ==   Create Time          : 2020-11-11 13:01                                                  == //
+// ==   Modify Time          : 2020-11-11 13:01                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,24 +18,40 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __VM_UTIL_H__
-#define  __VM_UTIL_H__
+#ifndef  __V_FUNCS_IO_H__
+#define  __V_FUNCS_IO_H__
+
 
 // ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-
-// vm's function depend on included
-
-// vm's function files inlcuded
-#include <vm_tools/vm_util/CSingleton.hpp>
-#include <vm_tools/vm_util/CStdMap.hpp>
-#include <vm_tools/vm_util/CStdMapPtr.hpp>
-
-#include <vm_tools/vm_util/v_funcs_io.h>
-// }}} ! Include files
+#include <vm_cfgs.h>
+// }}}
 // ================================================================================================ //
 
-#endif // ! __VM_UTIL_H__
+
+// ================================================================================================ //
+// using namespace vm {{{
+namespace vm
+{
+
+// Output a formated string
+inline bool v_output( const tchar* const cpFmt, va_list& vList );
+// Output a formated string
+inline bool v_output( const tchar* const cpFmt,            ... );
+
+// Output a formated string line
+inline bool v_output_line( const tchar* const cpFmt,       ... );
+
+};
+// }}} End of namespace vm
+// ================================================================================================ //
+// Class realization :
+#include "v_funcs_io.h.inl"
+// ================================================================================================ //
+
+#endif // ! __V_FUNCS_IO_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

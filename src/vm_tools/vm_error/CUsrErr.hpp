@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util.h>
 // }}}
 // ================================================================================================ //
 
@@ -39,7 +40,7 @@ namespace vm
 // ================================================================================================ //
 // ==  Class CUsrErr : this class deal with usr defined error info                               == //
 // ------------------------------------------------------------------------------------------------ //
-template< class tType, size_t tsztBufSize >
+template< class tType >
 class CUsrErr
 // {{{
 {
@@ -47,9 +48,9 @@ class CUsrErr
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CUsrErr( const long long llErrCode ):mclSysErrCode( vLowLong(llErrCode) ),mclUsrErrCode( vHighLong(llErrCode) );
+    inline          CUsrErr( const long clErrCode );
     // Destruct define
-    inline virtual ~CUsrErr();
+    inline virtual ~CUsrErr( );
 
 private:
     // Copy construct define
@@ -61,19 +62,22 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    const long        mclSysErrCode;
-    const long        mclUsrErrCode;
-
-    tchar             mszBuf[tsztBufSize];
-
-    vm::CStdMap<long, std::string>      mpUsrErrInfoMap;
+    // Error code
+    const long                      mlErrCode;
+    // Error infomation
+    vm::CStdMap<long, vString>      mpUsrErrMap;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
+    // Output error code
+    inline long         toCode   ( void );
+    // Output error message
+    inline const tchar* toString ( void );
 
-    /* TODO Add class's Methods here */
+    // Regist a user defined message
+    inline bool         RegMsg    ( const long clErrCode, const vString cstrErrMsg );
 // }}} ! Methods
 
 };

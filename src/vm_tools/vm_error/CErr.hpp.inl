@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-10 10:29:32                                               == //
+// ==   Modify Time          : 2020-11-11 12:45:56                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,95 +26,130 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_string/v_funcs_str.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_string.h>
+#include <vm_tools/vm_util/CParser.h>
 // }}}
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CErr Construct && Destruct realization                                              == //
+// ==  Class CErr<tSysErr,tUsrErr> Construct && Destruct realization                             == //
 // ================================================================================================ //
-// [ Class CErr Construct && Destruct realization ] {{{
+// [ Class CErr<tSysErr,tUsrErr> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CErr::CErr()                                                                    == //
+// ==  Methord : CErr<tSysErr,tUsrErr>::CErr()                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-template< size_t tsztBufSize >
-inline vm::CErr<tsztBufSize>::CErr(  ) : vm::CErrPtr( errno, mszBuf, sizeof(mszBuf) ),mszBuf{0x00}
+template< class tSysErr, class tUsrErr >
+inline vm::CErr< tSysErr,tUsrErr >::CErr( const long long cllErrCode )
+    : tSysErr( vLowLLong(cllErrCode) ), tUsrErr( vHighLLong(cllErrCode) )
 // {{{
 {
 }
-// }}} End of func CErr::CErr()
+// }}} End of func CErr<tSysErr,tUsrErr>::CErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErr::CErr(...)                                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : # TODO : Add function brief #
-// ==  Return  :                  - [O] Nothing for return
-// ==  Params  : cllErrCode       - [X] error number
-template< size_t tsztBufSize >
-inline vm::CErr<tsztBufSize>::CErr( const long long cllErrCode ) : vm::CErrPtr( cllErrCode, mszBuf, sizeof(mszBuf) ),mszBuf{0x00}
-// {{{
-{
-}
-// }}} end of func CErr::CErr(...)
-// ================================================================================================ //
-
-
-// ================================================================================================ //
-// ==  Methord : virtual CErr::CErr()                                                            == //
+// ==  Methord : virtual CErr<tSysErr,tUsrErr>::~CErr()                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< size_t tsztBufSize >
-inline vm::CErr<tsztBufSize>::~CErr(  )
+template< class tSysErr, class tUsrErr >
+inline vm::CErr< tSysErr,tUsrErr >::~CErr(  )
 // {{{
 {
 }
-// }}} End of func CErr::~CErr()
+// }}} End of func CErr<tSysErr,tUsrErr>::~CErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CErr::CErr()                                                                    == //
+// ==  Methord : CErr<tSysErr,tUsrErr>::CErr( const CErr &obj )                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< size_t tsztBufSize >
-inline vm::CErr<tsztBufSize>::CErr( const CErr &obj )
+template< class tSysErr, class tUsrErr >
+inline vm::CErr< tSysErr,tUsrErr >::CErr( const CErr &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CErr::~CErr()
+// }}} End of func CErr<tSysErr,tUsrErr>::CErr()
 // ================================================================================================ //
 
-// }}} ![ Class CErr Construct && Destruct realization ]
+// }}} ![ Class CErr<tSysErr,tUsrErr> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CErr operator realization                                                           == //
+// ==  Class CErr<tSysErr,tUsrErr> operator realization                                          == //
 // ================================================================================================ //
-// [ Class CErr operator realization ] {{{
+// [ Class CErr<tSysErr,tUsrErr> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CErr::operator = ()                                                             == //
+// ==  Methord : CErr<tSysErr,tUsrErr>::operator = ()                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CErr&            - [O] this object
-template< size_t tsztBufSize >
-inline vm::CErr<tsztBufSize>& vm::CErr<tsztBufSize>::operator = ( const CErr &obj )
+// ==  Return  : CErr<tSysErr,tUsrErr>& - [O] this object
+template< class tSysErr, class tUsrErr >
+inline vm::CErr< tSysErr,tUsrErr >& vm::CErr< tSysErr,tUsrErr >::operator = ( const CErr &obj )
 // {{{
 {
-    mlErrCode = obj.mlErrCode;
-    vm::v_memcpy( mszBuf, sizeof(mszBuf), obj.mszBuf, sizeof(obj.mszBuf) );
     return *this;
 }
-// }}} End of func CErr::~CErr()
+// }}} End of func CErr<tSysErr,tUsrErr>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CErr operator realization ]
+// }}} ![ Class CErr<tSysErr,tUsrErr> operator realization ]
+// ================================================================================================ //
+
+
+// ================================================================================================ //
+// ==  Class CErr<tSysErr,tUsrErr> Functional realization                                        == //
+// ================================================================================================ //
+// [ Class CErr<tSysErr,tUsrErr> Functional realization ] {{{
+
+// ================================================================================================ //
+// ==  Methord : CErr<tSysErr,tUsrErr>::Fmt(...)                                                 == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Format output error message
+// ==  Return  : tchar*           - [O] formated error message
+// ==  Params  : cpFmt            - [I] error message format
+// ==            ...              - [I] error message format's paramters
+// ==  Note    : %ESC = system error code
+// ==            %ESM = system error message
+// ==            %EUC = user error code
+// ==            %EUM = user error message
+template< clas tSysErr, class tUsrErr >
+inline tchar* vm::CErr< tSysErr,tUsrErr >::Fmt( const tchar* const cpFmt, ... )
+// {{{ 
+{
+    tchar lszBuf[_V_CERR_BUF_SIZE_]  = {0x00};
+    vm::CPattern lpPattern1( vT("%ESC"), vAnyToStr(256,  mSysErr.toCode()) );
+    vm::CPattern lpPattern2( vT("%ESM"), vAnyToStr(256,mSysErr.toString()) );
+
+    vm::CPattern loPattern3( vT("%EUC"), vAnyToStr(256,  mUsrErr.toCode()) );
+    vm::CPattern lpPattern4( vT("%EUM"), vAnyToStr(256,mUsrErr.toString()) );
+
+    vm::CParser  loParser( vT('%'), cpFmt );
+    loParser.Regist( loPattern1 );
+    loParser.Regist( loPattern2 );
+    loParser.Regist( loPattern3 );
+    loParser.Regist( loPattern4 );
+
+    loParser.Parse( lszBuf, sizeof(lszBuf) );
+
+    va_list lvList;
+    va_start( lszBuf, lvList );
+    vm::v_vsprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
+    va_end( lvList );
+
+    return mszBuf;
+}
+// }}} end of func CErr<tSysErr,tUsrErr>::Fmt(...)
+// ================================================================================================ //
+
+// }}} ![ Class CErr<tSysErr,tUsrErr> Functional realization ]
 // ================================================================================================ //
 
 #endif // ! __CERR_HPP_INL__

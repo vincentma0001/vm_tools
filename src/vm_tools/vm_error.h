@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:41:17                                               == //
-// ==   Modify Time          : 2020-11-06 11:39:07                                               == //
+// ==   Modify Time          : 2020-11-11 12:46:42                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,8 +27,8 @@
 // vm's function depend on included
 
 // vm's function files inlcuded
-#include <vm_tools/vm_error/CErrPtr.h>
-#include <vm_tools/vm_error/CErr.hpp>
+#include <vm_tools/vm_error/CSysErrPtr.h>
+#include <vm_tools/vm_error/CSysErr.hpp>
 
 //#include <vm_tools/vm_error/CWinErr.hpp>
 

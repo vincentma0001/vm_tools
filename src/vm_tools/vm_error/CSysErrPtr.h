@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                          CErr.h                                            == //
+// ==                                       CSysErrPtr.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 10:45:11                                               == //
-// ==   Modify Time          : 2020-11-11 12:22:04                                               == //
+// ==   Create Time          : 2020-10-05 09:29:11                                               == //
+// ==   Modify Time          : 2020-11-11 13:53:01                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CERR_H__
-#define  __CERR_H__
+#ifndef  __CSYSERRPTR_H__
+#define  __CSYSERRPTR_H__
 
 
 // ================================================================================================ //
@@ -27,7 +27,6 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include "CSysErr.hpp"
 // }}}
 // ================================================================================================ //
 
@@ -36,73 +35,66 @@
 // using namespace vm {{{
 namespace vm
 {
-// ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    _V_CERR_BUF_SIZE_
-#   define _V_CERR_BUF_SIZE_ 1024
-#endif // !_V_CERR_BUF_SIZE_
-
-#ifndef    vErrThrow
-#   define vErrThrow(tBufSize, eErrCode)        vm::CErr<tBufSize>(eErrCode).Throw()
-#endif // !vErrThrow
-
-#ifndef    vErr
-#   define vErr(tSysErr,tUsrErr,llErrCode)      vm::CErr<tSysErr,tUsrErr>(llErrCode)
-#endif // !vErr
-// }}} ! Macrodefs
 
 // ================================================================================================ //
-// ==  Class CErr : this class deal with error operattion                                        == //
+// ==  Class CSysErrPtr : This class deal with sys error info                                    == //
 // ------------------------------------------------------------------------------------------------ //
-template< class tSysErr, class tUsrErr >
-class CErr
+class CSysErrPtr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CErr( const long long cllErrCode );
+    inline          CSysErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize);
     // Destruct define
-    inline virtual ~CErr();
+    inline virtual ~CSysErrPtr();
 
 private:
     // Copy construct define
-    inline CErr             ( const CErr &obj );
+    inline CSysErrPtr( const CSysErrPtr &obj );
     // Assignment operation
-    inline CErr& operator = ( const CErr &obj );
+    inline CSysErrPtr& operator = ( const CSysErrPtr &obj );
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
-private:
-    tchar               mszBuf[_V_CERR_BUF_SIZE_];
+protected:
+    // Error string buffer
+    tchar*          mpBuf;
+    // Error string buffer size
+    size_t          msztBufSize;
 
-    tSysErr             mSysErr;
-    tUsrErr             mUsrErr;
+    // Error code
+    long            mlErrCode;
 // }}} ! Members
+
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // Format output error message, 
-    //      $ESC = sys error code, $ESM = sys error message
-    //      $EUC = usr error code, $EUM = use error message
-    tchar* Fmt( const tchar* const cpFmt=vT("%ESC:%ESM - %EUC:%EUM"), ... );
+    // Output sys defined error code
+    inline long     toCode();
+    // Output sys defined error code
+    inline tchar*   toString();
+
+protected:
+    // Reload error infomation for different system
+    virtual tchar*  GetErrStr( tchar* const pBuf, const size_t csztBufSize, size_t& sztStrLen );
+
 // }}} ! Methods
 
-
 };
-// }}} ! [ class CErr ]
+// }}} ! [ class CSysErrPtr ]
 // ================================================================================================ //
 
-} 
+}
 // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
-#include "CErr.hpp.inl"
+// elass realization :
+#include "CSysErrPtr.h.inl"
 // ================================================================================================ //
 
-#endif // ! __CERR_H__
+#endif // ! __CSYSERRPTR_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

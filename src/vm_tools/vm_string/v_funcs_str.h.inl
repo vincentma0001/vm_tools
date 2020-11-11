@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-09 21:35:32                                               == //
+// ==   Modify Time          : 2020-11-11 14:11:55                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -1227,11 +1227,13 @@ size_t vm::v_strerrno ( _vIn_ const long long cllErrCode, _vOt_ tchar* const pBu
 #elif      ( _V_SYS_ == _V_LUX_ )
     // Get errno string
     vm::v_memzero( pBuf, csztBufSize );
-    char* lpRet = vStrErrNo_s( (int)cllErrCode, pBuf, csztBufSize );
+    char* lpRet = vStrErrNo( (int)cllErrCode );
     if( lpRet == nullptr )
     {
         vm::v_memzero( pBuf, csztBufSize );
     }
+    vm::v_strcpy( pBuf, csztBufSize, lpRet );
+
     // Get errno string length and return
     size_t lsztErrStrlen = vStrlen( pBuf );
     return lsztErrStrlen;

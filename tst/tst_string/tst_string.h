@@ -68,7 +68,8 @@ vTry
 
     // Add unit test coder here
     vm::CString<1024>  lstrString;
-    
+    lstrString.Rpl( vT("This is a test! %EUC"), vT("%EUC"), vT("10086") );
+    vCout << vT("Rpl Tst : ") << *lstrString << vEndl;
 
 vCatch(...)
     return false;
@@ -84,9 +85,9 @@ UT_FUNC_ENDED
 // ================================================================================================ //
 // [ tst_frame_cstr ] {{{
 UT_FRAME_BEGIN ( tst_frame_cstr )
-UT_FRAME_REGIST( ut_cstr_3 )
-UT_FRAME_REGIST( ut_cstr_2 )
 UT_FRAME_REGIST( ut_cstr_1 )
+UT_FRAME_REGIST( ut_cstr_2 )
+UT_FRAME_REGIST( ut_cstr_3 )
 UT_FRAME_ENDED
 // }}} ![ tst_frame_cstr ]
 // ================================================================================================ //

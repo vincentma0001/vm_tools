@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                      CUsrErr.hpp.inl                                       == //
+// ==                                      CSysErr.hpp.inl                                       == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-11 11:07                                                  == //
+// ==   Create Time          : 2020-11-11 10:46                                                  == //
+// ==   Modify Time          : 2020-11-11 10:46                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,17 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CUSRERR_HPP_INL__
-#define  __CUSRERR_HPP_INL__
+#ifndef  __CSYSERR_HPP_INL__
+#define  __CSYSERR_HPP_INL__
+
+
+// ================================================================================================ //
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+#include <vm_cfgs.h>
+// }}}
+// ================================================================================================ //
 
 
 // ================================================================================================ //
@@ -27,139 +36,105 @@
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> Construct && Destruct realization                                    == //
+// ==  Class CSysErr<tsztBufSize> Construct && Destruct realization                              == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> Construct && Destruct realization ] {{{
+// [ Class CSysErr<tsztBufSize> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::CUsrErr()                                                       == //
+// ==  Methord : CSysErr<tsztBufSize>::CSysErr()                                                 == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include "vm_tools/vm_error/CUsrErr.hpp"
-template< class tType >
-inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
-    : mlErrCode( clErrCode )
+template< size_t tsztBufSize >
+inline vm::CSysErr< tsztBufSize >::CSysErr(  )
+    : vm::CSysErrPtr( errno, mszBuf, sizeof(mszBuf) ), mszBuf{0x00}
 // {{{
 {
 }
-// }}} End of func CUsrErr<tType>::CUsrErr()
+// }}} End of func CSysErr<tsztBufSize>::CSysErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CUsrErr<tType>::~CUsrErr()                                              == //
+// ==  Methord : CSysErr<tsztBufSize>::CSysErr(...)                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Construct define
+template< size_t tsztBufSize >
+inline  vm::CSysErr< tsztBufSize >::CSysErr( const long clErrCode )
+    : vm::CSysErrPtr( clErrCode, mszBuf, sizeof(mszBuf) ), mszBuf{0x00}
+// {{{ 
+{
+}
+// }}} end of func CSysErr<tsztBufSize>::CSysErr(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : virtual CSysErr<tsztBufSize>::~CSysErr()                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< class tType >
-inline vm::CUsrErr< tType >::~CUsrErr(  )
+template< size_t tsztBufSize >
+inline vm::CSysErr< tsztBufSize >::~CSysErr(  )
 // {{{
 {
 }
-// }}} End of func CUsrErr<tType>::~CUsrErr()
+// }}} End of func CSysErr<tsztBufSize>::~CSysErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::CUsrErr( const CUsrErr &obj )                                   == //
+// ==  Methord : CSysErr<tsztBufSize>::CSysErr( const CSysErr &obj )                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< class tType >
-inline vm::CUsrErr< tType >::CUsrErr( const CUsrErr &obj )
+template< size_t tsztBufSize >
+inline vm::CSysErr< tsztBufSize >::CSysErr( const CSysErr &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CUsrErr<tType>::CUsrErr()
+// }}} End of func CSysErr<tsztBufSize>::CSysErr()
 // ================================================================================================ //
 
-// }}} ![ Class CUsrErr<tType> Construct && Destruct realization ]
+// }}} ![ Class CSysErr<tsztBufSize> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> operator realization                                                 == //
+// ==  Class CSysErr<tsztBufSize> operator realization                                           == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> operator realization ] {{{
+// [ Class CSysErr<tsztBufSize> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::operator = ()                                                   == //
+// ==  Methord : CSysErr<tsztBufSize>::operator = ()                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CUsrErr<tType>&  - [O] this object
-template< class tType >
-inline vm::CUsrErr< tType >& vm::CUsrErr< tType >::operator = ( const CUsrErr &obj )
+// ==  Return  : CSysErr<tsztBufSize>& - [O] this object
+template< size_t tsztBufSize >
+inline vm::CSysErr< tsztBufSize >& vm::CSysErr< tsztBufSize >::operator = ( const CSysErr &obj )
 // {{{
 {
+    vm::v_memcpy( mszBuf, sizeof(mszBuf), obj.mszBuf, sizeof(obj.mszBuf) );
+    mlErrCode = obj.mlErrCode;
     return *this;
 }
-// }}} End of func CUsrErr<tType>::operator=()
+// }}} End of func CSysErr<tsztBufSize>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CUsrErr<tType> operator realization ]
+// }}} ![ Class CSysErr<tsztBufSize> operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> Functional realization                                               == //
+// ==  Class CSysErr<tsztBufSize> Functional realization                                         == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> Functional realization ] {{{
+// [ Class CSysErr<tsztBufSize> Functional realization ] {{{
 
-// ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::toCode(...)                                                     == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output error code
-// ==  Return  : long             - [O] error code
-template< class tType >
-inline long vm::CUsrErr< tType >::toCode( void )
-// {{{ 
-{
-    return mlErrCode;
-}
-// }}} end of func CUsrErr<tType>::toCode(...)
-// ================================================================================================ //
 
-// ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::toString(...)                                                   == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output error message
-// ==  Return  : const tchar*     - [O] error message
-template< class tType >
-inline const tchar* vm::CUsrErr< tType >::toString( void )
-// {{{ 
-{
-        vString* lpStr = mpUsrErrMap.Find( mlErrCode );
-        if( lpStr==nullptr )
-            return nullptr;
-    
-        return lpStr->c_str();
-    
-}
-// }}} end of func CUsrErr<tType>::toString(...)
-// ================================================================================================ //
 
-// ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::RegMsg(...)                                                     == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Regist a user defined message
-// ==  Return  : bool             - [O] true  - regist sucess
-// ==                                   false - regist failed
-// ==  Params  : clErrCode        - [I] error code
-// ==            cstrErrMsg       - [I] error messaage
-template< class tType >
-inline bool vm::CUsrErr< tType >::RegMsg( const long clErrCode, const vString cstrErrMsg )
-// {{{ 
-{
-    return mpUsrErrMap.Insert( clErrCode, cstrErrMsg );
-}
-// }}} end of func CUsrErr<tType>::RegMsg(...)
-// ================================================================================================ //
-
-// }}} ![ Class CUsrErr<tType> Functional realization ]
+// }}} ![ Class CSysErr<tsztBufSize> Functional realization ]
 // ================================================================================================ //
 
 // }}} ! Comment info
 // ================================================================================================ //
 
 
-#endif // ! __CUSRERR_HPP_INL__
+#endif // ! __CSYSERR_HPP_INL__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
