@@ -36,7 +36,65 @@
 // using namespace vm {{{
 namespace vm
 {
+// ------------------------------------------------------------------------------------------------ //
+// Macrodefs : {{{
+#ifndef    vAnyToStr
+#   define vAnyToStr(tsztBufSize,val)           vm::CAny<tsztBufSize>( val ).toStr()
+#endif // !vAnyToStr
 
+#ifndef    vStrToChar
+#   define vStrToChar(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toChar()
+#endif // !vStrToChar
+
+#ifndef    vStrtoBool
+#   define vStrtoBool(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toBool()
+#endif // !vStrtoBool
+
+#ifndef    vStrToSize
+#   define vStrToSize(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toSize()
+#endif // !vStrToSize
+
+#ifndef    vStrToUChar
+#   define vStrToUChar(tsztBufSize,str)         vm::CAny<tsztBufSize>( str ).toUChar()
+#endif // !vStrToUChar
+
+#ifndef    vStrToInt
+#   define vStrToInt(tsztBufSize,str)           vm::CAny<tsztBufSize>( str ).toInt()
+#endif // !vStrToInt
+
+#ifndef    vStrToUInt
+#   define vStrToUInt(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toUInt()
+#endif // !vStrToUInt
+
+#ifndef    vStrToLong
+#   define vStrToLong(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toLong()
+#endif // !vStrToLong
+
+#ifndef    vStrToULong
+#   define vStrToULong(tsztBufSize,str)         vm::CAny<tsztBufSize>( str ).toULong()
+#endif // !vStrToULong
+
+#ifndef    vStrToLLong
+#   define vStrToLLong(tsztBufSize,str)         vm::CAny<tsztBufSize>( str ).toLLong()
+#endif // !vStrToLLong
+
+#ifndef    vStrToULLong
+#   define vStrToULLong(tsztBufSize,str)        vm::CAny<tsztBufSize>( str ).toULLong()
+#endif // !vStrToULLong
+
+#ifndef    vStrToFloat
+#   define vStrToFloat(tsztBufSize,str)         vm::CAny<tsztBufSize>( str ).toFloat()
+#endif // !vStrToFloat
+
+#ifndef    vStrToDouble
+#   define vStrToDouble(tsztBufSize,str)        vm::CAny<tsztBufSize>( str ).toDouble()
+#endif // !vStrToDouble
+
+#ifndef    vStrToLDouble
+#   define vStrToLDouble (tsztBufSize,str)      vm::CAny<tsztBufSize>( str ).toLDouble()
+#endif // !vStrToLDouble
+
+// }}} ! Macrodefs
 // ================================================================================================ //
 // ==  Class CAny : This class deal with convent operation between string and other types        == //
 // ------------------------------------------------------------------------------------------------ //

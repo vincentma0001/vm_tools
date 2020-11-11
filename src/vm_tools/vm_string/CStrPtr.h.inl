@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 16:25:05                                               == //
-// ==   Modify Time          : 2020-11-05 09:48:42                                               == //
+// ==   Modify Time          : 2020-11-11 10:29:36                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -29,6 +29,7 @@
 #include <vm_cfgs.h>
 #include "v_funcs_mem.h"
 #include "v_funcs_str.h"
+#include "vm_tools/vm_string/CStrPtr.h"
 // }}}
 // ================================================================================================ //
 
@@ -272,7 +273,7 @@ inline bool vm::CStrPtr::operator == ( const tchar* const cpSrc )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get buffer's address
 // ==  Return  : const tchar*     - [O] Buffer's address
-inline const tchar* vm::CStrPtr::c_str(  )
+inline const tchar* vm::CStrPtr::c_str( void )
 // {{{
 {
     return (const tchar*)mpBuf;
@@ -285,7 +286,7 @@ inline const tchar* vm::CStrPtr::c_str(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get buffer's address
 // ==  Return  : tchar*           - [O] Buffer's address
-inline tchar* vm::CStrPtr::str(  )
+inline tchar* vm::CStrPtr::str( void )
 // {{{
 {
     return mpBuf;
@@ -298,7 +299,7 @@ inline tchar* vm::CStrPtr::str(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Clean buffer's data
 // ==  Return  : void             - [O] Nothing for return
-inline void vm::CStrPtr::clear(  )
+inline void vm::CStrPtr::clear( void )
 // {{{
 {
     vm::v_memzero( mpBuf, msztBufSize );
@@ -311,7 +312,7 @@ inline void vm::CStrPtr::clear(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get buffer's size
 // ==  Return  : size_t           - [O] Buffer's size
-inline size_t vm::CStrPtr::size(  )
+inline size_t vm::CStrPtr::size( void )
 // {{{
 {
     return msztBufSize;
@@ -324,7 +325,7 @@ inline size_t vm::CStrPtr::size(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get string's length in buffer
 // ==  Return  : size_t           - [O] String's length in buffer
-inline size_t vm::CStrPtr::len(  )
+inline size_t vm::CStrPtr::len( void )
 // {{{
 {
     return vStrlen( mpBuf );
@@ -373,6 +374,31 @@ inline tchar* vm::CStrPtr::Cat( const tchar* cpSrc, const size_t csztSrcLen )
     return vm::v_strncat(mpBuf, msztBufSize, cpSrc, csztSrcLen);
 }
 // }}} end of func CStrPtr::Cat(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrPtr::Rpl(...)                                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Replace cpOldStr in cpFmt with cpNewStr, New string will be saved in class CStrPtr
+// ==  Return  : tchar*           - [O] New string
+// ==  Params  : cpFmt            - [X] # TODO : Add comment for cpFmt #
+// ==            cpOldStr         - [X] # TODO : Add comment for cpOldStr #
+// ==            cpNewStr         - [X] # TODO : Add comment for cpNewStr #
+inline tchar* vm::CStrPtr::Rpl( const tchar* const cpFmt, const tchar* cpOldStr, const tchar* const cpNewStr )
+// {{{
+{
+    mllErrCode = emRet::emSuccess;
+
+    size_t lsztRet = vm::v_str_replace( mpBuf   , msztBufSize      ,
+                                        cpFmt   , vStrlen(cpFmt)   ,
+                                        cpOldStr, vStrlen(cpOldStr),
+                                        cpNewStr, vStrlen(cpNewStr) );
+    if( lsztRet == 0 )
+        mllErrCode = vMakeLLong( emRet::emErrRplFaield, errno );
+    
+    return mpBuf;
+}
+// }}} end of func CStrPtr::Rpl(...)
 // ================================================================================================ //
 
 // ================================================================================================ //

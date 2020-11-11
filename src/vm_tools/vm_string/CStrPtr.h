@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:04                                               == //
-// ==   Modify Time          : 2020-11-05 09:13:05                                               == //
+// ==   Modify Time          : 2020-11-11 10:28:37                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -36,13 +36,28 @@
 // using namespace vm {{{
 namespace vm
 {
-
 // ================================================================================================ //
 // ==  Class CStrPtr : this class deal with string's operations                                  == //
 // ------------------------------------------------------------------------------------------------ //
 class CStrPtr
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // enum emRet : this enum define return information for CStrPtr
+    enum emRet
+    // {{{
+    {
+        emSuccess = 0,
+
+        emError         = vMaxsLong -1,
+        emErrRplFaield  = emError   -1,
+
+        emWarn          = vMaxsLong -20,
+    };
+    // }}} End of def enum emRet
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
@@ -85,9 +100,12 @@ public:
 // Menbers   : {{{
 protected:
     // String buffer's address
-    tchar*   mpBuf;
+    tchar*      mpBuf;
     // String buffer's size
-    size_t   msztBufSize;
+    size_t      msztBufSize;
+
+    // Error code
+    long long   mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
@@ -95,33 +113,31 @@ protected:
 public:
     // [ normal func ] {{{
     // Get buffer's address
-    inline const tchar* c_str();
+    inline const tchar* c_str( void );
     // Get buffer's address
-    inline       tchar* str  ();
+    inline       tchar* str  ( void );
 
     // Clean buffer's data
-    inline void   clear ();
+    inline void         clear( void );
 
     // Get buffer's size
-    inline size_t size  ();
+    inline size_t       size ( void );
     // Get string length in buffer
-    inline size_t len   ();
+    inline size_t       len  ( void );
     // }}}
 
 public:
-    // [ At func ] {{{
     // Get buffer offset's address
     inline tchar* At    ( const size_t csztBufOffset );
-    // }}}
 
-    // [ Cat func ] {{{
     // Cat cpSrc to buffer
     inline tchar* Cat   ( const tchar* cpSrc );
     // Cat cpSrc to buffer, src length is csztSrcLen
     inline tchar* Cat   ( const tchar* cpSrc, const size_t csztSrcLen );
-    // }}}
 
-    // [ Fmt func ] {{{
+    // Replace cpOldStr in cpFmt with cpNewStr, New string will be saved in class CStrPtr
+    inline  tchar* Rpl  ( const tchar* const cpFmt, const tchar* const cpOldStr, const tchar* const cpNewStr );
+
     // Format string
     inline tchar* Fmt   (                            const tchar* const cpFmt,            ...);
     // Format string
@@ -135,9 +151,7 @@ public:
     inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt,            ...);
     // Format string
     inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
-    // }}}
 
-    // [ Cmp func ] {{{
     // Compare buffer data with cpSrc. case sensitive
     inline bool   Cmp   ( const tchar* const cpSrc,                          const size_t csztBufOffset = 0 );
     // Compare buffer data with cpSrc, compare data length is csztDataLen. case sensitive
@@ -146,30 +160,22 @@ public:
     inline bool   iCmp  ( const tchar* const cpSrc,                          const size_t csztBufOffset = 0 );
     // Compare buffer data with cpSrc, compare data length is csztDataLen. case insensitive
     inline bool   iCmp  ( const tchar* const cpSrc, const size_t csztSrcLen, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Sub func ] {{{
     // Get substring's address in buffer
     inline const tchar* Sub ( const tchar* const cpSubStr, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ SubStr func ] {{{
     // Put substring in cpSrc between first letter ciBFlag with last letter ciEFlag.
     inline size_t SubStr   ( const tchar* const cpSrc, const int ciBFlag=vStrPosBegin, const int ciEFlag=vStrPosEnded, const size_t csztBufOffset=0 );
     // Put substring in cpSrc between first letter ciBFlag with first letter ciEFlag
     inline size_t SubStr_f ( const tchar* const cpSrc, const int ciBFlag=vStrPosBegin, const int ciEFlag=vStrPosEnded, const size_t csztBufOffset=0 );
     // Put substring in cpSrc between last letter ciBFlag with last letter ciEFlag
     inline size_t SubStr_l ( const tchar* const cpSrc, const int ciBFlag=vStrPosBegin, const int ciEFlag=vStrPosEnded, const size_t csztBufOffset=0 );
-    // }}}
 
-    // [ Find func ] {{{
     // Find first ciFlag in buffer
     inline const tchar* Find  ( const int ciFlag, const size_t csztBufOffset = 0 );
     // Find last  ciFlag in buffer
     inline const tchar* rFind ( const int ciFlag, const size_t csztBufOffset = 0 );
-    // }}}
 
-    // [ Copy func ] {{{
     // Copy cpSrc string to buffer
     inline size_t CopyFm( const tchar* cpSrc,                          const size_t csztBufOffset = 0 );
     // Copy cpSrc string to buffer, string length is csztSrcLen
@@ -179,7 +185,6 @@ public:
     inline size_t CopyTo( tchar* const  pDst, const size_t csztDstSize,                           const size_t csztBufOffset = 0 );
     // Copy buffer string to dst buffer, string length is csztDataLen
     inline size_t CopyTo( tchar* const  pDst, const size_t csztDstSize, const size_t csztDataLen, const size_t csztBufOffset = 0 );
-    // }}}
 // }}} ! Methods
 
 };
