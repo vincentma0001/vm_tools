@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-04 10:54:10                                               == //
+// ==   Modify Time          : 2020-11-11 15:59:35                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -51,11 +51,11 @@ public:
     // Construct define
     inline          CPattern( const tchar* const cpFlg, const tchar* const cpRpl );
     // Destruct define
-    inline virtual ~CPattern();
+    inline virtual ~CPattern(                                                    );
 
 private:
     // Copy construct define
-    inline CPattern( const CPattern &obj );
+    inline CPattern             ( const CPattern &obj );
     // Assignment operation
     inline CPattern& operator = ( const CPattern &obj );
 // }}} ! Construct & Destruct

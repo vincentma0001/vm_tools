@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-11 12:45:56                                               == //
+// ==   Modify Time          : 2020-11-11 16:03:51                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,7 +26,6 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#include "vm_tools/vm_string/v_funcs_str.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_string.h>
 #include <vm_tools/vm_util/CParser.h>

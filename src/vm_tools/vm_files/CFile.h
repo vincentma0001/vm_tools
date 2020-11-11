@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:10:23                                               == //
-// ==   Modify Time          : 2020-11-08 11:33:39                                               == //
+// ==   Modify Time          : 2020-11-11 16:06:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -141,18 +141,18 @@ public:
     // }}}
 
     // [ Put funcs ] {{{
-// ==  Brief   : Write a tchar letter to file stream
+    // Write a tchar letter to file stream
     inline bool Put    ( _vIn_ const tchar           cVal );
-// ==  Brief   : Write a char letter to file stream
+    // Write a char letter to file stream
     inline bool Put_c  ( _vIn_ const char            cVal );
-// ==  Brief   : Write a wchar letter to file stream
+    // Write a wchar letter to file stream
     inline bool Put_w  ( _vIn_ const wchar_t         cVal );
 
-// ==  Brief   : Write a tchar string to file stream
+    // Write a tchar string to file stream
     inline bool Put    ( _vIn_ const tchar*         cpStr );
-// ==  Brief   : Write a tchar string to file stream
+    // Write a tchar string to file stream
     inline bool Put_c  ( _vIn_ const char*    const cpStr );
-// ==  Brief   : Write a wchar string to file stream
+    // Write a wchar string to file stream
     inline bool Put_w  ( _vIn_ const wchar_t* const cpStr );
     // }}}
 

@@ -35,7 +35,6 @@
 // ==  Methord : CUsrErr<tType>::CUsrErr()                                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-#include "vm_tools/vm_error/CUsrErr.hpp"
 template< class tType >
 inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
     : mlErrCode( clErrCode )
