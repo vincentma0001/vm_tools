@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:48:08                                               == //
-// ==   Modify Time          : 2020-11-12 12:20:36                                               == //
+// ==   Modify Time          : 2020-11-12 15:40:09                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_string/CStrPtr.h>
 // }}}
 // ================================================================================================ //
 
@@ -47,7 +48,7 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const size_t csztFlgLen
                                const tchar* const cpRpl, const size_t csztRplLen  )
                              : mpFlg(cpFlg), msztFlgLen(csztFlgLen),
                                mpRpl(cpRpl), msztRplLen(csztRplLen),
-                               mpPattern(0)
+                               mpPattern(nullptr)
 // {{{
 {
 }
@@ -59,9 +60,9 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const size_t csztFlgLen
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CPattern::CPattern( const tchar* const cpFlg, const tchar* const cpRpl )
-                             : mpFlg(cpFlg), msztFlgLen(vStrlen(cpFlg),
+                             : mpFlg(cpFlg), msztFlgLen(vStrlen(cpFlg)),
                                mpRpl(cpRpl), msztRplLen(vStrlen(cpRpl)),
-                               mpPattern(0)
+                               mpPattern(nullptr)
 // {{{
 {
 }
@@ -158,8 +159,9 @@ inline vm::CPattern*& vm::CPattern::GetLast(  )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt, const size_t csztFmtLen)
-                           : mszSpecifier(cszSpecifier), mpPatterns(nullptr),
-                             mpFmt(const_cast<tchar*>(mpFmt)), msztFmtLen(csztFmtLen) 
+                           : mszSpecifier(cszSpecifier),
+                             mpFmt(cpFmt), msztFmtLen(csztFmtLen),
+                             mpPatterns(nullptr)
 // {{{
 {
 }
@@ -171,8 +173,9 @@ inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt,
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt )
-                           : mszSpecifier(cszSpecifier), mpPatterns(nullptr),
-                             mpFmt(const_cast<tchar*>(mpFmt)), msztFmtLen(vStrlen(cpFmt))
+                           : mszSpecifier(cszSpecifier),
+                             mpFmt(cpFmt), msztFmtLen(vStrlen(cpFmt)),
+                             mpPatterns(nullptr)
 // {{{
 {
 }
@@ -249,7 +252,7 @@ inline void vm::CParser::Regist( vm::CPattern& oFlag )
     }; // End of if(...)
 
     vm::CPattern*& lpFlag = mpPatterns->GetLast();
-    lpFlag = &oFlag
+    lpFlag = &oFlag;
 }
 // }}} end of func CParser::Regist(...)
 // ================================================================================================ //
@@ -265,15 +268,15 @@ inline tchar* vm::CParser::Parse( tchar* const pOutBuf, const size_t csztOutBufL
 // {{{
 {
     // 准备解析数据
-    vm::CStrPtr loFmt(mpFmt, msztFmtLen);
+    vm::CStrPtr loFmt(const_cast<tchar*>(mpFmt), msztFmtLen);
     size_t lsztFmtOffSet = 0;
-    tchar* lpFmtEnd      = mpFmt + msztFmtLen;
+    tchar* lpFmtEnd      = const_cast<tchar*>(mpFmt) + msztFmtLen;
 
     vm::CStrPtr loOutBuf(pOutBuf, csztOutBufLen);
     size_t lsztOutBufOffset = 0;
 
     // 查找第一个标识符，若查找不到则返回。
-    tchar* lpPos = loFmt.Find(mszSpecifier);
+    tchar* lpPos = const_cast<tchar*>(loFmt.Find(mszSpecifier));
     if (lpPos == nullptr) 
         return nullptr;
 
@@ -306,7 +309,7 @@ inline tchar* vm::CParser::Parse( tchar* const pOutBuf, const size_t csztOutBufL
         } // End of while ( lpPattern ...
 
         // 查找下一个标识符所在的位置
-        tchar* lpNextPos = loFmt.Find(lsztFmtOffSet, mszSpecifier);
+        tchar* lpNextPos = const_cast<tchar*>(loFmt.Find(lsztFmtOffSet, mszSpecifier));
         if (lpNextPos != lpPos)
         {
             // 将当前标识符与下一个标识符中的数据复制到目标数据中

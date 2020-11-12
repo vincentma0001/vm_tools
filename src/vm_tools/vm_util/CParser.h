@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-12 12:22:17                                               == //
+// ==   Modify Time          : 2020-11-12 15:30:30                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -64,11 +64,11 @@ private:
 // Menbers   : {{{
 private:
     // Flag string's address
-    const tchar*    mpFlg;
+    const tchar*          mpFlg;
     // Flag string's length
     size_t          msztFlgLen;
     // Replace string's address
-    const tchar*    mpRpl;
+    const tchar*          mpRpl;
     // Replace string's length
     size_t          msztRplLen;
 
@@ -83,6 +83,11 @@ private:
     // Get last Pattern in pattern list
     CPattern*&      GetLast();
 // }}} ! Methods
+
+// ------------------------------------------------------------------------------------------------ //
+// Friendefs : {{{
+friend class CParser;
+// }}} ! Friendefs
 
 };
 // }}} ! [ class CPattern ]
@@ -115,7 +120,7 @@ private:
 // Menbers   : {{{
 private:
     // Format specify letter
-    const tchar     mszSpecifier;
+    tchar           mszSpecifier;
 
     // Format string's address
     const tchar*    mpFmt;
