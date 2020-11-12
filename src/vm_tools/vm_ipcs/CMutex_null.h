@@ -51,8 +51,8 @@ public:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    void Enter(){};
-    void Leave(){};
+    inline void Enter(){};
+    inline void Leave(){};
 // }}} ! Methods
 
 };
