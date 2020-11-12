@@ -27,6 +27,8 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_memory/v_funcs_mem.h>
+#include <vm_tools/vm_util/v_funcs_io.h>
 // }}}
 // ================================================================================================ //
 
@@ -290,7 +292,7 @@ template< size_t tsztBufSize >
 inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::UShort( const size_t csztWidth, const bool bFillZero, const bool bLeft )
 // {{{ 
 {
-    MemZero(mszBuf);
+    vMemZero(mszBuf);
 
     size_t lsztOffset = 0;
     mszBuf[lsztOffset++] = vT('%');
@@ -655,24 +657,24 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Double(  )
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CPrFmt<tsztBufSize>::Double(...)                                                == //
+// ==  Methord : CPrFmt<tsztBufSize>::LDouble(...)                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Create a print format for float 
 // ==  Return  : CPrFmt&          - [O] this object
 template< size_t tsztBufSize >
-inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Double(  )
+inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::LDouble(  )
 // {{{ 
 {
     vMemZero(mszBuf);
 
     size_t lsztOffset = 0;
     mszBuf[lsztOffset++] = vT('%');
-    mszBuf[lsztOffset++] = vT('l');
+    mszBuf[lsztOffset++] = vT('L');
     mszBuf[lsztOffset++] = vT('f');
 
     return *this;
 }
-// }}} end of func CPrFmt<tsztBufSize>::Double(...)
+// }}} end of func CPrFmt<tsztBufSize>::LDouble(...)
 // ================================================================================================ //
 
 
