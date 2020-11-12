@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 16:25:05                                               == //
-// ==   Modify Time          : 2020-11-11 20:33:07                                               == //
+// ==   Modify Time          : 2020-11-12 10:12:20                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util/v_funcs_io.h>
 #include "v_funcs_str.h"
 // }}}
 // ================================================================================================ //
@@ -385,14 +386,14 @@ inline tchar* vm::CStrPtr::Cat( const tchar* cpSrc, const size_t csztSrcLen )
 inline tchar* vm::CStrPtr::Rpl( const tchar* const cpFmt, const tchar* cpOldStr, const tchar* const cpNewStr )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     size_t lsztRet = vm::v_str_replace( mpBuf   , msztBufSize      ,
                                         cpFmt   , vStrlen(cpFmt)   ,
                                         cpOldStr, vStrlen(cpOldStr),
                                         cpNewStr, vStrlen(cpNewStr) );
     if( lsztRet == 0 )
-        mllErrCode = vMakeLLong( emRet::emErrRplFaield, errno );
+        mllErrCode = vMakeLLong( emRet::emErrRplFailed, errno );
     
     return mpBuf;
 }
@@ -451,9 +452,13 @@ inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const 
 inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
+    mllErrCode = emRet::emSucess;
+
     tchar* lpPos = mpBuf + csztBufOffset;
-    //int    liRet = vm::v_vsprintf(lpPos, msztBufSize, cpFmt, vList);
-    vm::v_vsprintf(lpPos, msztBufSize, cpFmt, vList);
+    int liRet = vm::v_sprintf(lpPos, msztBufSize, cpFmt, vList);
+    if( liRet < 0 )
+        mllErrCode = vMakeLLong( emRet::emErrCopyFmFailed, errno );
+
     return lpPos;
 }
 // }}} end of func CStrPtr::Fmt (...)
@@ -466,15 +471,15 @@ inline tchar* vm::CStrPtr::Fmt ( const size_t csztBufOffset, const tchar* const 
 // ==  Return  : int              - [O] New string's length
 // ==  Params  : cpFmt            - [I] String's format
 // ==            ...              - [I] Format paramters
-inline int vm::CStrPtr::Fmt2 ( const tchar* const cpFmt, ... )
+inline size_t vm::CStrPtr::Fmt2 ( const tchar* const cpFmt, ... )
 // {{{
 {
     va_list vList;
     va_start(vList, cpFmt);
-    int liRet = Fmt2(0, cpFmt, vList);
+    size_t lsztRet = Fmt2(0, cpFmt, vList);
     va_end(vList);
 
-    return liRet;
+    return lsztRet;
 }
 // }}} end of func CStrPtr::Fmt2 (...)
 // ================================================================================================ //
@@ -487,15 +492,15 @@ inline int vm::CStrPtr::Fmt2 ( const tchar* const cpFmt, ... )
 // ==  Params  : csztBufOffset    - [I] Buffer's offset
 // ==            cpFmt            - [I] String's format
 // ==            ...              - [I] Format paramters
-inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, ... )
+inline size_t vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, ... )
 // {{{
 {
     va_list vList;
     va_start(vList, cpFmt);
-    int liRet = Fmt2(csztBufOffset, cpFmt, vList);
+    size_t lsztRet = Fmt2(csztBufOffset, cpFmt, vList);
     va_end(vList);
 
-    return liRet;
+    return lsztRet;
 }
 // }}} end of func CStrPtr::Fmt2 (...)
 // ================================================================================================ //
@@ -508,11 +513,20 @@ inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cp
 // ==  Params  : csztBufOffset    - [I] Buffer's offset
 // ==            cpFmt            - [I] String's format
 // ==            vList&           - [I] Format paramters
-inline int vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
+inline size_t vm::CStrPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
+    mllErrCode = emRet::emSucess;
+
     tchar* lpPos = mpBuf + csztBufOffset;
-    return vm::v_vsprintf(lpPos, msztBufSize, cpFmt, vList);
+    int liRet = vm::v_sprintf(lpPos, msztBufSize, cpFmt, vList);
+    if( liRet < 0 )
+    {
+        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
+        liRet = 0;
+    }
+
+    return (size_t)liRet;
 }
 // }}} end of func CStrPtr::Fmt2 (...)
 // ================================================================================================ //

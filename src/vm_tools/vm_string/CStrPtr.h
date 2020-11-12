@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:04                                               == //
-// ==   Modify Time          : 2020-11-11 18:28:16                                               == //
+// ==   Modify Time          : 2020-11-12 10:06:13                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -44,16 +44,22 @@ class CStrPtr
 // ------------------------------------------------------------------------------------------------ //
 // Typedefs  : {{{
 public:
-    // enum emRet : this enum define return information for CStrPtr
+    // enum emRet : this enum define return value for class CMemPtr
     enum emRet
     // {{{
     {
-        emSuccess = 0,
+        emSucess          = 0,
 
-        emError         = vMaxsLong -1,
-        emErrRplFaield  = emError   -1,
+        emError           = vMaxsLong - 1,
+        emErrCopyToFailed = emError   - 1,
+        emErrCopyFmFailed = emError   - 2,
+        emErrNoEnoughBuf  = emError   - 3,
+        emErrNoEnoughData = emError   - 4,
+        emErrFmtFailed    = emError   - 5,
+        emErrRplFailed    = emError   - 6,
 
-        emWarn          = vMaxsLong -20,
+        emWarns           = vMaxsLong - 20,
+        emWrnFindfailed   = emWarns   - 1  
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
@@ -145,11 +151,11 @@ public:
     inline tchar* Fmt   (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
 
     // Format string
-    inline int    Fmt2  (                            const tchar* const cpFmt,            ...);
+    inline size_t Fmt2  (                            const tchar* const cpFmt,            ...);
     // Format string
-    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt,            ...);
+    inline size_t Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt,            ...);
     // Format string
-    inline int    Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
+    inline size_t Fmt2  (const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList);
 
     // Compare buffer data with cpSrc. case sensitive
     inline bool   Cmp   ( const tchar* const cpSrc,                          const size_t csztBufOffset = 0 );
