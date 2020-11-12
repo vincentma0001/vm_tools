@@ -43,7 +43,7 @@
 // ==            csztDstSize      - [I] Dst buffer's size
 // ==            cpFmt            - [I] string's format
 // ==            ...              - [I] string's format paramters
-inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, ... )
+inline int vm::v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
     // Verify input paramters
@@ -70,7 +70,7 @@ inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tc
 // ==            csztDstSize      - [I] Dst buffer's size
 // ==            cpFmt            - [I] String's format
 // ==            vList            - [I] String's format paramters
-inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, va_list& vList )
+inline int vm::v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList )
 // {{{
 {
     // Verify input paramters
@@ -95,7 +95,7 @@ inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tc
 // ==                                   false - output failed
 // ==  Params  : cpFmt            - [I] output string's format
 // ==            vList            - [I] output string's format paramters
-inline bool vm::v_output ( const tchar* const cpFmt, va_list& vList )
+inline bool vm::v_output ( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList )
 // {{{
 {
     // Verify input paramters
@@ -125,7 +125,7 @@ inline bool vm::v_output ( const tchar* const cpFmt, va_list& vList )
 // ==                                   false - output failed
 // ==  Params  : cpFmt            - [I] output string's format
 // ==            ...              - [I] output string's format paramters
-inline bool vm::v_output ( const tchar* const cpFmt, ... )
+inline bool vm::v_output ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
     // Verify input paramters
@@ -150,7 +150,7 @@ inline bool vm::v_output ( const tchar* const cpFmt, ... )
 // ==                                   false - output failed
 // ==  Params  : cpFmt            - [I] output string's format
 // ==            ...              - [I] output string's format paramters
-bool vm::v_output_line ( const tchar* const cpFmt, ... )
+inline bool vm::v_output_line ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
 // {{{
 {
     // Verify input paramters

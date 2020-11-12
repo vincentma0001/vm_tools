@@ -42,12 +42,12 @@ inline int v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, 
 inline int v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 
 // Output a formated string
-inline bool v_output( const tchar* const cpFmt, va_list& vList );
+inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 // Output a formated string
-inline bool v_output( const tchar* const cpFmt,            ... );
+inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_            ... );
 
 // Output a formated string line
-inline bool v_output_line( const tchar* const cpFmt,       ... );
+inline bool v_output_line ( _vIn_ const tchar* const cpFmt, _vIn_            ... );
 
 };
 // }}} End of namespace vm
