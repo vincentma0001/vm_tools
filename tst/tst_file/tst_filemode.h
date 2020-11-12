@@ -2,7 +2,7 @@
 #include <vm_cfgs.h>
 
 #include <vm_tools/vm_util.h>
-#include <vm_tools/vm_file/CFileMode.h>
+#include <vm_tools/vm_files/CFileMode.h>
 
 #include <vm_tools/vm_utst.h>
 

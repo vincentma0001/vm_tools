@@ -1,7 +1,5 @@
 
-#include <locale.h>
-
-#include <vm_tools/vm_file/CLocale.h>
+#include <vm_tools/vm_files/CLocale.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //
