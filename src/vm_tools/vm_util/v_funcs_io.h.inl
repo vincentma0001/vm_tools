@@ -37,13 +37,13 @@
 // ==  Methord : v_sprintf(...)                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Format string, and copy new string to dst buffer
-// ==  Return  : bool             - [O] true  - format sucess
-// ==                                   false - format failed
+// ==  Return  : int              - [O] >=0  - new string length
+// ==                                   <0   - format failed, lookfor errno for error infomation
 // ==  Params  : pDst             - [O] Dst buffer
 // ==            csztDstSize      - [I] Dst buffer's size
 // ==            cpFmt            - [I] string's format
 // ==            ...              - [I] string's format paramters
-inline bool vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, ... )
+inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, ... )
 // {{{
 {
     // Verify input paramters
@@ -52,10 +52,10 @@ inline bool vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const t
     // format string
     va_list vlist;
     va_start( vlist, cpFmt );
-    bool lbRet = vm::v_sprintf( pDst, csztDstSize, cpFmt, vlist);
+    int liRet = vm::v_sprintf( pDst, csztDstSize, cpFmt, vlist);
     va_end(vlist);
 
-    return lbRet;
+    return liRet;
 }
 // }}} end of func v_sprintf(...)
 // ================================================================================================ //
@@ -64,29 +64,26 @@ inline bool vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const t
 // ==  Methord : v_sprintf(...)                                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Format string, and copy new string to dst buffer
-// ==  Return  : bool             - [O] true  - format sucess
-// ==                                   false - format failed
-// ==  Return  : int              - [O] New string's length
+// ==  Return  : int              - [O] >=0  - new string length
+// ==                                   <0   - format failed, lookfor errno for error infomation
 // ==  Params  : pDst             - [O] Dst buffer
 // ==            csztDstSize      - [I] Dst buffer's size
 // ==            cpFmt            - [I] String's format
 // ==            vList            - [I] String's format paramters
-inline bool vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, va_list& vList )
+inline int vm::v_sprintf ( tchar* const pDst, const size_t csztDstSize, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
-        // Verify input paramters
-        _VERIFY_2_(vT("v_vsprintf()"), pDst, cpFmt);
+    // Verify input paramters
+    _VERIFY_2_(vT("v_vsprintf()"), pDst, cpFmt);
 
-        // format string
-    #if defined (_MSC_VER) && (_MSC_VER > 1300)
-        int liRet = vVsprintf_s( pDst, csztDstSize, cpFmt, vList );
-        if (liRet < 0) { return false; }
-    #else
-        int liRet = vVsprintf( pDst, cpFmt, vList );
-        if (liRet < 0) { return false; }
-    #endif
+    // format string
+#if defined (_MSC_VER) && (_MSC_VER > 1300)
+    int liRet = vVsprintf_s( pDst, csztDstSize, cpFmt, vList );
+#else
+    int liRet = vVsprintf( pDst, cpFmt, vList );
+#endif
 
-        return true;
+    return liRet;
 }
 // }}} end of func v_sprintf(...)
 // ================================================================================================ //

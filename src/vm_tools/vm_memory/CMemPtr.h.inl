@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-12 09:09:49                                               == //
+// ==   Modify Time          : 2020-11-12 09:26:35                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -587,6 +587,8 @@ inline void* vm::CMemPtr::Find ( const int ciValue, const size_t csztBufOffset )
 inline void* vm::CMemPtr::Find ( const int ciValue, const size_t csztLookforLen, const size_t csztBufOffset )
 // {{{
 {
+    mllErrCode = emRet::emSucess;
+
     size_t lsztBufLeft = msztBufSize - csztBufOffset;
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
     size_t lsztDatalen = vMin( lsztBufLen, csztLookforLen );
@@ -594,7 +596,10 @@ inline void* vm::CMemPtr::Find ( const int ciValue, const size_t csztLookforLen,
     void* lpBufPos     = &mpBuf + csztBufOffset;
     void* lpEndPos     = v_memchr( lpBufPos, ciValue, lsztDatalen);
     if (lpEndPos == 0 )
+    {
+        mllErrCode = vMakeLLong( emRet::emWrnFindfailed, errno );
         return nullptr;
+    }
 
     return lpEndPos;
 }
@@ -653,14 +658,16 @@ inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const c
 inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
-    
+    mllErrCode = emRet::emSucess;
 
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
     size_t lsztBufLeft   = msztBufSize-csztBufOffset;
+    lsztBufLeft = vMax( lsztBufLeft, 0 );
 
-    bool lbRet = vm::v_sprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
-    if( lbRet != true )
-        m
+    int liRet = vm::v_sprintf(lpPos, lsztBufLeft, (tchar*)cpFmt, vList);
+    if( libRet < 0 )
+        mllErrCode = vMakeLLong( emRet::emErrFmtFaield, errno );
+
     return lpPos;
 }
 // }}} end of func CMemPtr::Fmt (...)
@@ -718,9 +725,17 @@ inline int vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cp
 inline int vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
+    mllErrCode = emRet::emSucess;
+
     tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
     size_t lsztBufLeft = msztBufSize - csztBufOffset;
-    return vm::v_vsprintf(lpPos, lsztBufLeft, cpFmt, vList);
+    lsztBufLeft = vMax( lsztBufLeft, 0 );
+
+    int liRet = vm::v_sprintf( lpPos, lsztBufLeft, cpFmt, vList );
+    if( liRet < 0 )
+        mllErrCode = vMakeLLong( emRet::emErrFmtFaield, errno );
+
+    return liRet;
 }
 // }}} end of func CMemPtr::Fmt2 (...)
 // ================================================================================================ //

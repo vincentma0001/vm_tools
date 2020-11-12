@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 21:29:54                                               == //
-// ==   Modify Time          : 2020-11-05 09:05:58                                               == //
+// ==   Modify Time          : 2020-11-12 09:32:35                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -175,6 +175,8 @@ size_t vm::v_memccpy ( void* const pDst, const size_t csztDstSize, const void* c
 
     // return the data has been copied
     size_t lsztCoyied = (tchar*)lpEnd - (tchar*)pDst;
+    lsztCopied = vMax( lsztCopied, 0 );
+
     return lsztCoyied;
 } // }}} end of func vm::v_memccpy(...)
 // ================================================================================================ //

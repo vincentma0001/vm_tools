@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:36                                               == //
-// ==   Modify Time          : 2020-11-12 09:09:47                                               == //
+// ==   Modify Time          : 2020-11-12 09:24:10                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -56,8 +56,10 @@ public:
         emErrCopyFmFailed = emError   - 2,
         emErrNoEnoughBuf  = emError   - 3,
         emErrNoEnoughData = emError   - 4,
+        emErrFmtFailed    = emError   - 5,
 
-        emWarns           = vMaxsLong - 20
+        emWarns           = vMaxsLong - 20,
+        emWrnFindfailed   = emWarns   - 1  
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
