@@ -22,14 +22,18 @@
 #define  __VM_FILES_H__
 
 
-
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+
+// vm's function depend on included
+
+// vm's function files inlcuded
 #include <vm_tools/vm_files/CFileSys.h>
 #include <vm_tools/vm_files/CFileMode.h>
 #include <vm_tools/vm_files/CFile.h>
+
 // }}}
 // ================================================================================================ //
 
