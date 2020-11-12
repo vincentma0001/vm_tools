@@ -77,7 +77,9 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
+    // Get argc in string
     unsigned int Argc( void );
+    // Splite string
     unsigned int Splite( const tchar* pString, const tchar* const cpszDelimiters );
 // }}} ! Methods
 
