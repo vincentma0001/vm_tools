@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-11 15:59:35                                               == //
+// ==   Modify Time          : 2020-11-12 12:22:17                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -115,9 +115,10 @@ private:
 // Menbers   : {{{
 private:
     // Format specify letter
-    tchar           mszSpecifier;
+    const tchar     mszSpecifier;
+
     // Format string's address
-    tchar*          mpFmt;
+    const tchar*    mpFmt;
     // Format string's length
     size_t          msztFmtLen;
 
@@ -141,10 +142,9 @@ public:
 }
 // }}} End of namespace vm
 // ================================================================================================ //
-
-// ================================================================================================ //
 // Class realization :
 #include "CParser.h.inl"
+// ================================================================================================ //
 
 #endif // ! __CPARSER_H__
 // ================================================================================================ //

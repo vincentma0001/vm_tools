@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:48:08                                               == //
-// ==   Modify Time          : 2020-11-11 14:16:02                                               == //
+// ==   Modify Time          : 2020-11-12 12:20:36                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -47,7 +47,7 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const size_t csztFlgLen
                                const tchar* const cpRpl, const size_t csztRplLen  )
                              : mpFlg(cpFlg), msztFlgLen(csztFlgLen),
                                mpRpl(cpRpl), msztRplLen(csztRplLen),
-                               mpPattern(nullptr)
+                               mpPattern(0)
 // {{{
 {
 }
@@ -61,7 +61,7 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const size_t csztFlgLen
 inline vm::CPattern::CPattern( const tchar* const cpFlg, const tchar* const cpRpl )
                              : mpFlg(cpFlg), msztFlgLen(vStrlen(cpFlg),
                                mpRpl(cpRpl), msztRplLen(vStrlen(cpRpl)),
-                               mpPattern(nullptr)
+                               mpPattern(0)
 // {{{
 {
 }
@@ -75,11 +75,6 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const tchar* const cpRp
 inline vm::CPattern::~CPattern(  )
 // {{{
 {
-    mpFlg       = nullptr;
-    msztFlgLen  = 0;
-    mpRpl       = nullptr;
-    msztRplLen  = 0;
-    mpPattern   = nullptr;
 }
 // }}} End of func CPattern::~CPattern()
 // ================================================================================================ //
