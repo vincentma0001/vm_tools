@@ -86,7 +86,7 @@ public:
     CPrFmt& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
     CPrFmt& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
     CPrFmt& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& tSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& TSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
     CPrFmt& Float  ();
     CPrFmt& Double ();
     CPrFmt& LDouble();

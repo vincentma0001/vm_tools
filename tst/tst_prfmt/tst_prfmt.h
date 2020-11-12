@@ -1,5 +1,5 @@
 
-#include <vm_tools/vm_string/CPrFmt.hpp>
+#include <vm_tools/vm_util/CPrFmt.hpp>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //

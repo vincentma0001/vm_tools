@@ -573,7 +573,7 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::ULLong( const size_t 
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CPrFmt<tsztBufSize>::tSize(...)                                                 == //
+// ==  Methord : CPrFmt<tsztBufSize>::TSize(...)                                                 == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Create a print format for size_t
 // ==  Return  : CPrFmt&          - [O] this object
@@ -581,7 +581,7 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::ULLong( const size_t 
 // ==            bFillZero=false  - [I] output with zero for empty space
 // ==            bLeft=false      - [I] output Left-justify or not, default is not
 template< size_t tsztBufSize >
-inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::tSize( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::TSize( const size_t csztWidth, const bool bFillZero, const bool bLeft )
 // {{{ 
 {
     vMemZero(mszBuf);
@@ -611,7 +611,7 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::tSize( const size_t c
 
     return *this;
 }
-// }}} end of func CPrFmt<tsztBufSize>::tSize(...)
+// }}} end of func CPrFmt<tsztBufSize>::TSize(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
