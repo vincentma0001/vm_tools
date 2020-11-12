@@ -35,7 +35,6 @@
 // using namespace vm {{{
 namespace vm
 {
-
 // ================================================================================================ //
 // ==  Class CAnyPtr : this class deal with data convet between any type and string              == //
 // ------------------------------------------------------------------------------------------------ //
@@ -107,18 +106,19 @@ public:
     };
     // }}} End of def union unVal
 
-    // enum emRet : this enum define ret info for CAny
+    // enum emRet : this enum define return value for class CMemPtr
     enum emRet
     // {{{
     {
-        emSuccess = 0,
+        emSucess           = 0,
 
-        emWarn              = vMaxsLong-1,
-        emWrnDiffType       = emWarn-1,
+        emError            = vMaxsLong - 1,
+        emErrUnknowType    = emError   - 1,
+        emErrConvertFailed = emError   - 2,
+        emErrFmtFailed     = emError   - 3,
 
-        emError             = vMaxsLong-20,
-        emErrUnknowType     = emError-1,
-        emErrConvertFailed  = emError-2
+        emWarns            = vMaxsLong - 20,
+        emWrnDiffType      = emWarns   - 1
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
@@ -127,8 +127,6 @@ public:
 public:
     // Construc define 
     inline CAnyPtr(const bool               Val, void* const pBuf, const size_t csztBufSize );
-    // Construc define 
-//  inline CAnyPtr(const size_t             Val, void* const pBuf, const size_t csztBufSize );
     // Construc define
     inline CAnyPtr(const char               Val, void* const pBuf, const size_t csztBufSize );
     // Construc define

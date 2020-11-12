@@ -27,6 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util/v_funcs_io.h>
 #include "v_funcs_str.h"
 // }}}
 // ================================================================================================ //
@@ -53,21 +54,6 @@ inline vm::CAnyPtr::CAnyPtr( const bool Val, void* const pBuf, const size_t cszt
 }
 // }}} end of func CAnyPtr::CAnyPtr(...)
 // ================================================================================================ //
-
-/*
-// ================================================================================================ //
-// ==  Methord : CAnyPtr::CAnyPtr(...)                                                           == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Construct define
-inline vm::CAnyPtr::CAnyPtr( const size_t Val, tchar* const pBuf, const size_t csztBufSize )
-    :munValue{0x00}, memType(emType::emSize), mpBuf((tchar*)pBuf), msztBufSize(csztBufSize), mllErrCode(0)
-// {{{
-{
-    munValue.sztValue = Val;
-}
-// }}} end of func CAnyPtr::CAnyPtr(...)
-// ================================================================================================ //
-//*/
 
 // ================================================================================================ //
 // ==  Methord : CAnyPtr::CAnyPtr(...)                                                           == //
@@ -331,7 +317,7 @@ inline vm::CAnyPtr& vm::CAnyPtr::operator = ( const CAnyPtr &obj )
 inline tchar* vm::CAnyPtr::toStr( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
     vm::v_memzero( mpBuf, msztBufSize );
 
     switch ( memType ) {
@@ -395,7 +381,7 @@ inline tchar* vm::CAnyPtr::toStr( void )
 inline bool vm::CAnyPtr::toBool( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if( memType == emType::emStr )
     {
@@ -431,7 +417,7 @@ inline bool vm::CAnyPtr::toBool( void )
 inline size_t vm::CAnyPtr::toSize( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
     
     if( memType == emType::emStr )
     {
@@ -470,7 +456,7 @@ inline wchar_t vm::CAnyPtr::toWchar( void )
 inline char vm::CAnyPtr::toChar( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -495,7 +481,7 @@ inline char vm::CAnyPtr::toChar( void )
 inline unsigned char vm::CAnyPtr::toUChar( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -520,7 +506,7 @@ inline unsigned char vm::CAnyPtr::toUChar( void )
 inline short vm::CAnyPtr::toShort( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -545,7 +531,7 @@ inline short vm::CAnyPtr::toShort( void )
 inline unsigned short vm::CAnyPtr::toUShort( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -570,7 +556,7 @@ inline unsigned short vm::CAnyPtr::toUShort( void )
 inline int vm::CAnyPtr::toInt( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -595,7 +581,7 @@ inline int vm::CAnyPtr::toInt( void )
 inline unsigned int vm::CAnyPtr::toUInt( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -620,7 +606,7 @@ inline unsigned int vm::CAnyPtr::toUInt( void )
 inline long vm::CAnyPtr::toLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -645,7 +631,7 @@ inline long vm::CAnyPtr::toLong( void )
 inline unsigned long vm::CAnyPtr::toULong( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -670,7 +656,7 @@ inline unsigned long vm::CAnyPtr::toULong( void )
 inline long long vm::CAnyPtr::toLLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -695,7 +681,7 @@ inline long long vm::CAnyPtr::toLLong( void )
 inline unsigned long long vm::CAnyPtr::toULLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -720,7 +706,7 @@ inline unsigned long long vm::CAnyPtr::toULLong( void )
 inline float vm::CAnyPtr::toFloat( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -745,7 +731,7 @@ inline float vm::CAnyPtr::toFloat( void )
 inline double vm::CAnyPtr::toDouble( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -770,7 +756,7 @@ inline double vm::CAnyPtr::toDouble( void )
 inline long double vm::CAnyPtr::toLDouble( void )
 // {{{
 {
-    mllErrCode = emRet::emSuccess;
+    mllErrCode = emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -803,25 +789,6 @@ inline tchar* vm::CAnyPtr::toStr( tchar* const pDst, const size_t csztDstSize, c
 }
 // }}} end of func CAnyPtr::toStr(...)
 // ================================================================================================ //
-
-/*
-// ================================================================================================ //
-// ==  Methord : CAnyPtr::toStr(...)                                                             == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Convert size_t to string
-// ==  Return  : tchar*           - [O] string value
-// ==  Params  : pDst             - [I] String value buffer
-// ==            csztBufSize      - [I] String value buffer size
-// ==            Val              - [I] size_t value
-inline tchar* vm::CAnyPtr::toStr( tchar* const pDst, const size_t csztBufSize, const size_t Val )
-// {{{
-{
-    vm::v_sprintf( pDst, csztDstSize, vT("%zu"), Val );
-    return pDst;
-}
-// }}} end of func CAnyPtr::toStr(...)
-// ================================================================================================ //
-//*/
 
 // ================================================================================================ //
 // ==  Methord : CAnyPtr::toStr(...)                                                             == //
