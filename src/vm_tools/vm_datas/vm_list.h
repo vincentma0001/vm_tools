@@ -96,10 +96,10 @@ inline stListNote<tType>* vl_tail ( _vIn_ stListNote<tType>* pNote );
 
 // Set note's data
 template< typename tType >
-inline void               vl_set  ( _vIn_ stListNote<tType>* pNote, const tType        oData );
+inline void               vl_set  ( _vIn_ stListNote<tType>* pNote, _vIn_ const tType        oData );
 // Set note's data
 template< typename tType >
-inline void               vl_set  ( _vIn_ stListNote<tType>* pNote, const tType* const pData );
+inline stListNote<tType>* vl_set  ( _vIn_ stListNote<tType>* pNote, _vIn_ const tType* const pData );
 
 // Get note's data pointer
 template< typename tType >

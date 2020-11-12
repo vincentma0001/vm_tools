@@ -340,7 +340,7 @@ inline vm::stListNote<tType>* vm::vl_tail ( _vIn_ vm::stListNote<tType>* pNote )
 // ==  Params  : pNote            - [O] note pointer
 // ==            oData            - [I] new value
 template< typename tType >
-void vm::vl_set ( _vIO_ vm::stListNote<tType>* pNote, const tType oData )
+inline void vm::vl_set  ( _vIn_ stListNote<tType>* pNote, _vIn_ const tType        oData )
 // {{{
 {
     _VERIFY_( vT("vl_set()"), pNote );
@@ -358,7 +358,7 @@ void vm::vl_set ( _vIO_ vm::stListNote<tType>* pNote, const tType oData )
 // ==  Params  : pNote            - [O] note pointer
 // ==            pData            - [X] new value
 template< typename tType >
-inline tType* vm::vl_set ( _vIO_ vm::stListNote<tType>* pNote, const tType* const pData )
+inline vm::stListNote<tType>* vm::vl_set  ( _vIn_ stListNote<tType>* pNote, _vIn_ const tType* const pData )
 // {{{
 {
     _VERIFY_( vT("vl_set()"), pNote );
@@ -368,6 +368,7 @@ inline tType* vm::vl_set ( _vIO_ vm::stListNote<tType>* pNote, const tType* cons
     {
         pNote->mpData = pData;
     }
+
     return lpOldData;
 }
 // }}} end of func vl_set(...)
