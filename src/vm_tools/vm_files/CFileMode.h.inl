@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-10 15:06:36                                               == //
-// ==   Modify Time          : 2020-11-09 12:38:57                                               == //
+// ==   Modify Time          : 2020-11-12 12:57:22                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -115,37 +115,37 @@ inline tchar* vm::CFileMode::Tranformat( const short csFileMode )
     vMemZero( mszFileMode );
     unsigned short lusPos = 0;
 
-    if( csFileMode | emFileMode::emRead )
+    if( csFileMode & emFileMode::emRead )
     {
         mszFileMode[lusPos++] = vT('r');
     } // End of if(...)
 
-    if( csFileMode | emFileMode::emWrite )
+    if( csFileMode & emFileMode::emWrite )
     {
         mszFileMode[lusPos++] = vT('w');
     } // End of if(...)
 
-    if( csFileMode | emFileMode::emAppend )
+    if( csFileMode & emFileMode::emAppend )
     {
         mszFileMode[lusPos++] = vT('a');
     } // Enf of if(...)
 
-    if ( csFileMode | emFileMode::emBinary )
+    if ( csFileMode & emFileMode::emBinary )
     {
         mszFileMode[lusPos++] = vT('b');
     } // End of if(...)
 
-    if( csFileMode | emFileMode::emText )
+    if( csFileMode & emFileMode::emText )
     {
         mszFileMode[lusPos++] = vT('t');
     } // Enf of if(...)
 
-    if( csFileMode | emFileMode::emUpdate )
+    if( csFileMode & emFileMode::emUpdate )
     {
         mszFileMode[lusPos++] = vT('+');
     } // Enf of if(...)
 
-    if( csFileMode | emFileMode::emExist )
+    if( csFileMode & emFileMode::emExist )
     {
         mszFileMode[lusPos++] = vT('x');
     } // End of if(...)
