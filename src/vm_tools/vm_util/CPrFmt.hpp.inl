@@ -44,7 +44,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 template< size_t tsztBufSize >
-inline vm::CPrFmt< tsztBufSize >::CPrFmt(  )
+inline vm::CPrFmt< tsztBufSize >::CPrFmt(  ) : mszBuf{0x00}
 // {{{
 {
 }
