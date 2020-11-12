@@ -85,6 +85,12 @@ private:
 // }}} ! Construct & Destruct
 
 // ------------------------------------------------------------------------------------------------ //
+// Operators : {{{
+public:
+    inline const tchar* operator * () { return mpBufStart; }
+// }}} ! Operators
+
+// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Cyc buffer start pointer

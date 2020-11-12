@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_util/v_funcs_io.h"
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
@@ -188,6 +189,10 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
+    //  Get data's type
+    inline const tchar* cs_type();
+
+    // Get data value by string
     inline tchar*                 toStr( void );
 
     inline bool                  toBool( void );
@@ -216,7 +221,6 @@ public:
 
 public:
     inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const bool               Val );
-//  inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const size_t             Val );
 
     inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const char               Val );
     inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const unsigned char      Val );

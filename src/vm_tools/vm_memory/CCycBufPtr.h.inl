@@ -223,7 +223,7 @@ inline bool vm::CCycBufPtr::Put( const void* const cpData, const size_t csztData
         if( lsztCopied1 <= lsztBufLenPart1 )
         {
             msztLen     += lsztCopied1;
-            mpBufEnded  += lsztCopied1;
+            mpEndedPos   = mpEndedPos+lsztCopied1;
             return true;
         }
 
@@ -257,7 +257,7 @@ inline bool vm::CCycBufPtr::Put( const void* const cpData, const size_t csztData
         if( lsztCopied1 <= lsztBufLenPart1 )
         {
             msztLen     += lsztCopied1;
-            mpBufEnded  += lsztCopied1;
+            mpEndedPos   = mpEndedPos + lsztCopied1;
             return true;
         }
 

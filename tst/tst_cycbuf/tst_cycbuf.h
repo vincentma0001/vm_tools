@@ -1,6 +1,49 @@
 
+#include "vm_tools/vm_memory/CCycBufPtr.h"
+#include "vm_tools/vm_memory/CMemMgr.h"
+#include "vm_tools/vm_string/CAny.hpp"
+#include "vm_tools/vm_util/v_funcs_io.h"
 #include <vm_tools/vm_memory.h>
 #include <vm_tools/vm_utst.h>
+#include <vm_tools//vm_util/v_funcs_io.h>
+
+void ShowCycBuf( vm::CCycBufPtr& oCycBuf )
+{
+    vm::v_output_line( vT("CycBuf : Size(%zu[u:%zu n:%zu]) Pos[s:%lu e:%lu] "), 
+                       oCycBuf.Size(), oCycBuf.SizeUsed(), oCycBuf.SizeUnused(),
+                       oCycBuf.StartPos(), oCycBuf.EndedPos() );
+    vm::CMemMgr::Output<32,8>( stdout, *oCycBuf, oCycBuf.Size() );
+}
+
+template< typename tType >
+void tst_cycbuf_type( vm::CCycBufPtr& oCycBuf, tType tVal )
+{
+    bool lbRetForPut = oCycBuf.Put( tVal );
+    if( lbRetForPut == true )
+    {
+        vm::v_output_line( vT("Put value %s sucess"), vm::CAny<256>(tVal).toStr() );
+        ShowCycBuf( oCycBuf );
+    }
+    else
+    {
+        vm::v_output_line( vT("Put value %s failed"), vm::CAny<256>(tVal).toStr() );
+        ShowCycBuf( oCycBuf );
+    }
+    
+
+    tVal = 0;
+    bool lbRetForGet = oCycBuf.Get( tVal );
+    if( lbRetForGet == true )
+    {
+        vm::v_output_line( vT("Get value %s sucess"), vm::CAny<256>(tVal).toStr() );
+        ShowCycBuf( oCycBuf );
+    }
+    else
+    {
+        vm::v_output_line( vT("Get value %s failed"), vm::CAny<256>(tVal).toStr() );
+        ShowCycBuf( oCycBuf );
+    }
+}
 
 // ================================================================================================ //
 // [ ut_cycbuf_1 ] {{{
@@ -14,9 +57,43 @@ vTry
     vMemZero( lszBuf );
 
     vm::CCycBufPtr loCycBuf( lszBuf, sizeof(lszBuf) );
-    vPrintf( vT("Cycbuf : size(%lu) used(%lu) unused(%lu)\n"), loCycBuf.Size(), loCycBuf.SizeUsed(), loCycBuf.SizeUnused() );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
+    ShowCycBuf( loCycBuf );
 
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<char>( loCycBuf, 'A' );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<short>( loCycBuf, vMinsShort );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<unsigned short>( loCycBuf, vMaxuShort );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<int>( loCycBuf, vMinsInt );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<unsigned int>( loCycBuf, vMaxuInt );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<long>( loCycBuf, vMinsLong );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<unsigned long>( loCycBuf, vMaxuLong );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<long long>( loCycBuf, vMinsLLong );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<unsigned long long>( loCycBuf, vMaxuLLong );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<float>( loCycBuf, vMinFloat );
+
+    vm::v_output_line( "**********************************************" );
+    tst_cycbuf_type<double>( loCycBuf, vMaxDouble );
+
+//  vm::v_output_line( "**********************************************" );
+//  tst_cycbuf_type<long double>( loCycBuf, vMaxLDouble );
 vCatch(...)
     return false;
 vEnd
@@ -289,7 +366,8 @@ vTry
     vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
     lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
     vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    lbRet = loCycBuf.Put(vT('1')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
+    lcVal = vT('1');
+    lbRet = loCycBuf.Put( lcVal ); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
     vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
 
     lcVal = 0;
@@ -376,11 +454,11 @@ UT_FUNC_ENDED
 // ================================================================================================ //
 // [ tst_frame_cycbuf ] {{{
 UT_FRAME_BEGIN ( tst_frame_cycbuf )
-//UT_FRAME_REGIST( ut_cycbuf_1 )
-UT_FRAME_REGIST( ut_cycbuf_2 )
-UT_FRAME_REGIST( ut_cycbuf_3 )
-UT_FRAME_REGIST( ut_cycbuf_4 )
-UT_FRAME_REGIST( ut_cycbuf_5 )
+UT_FRAME_REGIST( ut_cycbuf_1 )
+//UT_FRAME_REGIST( ut_cycbuf_2 )
+//UT_FRAME_REGIST( ut_cycbuf_3 )
+//UT_FRAME_REGIST( ut_cycbuf_4 )
+//UT_FRAME_REGIST( ut_cycbuf_5 )
 UT_FRAME_ENDED
 // }}} ![ tst_frame_cycbuf ]
 // ================================================================================================ //

@@ -29,6 +29,8 @@
 #include <vm_cfgs.h>
 #include <vm_tools/vm_util/v_funcs_io.h>
 #include "v_funcs_str.h"
+#include "vm_tools/vm_string/CAny.hpp"
+#include "vm_tools/vm_string/CAnyPtr.h"
 // }}}
 // ================================================================================================ //
 
@@ -307,6 +309,70 @@ inline vm::CAnyPtr& vm::CAnyPtr::operator = ( const CAnyPtr &obj )
 // ==  Class CAnyPtr Functional realization                                                      == //
 // ================================================================================================ //
 // [ Class CAnyPtr Functional realization ] {{{
+
+// ================================================================================================ //
+// ==  Methord : CAnyPtr::cs_type(...)                                                           == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get data's type
+// ==  Return  : const tchar*     - [O] data's type name
+inline const tchar* vm::CAnyPtr::cs_type(  )
+// {{{
+{
+    mllErrCode = emRet::emSucess;
+    vm::v_memzero( mpBuf, msztBufSize );
+    
+    switch ( memType ) {
+    // {{{
+        case emType::emBool:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("bool")                ); break; }
+        case emType::emSize:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("size_t")              ); break; }
+    
+        case emType::emChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("char")                ); break; }
+        case emType::emUChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned char")       ); break; }
+        case emType::emWChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("wchar_t")             ); break; }
+    
+        case emType::emShort:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("short")               ); break; }
+        case emType::emUShort:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned short")      ); break; }
+    
+        case emType::emInt:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("int")                 ); break; }
+        case emType::emUInt:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned int")        ); break; }
+    
+        case emType::emLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long")                ); break; }
+        case emType::emULong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned long")       ); break; }
+    
+        case emType::emLLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long long")           ); break; }
+        case emType::emULLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned long long")  ); break; }
+    
+        case emType::emFloat:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("float")               ); break; }
+        case emType::emDouble:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("double")              ); break; }
+        case emType::emLDouble:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long double")         ); break; }
+    
+        case emType::emStr:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("string")              ); break; }
+    
+        default:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unknow")              ); }
+    } // }}} End of switch( emType )
+    
+    return mpBuf;
+}
+// }}} end of func CAnyPtr::cs_type(...)
+// ================================================================================================ //
 
 // ================================================================================================ //
 // ==  Methord : CAnyPtr::toStr(...)                                                             == //

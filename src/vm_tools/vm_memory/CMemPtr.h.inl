@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 08:25:48                                               == //
-// ==   Modify Time          : 2020-11-12 09:59:38                                               == //
+// ==   Modify Time          : 2020-11-12 16:34:26                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -124,7 +124,7 @@ inline void* vm::CMemPtr::operator [] ( const size_t csztBufOffset )
     size_t lsztBufOffset = vMin( msztBufSize, csztBufOffset );
 
     // return offset's address
-    return &mpBuf+lsztBufOffset;
+    return (char*)mpBuf+lsztBufOffset;
 }
 // }}} end of func CMemPtr::operator [] (...)
 // ================================================================================================ //
@@ -205,7 +205,7 @@ inline void* vm::CMemPtr::At ( const size_t csztBufOffset )
     size_t lsztBufOffset = vMin( msztBufSize, csztBufOffset );
 
     // return offset's address
-    return &mpBuf+lsztBufOffset;
+    return (char*)mpBuf+lsztBufOffset;
 }
 // }}} end of func CMemPtr::At(...)
 // ================================================================================================ //
@@ -225,7 +225,7 @@ inline void vm::CMemPtr::Set ( const int ciValue, const size_t csztBufOffset )
     size_t lsztDataLen = vMax( lsztBufLeft, 0 );
 
     // Set buffer to value 
-    void*  lpBufPos    = &mpBuf + csztBufOffset;
+    void*  lpBufPos    = (char*)mpBuf + csztBufOffset;
     vm::v_memset( lpBufPos, ciValue, lsztDataLen );
 }
 // }}} end of func CMemPtr::Set (...)
@@ -248,7 +248,7 @@ inline void vm::CMemPtr::Set ( const int ciValue, const size_t csztDataLen, cons
     size_t lsztDataLen = vMin( lsztBufLen, csztDataLen );
 
     // Set buffer to value
-    void*  lpBufPos    = &mpBuf + csztBufOffset;
+    void*  lpBufPos    = (char*)mpBuf + csztBufOffset;
     vm::v_memset( lpBufPos, ciValue, lsztDataLen );
 }
 // }}} end of func CMemPtr::Set (...)
@@ -330,7 +330,7 @@ inline size_t vm::CMemPtr::MoveFm ( const void* const cpSrc, const size_t csztDa
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
 
     // Copy data from src string
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memmove( lpBufPos, lsztBufLen, cpSrc, csztDataLen );
 }
 // }}} end of func CMemPtr::MoveFm(...)
@@ -352,7 +352,7 @@ inline size_t vm::CMemPtr::MoveTo ( void* const pDst, const size_t csztDstSize, 
     size_t lsztDataLen = vMin(lsztBufLeft,0);
 
     // Copy data to dst buf
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memmove( pDst, csztDstSize, lpBufPos, lsztDataLen );
 }
 // }}} end of func CMemPtr::MoveTo(...)
@@ -376,7 +376,7 @@ inline size_t vm::CMemPtr::MoveTo ( void* const pDst, const size_t csztDstSize, 
     size_t lsztDataLen = vMin(lsztBufLen,csztDataLen);
 
     // Copy data to dst buf
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memmove( pDst, csztDstSize, lpBufPos, lsztDataLen );
 }
 // }}} end of func CMemPtr::MoveTo(...)
@@ -398,7 +398,7 @@ inline size_t vm::CMemPtr::CopyFm ( const void* const cpSrc, const size_t csztDa
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
 
     // Get buffer start address
-    void*  lpBufPos    = &mpBuf + csztDataLen;
+    void*  lpBufPos    = (char*)mpBuf + csztBufOffset;
 
     // Copy data from src string
     return vm::v_memcpy( lpBufPos, lsztBufLen, cpSrc, csztDataLen );
@@ -422,7 +422,7 @@ inline size_t vm::CMemPtr::CopyTo( void* const pDst, const size_t csztDstSize, c
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
 
     // 复制数据
-    void* lpBufPos = &mpBuf + csztBufOffset;
+    void* lpBufPos = (char*)mpBuf + csztBufOffset;
     return vm::v_memcpy( pDst, csztDstSize, lpBufPos, lsztBufLen );
 }
 // }}} end of func CMemPtr::CopyTo(...)
@@ -446,7 +446,7 @@ inline size_t vm::CMemPtr::CopyTo( void* const pDst, const size_t csztDstSize, c
     size_t lsztDataLen = vMin( lsztBufLen, csztDataLen );
 
     // 复制数据
-    void* lpBufPos = &mpBuf + csztBufOffset;
+    void* lpBufPos = (char*)mpBuf + csztBufOffset;
     return vm::v_memcpy( pDst, csztDstSize, lpBufPos, lsztDataLen );
 }
 // }}} end of func CMemPtr::CopyTo(...)
@@ -469,7 +469,7 @@ inline size_t vm::CMemPtr::CCopyFm( const int ciFlag, const void* const cpSrc, c
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
 
     // 复制数据
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memccpy( lpBufPos, lsztBufLen, cpSrc, ciFlag, csztDataLen );
 }
 // }}} end of func CMemPtr::CCopyFm(...)
@@ -492,7 +492,7 @@ inline size_t vm::CMemPtr::CCopyTo( const int ciFlag, void* const pDst, const si
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
 
     // Copy data to dst buffer
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memccpy( pDst, csztDstSize, lpBufPos, ciFlag, lsztBufLen );
 }
 // }}} end of func CMemPtr::CCopyTo(...)
@@ -517,7 +517,7 @@ inline size_t vm::CMemPtr::CCopyTo( const int ciFlag, void* const pDst, const si
     size_t lsztDataLen = vMin( lsztBufLen, csztDataLen );
 
     // Copy data to dst buffer
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     return vm::v_memccpy( pDst, csztDstSize, lpBufPos, ciFlag, lsztDataLen );
 }
 // }}} end of func CMemPtr::CCopyTo(...)
@@ -535,7 +535,7 @@ inline size_t vm::CMemPtr::CCopyTo( const int ciFlag, void* const pDst, const si
 inline bool vm::CMemPtr::Cmp ( const void* const cpData, const size_t csztDataLen, const size_t csztBufOffset )
 // {{{
 {
-    void*  lpBufPos = &mpBuf + csztBufOffset;
+    void*  lpBufPos = (char*)mpBuf + csztBufOffset;
     return vm::v_memcmp_equl(lpBufPos, cpData, csztDataLen);
 }
 // }}} end of func CMemPtr::Cmp (...)
@@ -553,7 +553,7 @@ inline bool vm::CMemPtr::Cmp ( const void* const cpData, const size_t csztDataLe
 inline bool vm::CMemPtr::iCmp ( const void* const cpData, const size_t csztDataLen, const size_t csztBufOffset )
 // {{{
 {
-    void*  lpBufPos = &mpBuf + csztBufOffset;
+    void*  lpBufPos = (char*)mpBuf + csztBufOffset;
     return vm::v_memicmp_equl(lpBufPos, cpData, csztDataLen);
 }
 // }}} end of func CMemPtr::iCmp (...)
@@ -593,7 +593,7 @@ inline void* vm::CMemPtr::Find ( const int ciValue, const size_t csztLookforLen,
     size_t lsztBufLen  = vMax( lsztBufLeft, 0 );
     size_t lsztDatalen = vMin( lsztBufLen, csztLookforLen );
 
-    void* lpBufPos     = &mpBuf + csztBufOffset;
+    void* lpBufPos     = (char*)mpBuf + csztBufOffset;
     void* lpEndPos     = v_memchr( lpBufPos, ciValue, lsztDatalen);
     if (lpEndPos == 0 )
     {
@@ -660,7 +660,7 @@ inline void* vm::CMemPtr::Fmt ( const size_t csztBufOffset, const tchar* const c
 {
     mllErrCode = emRet::emSucess;
 
-    tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
+    tchar* lpPos = (char*)mpBuf + csztBufOffset;
     size_t lsztBufLeft   = msztBufSize-csztBufOffset;
     lsztBufLeft = vMax( lsztBufLeft, 0 );
 
@@ -727,7 +727,7 @@ inline size_t vm::CMemPtr::Fmt2 ( const size_t csztBufOffset, const tchar* const
 {
     mllErrCode = emRet::emSucess;
 
-    tchar* lpPos = (tchar*)mpBuf + csztBufOffset;
+    tchar* lpPos = (char*)mpBuf + csztBufOffset;
     size_t lsztBufLeft = msztBufSize - csztBufOffset;
     lsztBufLeft = vMax( lsztBufLeft, 0 );
 
