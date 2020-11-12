@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:12:32                                               == //
-// ==   Modify Time          : 2020-11-08 11:37:45                                               == //
+// ==   Modify Time          : 2020-11-12 13:11:10                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -157,8 +157,8 @@ inline bool vm::CFile::IsEof(  )
 inline bool vm::CFile::Open( _vIn_ const tchar* const cpName, const tchar* const cpMode )
 // {{{
 {
-#if defined( _V_STD_VER_ ) && ( _V_STD_VER_ >=11 )
-    errno_t loRet = vFopen_s( &mpFile, cpName, cpMode );
+#if defined( _MSC_VER_ ) && ( _V_STD_VER_ >=11 )
+    tErrno loRet = vFopen_s( &mpFile, cpName, cpMode );
     if( loRet != 0 )
     {
         mllErrCode = loRet;
@@ -197,15 +197,15 @@ inline bool vm::CFile::Open( _vIn_ const tchar* const cpName, _vIn_ const short 
 // {{{
 {
     vm::CFileMode loFileMode;
-#if defined( _V_STD_VER_ ) && ( _V_STD_VER_ >=11 )
-    errno_t loRet = vFopen_s( &mpFile, cpName, loFileMode.Tranformat(csMode) );
+#if defined( _MSC_VER_ ) && ( _V_STD_VER_ >=11 )
+    tErrno loRet = vFopen_s( &mpFile, cpName, loFileMode.Tranformat(csMode) );
     if( loRet != 0 )
     {
         mllErrCode = loRet;
         return false;
     }
 #else
-    mpFile       = vFopen( cpName, loFileMode.Transformat(csMode) );
+    mpFile       = vFopen( cpName, loFileMode.Tranformat(csMode) );
     if( mpFile == nullptr )
     {
         mllErrCode = errno;
@@ -774,7 +774,7 @@ inline wchar_t vm::CFile::Get_w( _vOt_ wchar_t cVal )
 // ==                                   no null  - string
 // ==  Params  : pBuf             - [I] string's buffer
 // ==            csztBufSize      - [I] string;s buffer size
-inline tchar vm::CFile::Get( _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize )
+inline tchar* vm::CFile::Get( _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize )
 // {{{
 {
     if( mpFile == nullptr )
@@ -788,7 +788,7 @@ inline tchar vm::CFile::Get( _vOt_ tchar* const pBuf, _vIn_ const size_t csztBuf
         return nullptr;
     
     HasErr();
-    return nullptr
+    return nullptr;
 }
 // }}} end of func CFile::Get(...)
 // ================================================================================================ //
@@ -801,7 +801,7 @@ inline tchar vm::CFile::Get( _vOt_ tchar* const pBuf, _vIn_ const size_t csztBuf
 // ==                                   no null  - string
 // ==  Params  : pBuf             - [I] string's buffer
 // ==            csztBufSize      - [I] string;s buffer size
-inline char* vm::CFile::Get_c( _vOt_ char* const pBuf const size_t csztBufSize )
+inline char* vm::CFile::Get_c( _vOt_ char* const pBuf, const size_t csztBufSize )
 // {{{
 {
     if( mpFile == nullptr )
@@ -815,7 +815,7 @@ inline char* vm::CFile::Get_c( _vOt_ char* const pBuf const size_t csztBufSize )
         return nullptr;
     
     HasErr();
-    return nullptr
+    return nullptr;
 }
 // }}} end of func CFile::Get_c(...)
 // ================================================================================================ //
@@ -842,7 +842,7 @@ inline wchar_t* vm::CFile::Get_w( _vOt_ wchar_t* const pBuf, const size_t csztBu
         return nullptr;
     
     HasErr();
-    return nullptr
+    return nullptr;
 }
 // }}} end of func CFile::Get_w(...)
 // ================================================================================================ //
