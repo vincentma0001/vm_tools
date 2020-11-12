@@ -43,6 +43,8 @@ project(${TNAME} VERSION ${VER})
 configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
+add_subdirectory(${HOME}/tst/tst_args)
+#[[
 add_subdirectory(${HOME}/tst/tst_any)
 add_subdirectory(${HOME}/tst/tst_list)
 add_subdirectory(${HOME}/tst/tst_stdmap)
@@ -61,3 +63,4 @@ add_subdirectory(${HOME}/tst/tst_error)
 add_subdirectory(${HOME}/tst/tst_cfgs_w)
 add_subdirectory(${HOME}/tst/tst_cfgs)
 add_subdirectory(${HOME}/tst/tst_test)
+]]

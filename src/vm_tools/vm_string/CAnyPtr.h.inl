@@ -324,49 +324,95 @@ inline const tchar* vm::CAnyPtr::cs_type(  )
     switch ( memType ) {
     // {{{
         case emType::emBool:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("bool")                ); break; }
+        { return  vT("bool"); }
         case emType::emSize:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("size_t")              ); break; }
+        { return vT("size_t"); }
     
         case emType::emChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("char")                ); break; }
+        { return vT("char"); }
         case emType::emUChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned char")       ); break; }
+        { return vT("unsigned char"); }
         case emType::emWChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("wchar_t")             ); break; }
+        { return vT("wchar_t"); }
     
         case emType::emShort:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("short")               ); break; }
+        { return vT("short"); }
         case emType::emUShort:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned short")      ); break; }
+        { return vT("unsigned short"); }
     
         case emType::emInt:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("int")                 ); break; }
+        { return vT("int"); }
         case emType::emUInt:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned int")        ); break; }
+        { return vT("unsigned int"); }
     
         case emType::emLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long")                ); break; }
+        { return vT("long"); }
         case emType::emULong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned long")       ); break; }
+        { return vT("unsigned long"); }
     
         case emType::emLLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long long")           ); break; }
+        { return vT("long long"); }
         case emType::emULLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unsigned long long")  ); break; }
+        { return vT("unsigned long long"); }
     
         case emType::emFloat:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("float")               ); break; }
+        { return vT("float"); }
         case emType::emDouble:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("double")              ); break; }
+        { return vT("double"); }
         case emType::emLDouble:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("long double")         ); break; }
+        { return vT("long double"); }
     
         case emType::emStr:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("string")              ); break; }
+        { return vT("string"); }
     
         default:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("%s"), vT("unknow")              ); }
+        { return vT("unknow"); }
+/*
+        case emType::emBool:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("bool")                ); break; }
+        case emType::emSize:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("size_t")              ); break; }
+    
+        case emType::emChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("char")                ); break; }
+        case emType::emUChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned char")       ); break; }
+        case emType::emWChar:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("wchar_t")             ); break; }
+    
+        case emType::emShort:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("short")               ); break; }
+        case emType::emUShort:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned short")      ); break; }
+    
+        case emType::emInt:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("int")                 ); break; }
+        case emType::emUInt:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned int")        ); break; }
+    
+        case emType::emLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("long")                ); break; }
+        case emType::emULong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned long")       ); break; }
+    
+        case emType::emLLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("long long")           ); break; }
+        case emType::emULLong:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned long long")  ); break; }
+    
+        case emType::emFloat:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("float")               ); break; }
+        case emType::emDouble:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("double")              ); break; }
+        case emType::emLDouble:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("long double")         ); break; }
+    
+        case emType::emStr:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("string")              ); break; }
+    
+        default:
+        { vm::v_sprintf( mpBuf, msztBufSize, vT("unknow")              ); }
+//*/
     } // }}} End of switch( emType )
     
     return mpBuf;

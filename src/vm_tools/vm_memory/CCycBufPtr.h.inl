@@ -216,14 +216,23 @@ inline bool vm::CCycBufPtr::Put( const void* const cpData, const size_t csztData
 
     if( mpEndedPos > mpStartPos )
     {
+      
+        vDebug( vLine( vT("Case 1") ); )
+
         size_t lsztBufLenPart1 = mpBufEnded - mpEndedPos;
         vm::CMemPtr loMemPart1( mpEndedPos, lsztBufLenPart1 );
 
         size_t lsztCopied1 = loMemPart1.CopyFm( cpData, csztDataLen );
-        if( lsztCopied1 <= lsztBufLenPart1 )
+        if( lsztCopied1 < lsztBufLenPart1 )
         {
             msztLen     += lsztCopied1;
             mpEndedPos   = mpEndedPos+lsztCopied1;
+            return true;
+        }
+        else if( lsztCopied1 == lsztBufLenPart1 )
+        {
+            msztLen     += lsztCopied1;
+            mpEndedPos   = const_cast<char*>(mpBufStart);
             return true;
         }
 
@@ -254,10 +263,16 @@ inline bool vm::CCycBufPtr::Put( const void* const cpData, const size_t csztData
         vm::CMemPtr loMemPart1( mpEndedPos, lsztBufLenPart1 );
 
         size_t lsztCopied1 = loMemPart1.CopyFm( cpData, csztDataLen );
-        if( lsztCopied1 <= lsztBufLenPart1 )
+        if( lsztCopied1 < lsztBufLenPart1 )
         {
             msztLen     += lsztCopied1;
             mpEndedPos   = mpEndedPos + lsztCopied1;
+            return true;
+        }
+        else if( lsztCopied1 == lsztBufLenPart1 )
+        {
+            msztLen     += lsztCopied1;
+            mpEndedPos   = const_cast<char*>(mpBufStart);
             return true;
         }
 
@@ -334,7 +349,7 @@ inline bool vm::CCycBufPtr::Get( void* const pData, const size_t csztDataLen )
         vm::CMemPtr loMemPart1( mpStartPos, lsztDataLenInBufPart1 );
         size_t lsztCopied1 = loMemPart1.CopyTo( pData, csztDataLen );
         
-        if( lsztCopied1 <= csztDataLen )
+        if( lsztCopied1 < csztDataLen )
         {
 
 #if       (vCycBufRemoveAfterGet==1)
@@ -343,6 +358,16 @@ inline bool vm::CCycBufPtr::Get( void* const pData, const size_t csztDataLen )
 
             msztLen  -= lsztCopied1;
             mpStartPos = mpStartPos+lsztCopied1;
+            return true;
+        }
+        else if( lsztCopied1 == csztDataLen )
+        {
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart1.Set( 0x00, lsztCopied1, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+
+            msztLen  -= lsztCopied1;
+            mpStartPos = const_cast<char*>(mpBufStart);
             return true;
         }
 
@@ -380,6 +405,16 @@ inline bool vm::CCycBufPtr::Get( void* const pData, const size_t csztDataLen )
 
             msztLen  -= lsztCopied1;
             mpStartPos = mpStartPos+lsztCopied1;
+            return true;
+        }
+        else if( lsztCopied1 == csztDataLen )
+        {
+#if       (vCycBufRemoveAfterGet==1)
+            loMemPart1.Set( 0x00, lsztCopied1, 0 );
+#endif // !(vCycBufRemoveAfterGet==1)
+
+            msztLen  -= lsztCopied1;
+            mpStartPos = const_cast<char*>(mpBufStart);
             return true;
         }
 

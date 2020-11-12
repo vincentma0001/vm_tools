@@ -16,33 +16,47 @@ void ShowCycBuf( vm::CCycBufPtr& oCycBuf )
 }
 
 template< typename tType >
-void tst_cycbuf_type( vm::CCycBufPtr& oCycBuf, tType tVal )
+void tst_cycbuf_put( vm::CCycBufPtr& oCycBuf, tType &tVal )
 {
+
     bool lbRetForPut = oCycBuf.Put( tVal );
     if( lbRetForPut == true )
     {
-        vm::v_output_line( vT("Put value %s sucess"), vm::CAny<256>(tVal).toStr() );
+        vm::CAny<256> loValue(tVal);
+        vm::v_output_line( vT("\e[33mPut value %s\e[0m \e[32msucess\e[0m, tType=<\e[33m%s\e[0m>"), loValue.toStr(), loValue.cs_type() );
         ShowCycBuf( oCycBuf );
     }
     else
     {
-        vm::v_output_line( vT("Put value %s failed"), vm::CAny<256>(tVal).toStr() );
+        vm::CAny<256> loValue(tVal);
+        vm::v_output_line( vT("\e[33mPut value %s\e[0m \e[31mfailed\e[0m, tType=<\e[33m%s\e[0m>"), loValue.toStr(), loValue.cs_type() );
         ShowCycBuf( oCycBuf );
     }
-    
+}
+template< typename tType >
+void tst_cycbuf_get( vm::CCycBufPtr& oCycBuf, tType &tVal )
+{
 
     tVal = 0;
     bool lbRetForGet = oCycBuf.Get( tVal );
     if( lbRetForGet == true )
     {
-        vm::v_output_line( vT("Get value %s sucess"), vm::CAny<256>(tVal).toStr() );
+        vm::CAny<256> loValue(tVal);
+        vm::v_output_line( vT("\e[33mGet value %s\e[0m \e[32msucess\e[0m, tType=<\e[33m%s\e[0m>"), loValue.toStr(), loValue.cs_type() );
         ShowCycBuf( oCycBuf );
     }
     else
     {
-        vm::v_output_line( vT("Get value %s failed"), vm::CAny<256>(tVal).toStr() );
+        vm::CAny<256> loValue(tVal);
+        vm::v_output_line( vT("\e[33mGet value %s\e[0m \e[31mfailed\e[0m, tType=<\e[33m%s\e[0m>"), loValue.toStr(), loValue.cs_type() );
         ShowCycBuf( oCycBuf );
     }
+}
+template< typename tType >
+void tst_cycbuf_type( vm::CCycBufPtr& oCycBuf, tType tVal )
+{
+    tst_cycbuf_put( oCycBuf, tVal );
+    tst_cycbuf_get( oCycBuf, tVal );
 }
 
 // ================================================================================================ //
@@ -87,7 +101,7 @@ vTry
     tst_cycbuf_type<unsigned long long>( loCycBuf, vMaxuLLong );
 
     vm::v_output_line( "**********************************************" );
-    tst_cycbuf_type<float>( loCycBuf, vMinFloat );
+    tst_cycbuf_type<float>( loCycBuf, vMaxFloat );
 
     vm::v_output_line( "**********************************************" );
     tst_cycbuf_type<double>( loCycBuf, vMaxDouble );
@@ -111,68 +125,26 @@ vTry
 
     // Add unit test coder here
     tchar lszBuf[8] = {0x00};
-
     vm::CCycBufPtr loCycBuf( lszBuf, sizeof(lszBuf) );
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
 
-    bool lbRet = false;
-    lbRet = loCycBuf.Put( vT('1') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('2') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('3') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('4') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('5') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('6') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('7') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('8') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
-    lbRet = loCycBuf.Put( vT('9') );
-    vPrintf( vT("Put %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-    
+    tchar lcVal = vT('1');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('2');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('3');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('4');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('5');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('6');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('7');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('8');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
+    lcVal = vT('9');
+    tst_cycbuf_put<tchar>( loCycBuf, lcVal );
 
 vCatch(...)
     return false;
@@ -194,73 +166,28 @@ vTry
 
     vm::CCycBufPtr loCycBuf( lszBuf, sizeof(lszBuf) );
     while( loCycBuf.Put(vT('A')) ){};
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-    bool lbRet  = false;
+    ShowCycBuf( loCycBuf );
+
     tchar lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
-
+    tst_cycbuf_get( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Get(lcVal);
-    vPrintf( vT("Get(%c) %s, Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), lcVal, vStrBool(lbRet),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
+    tst_cycbuf_get( loCycBuf, lcVal );
+    lcVal = 0;
+    tst_cycbuf_get( loCycBuf, lcVal );
 vCatch(...)
     return false;
 vEnd
@@ -278,67 +205,88 @@ vTry
 
     // Add unit test coder here
     tchar lszBuf[8] = {0x00};
-
     vm::CCycBufPtr loCycBuf( lszBuf, sizeof(lszBuf) );
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"),
-            loCycBuf.SizeUsed(),loCycBuf.SizeUnused(),
-            loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-    vm::CMemMgr::Output<32,8>( stdout, lszBuf,sizeof(lszBuf) );
+    ShowCycBuf( loCycBuf );
 
-    bool  lbRet = false;
-    tchar lcVal = 0;
-    lbRet = loCycBuf.Put(vT('A')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('B')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
-
+    vm::v_output_line( "**********************************************" );
+    tchar lcVal = vT('A');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('B');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('C')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('D')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('C');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('D');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('E')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('F')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('E');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('F');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('G')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('H')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('G');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('H');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('I')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('J')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('I');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('J');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('K')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('L')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('K');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('L');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('M')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('N')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('M');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('N');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('O')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('P')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
 
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('O');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('P');
+    tst_cycbuf_put( loCycBuf, lcVal );
     lcVal = 0;
-    lbRet = loCycBuf.Put(vT('Q')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Put(vT('S')); if(lbRet == false){ vPrintf(vT("Put falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    lbRet = loCycBuf.Get( lcVal ); if(lbRet == false){ vPrintf(vT("Get falsed!\n")); }else{ vm::CMemMgr::Output<32,8>(stdout,lszBuf,sizeof(lszBuf)); }
-    vPrintf( vT("Buf(Used:%lu Unused:%lu), Pos[%u:%u]\n"), loCycBuf.SizeUsed(),loCycBuf.SizeUnused(), loCycBuf.StartPos() ,loCycBuf.EndedPos()    );
+    tst_cycbuf_get( loCycBuf, lcVal );
+
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('G');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('R');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = 0;
+    tst_cycbuf_get( loCycBuf, lcVal );
+
+    vm::v_output_line( "**********************************************" );
+    lcVal = vT('S');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = vT('T');
+    tst_cycbuf_put( loCycBuf, lcVal );
+    lcVal = 0;
+    tst_cycbuf_get( loCycBuf, lcVal );
 vCatch(...)
     return false;
 vEnd
@@ -454,10 +402,10 @@ UT_FUNC_ENDED
 // ================================================================================================ //
 // [ tst_frame_cycbuf ] {{{
 UT_FRAME_BEGIN ( tst_frame_cycbuf )
-UT_FRAME_REGIST( ut_cycbuf_1 )
+//UT_FRAME_REGIST( ut_cycbuf_1 )
 //UT_FRAME_REGIST( ut_cycbuf_2 )
 //UT_FRAME_REGIST( ut_cycbuf_3 )
-//UT_FRAME_REGIST( ut_cycbuf_4 )
+UT_FRAME_REGIST( ut_cycbuf_4 )
 //UT_FRAME_REGIST( ut_cycbuf_5 )
 UT_FRAME_ENDED
 // }}} ![ tst_frame_cycbuf ]

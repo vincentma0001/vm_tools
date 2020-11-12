@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 23:07:31                                               == //
-// ==   Modify Time          : 2020-11-02 23:14:12                                               == //
+// ==   Modify Time          : 2020-11-12 23:18:50                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -241,10 +241,10 @@
 #if ( _V_USE_WCHAR_ == 0 )
 // ------------------------------------------------------------------------------------------------ //
 #   define vStrtok             strtok
-#   define vStrtok_s           strtok_s
+#   define vStrtok_s           strtok_r
 #else  // _V_USE_WCHAR_ != 0
 #   define vStrtok             wcstok
-#   define vStrtok_s           wcstok_s
+#   define vStrtok_s           wcstok_r
 // ------------------------------------------------------------------------------------------------ //
 #endif // end of #if defined( _V_USE_WCHAR_ )...
 // ================================================================================================ //

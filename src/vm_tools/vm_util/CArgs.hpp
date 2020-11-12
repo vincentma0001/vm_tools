@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                       v_funcs_io.h                                         == //
+// ==                                         CArgs.hpp                                          == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-11 13:01                                                  == //
+// ==   Create Time          : 2020-11-12 23:00                                                  == //
+// ==   Modify Time          : 2020-11-12 23:00                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __V_FUNCS_IO_H__
-#define  __V_FUNCS_IO_H__
+#ifndef  __CARGS_HPP__
+#define  __CARGS_HPP__
 
 
 // ================================================================================================ //
@@ -36,40 +36,64 @@
 namespace vm
 {
 
+// ================================================================================================ //
+// ==  Class CArgs : This class splite string by spliter, It will be easy to acess string parts  == //
 // ------------------------------------------------------------------------------------------------ //
-// Macrodefs : {{{
-#ifndef    vOutput
-#   define vOutput      vm::v_output
-#endif // !vOutput
-
-#ifndef    vLine
-#   define vLine        vm::v_output_line
-#endif // !vLine
-// }}} ! Macrodefs
+template< unsigned int tuiMaxArgvs >
+class CArgs
+// {{{
+{
 // ------------------------------------------------------------------------------------------------ //
+// Construct & Destruct : {{{
+public:
+    // Construct define
+    inline explicit CArgs();
+    // Destruct define
+    inline virtual ~CArgs();
 
+private:
+    // Copy construct define
+    inline CArgs             ( const CArgs &obj );
+    // Assignment operation
+    inline CArgs& operator = ( const CArgs &obj );
+// }}} ! Construct & Destruct
 
-// Format string, and copy new string to dst buffer
-inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_            ... );
-// Format string, and copy new string to dst buffer
-inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
+// ------------------------------------------------------------------------------------------------ //
+// Operators : {{{
+public:
+    // Get argv in CArgs by postion
+    inline tchar* operator [] ( const unsigned int uiPos );
+// }}} ! Operators
 
-// Output a formated string
-inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
-// Output a formated string
-inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_            ... );
+// ------------------------------------------------------------------------------------------------ //
+// Menbers   : {{{
+private:
+    // Argc in string
+    unsigned int        muiArgc;
+    // Args in string
+    tchar*              mpArgvs[tuiMaxArgvs];
+// }}} ! Members
 
-// Output a formated string line
-inline bool v_output_line ( _vIn_ const tchar* const cpFmt, _vIn_            ... );
+// ------------------------------------------------------------------------------------------------ //
+// Methods   : {{{
+public:
+    unsigned int Argc( void );
+    unsigned int Splite( const tchar* pString, const tchar* const cpszDelimiters );
+// }}} ! Methods
+
+};
+// }}} ! [ class CArgs ]
+// ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "v_funcs_io.h.inl"
+#include "CArgs.hpp.inl"
 // ================================================================================================ //
 
-#endif // ! __V_FUNCS_IO_H__
+
+#endif // ! __CARGS_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
