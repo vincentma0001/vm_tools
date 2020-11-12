@@ -27,7 +27,6 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include <vm_tools/vm_string.h>
 // }}}
 // ================================================================================================ //
 
@@ -48,20 +47,20 @@ class CPrFmt
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CPrFmt(){};
+    inline          CPrFmt    (                   );
     // Destruct define
-    inline virtual ~CPrFmt(){};
+    inline virtual ~CPrFmt    (                   );
 
 private:
     // Copy construct define
-    inline CPrFmt             ( const CPrFmt &obj ){};
+    inline CPrFmt             ( const CPrFmt &obj );
     // Assignment operation
-    inline CPrFmt& operator = ( const CPrFmt &obj ){return *this;};
+    inline CPrFmt& operator = ( const CPrFmt &obj );
 // }}} ! Construct & Destruct
 // ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
-    inline tchar* operator * () { return mszBuf; }
+    inline tchar*  operator * (                   );
 // }}} ! Operators
 
 // ------------------------------------------------------------------------------------------------ //
@@ -73,202 +72,36 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : 
 public:
-    size_t Size(){ return tsztBufSize;     };
-    size_t Len (){ return vStrlen(mszBuf); };
+    // Get Buffer size in CPrFmt
+    size_t Size( void );
+    // Get string length in CPrFmt buffer
+    size_t Len ( void );
 
-    CPrFmt&      Char( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false )
-    {
-        vMemZero(mszBuf);
-        size_t lsztOffset = 0;
-
-        mszBuf[lsztOffset++] = vT('%');
-
-        if( csztWidth != 0 )
-        {
-            if( bLeft == true )
-            {
-                mszBuf[lsztOffset++] = vT('-');
-            }
-
-            if( bFillZero == true )
-            {
-                mszBuf[lsztOffset++] = vT('0');
-            }
-
-            tchar* lpPos = mszBuf+lsztOffset;
-            vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-            lsztOffset += vStrlen(lpPos);
-        }
-
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('d');
-
-        printf( "Step 1 : %s\n", mszBuf );
-        return *this;
-    };
-    CPrFmt&     UChar()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('u');
-
-        return *this;
-    };
-
-    CPrFmt&      Short()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('d');
-
-        return *this;
-    };
-    CPrFmt&     UShort()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-
-        mszBuf[lsztOffset++] = vT('h');
-        mszBuf[lsztOffset++] = vT('u');
-
-        return *this;
-    };
-
-    CPrFmt&      Int()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('d');
-
-        return *this;
-    };
-    CPrFmt&     UInt()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('u');
-
-        return *this;
-    };
-
-    CPrFmt&      Long()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('d');
-
-        return *this;
-    };
-    CPrFmt&     ULong()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('u');
-
-        return *this;
-    };
-
-    CPrFmt&      LLong()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('d');
-
-        return *this;
-    };
-    CPrFmt&     ULLong()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('u');
-
-        return *this;
-    };
-
-    CPrFmt&       Float()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('f');
-
-        return *this;
-    };
-    CPrFmt&      Double()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('f');
-
-        return *this;
-    };
-    CPrFmt&     LDouble()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('l');
-        mszBuf[lsztOffset++] = vT('f');
-
-        return *this;
-    };
-
-    CPrFmt&      Size_t()
-    {
-        vMemZero(mszBuf);
-
-        size_t lsztOffset = 0;
-        mszBuf[lsztOffset++] = vT('%');
-        mszBuf[lsztOffset++] = vT('z');
-        mszBuf[lsztOffset++] = vT('d');
-
-        return *this;
-    }
+    CPrFmt& Char   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& UChar  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& Short  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& UShort ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& Int    ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& UInt   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& Long   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& tSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CPrFmt& Float  ();
+    CPrFmt& Double ();
+    CPrFmt& LDouble();
 //  ! Methods
 
 };
 // }}} ! [ class CPrFmt ]
 // ================================================================================================ //
-// Class realization :
-#include "CPrFmt.hpp.inl"
-// ================================================================================================ //
 
 };
 // }}} End of namespace vm
+// ================================================================================================ //
+// Class realization :
+#include "CPrFmt.hpp.inl"
 // ================================================================================================ //
 
 
