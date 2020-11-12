@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:36                                               == //
-// ==   Modify Time          : 2020-11-11 20:15:17                                               == //
+// ==   Modify Time          : 2020-11-12 09:09:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -49,10 +49,15 @@ public:
     enum emRet
     // {{{
     {
-        emSucess = 0,
+        emSucess          = 0,
 
-        emError = vMaxsLong -1,
-        emWarns = vMaxsLong -20
+        emError           = vMaxsLong - 1,
+        emErrCopyToFailed = emError   - 1,
+        emErrCopyFmFailed = emError   - 2,
+        emErrNoEnoughBuf  = emError   - 3,
+        emErrNoEnoughData = emError   - 4,
+
+        emWarns           = vMaxsLong - 20
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
@@ -81,12 +86,12 @@ public:
 // Menbers   : {{{
 private:
     // Buffer's address
-    void*  mpBuf;
+    void*            mpBuf;
     // Buffer's size
-    size_t msztBufSize;
+    size_t           msztBufSize;
 
     // Error code
-    long long mllErrCode;
+    long long        mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
@@ -113,63 +118,12 @@ public:
     // Set value in buffer
     inline void   Set    ( const int ciValue, const size_t csztDataLen, const size_t csztBufOffset = 0 );
 
-    // Write a wchar_t to memory buffer
-    inline bool Put     ( const wchar_t            cVal, const size_t csztBufOffset = 0 );
-    // Write a char to memory buffer
-    inline bool Put     ( const char               cVal, const size_t csztBufOffset = 0 );
-    // Write a unsigned char to memory buffer
-    inline bool Put     ( const unsigned char      cVal, const size_t csztBufOffset = 0 );
-    // Write a short to memory buffer
-    inline bool Put     ( const short              cVal, const size_t csztBufOffset = 0 );
-    // Write a unsigned short to memory buffer
-    inline bool Put     ( const unsigned short     cVal, const size_t csztBufOffset = 0 );
-    // Write a int to memory buffer
-    inline bool Put     ( const int                cVal, const size_t csztBufOffset = 0 );
-    // Write a unsigned int to memory buffer
-    inline bool Put     ( const unsigned int       cVal, const size_t csztBufOffset = 0 );
-    // Write a long to memory buffer
-    inline bool Put     ( const long               cVal, const size_t csztBufOffset = 0 );
-    // Write a unsigned long to memory buffer
-    inline bool Put     ( const unsigned long      cVal, const size_t csztBufOffset = 0 );
-    // Write a long long to memory buffer
-    inline bool Put     ( const long long          cVal, const size_t csztBufOffset = 0 );
-    // Write a unsigned long long to memory buffer
-    inline bool Put     ( const unsigned long long cVal, const size_t csztBufOffset = 0 );
-    // Write a float to memory buffer
-    inline bool Put     ( const float              cVal, const size_t csztBufOffset = 0 );
-    // Write a double to memory buffer
-    inline bool Put     ( const double             cVal, const size_t csztBufOffset = 0 );
-    // Write a long double to memory buffer
-    inline bool Put     ( const long double        cVal, const size_t csztBufOffset = 0 );
-
-    // Get a wchar_t from memory buffer
-    inline bool Get     ( wchar_t                  &Val, const size_t csztBufOffset = 0 );
-    // Get a char from memory buffer
-    inline bool Get     ( char                     &Val, const size_t csztBufOffset = 0 );
-    // Get a unsigned char from memory buffer
-    inline bool Get     ( unsigned char            &Val, const size_t csztBufOffset = 0 );
-    // Get a short from memory buffer
-    inline bool Get     ( short                    &Val, const size_t csztBufOffset = 0 );
-    // Get a unsigned short from memory buffer
-    inline bool Get     ( unsigned short           &Val, const size_t csztBufOffset = 0 );
-    // Get a int from memory buffer
-    inline bool Get     ( int                      &Val, const size_t csztBufOffset = 0 );
-    // Get a unsigned int from memory buffer
-    inline bool Get     ( unsigned int             &Val, const size_t csztBufOffset = 0 );
-    // Get a long from memory buffer
-    inline bool Get     ( long                     &Val, const size_t csztBufOffset = 0 );
-    // Get a unsigned long from memory buffer
-    inline bool Get     ( unsigned long            &Val, const size_t csztBufOffset = 0 );
-    // Get a long long from memory buffer
-    inline bool Get     ( long long                &Val, const size_t csztBufOffset = 0 );
-    // Get a unsigned long long from memory buffer
-    inline bool Get     ( unsigned long long       &Val, const size_t csztBufOffset = 0 );
-    // Get a float from memory buffer
-    inline bool Get     ( float                    &Val, const size_t csztBufOffset = 0 );
-    // Get a double from memory buffer
-    inline bool Get     ( double                   &Val, const size_t csztBufOffset = 0 );
-    // Get a long double from memory buffer
-    inline bool Get     ( long double              &Val, const size_t csztBufOffset = 0 );
+    // Write tType object to memory buffer
+    template< typename tType >
+    inline bool Put     ( const tType            cVal, const size_t csztBufOffset = 0 );
+    // Get tType object from memory buffer
+    template< typename tType >
+    inline bool Get     ( tType                  &Val, const size_t csztBufOffset = 0 );
 
     // Move data from src data buffer
     inline size_t MoveFm ( const void* const cpSrc,  const size_t csztDataLen,                           const size_t csztBufOffset = 0 );
