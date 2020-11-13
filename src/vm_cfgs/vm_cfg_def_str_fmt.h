@@ -28,14 +28,14 @@
 // ------------------------------------------------------------------------------------------------ //
 // [ char's string format macro defins ] {{{
 #define vStrFmtChar                                    "%c"
-#define vStrFmtChar_l                                  "%-c")
+#define vStrFmtChar_l                                  "%-c"
 #define vStrFmtChar_w(   nWidth )                       "%"#nWidth"c"
 #define vStrFmtChar_lw(  nWidth )                       "%-"#nWidth"c"
 #define vStrFmtChar_zw(  nWidth )                       "%0"#nWidth"c"
 #define vStrFmtChar_lzw( nWidth )                       "%-0"#nWidth"c"
 
-#define vStrFmtUChar                                    "%c")
-#define vStrFmtUChar_l                                  "%-c")
+#define vStrFmtUChar                                    "%c"
+#define vStrFmtUChar_l                                  "%-c"
 #define vStrFmtUChar_w(   nWidth )                      "%"#nWidth"c"
 #define vStrFmtUChar_lw(  nWidth )                      "%-"#nWidth"c"
 #define vStrFmtUChar_zw(  nWidth )                      "%0"#nWidth"c"
