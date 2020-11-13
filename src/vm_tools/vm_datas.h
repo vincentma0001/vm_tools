@@ -28,9 +28,7 @@
 // vm's function depend on included
 
 // vm's function files inlcuded
-#include <vm_tools/vm_datas/vm_list.h>
 
-//#include <vm_tools/vm_cerr/CWinErr.hpp>
 
 // }}} ! Include files
 // ================================================================================================ //
