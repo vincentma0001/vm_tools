@@ -126,36 +126,55 @@ public:
     // Write s string to buffer
     inline CStrFmtPtr& str     ( const tchar* const cpStr, const size_t csztStrLen );
 
-    // Create a print format for char
+    // Create a formated string for string
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_str ( const size_t csztWidth=0,                             const bool bLeft=false );
-    // Create a print format for char
+    // Create a formated string for char
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_c   ( const size_t csztWidth=0,                             const bool bLeft=false );
-    // Create a print format for unsigned char
+    // Create a formated string for unsigned char
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_uc  ( const size_t csztWidth=0,                             const bool bLeft=false );
-    // Create a print format for char's number
+    // Create a formated string for char number
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_cn  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    // Create a print format for unsigned char's number
+    // Create a formated string for unsigned char number
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_ucn ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    /*
-    CStrFmtPtr& fmt_s   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_us  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_i   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_ui  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_l   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_ul  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_ll  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_ull ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_szt ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& fmt_f   ();
-    CStrFmtPtr& fmt_d   ();
-    CStrFmtPtr& fmt_ld  ();
+    // Create a formated string for short
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_s   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for unsigned short
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_us  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for int
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_i   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for unsigned int
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_ui  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for long
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_l   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for unsigned long
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_ul  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for long long
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_ll  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for unsigned long long
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_ull ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for size_t
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_szt ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for float
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_f   ( const size_t csztWidth=0, const size_t csztWidthDecimal=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a formated string for double
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_d   ( const size_t csztWidth=0, const size_t csztWidthDecimal=0, const bool bFillZero=false, const bool bLeft=false );
 
-    //*/
 // }}} ! Methods
 
 };

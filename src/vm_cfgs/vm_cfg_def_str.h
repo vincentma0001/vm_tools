@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:38:24                                               == //
-// ==   Modify Time          : 2020-11-11 20:33:16                                               == //
+// ==   Modify Time          : 2020-11-13 15:09:11                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -54,7 +54,19 @@
 #endif // end of #if defined( _V_USE_WCHAR_ )
 // ======================================================================================
 
+#define vStrFmtChar                         vT("%c")
+#define vStrFmtChar_l                       vT("%-c")
+#define vStrFmtChar_d(   nWidth )           vT("%"#nWidth"c")
+#define vStrFmtChar_ld(  nWidth )           vT("%-"#nWidth"c")
+#define vStrFmtChar_zd(  nWidth )           vT("%0"#nWidth"c")
+#define vStrFmtChar_lzd( nWidth )           vT("%-0"#nWidth"c")
 
+#define vStrFmtCharNum                      vT("%hhd")
+#define vStrFmtCharNum_l                    vT("%-hhd")
+#define vStrFmtCharNum_d(   nWidth )        vT("%"#nWidth"hhd")
+#define vStrFmtCharNum_ld(  nWidth )        vT("%-"#nWidth"hhd")
+#define vStrFmtCharNum_zd(  nWidth )        vT("%0"#nWidth"hhd")
+#define vStrFmtCharNum_lzd( nWidth )        vT("%-0"#nWidth"hhd")
 // }}}
 // ================================================================================================ //
 

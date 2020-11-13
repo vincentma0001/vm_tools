@@ -26,7 +26,6 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#include "vm_tools/vm_string/CStrFmtPtr.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_funcs.h>
 // }}}
@@ -458,8 +457,472 @@ inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_ucn( const size_t csztWidth, const boo
 // }}} end of func CStrFmtPtr::fmt_ucn(...)
 // ================================================================================================ //
 
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_s(...)                                                          == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_s( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
 
+    lszBuf[lsztOffset++] = vT('%');
 
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('h');
+    lszBuf[lsztOffset++] = vT('d');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_s(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_us(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_us( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('h');
+    lszBuf[lsztOffset++] = vT('u');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_us(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_i(...)                                                          == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_i( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('d');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_i(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_ui(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_ui( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('u');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_ui(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_l(...)                                                          == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_l( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('d');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_l(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_ul(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_ul( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('u');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_ul(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_ll(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_ll( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('d');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_ll(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_ull(...)                                                        == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_ull( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('l');
+    lszBuf[lsztOffset++] = vT('u');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_ull(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_szt(...)                                                        == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr&vm::CStrFmtPtr::fmt_szt( const size_t csztWidth, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('z');
+    lszBuf[lsztOffset++] = vT('u');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_szt(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_f(...)                                                        == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr& vm::CStrFmtPtr::fmt_f( const size_t csztWidth, const size_t csztWidthDecimal, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    if( csztWidthDecimal != 0 )
+    {
+        lszBuf[lsztOffset++] = vT('.');
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidthDecimal );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('f');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_f(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStrFmtPre::fmt_d(...)                                                        == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for char
+// ==  Return  : CStrFmtPtr&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztTmpBufSize >
+inline vm::CStrFmtPtr& vm::CStrFmtPtr::fmt_d( const size_t csztWidth, const size_t csztWidthDecimal, const bool bFillZero, const bool bLeft )
+// {{{ 
+{
+    tchar lszBuf[tsztTmpBufSize] = {0x00};
+    size_t lsztOffset = 0;
+
+    lszBuf[lsztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            lszBuf[lsztOffset++] = vT('-');
+        }
+
+        if( bFillZero == true )
+        {
+            lszBuf[lsztOffset++] = vT('0');
+        }
+
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidth );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    if( csztWidthDecimal != 0 )
+    {
+        lszBuf[lsztOffset++] = vT('.');
+        
+        tchar* lpPos = lszBuf+lsztOffset;
+        vm::v_sprintf( lpPos, (tsztTmpBufSize-lsztOffset), vT("%zu"), csztWidthDecimal );
+        lsztOffset += vStrlen(lpPos);
+    }
+
+    lszBuf[lsztOffset++] = vT('f');
+
+    return str( lszBuf, lsztOffset );
+}
+// }}} end of func CStrFmtPtr::fmt_d(...)
+// ================================================================================================ //
 
 // }}} ![ Class CStrFmtPtr Functional realization ]
 // ================================================================================================ //
