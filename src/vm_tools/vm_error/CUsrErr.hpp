@@ -94,6 +94,12 @@ public:
 #include "CUsrErr.hpp.inl"
 // ================================================================================================ //
 
+#define DEF_CUERERR_BEGIN( tUseErr ) class tUsrErr : public CUsrErr<tUsrErr>{ \
+    public: inline tUsrErr(const long clErrCode):mlErrCode(clErrCode){};\
+            inline virtual ~tUseErr(){};\
+    public: inline virtual bool Regist( void ) {
+#define DEF_CUERERR_REGMEG( clErrCode, cstrErrMsg ) { RegMsg( clErrCode, cstrErrMsg ); }
+#define DEF_CUSRERR_ENDED }};
 
 #endif // ! __CUSRERR_HPP__
 // ================================================================================================ //
