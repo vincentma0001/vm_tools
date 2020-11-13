@@ -34,7 +34,7 @@
 #include <vm_tools/vm_funcs/v_funcs_io.h>
 #include <vm_tools/vm_funcs/v_funcs_mem.h>
 #include <vm_tools/vm_funcs/v_funcs_str.h>
-
+#include <vm_tools/vm_funcs/v_funcs_list.h>
 // }}}
 // ================================================================================================ //
 
