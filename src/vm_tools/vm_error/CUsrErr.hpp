@@ -50,7 +50,7 @@ public:
     // Construct define
     inline          CUsrErr( const long clErrCode );
     // Destruct define
-    inline virtual ~CUsrErr( );
+    inline virtual ~CUsrErr(                      );
 
 private:
     // Copy construct define
@@ -77,10 +77,10 @@ public:
     inline const tchar* toString ( void );
 
     // Regist a user defined message
-    inline bool         RegMsg    ( const long clErrCode, const vString cstrErrMsg );
+    inline bool         RegMsg   ( const long clErrCode, const vString cstrErrMsg );
 
 public:
-    inline virtual bool Regist( void ) = 0;
+    inline virtual bool Regist   ( void ) = 0;
 // }}} ! Methods
 
 };
@@ -97,9 +97,9 @@ public:
 // ================================================================================================ //
 // [ class CUsrErr define macros ] {{{
 
-#define DEF_CUSRERR_BEGIN( tUsrErr ) class tUsrErr : public CUsrErr<tUsrErr>{ \
-    public: inline tUsrErr(const long clErrCode):mlErrCode(clErrCode){};\
-            inline virtual ~tUseErr(){};\
+#define DEF_CUSRERR_BEGIN( tUsrErr ) class e#tUsrErr : public CUsrErr<e#tUsrErr>{ \
+    public: inline e#tUsrErr(const long clErrCode):mlErrCode(clErrCode){};\
+            inline virtual ~e#tUsrErr(){};\
     public: inline virtual bool Regist( void ) {
 #define DEF_CUSRERR_REGMEG( clErrCode, cstrErrMsg ) { RegMsg( clErrCode, cstrErrMsg ); }
 #define DEF_CUSRERR_ENDED }};
