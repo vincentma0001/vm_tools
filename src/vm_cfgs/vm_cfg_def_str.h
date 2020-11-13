@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:38:24                                               == //
-// ==   Modify Time          : 2020-11-13 15:09:11                                               == //
+// ==   Modify Time          : 2020-11-13 16:48:15                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -54,19 +54,23 @@
 #endif // end of #if defined( _V_USE_WCHAR_ )
 // ======================================================================================
 
-#define vStrFmtChar                         vT("%c")
-#define vStrFmtChar_l                       vT("%-c")
-#define vStrFmtChar_d(   nWidth )           vT("%"#nWidth"c")
-#define vStrFmtChar_ld(  nWidth )           vT("%-"#nWidth"c")
-#define vStrFmtChar_zd(  nWidth )           vT("%0"#nWidth"c")
-#define vStrFmtChar_lzd( nWidth )           vT("%-0"#nWidth"c")
+// ================================================================================================ //
+// [ string macro defines ] {{{
 
-#define vStrFmtCharNum                      vT("%hhd")
-#define vStrFmtCharNum_l                    vT("%-hhd")
-#define vStrFmtCharNum_d(   nWidth )        vT("%"#nWidth"hhd")
-#define vStrFmtCharNum_ld(  nWidth )        vT("%-"#nWidth"hhd")
-#define vStrFmtCharNum_zd(  nWidth )        vT("%0"#nWidth"hhd")
-#define vStrFmtCharNum_lzd( nWidth )        vT("%-0"#nWidth"hhd")
+#define vStr01( S01 )                                                   vT(S01)
+#define vStr02( S01, S02 )                                              vStr01(S01)vStr01(S02)
+#define vStr03( S01, S02, S03 )                                         vStr02(S01,S02)vStr01(S03)
+#define vStr04( S01, S02, S03, S04 )                                    vStr03(S01,S02,S03)vStr01(S04)
+#define vStr05( S01, S02, S03, S04, S05 )                               vStr04(S01,S02,S03,S04)vStr01(S05)
+#define vStr06( S01, S02, S03, S04, S05, S06 )                          vStr05(S01,S02,S03,S04,S05)vStr01(S06)
+#define vStr07( S01, S02, S03, S04, S05, S06, S07 )                     vStr06(S01,S02,S03,S04,S05,S06)vStr01(S07)
+#define vStr08( S01, S02, S03, S04, S05, S06, S07, S08 )                vStr07(S01,S02,S03,S04,S05,S06,S07)vStr01(S08)
+#define vStr09( S01, S02, S03, S04, S05, S06, S07, S08, S09 )           vStr08(S01,S02,S03,S04,S05,S06,S07,S08)vStr01(S09)
+
+// }}} ! string macro defines
+// ================================================================================================ //
+
+
 // }}}
 // ================================================================================================ //
 

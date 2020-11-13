@@ -140,6 +140,10 @@ UT_FUNC_ENDED
 // }}} ! ut_strfmt_3
 // ================================================================================================ //
 
+#define vStr01( A )            vT(A)
+#define vStr02( A, B )         vStr01(A)vStr01(B)
+#define vStr03( A, B, C )         vStr01(A)vStr01(B)vStr01(C)
+
 // ================================================================================================ //
 // [ ut_strfmt_4 ] {{{
 UT_FUNC_BEGIN( ut_strfmt_4 )
@@ -147,13 +151,27 @@ UT_FUNC_BEGIN( ut_strfmt_4 )
 vTry
 
     // Add unit test coder here
+    vLine( vT("%s"), vStr02( "A", vStrFmtChar ) );
+
     tchar lcVal = vT('A');
-    vLine( vT("Str : (") vStrFmtChar         vT(")"), lcVal );
+    vLine( vStr03( "Str : (", vStrFmtChar, ")" ), lcVal );
+    vLine( vT("Str : (") vT(vStrFmtChar)         vT(")"), lcVal );
     vLine( vT("Str : (") vStrFmtChar_l       vT(")"), lcVal );
     vLine( vT("Str : (") vStrFmtChar_d(10)   vT(")"), lcVal );
     vLine( vT("Str : (") vStrFmtChar_zd(10)  vT(")"), lcVal );
     vLine( vT("Str : (") vStrFmtChar_ld(10)  vT(")"), lcVal );
     vLine( vT("Str : (") vStrFmtChar_lzd(10) vT(")"), lcVal );
+
+    vLine( vT("---------------------------------------------") );
+
+    vLine( vT("Str : (") vStrFmtCharNum         vT(")"), lcVal );
+    vLine( vT("Str : (") vStrFmtCharNum_l       vT(")"), lcVal );
+    vLine( vT("Str : (") vStrFmtCharNum_d(10)   vT(")"), lcVal );
+    vLine( vT("Str : (") vStrFmtCharNum_zd(10)  vT(")"), lcVal );
+    vLine( vT("Str : (") vStrFmtCharNum_ld(10)  vT(")"), lcVal );
+    vLine( vT("Str : (") vStrFmtCharNum_lzd(10) vT(")"), lcVal );
+
+
 
 vCatch(...)
     return false;
