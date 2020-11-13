@@ -27,122 +27,122 @@
 
 // ------------------------------------------------------------------------------------------------ //
 // [ char's string format macro defins ] {{{
-#define vStrFmtChar                         vT("%c")
-#define vStrFmtChar_l                       vT("%-c")
-#define vStrFmtChar_w(   nWidth )           vT("%"#nWidth"c")
-#define vStrFmtChar_lw(  nWidth )           vT("%-"#nWidth"c")
-#define vStrFmtChar_zw(  nWidth )           vT("%0"#nWidth"c")
-#define vStrFmtChar_lzw( nWidth )           vT("%-0"#nWidth"c")
+#define vStrFmtChar                                    vT("%c")
+#define vStrFmtChar_l                                  vT("%-c")
+#define vStrFmtChar_w(   nWidth )                      vT("%"#nWidth"c")
+#define vStrFmtChar_lw(  nWidth )                      vT("%-"#nWidth"c")
+#define vStrFmtChar_zw(  nWidth )                      vT("%0"#nWidth"c")
+#define vStrFmtChar_lzw( nWidth )                      vT("%-0"#nWidth"c")
 
-#define vStrFmtUChar                        vT("%c")
-#define vStrFmtUChar_l                      vT("%-c")
-#define vStrFmtUChar_w(   nWidth )          vT("%"#nWidth"c")
-#define vStrFmtUChar_lw(  nWidth )          vT("%-"#nWidth"c")
-#define vStrFmtUChar_zw(  nWidth )          vT("%0"#nWidth"c")
-#define vStrFmtUChar_lzw( nWidth )          vT("%-0"#nWidth"c")
+#define vStrFmtUChar                                   vT("%c")
+#define vStrFmtUChar_l                                 vT("%-c")
+#define vStrFmtUChar_w(   nWidth )                     vT("%"#nWidth"c")
+#define vStrFmtUChar_lw(  nWidth )                     vT("%-"#nWidth"c")
+#define vStrFmtUChar_zw(  nWidth )                     vT("%0"#nWidth"c")
+#define vStrFmtUChar_lzw( nWidth )                     vT("%-0"#nWidth"c")
 // }}} ! [ char's string format macro defins ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ char's format macro defines by number mode ] {{{
 
-#define vStrFmtCharNum                      vT("%hhd")
-#define vStrFmtCharNum_l                    vT("%-hhd")
-#define vStrFmtCharNum_w(   nWidth )        vT("%"#nWidth"hhd")
-#define vStrFmtCharNum_lw(  nWidth )        vT("%-"#nWidth"hhd")
-#define vStrFmtCharNum_zw(  nWidth )        vT("%0"#nWidth"hhd")
-#define vStrFmtCharNum_lzw( nWidth )        vT("%-0"#nWidth"hhd")
+#define vStrFmtCharNum                                 vT("%hhd")
+#define vStrFmtCharNum_l                               vT("%-hhd")
+#define vStrFmtCharNum_w(   nWidth )                   vT("%"#nWidth"hhd")
+#define vStrFmtCharNum_lw(  nWidth )                   vT("%-"#nWidth"hhd")
+#define vStrFmtCharNum_zw(  nWidth )                   vT("%0"#nWidth"hhd")
+#define vStrFmtCharNum_lzw( nWidth )                   vT("%-0"#nWidth"hhd")
 
-#define vStrFmtUCharNum                     vT("%hhu")
-#define vStrFmtUCharNum_l                   vT("%-hhu")
-#define vStrFmtUCharNum_w(   nWidth )       vT("%"#nWidth"hhu")
-#define vStrFmtUCharNum_lw(  nWidth )       vT("%-"#nWidth"hhu")
-#define vStrFmtUCharNum_zw(  nWidth )       vT("%0"#nWidth"hhu")
-#define vStrFmtUCharNum_lzw( nWidth )       vT("%-0"#nWidth"hhu")
+#define vStrFmtUCharNum                                vT("%hhu")
+#define vStrFmtUCharNum_l                              vT("%-hhu")
+#define vStrFmtUCharNum_w(   nWidth )                  vT("%"#nWidth"hhu")
+#define vStrFmtUCharNum_lw(  nWidth )                  vT("%-"#nWidth"hhu")
+#define vStrFmtUCharNum_zw(  nWidth )                  vT("%0"#nWidth"hhu")
+#define vStrFmtUCharNum_lzw( nWidth )                  vT("%-0"#nWidth"hhu")
 
 // }}} ! [ char's format macro defines by number mode ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ short's string format macro defines ] {{{
-#define vStrFmtShort                        vT("%hd"           )
-#define vStrFmtShort_l                      vT("%-hd"          )
-#define vStrFmtShort_w(   nWidth )          vT("%"#nWidth"hd"  )
-#define vStrFmtShort_lw(  nWidth )          vT("%-"#nWidth"hd" )
-#define vStrFmtShort_zw(  nWidth )          vT("%0"#nWidth"hd" )
-#define vStrFmtShort_lzw( nWidth )          vT("%-0"#nWidth"hd")
+#define vStrFmtShort                                   vT("%hd"           )
+#define vStrFmtShort_l                                 vT("%-hd"          )
+#define vStrFmtShort_w(   nWidth )                     vT("%"#nWidth"hd"  )
+#define vStrFmtShort_lw(  nWidth )                     vT("%-"#nWidth"hd" )
+#define vStrFmtShort_zw(  nWidth )                     vT("%0"#nWidth"hd" )
+#define vStrFmtShort_lzw( nWidth )                     vT("%-0"#nWidth"hd")
 
-#define vStrFmtUShort                       vT("%hu"           )
-#define vStrFmtUShort_l                     vT("%-hu"          )
-#define vStrFmtUShort_w(   nWidth )         vT("%"#nWidth"hu"  )
-#define vStrFmtUShort_lw(  nWidth )         vT("%-"#nWidth"hu" )
-#define vStrFmtUShort_zw(  nWidth )         vT("%0"#nWidth"hu" )
-#define vStrFmtUShort_lzw( nWidth )         vT("%-0"#nWidth"hu")
+#define vStrFmtUShort                                  vT("%hu"           )
+#define vStrFmtUShort_l                                vT("%-hu"          )
+#define vStrFmtUShort_w(   nWidth )                    vT("%"#nWidth"hu"  )
+#define vStrFmtUShort_lw(  nWidth )                    vT("%-"#nWidth"hu" )
+#define vStrFmtUShort_zw(  nWidth )                    vT("%0"#nWidth"hu" )
+#define vStrFmtUShort_lzw( nWidth )                    vT("%-0"#nWidth"hu")
 // }}} ! [ short's string format macro defines ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ int's string format macro defines ] {{{
-#define vStrFmtInt                          vT("%d"           )
-#define vStrFmtInt_l                        vT("%-d"          )
-#define vStrFmtInt_w(   nWidth )            vT("%"#nWidth"d"  )
-#define vStrFmtInt_lw(  nWidth )            vT("%-"#nWidth"d" )
-#define vStrFmtInt_zw(  nWidth )            vT("%0"#nWidth"d" )
-#define vStrFmtInt_lzw( nWidth )            vT("%-0"#nWidth"d")
+#define vStrFmtInt                                     vT("%d"           )
+#define vStrFmtInt_l                                   vT("%-d"          )
+#define vStrFmtInt_w(   nWidth )                       vT("%"#nWidth"d"  )
+#define vStrFmtInt_lw(  nWidth )                       vT("%-"#nWidth"d" )
+#define vStrFmtInt_zw(  nWidth )                       vT("%0"#nWidth"d" )
+#define vStrFmtInt_lzw( nWidth )                       vT("%-0"#nWidth"d")
 
-#define vStrFmtUInt                         vT("%u"           )
-#define vStrFmtUInt_l                       vT("%-u"          )
-#define vStrFmtUInt_w(   nWidth )           vT("%"#nWidth"u"  )
-#define vStrFmtUInt_lw(  nWidth )           vT("%-"#nWidth"u" )
-#define vStrFmtUInt_zw(  nWidth )           vT("%0"#nWidth"u" )
-#define vStrFmtUInt_lzw( nWidth )           vT("%-0"#nWidth"u")
+#define vStrFmtUInt                                    vT("%u"           )
+#define vStrFmtUInt_l                                  vT("%-u"          )
+#define vStrFmtUInt_w(   nWidth )                      vT("%"#nWidth"u"  )
+#define vStrFmtUInt_lw(  nWidth )                      vT("%-"#nWidth"u" )
+#define vStrFmtUInt_zw(  nWidth )                      vT("%0"#nWidth"u" )
+#define vStrFmtUInt_lzw( nWidth )                      vT("%-0"#nWidth"u")
 // }}} ! [ int's string format macro defines ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ long's string format macro defines ] {{{
-#define vStrFmtLong                         vT("%ld"           )
-#define vStrFmtLong_l                       vT("%-ld"          )
-#define vStrFmtLong_w(   nWidth )           vT("%"#nWidth"ld"  )
-#define vStrFmtLong_lw(  nWidth )           vT("%-"#nWidth"ld" )
-#define vStrFmtLong_zw(  nWidth )           vT("%0"#nWidth"ld" )
-#define vStrFmtLong_lzw( nWidth )           vT("%-0"#nWidth"ld")
+#define vStrFmtLong                                    vT("%ld"           )
+#define vStrFmtLong_l                                  vT("%-ld"          )
+#define vStrFmtLong_w(   nWidth )                      vT("%"#nWidth"ld"  )
+#define vStrFmtLong_lw(  nWidth )                      vT("%-"#nWidth"ld" )
+#define vStrFmtLong_zw(  nWidth )                      vT("%0"#nWidth"ld" )
+#define vStrFmtLong_lzw( nWidth )                      vT("%-0"#nWidth"ld")
 
-#define vStrFmtULong                        vT("%lu"           )
-#define vStrFmtULong_l                      vT("%-lu"          )
-#define vStrFmtULong_w(   nWidth )          vT("%"#nWidth"lu"  )
-#define vStrFmtULong_lw(  nWidth )          vT("%-"#nWidth"lu" )
-#define vStrFmtULong_zw(  nWidth )          vT("%0"#nWidth"lu" )
-#define vStrFmtULong_lzw( nWidth )          vT("%-0"#nWidth"lu")
+#define vStrFmtULong                                   vT("%lu"           )
+#define vStrFmtULong_l                                 vT("%-lu"          )
+#define vStrFmtULong_w(   nWidth )                     vT("%"#nWidth"lu"  )
+#define vStrFmtULong_lw(  nWidth )                     vT("%-"#nWidth"lu" )
+#define vStrFmtULong_zw(  nWidth )                     vT("%0"#nWidth"lu" )
+#define vStrFmtULong_lzw( nWidth )                     vT("%-0"#nWidth"lu")
 // }}} ! [ long's string format macro defines ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ long long's string format macro defines ] {{{
-#define vStrFmtLLong                        vT("%lld"           )
-#define vStrFmtLLong_l                      vT("%-lld"          )
-#define vStrFmtLLong_w(   nWidth )          vT("%"#nWidth"lld"  )
-#define vStrFmtLLong_lw(  nWidth )          vT("%-"#nWidth"lld" )
-#define vStrFmtLLong_zw(  nWidth )          vT("%0"#nWidth"lld" )
-#define vStrFmtLLong_lzw( nWidth )          vT("%-0"#nWidth"lld")
+#define vStrFmtLLong                                   vT("%lld"           )
+#define vStrFmtLLong_l                                 vT("%-lld"          )
+#define vStrFmtLLong_w(   nWidth )                     vT("%"#nWidth"lld"  )
+#define vStrFmtLLong_lw(  nWidth )                     vT("%-"#nWidth"lld" )
+#define vStrFmtLLong_zw(  nWidth )                     vT("%0"#nWidth"lld" )
+#define vStrFmtLLong_lzw( nWidth )                     vT("%-0"#nWidth"lld")
 
-#define vStrFmtULLong                       vT("%llu"           )
-#define vStrFmtULLong_l                     vT("%-llu"          )
-#define vStrFmtULLong_w(   nWidth )         vT("%"#nWidth"llu"  )
-#define vStrFmtULLong_lw(  nWidth )         vT("%-"#nWidth"llu" )
-#define vStrFmtULLong_zw(  nWidth )         vT("%0"#nWidth"llu" )
-#define vStrFmtULLong_lzw( nWidth )         vT("%-0"#nWidth"llu")
+#define vStrFmtULLong                                  vT("%llu"           )
+#define vStrFmtULLong_l                                vT("%-llu"          )
+#define vStrFmtULLong_w(   nWidth )                    vT("%"#nWidth"llu"  )
+#define vStrFmtULLong_lw(  nWidth )                    vT("%-"#nWidth"llu" )
+#define vStrFmtULLong_zw(  nWidth )                    vT("%0"#nWidth"llu" )
+#define vStrFmtULLong_lzw( nWidth )                    vT("%-0"#nWidth"llu")
 // }}} ! [ long long's string format macro defines ]
 // ------------------------------------------------------------------------------------------------ //
 
 // ------------------------------------------------------------------------------------------------ //
 // [ size_t's string format macro defines ] {{{
-#define vStrFmtSize                        vT("%zu"           )
-#define vStrFmtSize_l                      vT("%-zu"          )
-#define vStrFmtSize_w(   nWidth )          vT("%"#nWidth"zu"  )
-#define vStrFmtSize_lw(  nWidth )          vT("%-"#nWidth"zu" )
-#define vStrFmtSize_zw(  nWidth )          vT("%0"#nWidth"zu" )
-#define vStrFmtSize_lzw( nWidth )          vT("%-0"#nWidth"zu")
+#define vStrFmtSize                                    vT("%zu"           )
+#define vStrFmtSize_l                                  vT("%-zu"          )
+#define vStrFmtSize_w(   nWidth )                      vT("%"#nWidth"zu"  )
+#define vStrFmtSize_lw(  nWidth )                      vT("%-"#nWidth"zu" )
+#define vStrFmtSize_zw(  nWidth )                      vT("%0"#nWidth"zu" )
+#define vStrFmtSize_lzw( nWidth )                      vT("%-0"#nWidth"zu")
 // }}} ! [ size_t's string format macro defines ]
 // ------------------------------------------------------------------------------------------------ //
 
