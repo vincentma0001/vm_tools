@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 20:00:13                                               == //
-// ==   Modify Time          : 2020-11-13 10:02:16                                               == //
+// ==   Modify Time          : 2020-11-13 12:17:28                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -528,19 +528,16 @@ inline size_t vm::v_strncpy ( tchar* const pDst, const size_t csztDstSize, const
 
 #if defined (_MSC_VER) && (_MSC_VER > 1300)
     // vErrno_t loRet = strncpy_s(pDst, csztDstSize, cpSrc, csztDataLen);
-    vErrno_t loRet = vMemcpy_s(pDst, csztDstSize, cpSrc, lsztDatalen);
-    _ASSERT_(vT("v_strncpy()"), (loRet==0) );
+    tErrno loRet = vMemcpy_s(pDst, csztDstSize, cpSrc, lsztDatalen);
+    if( loRet == 0 ) return 0;
 
-    *(pDst+lsztDatalen) = tchar(0x00);
-    return csztDataLen;
+    return lsztDatalen;
 #else
     //tchar* lpEnd = vStrcpy(pDst, cpSrc)
     tchar* lpEnd = (tchar*)vMemcpy(pDst, cpSrc, lsztDatalen);
     if ( lpEnd == nullptr ){ return 0; }
-    _VERIFY_(vT("v_strncpy()"), lpEnd);
 
-    size_t lsztCopied= lpEnd -pDst;
-    return lsztCopied;
+    return lsztDatalen;
 #endif
 }
 // }}} end of func v_strncpy(...)

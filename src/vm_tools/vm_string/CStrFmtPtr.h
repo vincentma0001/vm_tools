@@ -107,40 +107,54 @@ public:
 // Methods   : {{{
 public:
     // Get buffer's address
-    inline const tchar* c_str( void );
+    inline const tchar* cs_str ( void );
     // Get buffer's address
-    inline       tchar* str  ( void );
+    inline       tchar*  s_str ( void );
 
     // Clean buffer's data
-    inline void         reset( void );
+    inline void          reset ( void );
 
     // Get buffer's size
-    inline size_t       size ( void );
+    inline size_t         size ( void );
     // Get string length in buffer
-    inline size_t       len  ( void );
+    inline size_t         len  ( void );
 
 public:
 
+    // Write s string to buffer
+    inline CStrFmtPtr& str     ( const tchar* const cpStr                          );
+    // Write s string to buffer
+    inline CStrFmtPtr& str     ( const tchar* const cpStr, const size_t csztStrLen );
+
     // Create a print format for char
     template< size_t tsztTmpBufSize >
-    CStrFmtPtr& Str    ( const size_t csztWidth=0,                             const bool bLeft=false );
+    inline CStrFmtPtr& fmt_str ( const size_t csztWidth=0,                             const bool bLeft=false );
     // Create a print format for char
     template< size_t tsztTmpBufSize >
-    CStrFmtPtr& Char   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    inline CStrFmtPtr& fmt_c   ( const size_t csztWidth=0,                             const bool bLeft=false );
+    // Create a print format for unsigned char
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_uc  ( const size_t csztWidth=0,                             const bool bLeft=false );
+    // Create a print format for char's number
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_cn  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    // Create a print format for unsigned char's number
+    template< size_t tsztTmpBufSize >
+    inline CStrFmtPtr& fmt_ucn ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
     /*
-    CStrFmtPtr& UChar  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& Short  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& UShort ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& Int    ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& UInt   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& Long   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& TSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CStrFmtPtr& Float  ();
-    CStrFmtPtr& Double ();
-    CStrFmtPtr& LDouble();
+    CStrFmtPtr& fmt_s   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_us  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_i   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_ui  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_l   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_ul  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_ll  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_ull ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_szt ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& fmt_f   ();
+    CStrFmtPtr& fmt_d   ();
+    CStrFmtPtr& fmt_ld  ();
+
     //*/
 // }}} ! Methods
 
