@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CPrFmt.hpp                                          == //
+// ==                                       CStrFmtPtr.h                                         == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-05 10:51                                                  == //
-// ==   Modify Time          : 2020-11-05 10:51                                                  == //
+// ==   Create Time          : 2020-11-13 09:03                                                  == //
+// ==   Modify Time          : 2020-11-13 09:03                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CPRFMT_HPP__
-#define  __CPRFMT_HPP__
+#ifndef  __CSTRFMTPTR_H__
+#define  __CSTRFMTPTR_H__
 
 
 // ================================================================================================ //
@@ -30,84 +30,97 @@
 // }}}
 // ================================================================================================ //
 
+
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
 
 // ================================================================================================ //
-// ==  Class CPrFmt : This class deal with printf funcs's input format                           == //
+// ==  Class CStrFmtPtr : this class deal with create format string                              == //
 // ------------------------------------------------------------------------------------------------ //
-template< size_t tsztBufSize >
-class CPrFmt
+class CStrFmtPtr
 // {{{
 {
+// ------------------------------------------------------------------------------------------------ //
+// Typedefs  : {{{
+public:
+    // enum emRet : this enum define return value for class CMemPtr
+    enum emRet
+    // {{{
+    {
+        emSucess          = 0,
+
+        emError           = vMaxsLong - 1,
+        emErrUnEnoughBuf  = emError   - 1,
+        emErrUnEnoughData = emError   - 2,
+        emErrCopyFailed   = emError   - 3,
+
+        emWarns             = vMaxsLong - 20,
+        emWrnUnCompleteCopy = emWarns   - 1,
+    };
+    // }}} End of def enum emRet
+// }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CPrFmt    (                   );
+    inline          CStrFmtPtr( _vOt_ tchar* const pBuf, _vIn_ const size_t csztBufSize );
     // Destruct define
-    inline virtual ~CPrFmt    (                   );
+    inline virtual ~CStrFmtPtr(                                                         );
 
 private:
     // Copy construct define
-    inline CPrFmt             ( const CPrFmt &obj );
+    inline CStrFmtPtr             ( const CStrFmtPtr &obj );
     // Assignment operation
-    inline CPrFmt& operator = ( const CPrFmt &obj );
+    inline CStrFmtPtr& operator = ( const CStrFmtPtr &obj );
 // }}} ! Construct & Destruct
 // ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
-    inline tchar*  operator * (                   );
-    inline CPrFmt& operator( )( const tchar* const cpStr ){};
+    // string pointer
+    inline tchar*   operator * ( void );
+
+    // add string to buffer
+    inline CStrFmtPtr& operator () ( const tchar* const cpStr, const size_t csztStrLen );
+    // add string to buffer
+    inline CStrFmtPtr& operator () ( const tchar* const cpStr                          );
 // }}} ! Operators
 
 // ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
-    size_t              msztOffset;
-    tchar               mszBuf[tsztBufSize];
+    // string buffer pointer
+    tchar*          mpBuf;
+    // string buffer size
+    size_t          msztBufSize;
+
+    // buffer's offset
+    size_t          msztOffset;
+
+    // error code
+    long long       mllErrCode;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //
-// Methods   : 
+// Methods   : {{{
 public:
-    // Get Buffer size in CPrFmt
-    size_t Size( void );
-    // Get string length in CPrFmt buffer
-    size_t Len ( void );
-
-    CPrFmt& Str    ( const size_t csztWidth=0,                             const bool bLeft=false );
-    CPrFmt& Char   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UChar  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Short  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UShort ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Int    ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UInt   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Long   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& TSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Float  ();
-    CPrFmt& Double ();
-    CPrFmt& LDouble();
-//  ! Methods
+    /* TODO Add class's Methods here */
+// }}} ! Methods
 
 };
-// }}} ! [ class CPrFmt ]
+// }}} ! [ class CStrFmtPtr ]
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
-#include "CPrFmt.hpp.inl"
+#include "CStrFmtPtr.h.inl"
 // ================================================================================================ //
 
 
-#endif // ! __CPRFMT_HPP__
+#endif // ! __CSTRFMTPTR_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

@@ -1,10 +1,10 @@
 
-#include <vm_tools/vm_string.h>
+#include <vm_tools/vm_funcs.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //
-// [ ut_fstr_1 ] {{{
-UT_FUNC_BEGIN( ut_fstr_1 )
+// [ ut_str_1 ] {{{
+UT_FUNC_BEGIN( ut_str_1 )
 
 vTry
 
@@ -37,12 +37,12 @@ vEnd
     return true;
 
 UT_FUNC_ENDED
-// }}} ! ut_fstr_1
+// }}} ! ut_str_1
 // ================================================================================================ //
 
 // ================================================================================================ //
-// [ ut_fstr_2 ] {{{
-UT_FUNC_BEGIN( ut_fstr_2 )
+// [ ut_str_2 ] {{{
+UT_FUNC_BEGIN( ut_str_2 )
 
 vTry
 
@@ -60,24 +60,22 @@ vTry
                                                lpOldStr1, vStrlen(lpOldStr1), lpNewStr1, vStrlen(lpNewStr1) );
     vPrintf( vT("New string(%zd) : [%s]\n"), lsztNewStrlen1, lszBuf );
 
-    
-
 vCatch(...)
     return false;
 vEnd
     return true;
 
 UT_FUNC_ENDED
-// }}} ! ut_fstr_2
+// }}} ! ut_str_2
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  unit test frame tst_frame_fstr                                                            == //
+// ==  unit test frame tst_frame_str                                                            == //
 // ================================================================================================ //
-// [ tst_frame_fstr ] {{{
-UT_FRAME_BEGIN ( tst_frame_fstr )
-UT_FRAME_REGIST( ut_fstr_1 )
-UT_FRAME_REGIST( ut_fstr_2 )
+// [ tst_frame_str ] {{{
+UT_FRAME_BEGIN ( tst_frame_str )
+UT_FRAME_REGIST( ut_str_1 )
+UT_FRAME_REGIST( ut_str_2 )
 UT_FRAME_ENDED
-// }}} ![ tst_frame_fstr ]
+// }}} ![ tst_frame_str ]
 // ================================================================================================ //

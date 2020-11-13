@@ -27,10 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include <vm_tools/vm_util/v_funcs_io.h>
-#include "v_funcs_str.h"
-#include "vm_tools/vm_string/CAny.hpp"
-#include "vm_tools/vm_string/CAnyPtr.h"
+#include <vm_tools/vm_funcs.h>
 // }}}
 // ================================================================================================ //
 

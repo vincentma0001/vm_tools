@@ -26,6 +26,8 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_string/v_funcs_str.h"
+#include "vm_tools/vm_util/CPrFmt.hpp"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_memory/v_funcs_mem.h>
 #include <vm_tools/vm_util/v_funcs_io.h>
@@ -153,6 +155,40 @@ inline size_t vm::CPrFmt< tsztBufSize >::Len( void )
 // ================================================================================================ //
 
 // ================================================================================================ //
+// ==  Methord : CPrFmt<tsztBufSize>::Str(...)                                                   == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Create a print format for string
+// ==  Return  : CPrFmt&          - [O] this object
+// ==  Params  : csztWidth=0      - [I] output width
+// ==            bLeft=false      - [I] output Left-justify or not, default is not
+template< size_t tsztBufSize >
+inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Str( const size_t csztWidth, const bool bLeft )
+// {{{ 
+{
+    vMemZero(mszBuf);
+
+    mszBuf[msztOffset++] = vT('%');
+
+    if( csztWidth != 0 )
+    {
+        if( bLeft == true )
+        {
+            mszBuf[msztOffset++] = vT('-');
+        }
+
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
+    }
+
+    mszBuf[msztOffset++] = vT('s');
+
+    return *this;
+}
+// }}} end of func CPrFmt<tsztBufSize>::Str(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
 // ==  Methord : CPrFmt<tsztBufSize>::Char(...)                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Create a print format for char
@@ -164,31 +200,34 @@ template< size_t tsztBufSize >
 inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Char( const size_t csztWidth, const bool bFillZero, const bool bLeft)
 // {{{ 
 {
-    vMemZero(mszBuf);
+    tchar lszBuf[tsztBufSize] = {0x00};
     size_t lsztOffset = 0;
 
-    mszBuf[lsztOffset++] = vT('%');
+    lszBuf[lsztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            lszBuf[lsztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            lszBuf[lsztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
+        tchar* lpPos = lszBuf+lsztOffset;
         vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
         lsztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('d');
+    lszBuf[lsztOffset++] = vT('h');
+    lszBuf[lsztOffset++] = vT('h');
+    lszBuf[lsztOffset++] = vT('d');
+
+    if( msztOffset+lsztOffset <= tsztBufSize-1 )
+        vm::v_strcpy( mszBuf+msztOffset, tsztBufSize-msztOffset, lszBuf, lsztOffset );
 
     return *this;
 }
@@ -209,29 +248,28 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt<tsztBufSize>::UChar( const size_t csz
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('u');
+    mszBuf[msztOffset++] = vT('h');
+    mszBuf[msztOffset++] = vT('h');
+    mszBuf[msztOffset++] = vT('u');
 
     return *this;
 };
@@ -252,28 +290,28 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Short( const size_t c
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
+            
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('d');
+    mszBuf[msztOffset++] = vT('h');
+    mszBuf[msztOffset++] = vT('d');
 
     return *this;
 }
@@ -294,28 +332,27 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::UShort( const size_t 
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('h');
-    mszBuf[lsztOffset++] = vT('u');
+    mszBuf[msztOffset++] = vT('h');
+    mszBuf[msztOffset++] = vT('u');
 
     return *this;
 }
@@ -336,27 +373,26 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Int( const size_t csz
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('d');
+    mszBuf[msztOffset++] = vT('d');
 
     return *this;
 }
@@ -377,27 +413,26 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::UInt( const size_t cs
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('u');
+    mszBuf[msztOffset++] = vT('u');
 
     return *this;
 }
@@ -418,28 +453,27 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Long( const size_t cs
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('d');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('d');
 
     return *this;
 }
@@ -460,28 +494,27 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::ULong( const size_t c
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('u');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('u');
 
     return *this;
 }
@@ -502,29 +535,28 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::LLong( const size_t c
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('d');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('d');
 
     return *this;
 }
@@ -545,29 +577,28 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::ULLong( const size_t 
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('l');
-    mszBuf[lsztOffset++] = vT('u');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('l');
+    mszBuf[msztOffset++] = vT('u');
 
     return *this;
 }
@@ -588,28 +619,27 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::TSize( const size_t c
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('%');
 
     if( csztWidth != 0 )
     {
         if( bLeft == true )
         {
-            mszBuf[lsztOffset++] = vT('-');
+            mszBuf[msztOffset++] = vT('-');
         }
 
         if( bFillZero == true )
         {
-            mszBuf[lsztOffset++] = vT('0');
+            mszBuf[msztOffset++] = vT('0');
         }
 
-        tchar* lpPos = mszBuf+lsztOffset;
-        vm::v_sprintf( lpPos, (tsztBufSize-lsztOffset), vT("%zu"), csztWidth );
-        lsztOffset += vStrlen(lpPos);
+        tchar* lpPos = mszBuf+msztOffset;
+        vm::v_sprintf( lpPos, (tsztBufSize-msztOffset), vT("%zu"), csztWidth );
+        msztOffset += vStrlen(lpPos);
     }
 
-    mszBuf[lsztOffset++] = vT('z');
-    mszBuf[lsztOffset++] = vT('d');
+    mszBuf[msztOffset++] = vT('z');
+    mszBuf[msztOffset++] = vT('d');
 
     return *this;
 }
@@ -626,11 +656,10 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Float(  )
 // {{{ 
 {
     vMemZero(mszBuf);
-    
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
-    mszBuf[lsztOffset++] = vT('f');
-    
+
+    mszBuf[msztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('f');
+
     return *this;
 }
 // }}} end of func CPrFmt<tsztBufSize>::Float(...)
@@ -646,11 +675,10 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::Double(  )
 // {{{ 
 {
     vMemZero(mszBuf);
-    
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
-    mszBuf[lsztOffset++] = vT('f');
-    
+
+    mszBuf[msztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('f');
+
     return *this;
 }
 // }}} end of func CPrFmt<tsztBufSize>::Double(...)
@@ -667,10 +695,9 @@ inline vm::CPrFmt<tsztBufSize>& vm::CPrFmt< tsztBufSize >::LDouble(  )
 {
     vMemZero(mszBuf);
 
-    size_t lsztOffset = 0;
-    mszBuf[lsztOffset++] = vT('%');
-    mszBuf[lsztOffset++] = vT('L');
-    mszBuf[lsztOffset++] = vT('f');
+    mszBuf[msztOffset++] = vT('%');
+    mszBuf[msztOffset++] = vT('L');
+    mszBuf[msztOffset++] = vT('f');
 
     return *this;
 }
