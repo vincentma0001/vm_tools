@@ -40,6 +40,7 @@ inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
     : mlErrCode( clErrCode )
 // {{{
 {
+    Regist();
 }
 // }}} End of func CUsrErr<tType>::CUsrErr()
 // ================================================================================================ //

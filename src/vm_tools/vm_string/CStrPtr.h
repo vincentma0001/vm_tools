@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:04                                               == //
-// ==   Modify Time          : 2020-11-13 10:09:32                                               == //
+// ==   Modify Time          : 2020-11-13 10:31:14                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -109,6 +109,7 @@ protected:
     // String buffer's size
     size_t      msztBufSize;
 
+public:
     // Error code
     long long   mllErrCode;
 // }}} ! Members
@@ -116,7 +117,6 @@ protected:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // [ normal func ] {{{
     // Get buffer's address
     inline const tchar* c_str( void );
     // Get buffer's address
@@ -129,7 +129,6 @@ public:
     inline size_t       size ( void );
     // Get string length in buffer
     inline size_t       len  ( void );
-    // }}}
 
 public:
     // Get buffer offset's address

@@ -98,6 +98,7 @@ private:
     // buffer's offset
     size_t          msztOffset;
 
+public:
     // error code
     long long       mllErrCode;
 // }}} ! Members
@@ -105,7 +106,42 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    /* TODO Add class's Methods here */
+    // Get buffer's address
+    inline const tchar* c_str( void );
+    // Get buffer's address
+    inline       tchar* str  ( void );
+
+    // Clean buffer's data
+    inline void         reset( void );
+
+    // Get buffer's size
+    inline size_t       size ( void );
+    // Get string length in buffer
+    inline size_t       len  ( void );
+
+public:
+
+    // Create a print format for char
+    template< size_t tsztTmpBufSize >
+    CStrFmtPtr& Str    ( const size_t csztWidth=0,                             const bool bLeft=false );
+    // Create a print format for char
+    template< size_t tsztTmpBufSize >
+    CStrFmtPtr& Char   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    /*
+    CStrFmtPtr& UChar  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& Short  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& UShort ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& Int    ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& UInt   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& Long   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& TSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
+    CStrFmtPtr& Float  ();
+    CStrFmtPtr& Double ();
+    CStrFmtPtr& LDouble();
+    //*/
 // }}} ! Methods
 
 };

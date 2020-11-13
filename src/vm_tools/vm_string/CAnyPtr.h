@@ -182,6 +182,7 @@ private:
     // Data string buffer's size
     size_t          msztBufSize;
 
+public:
     // Error code
     long long       mllErrCode;
 // }}} ! Members

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-11 16:03:51                                               == //
+// ==   Modify Time          : 2020-11-13 10:47:07                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -119,7 +119,7 @@ inline vm::CErr< tSysErr,tUsrErr >& vm::CErr< tSysErr,tUsrErr >::operator = ( co
 // ==            %ESM = system error message
 // ==            %EUC = user error code
 // ==            %EUM = user error message
-template< clas tSysErr, class tUsrErr >
+template< class tSysErr, class tUsrErr >
 inline tchar* vm::CErr< tSysErr,tUsrErr >::Fmt( const tchar* const cpFmt, ... )
 // {{{ 
 {

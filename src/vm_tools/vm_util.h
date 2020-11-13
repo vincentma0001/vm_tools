@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-11-11 13:48:41                                               == //
+// ==   Modify Time          : 2020-11-13 10:48:20                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -31,7 +31,6 @@
 #include <vm_tools/vm_util/CStdMap.hpp>
 #include <vm_tools/vm_util/CStdMapPtr.hpp>
 
-#include <vm_tools/vm_util/v_funcs_io.h>
 // }}} ! Include files
 // ================================================================================================ //
 

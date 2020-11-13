@@ -78,6 +78,9 @@ public:
 
     // Regist a user defined message
     inline bool         RegMsg    ( const long clErrCode, const vString cstrErrMsg );
+
+public:
+    inline virtual bool Regist( void ) = 0;
 // }}} ! Methods
 
 };
