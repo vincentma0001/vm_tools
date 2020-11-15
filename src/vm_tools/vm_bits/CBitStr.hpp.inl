@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-15 09:28:57                                               == //
+// ==   Modify Time          : 2020-11-15 10:42:06                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,9 +32,6 @@
 // }}}
 // ================================================================================================ //
 
-
-// ================================================================================================ //
-// [ Comment info ] {{{
 
 // ================================================================================================ //
 // ==  Class CBitStr<CBitType> Construct && Destruct realization                                 == //
@@ -137,36 +134,17 @@ inline tchar* vm::CBitStr< CBitType >::toBin(  )
 // ==  Brief   : Output bit value by oct string
 // ==  Return  : inline tchar*    - [O] oct string
 template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toOct04( )
+inline tchar* vm::CBitStr< CBitType >::toOct( const tchar* const cpStrFmt )
 // {{{
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04o"), mBitType.mBit);
     if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
+        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
 
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toOct04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<tsztBufSize>::toOct08(...)                                              == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by oct string
-// ==  Return  : tchar*           - [O] oct string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toOct08(  )
-// {{{
-{
-    vMemZero(mszBuf);
-    bool lbRet= vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08o"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<tsztBufSize>::toOct08(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
@@ -176,55 +154,17 @@ inline tchar* vm::CBitStr< CBitType >::toOct08(  )
 // ==  Return  : tchar*           - [O] dec string
 // ==  Params  : 
 template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toDec(  )
+inline tchar* vm::CBitStr< CBitType >::toDec( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%d"), mBitType.mBit);
     if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
+        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
 
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toDec(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toDec04(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by dec string
-// ==  Return  : tchar*           - [O] dec string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toDec04(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04d"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toDec04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toDec08(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by dec string
-// ==  Return  : tchar*           - [O] dec string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toDec08(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08d"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toDec08(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
@@ -233,112 +173,17 @@ inline tchar* vm::CBitStr< CBitType >::toDec08(  )
 // ==  Brief   : Output bit value by hex string
 // ==  Return  : tchar*           - [O] hex string
 template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHex02(  )
+inline tchar* vm::CBitStr< CBitType >::toHex( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02x"), mBitType.mBit);
     if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
+        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
 
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHex02(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toHex04(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHex04(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toHex04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toHex08(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHex08(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toHex08(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toHeX02(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHeX02(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toHeX02(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toHeX04(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHeX04(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toHeX04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::toHeX08(...)                                                 == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::toHeX08(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%08X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::toHeX08(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
@@ -347,118 +192,20 @@ inline tchar* vm::CBitStr< CBitType >::toHeX08(  )
 // ==  Brief   : Output bit value by hex string, and start by 0x
 // ==  Return  : tchar*           - [O] hex string
 template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHex02(  )
+inline tchar* vm::CBitStr< CBitType >::to0xHex( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02x"), mBitType.mBit);
     if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
+        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
 
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::to0xHex02(...)
 // ================================================================================================ //
 
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHex04(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHex04(  )
-// {{{
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%04x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHex04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHex08(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHex08(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%08x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHex08(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHeX02(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHeX02(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHeX02(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHeX04(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHeX04(  )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%04X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHeX04(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHeX08(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHeX08(  )
-// {{{ 
-{
-    vMemZero(mszBuf); 
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%08X"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emRet::emErrFmtFailed, errno );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHeX08(...)
-// ================================================================================================ //
-
 // }}} ![ Class CBitStr<CBitType> Functional realization ]
-// ================================================================================================ //
-
-// }}} ! Comment info
 // ================================================================================================ //
 
 
