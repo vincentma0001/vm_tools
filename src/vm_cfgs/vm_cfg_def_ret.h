@@ -86,8 +86,8 @@ enum emRet
 #   define vRetErrStrFmt            vMakeLLong( vm::emRet::emErrStrFmt,         errno )
 #endif // !vRetErrStrFmt
 
-#ifndef    vCheckFmtStrRet
-#   define vCheckFmtStrRet( bRet, cllErrCode )      if(bRet==false){cllErrCode=vRetErrStrFmt;}
+#ifndef    vCheckStrFmtRet
+#   define vCheckStrFmtRet( bRet, cllErrCode )      if(bRet==false){cllErrCode=vRetErrStrFmt;}
 #endif // !vCheckFmtStrRet
 
 // }}} ! emRet macro defines
