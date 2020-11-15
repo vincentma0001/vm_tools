@@ -30,7 +30,7 @@ namespace vm
 // ==  Class CWinErr : this class deal with windows error                                        == //
 // ------------------------------------------------------------------------------------------------ //
 template< size_t tszBufSize >
-class CWinErr : public CErrPtr
+class CWinErr : public CSysErrPtr
 // {{{
 {
 // ------------------------------------------------------------------------------------------------ //
