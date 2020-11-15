@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-15 10:35:14                                               == //
+// ==   Modify Time          : 2020-11-15 10:50:39                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -50,21 +50,6 @@ template< typename CBitType >
 class CBitStr
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
-// Typedefs  : {{{
-public:
-    // enum emRet : this enum define return value for class CBitStr
-    enum emRet
-    // {{{
-    {
-        emSucess = 0,
-
-        emError         = vMaxsLong -1,
-        emErrFmtFailed  =    emError-1,
-
-        emWarns         = vMaxsLong -20
-    };
-    // }}} End of def enum emRet
 // }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
