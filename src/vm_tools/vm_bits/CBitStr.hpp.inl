@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-15 10:51:18                                               == //
+// ==   Modify Time          : 2020-11-15 11:32:58                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,7 +28,6 @@
 // [ Include files ] {{{
 #include <vm_cfgs.h>
 #include <vm_tools/vm_funcs.h>
-#include "eBitStr.h"
 // }}}
 // ================================================================================================ //
 
@@ -121,7 +120,6 @@ inline tchar* vm::CBitStr< CBitType >::toBin(  )
     {
         (*lpPos) = ((mBitType.mBit >> i) & 1) ? '1' : '0';
         lpPos++;
-        //printf("%d", *lpPos);
     }
     return mszBuf;
 }
@@ -139,8 +137,7 @@ inline tchar* vm::CBitStr< CBitType >::toOct( const tchar* const cpStrFmt )
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04o"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
+    vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
 }
@@ -159,8 +156,7 @@ inline tchar* vm::CBitStr< CBitType >::toDec( const tchar* const cpStrFmt )
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%d"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
+    vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
 }
@@ -178,8 +174,7 @@ inline tchar* vm::CBitStr< CBitType >::toHex( const tchar* const cpStrFmt )
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
+    vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
 }
@@ -197,8 +192,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHex( const tchar* const cpStrFmt )
 {
     vMemZero(mszBuf);
     bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02x"), mBitType.mBit);
-    if( lbRet == false )
-        mllErrCode = vMakeLLong( emBitStrRet::emErrFmtFailed, errno );
+    vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
 }

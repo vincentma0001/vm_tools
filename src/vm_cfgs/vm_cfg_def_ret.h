@@ -54,18 +54,44 @@ namespace vm
 
 // ------------------------------------------------------------------------------------------------ //
 // enum emRet : this enum define function error, warn info
-enum emLongRet
+enum emRet
 // {{{
 {
+    // no errer
     emSucess            = vRetSucess,
 
+    // error return
     emError             = vMaxuLong - vErrOffSet,
-    emErrFmtFailed      = emError   - 1,
+    // error return for vm::v_sprintf
+    emErrStrFmt         = emError   - 1,
 
+    // warn return
     emWarns             = vMaxuLong - vWrnOffSet
 };
 // }}} End of def enum emErrRet
 // ------------------------------------------------------------------------------------------------ //
+
+// ================================================================================================ //
+// [ emRet macro defines ] {{{
+
+#ifndef    vRetErr
+#   define vRetErr                  vMakeLLong( vm::emRet::emError,             errno )
+#endif // !vRetErr
+
+#ifndef    vRetWrn
+#   define vRetWrn                  vMakeLLong( vm::emRet::emWarns,             errno )
+#endif // !vRetWrn
+
+#ifndef    vRetErrStrFmt
+#   define vRetErrStrFmt            vMakeLLong( vm::emRet::emErrStrFmt,         errno )
+#endif // !vRetErrStrFmt
+
+#ifndef    vCheckFmtStrRet
+#   define vCheckFmtStrRet( bRet, cllErrCode )      if(bRet==false){cllErrCode=vRetErrStrFmt;}
+#endif // !vCheckFmtStrRet
+
+// }}} ! emRet macro defines
+// ================================================================================================ //
 
 };
 // }}} End of namespace vm
