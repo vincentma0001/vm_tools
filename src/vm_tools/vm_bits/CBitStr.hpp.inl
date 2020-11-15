@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-15 11:56:57                                               == //
+// ==   Modify Time          : 2020-11-15 12:07:16                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -136,7 +136,7 @@ inline tchar* vm::CBitStr< CBitType >::toOct( const tchar* const cpStrFmt )
 // {{{
 {
     vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%04o"), mBitType.mBit);
+    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), cpStrFmt, mBitType.mBit);
     vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
@@ -155,7 +155,7 @@ inline tchar* vm::CBitStr< CBitType >::toDec( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%d"), mBitType.mBit);
+    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), cpStrFmt, mBitType.mBit);
     vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
@@ -173,7 +173,7 @@ inline tchar* vm::CBitStr< CBitType >::toHex( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("%02x"), mBitType.mBit);
+    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), cpStrFmt, mBitType.mBit);
     vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
@@ -191,7 +191,7 @@ inline tchar* vm::CBitStr< CBitType >::to0xHex( const tchar* const cpStrFmt )
 // {{{ 
 {
     vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x%02x"), mBitType.mBit);
+    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), cpStrFmt, mBitType.mBit);
     vCheckStrFmtRet( lbRet, mllErrCode );
 
     return mszBuf;
