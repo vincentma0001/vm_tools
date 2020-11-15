@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-11 20:24:02                                               == //
+// ==   Modify Time          : 2020-11-15 10:09:41                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -99,20 +99,13 @@ public:
     // Output bit value by bin string
     inline tchar* toBin();
 
-    // Output bit value by oct string
-    inline tchar* toOct04();
-    // Output bit value by oct string
-    inline tchar* toOct08();
+    inline tchar* toOct( const tchar* const cpStrFmt=vT(vStrFmtOct) )
 
     // Output bit value by dec string
-    inline tchar* toDec();
-    // Output bit value by dec string
-    inline tchar* toDec04();
-    // Output bit value by dec string
-    inline tchar* toDec08();
+    inline tchar* toDec( const tchar* const cpStrFmt=vT(vStrForInt) );
 
     // Output bit value by hex string
-    inline tchar* toHex02();
+    inline tchar* toHex( const tchar* const cpStrFmt=vT(vStrFmthex) );
     // Output bit value by hex string
     inline tchar* toHex04();
     // Output bit value by hex string
