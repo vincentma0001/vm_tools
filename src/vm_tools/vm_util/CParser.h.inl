@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:48:08                                               == //
-// ==   Modify Time          : 2020-11-12 15:40:09                                               == //
+// ==   Modify Time          : 2020-11-15 09:21:25                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_util/CParser.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_string/CStrPtr.h>
 // }}}
@@ -161,7 +162,7 @@ inline vm::CPattern*& vm::CPattern::GetLast(  )
 inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt, const size_t csztFmtLen)
                            : mszSpecifier(cszSpecifier),
                              mpFmt(cpFmt), msztFmtLen(csztFmtLen),
-                             mpPatterns(nullptr)
+                             mpPattern(nullptr)
 // {{{
 {
 }
@@ -175,7 +176,7 @@ inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt,
 inline vm::CParser::CParser( const tchar cszSpecifier, const tchar* const cpFmt )
                            : mszSpecifier(cszSpecifier),
                              mpFmt(cpFmt), msztFmtLen(vStrlen(cpFmt)),
-                             mpPatterns(nullptr)
+                             mpPattern(nullptr)
 // {{{
 {
 }
@@ -245,6 +246,7 @@ inline vm::CParser& vm::CParser::operator = ( const vm::CParser &obj )
 inline void vm::CParser::Regist( vm::CPattern& oFlag )
 // {{{
 {
+/*
     if (mpPatterns == nullptr)
     {
         mpPatterns = &oFlag; 
@@ -253,6 +255,14 @@ inline void vm::CParser::Regist( vm::CPattern& oFlag )
 
     vm::CPattern*& lpFlag = mpPatterns->GetLast();
     lpFlag = &oFlag;
+//*/
+  vm::CPattern* lpPattern = mpPattern;
+  while( lpPattern != nullptr )
+  {
+      lpPattern = lpPattern->mpPattern;
+  }
+
+  lpPattern = &oFlag;
 }
 // }}} end of func CParser::Regist(...)
 // ================================================================================================ //
@@ -290,7 +300,7 @@ inline tchar* vm::CParser::Parse( tchar* const pOutBuf, const size_t csztOutBufL
     while (lpPos != nullptr)
     {
         // 依次检测Pattern标识
-        CPattern* lpPattern = mpPatterns;
+        CPattern* lpPattern = mpPattern;
         while (lpPattern != nullptr)
         {
             // 若当前Pattern与标识符不相同，将转到下一个Pattern进行检测

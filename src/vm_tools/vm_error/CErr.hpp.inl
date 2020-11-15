@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-13 10:47:07                                               == //
+// ==   Modify Time          : 2020-11-15 09:19:45                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,7 +27,7 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include <vm_tools/vm_string.h>
+#include <vm_tools/vm_funcs.h>
 #include <vm_tools/vm_util/CParser.h>
 // }}}
 // ================================================================================================ //
@@ -124,11 +124,11 @@ inline tchar* vm::CErr< tSysErr,tUsrErr >::Fmt( const tchar* const cpFmt, ... )
 // {{{ 
 {
     tchar lszBuf[_V_CERR_BUF_SIZE_]  = {0x00};
-    vm::CPattern lpPattern1( vT("%ESC"), vAnyToStr(256,  mSysErr.toCode()) );
-    vm::CPattern lpPattern2( vT("%ESM"), vAnyToStr(256,mSysErr.toString()) );
+    vm::CPattern loPattern1( vT("%ESC"), vAnyToStr(256,   mSysErr.toCode()) );
+    vm::CPattern loPattern2( vT("%ESM"),                mSysErr.toString()  );
 
-    vm::CPattern loPattern3( vT("%EUC"), vAnyToStr(256,  mUsrErr.toCode()) );
-    vm::CPattern lpPattern4( vT("%EUM"), vAnyToStr(256,mUsrErr.toString()) );
+    vm::CPattern loPattern3( vT("%EUC"), vAnyToStr(256,   mUsrErr.toCode()) );
+    vm::CPattern loPattern4( vT("%EUM"),                mUsrErr.toString()  );
 
     vm::CParser  loParser( vT('%'), cpFmt );
     loParser.Regist( loPattern1 );
@@ -139,8 +139,8 @@ inline tchar* vm::CErr< tSysErr,tUsrErr >::Fmt( const tchar* const cpFmt, ... )
     loParser.Parse( lszBuf, sizeof(lszBuf) );
 
     va_list lvList;
-    va_start( lszBuf, lvList );
-    vm::v_vsprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
+    va_start( lvList, lszBuf );
+    vm::v_sprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
     va_end( lvList );
 
     return mszBuf;

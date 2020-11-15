@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-12 12:07:11                                               == //
+// ==   Modify Time          : 2020-11-15 09:26:51                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -257,21 +257,16 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // normal func {{{
     // Return bit size
     inline size_t  size () const { return sizeof(mBit); };
     // Reset bit value to zero
     inline void    reset()       { mBit = 0;            };
-    // }}}
 
-    // return func {{{
     // Return          long long value
     inline long long           to_longlong  () { return           (long long)mBit; };
     // Return unsigned long long value
     inline unsigned long long  to_ulonglong () { return  (unsigned long long)mBit; };
-    // }}}
 
-    // Set value {{{
     // Set bit value
     inline void Set(const long long            lVal) { mBit = mBit |  lVal; };
     // Set bit value
@@ -279,7 +274,6 @@ public:
     // Set bit value
     inline void Set(const emBitPos            emPos) { mBit = mBit | emPos; };
 
-    // Set (01-08) {{{
     // Set bit 01 value
     inline void Set01() { ((stBit64*)&mBit)->bit01 = 1; };
     // Set bit 02 value
@@ -296,9 +290,7 @@ public:
     inline void Set07() { ((stBit64*)&mBit)->bit07 = 1; };
     // Set bit 08 value
     inline void Set08() { ((stBit64*)&mBit)->bit08 = 1; };
-    // }}}
 
-    // Set (09-16) {{{
     // Set bit 09 value
     inline void Set09() { ((stBit64*)&mBit)->bit09 = 1; };
     // Set bit 10 value
@@ -315,9 +307,7 @@ public:
     inline void Set15() { ((stBit64*)&mBit)->bit15 = 1; };
     // Set bit 16 value
     inline void Set16() { ((stBit64*)&mBit)->bit16 = 1; };
-    // }}}
 
-    // Set (17-24) {{{
     // Set bit 17 value
     inline void Set17() { ((stBit64*)&mBit)->bit17 = 1; };
     // Set bit 18 value
@@ -334,9 +324,7 @@ public:
     inline void Set23() { ((stBit64*)&mBit)->bit23 = 1; };
     // Set bit 24 value
     inline void Set24() { ((stBit64*)&mBit)->bit24 = 1; };
-    // }}}
 
-    // Set (25-32) {{{
     // Set bit 25 value
     inline void Set25() { ((stBit64*)&mBit)->bit25 = 1; };
     // Set bit 26 value
@@ -353,9 +341,7 @@ public:
     inline void Set31() { ((stBit64*)&mBit)->bit31 = 1; };
     // Set bit 32 value
     inline void Set32() { ((stBit64*)&mBit)->bit32 = 1; };
-    // }}}
 
-    // Set (33-40) {{{
     // Set bit 33 value
     inline void Set33() { ((stBit64*)&mBit)->bit33 = 1; };
     // Set bit 34 value
@@ -372,9 +358,7 @@ public:
     inline void Set39() { ((stBit64*)&mBit)->bit39 = 1; };
     // Set bit 40 value
     inline void Set40() { ((stBit64*)&mBit)->bit40 = 1; };
-    // }}}
 
-    // Set (41-48) {{{
     // Set bit 41 value
     inline void Set41() { ((stBit64*)&mBit)->bit41 = 1; };
     // Set bit 42 value
@@ -391,9 +375,7 @@ public:
     inline void Set47() { ((stBit64*)&mBit)->bit47 = 1; };
     // Set bit 48 value
     inline void Set48() { ((stBit64*)&mBit)->bit48 = 1; };
-    // }}}
 
-    // Set (49-56) {{{
     // Set bit 49 value
     inline void Set49() { ((stBit64*)&mBit)->bit49 = 1; };
     // Set bit 50 value
@@ -410,9 +392,7 @@ public:
     inline void Set55() { ((stBit64*)&mBit)->bit55 = 1; };
     // Set bit 56 value
     inline void Set56() { ((stBit64*)&mBit)->bit56 = 1; };
-    // }}}
 
-    // Set (57-64) {{{
     // Set bit 57 value
     inline void Set57() { ((stBit64*)&mBit)->bit57 = 1; };
     // Set bit 58 value
@@ -429,11 +409,7 @@ public:
     inline void Set63() { ((stBit64*)&mBit)->bit63 = 1; };
     // Set bit 64 value
     inline void Set64() { ((stBit64*)&mBit)->bit64 = 1; };
-    // }}}
 
-    // }}}
-
-    // UnSet value {{{
     // Unset bit value
     inline void unSet(const long long            lVal) { mBit = mBit ^  lVal; };
     // Unset bit value
@@ -441,7 +417,6 @@ public:
     // Unset bit value
     inline void unSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
 
-    // Unset (01-08) {{{
     // Unset bit 01 value
     inline void unSet01() { ((stBit64*)&mBit)->bit01 = 0; };
     // Unset bit 02 value
@@ -458,9 +433,7 @@ public:
     inline void unSet07() { ((stBit64*)&mBit)->bit07 = 0; };
     // Unset bit 08 value
     inline void unSet08() { ((stBit64*)&mBit)->bit08 = 0; };
-    // }}}
 
-    // Unset (09-16) {{{
     // Unset bit 09 value
     inline void unSet09() { ((stBit64*)&mBit)->bit09 = 0; };
     // Unset bit 10 value
@@ -477,9 +450,7 @@ public:
     inline void unSet15() { ((stBit64*)&mBit)->bit15 = 0; };
     // Unset bit 16 value
     inline void unSet16() { ((stBit64*)&mBit)->bit16 = 0; };
-    // }}}
 
-    // Unset (17-24) {{{
     // Unset bit 17 value
     inline void unSet17() { ((stBit64*)&mBit)->bit17 = 0; };
     // Unset bit 18 value
@@ -496,9 +467,7 @@ public:
     inline void unSet23() { ((stBit64*)&mBit)->bit23 = 0; };
     // Unset bit 24 value
     inline void unSet24() { ((stBit64*)&mBit)->bit24 = 0; };
-    // }}}
 
-    // Unset (25-32) {{{
     // Unset bit 25 value
     inline void unSet25() { ((stBit64*)&mBit)->bit25 = 0; };
     // Unset bit 26 value
@@ -515,9 +484,7 @@ public:
     inline void unSet31() { ((stBit64*)&mBit)->bit31 = 0; };
     // Unset bit 32 value
     inline void unSet32() { ((stBit64*)&mBit)->bit32 = 0; };
-    // }}}
-    
-    // Unset (33-40) {{{
+
     // Unset bit 33 value
     inline void unSet33() { ((stBit64*)&mBit)->bit33 = 0; };
     // Unset bit 34 value
@@ -534,9 +501,7 @@ public:
     inline void unSet39() { ((stBit64*)&mBit)->bit39 = 0; };
     // Unset bit 40 value
     inline void unSet40() { ((stBit64*)&mBit)->bit40 = 0; };
-    // }}}
 
-    // Unset (41-48) {{{
     // Unset bit 41 value
     inline void unSet41() { ((stBit64*)&mBit)->bit41 = 0; };
     // Unset bit 42 value
@@ -553,9 +518,7 @@ public:
     inline void unSet47() { ((stBit64*)&mBit)->bit47 = 0; };
     // Unset bit 48 value
     inline void unSet48() { ((stBit64*)&mBit)->bit48 = 0; };
-    // }}}
 
-    // Unset (49-56) {{{
     // Unset bit 49 value
     inline void unSet49() { ((stBit64*)&mBit)->bit49 = 0; };
     // Unset bit 50 value
@@ -572,9 +535,7 @@ public:
     inline void unSet55() { ((stBit64*)&mBit)->bit55 = 0; };
     // Unset bit 56 value
     inline void unSet56() { ((stBit64*)&mBit)->bit56 = 0; };
-    // }}}
 
-    // Unset (57-64) {{{
     // Unset bit 57 value
     inline void unSet57() { ((stBit64*)&mBit)->bit57 = 0; };
     // Unset bit 58 value
@@ -591,11 +552,7 @@ public:
     inline void unSet63() { ((stBit64*)&mBit)->bit63 = 0; };
     // Unset bit 64 value
     inline void unSet64() { ((stBit64*)&mBit)->bit64 = 0; };
-    // }}}
 
-    // }}}
-
-    // IsSet func {{{
     // Check bit is set or not
     inline bool isSet(const long long            lVal) { return ((mBit) &  lVal) ? true : false; };
     // Check bit is set or not
@@ -603,7 +560,6 @@ public:
     // Check bit is set or not
     inline bool isSet(const emBitPos        emPos) { return ((mBit) & emPos) ? true : false; };
 
-    // IsSet (01-08) {{{
     // Check bit 01 is set or not
     inline bool isSet01() { return (((stBit64*)&mBit)->bit01 & 1) ? true : false; };
     // Check bit 02 is set or not
@@ -620,9 +576,7 @@ public:
     inline bool isSet07() { return (((stBit64*)&mBit)->bit07 & 1) ? true : false; };
     // Check bit 08 is set or not
     inline bool isSet08() { return (((stBit64*)&mBit)->bit08 & 1) ? true : false; };
-    // }}}
 
-    // IsSet(09-16) {{{
     // Check bit 09 is set or not
     inline bool isSet09() { return (((stBit64*)&mBit)->bit09 & 1) ? true : false; };
     // Check bit 10 is set or not
@@ -639,9 +593,7 @@ public:
     inline bool isSet15() { return (((stBit64*)&mBit)->bit15 & 1) ? true : false; };
     // Check bit 16 is set or not
     inline bool isSet16() { return (((stBit64*)&mBit)->bit16 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (17-24) {{{
     // Check bit 17 is set or not
     inline bool isSet17() { return (((stBit64*)&mBit)->bit17 & 1) ? true : false; };
     // Check bit 18 is set or not
@@ -658,9 +610,7 @@ public:
     inline bool isSet23() { return (((stBit64*)&mBit)->bit23 & 1) ? true : false; };
     // Check bit 24 is set or not
     inline bool isSet24() { return (((stBit64*)&mBit)->bit24 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (24-32) {{{
     // Check bit 25 is set or not
     inline bool isSet25() { return (((stBit64*)&mBit)->bit25 & 1) ? true : false; };
     // Check bit 26 is set or not
@@ -677,9 +627,7 @@ public:
     inline bool isSet31() { return (((stBit64*)&mBit)->bit31 & 1) ? true : false; };
     // Check bit 32 is set or not
     inline bool isSet32() { return (((stBit64*)&mBit)->bit32 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (33-40) {{{
     // Check bit 33 is set or not
     inline bool isSet33() { return (((stBit64*)&mBit)->bit33 & 1) ? true : false; };
     // Check bit 34 is set or not
@@ -696,9 +644,7 @@ public:
     inline bool isSet39() { return (((stBit64*)&mBit)->bit39 & 1) ? true : false; };
     // Check bit 40 is set or not
     inline bool isSet40() { return (((stBit64*)&mBit)->bit40 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (41-48) {{{
     // Check bit 41 is set or not
     inline bool isSet41() { return (((stBit64*)&mBit)->bit41 & 1) ? true : false; };
     // Check bit 42 is set or not
@@ -715,9 +661,7 @@ public:
     inline bool isSet47() { return (((stBit64*)&mBit)->bit47 & 1) ? true : false; };
     // Check bit 48 is set or not
     inline bool isSet48() { return (((stBit64*)&mBit)->bit48 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (49-56) {{{
     // Check bit 49 is set or not
     inline bool isSet49() { return (((stBit64*)&mBit)->bit49 & 1) ? true : false; };
     // Check bit 50 is set or not
@@ -734,9 +678,7 @@ public:
     inline bool isSet55() { return (((stBit64*)&mBit)->bit55 & 1) ? true : false; };
     // Check bit 56 is set or not
     inline bool isSet56() { return (((stBit64*)&mBit)->bit56 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (57-64) {{{
     // Check bit 57 is set or not
     inline bool isSet57() { return (((stBit64*)&mBit)->bit57 & 1) ? true : false; };
     // Check bit 58 is set or not
@@ -753,9 +695,7 @@ public:
     inline bool isSet63() { return (((stBit64*)&mBit)->bit63 & 1) ? true : false; };
     // Check bit 64 is set or not
     inline bool isSet64() { return (((stBit64*)&mBit)->bit64 & 1) ? true : false; };
-    // }}}
 
-    // }}}
 // }}} ! Methods
 
 // ------------------------------------------------------------------------------------------------ //

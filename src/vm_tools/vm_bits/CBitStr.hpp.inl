@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-11 20:31:48                                               == //
+// ==   Modify Time          : 2020-11-15 09:28:57                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,8 +27,8 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 #include <vm_cfgs.h>
-#include <vm_tools/vm_memory/v_funcs_mem.h>
-#include <vm_tools/vm_util/v_funcs_io.h>
+#include <vm_tools/vm_funcs.h>
+#include "eBitStr.inl"
 // }}}
 // ================================================================================================ //
 

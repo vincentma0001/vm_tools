@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-12 15:30:30                                               == //
+// ==   Modify Time          : 2020-11-15 09:18:59                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -128,7 +128,7 @@ private:
     size_t          msztFmtLen;
 
     // Pattern list
-    CPattern*       mpPatterns;
+    CPattern*       mpPattern;
 // }}} ! Members
 
 // ------------------------------------------------------------------------------------------------ //

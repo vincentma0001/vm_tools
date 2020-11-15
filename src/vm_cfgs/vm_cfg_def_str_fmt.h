@@ -25,8 +25,16 @@
 // ================================================================================================ //
 // [ string format macro defines ] {{{
 
+// ================================================================================================ //
+// [ pointer, string wstring format macro defines ] {{{
+#define vStrFmtPointer                                 "%p"
+#define vStrFmtString                                  "%s"
+#define vStrFmtWstring                                 "%ls"
+// }}} ! pointer, string wstring format macro defines
+// ================================================================================================ //
+
 // ------------------------------------------------------------------------------------------------ //
-// [ char's string format macro defins ] {{{
+// [ char's string format macro defines ] {{{
 #define vStrFmtChar                                    "%c"
 #define vStrFmtChar_l                                  "%-c"
 #define vStrFmtChar_w(   nWidth )                       "%"#nWidth"c"
