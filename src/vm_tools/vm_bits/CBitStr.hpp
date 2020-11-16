@@ -6,8 +6,8 @@
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-16 09:56:45                                               == //
+// ==   Create Time          : 2020-10-30 14:07                                                  == //
+// ==   Modify Time          : 2020-11-16 12:44                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,9 +32,7 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-
+namespace vm {
 
 // Class CBitStr : This class convert CBitType's value to string
 template< typename CBitType >
@@ -95,6 +93,7 @@ public:
 // Class realization :
 #include "CBitStr.hpp.inl"
 // ================================================================================================ //
+
 
 #endif // ! __CBITSTR_HPP__
 // ================================================================================================ //
