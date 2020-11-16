@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-12 12:06:43                                               == //
+// ==   Modify Time          : 2020-11-15 09:23:00                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -148,21 +148,16 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // normal func {{{
     // Return bit size
     inline size_t  size () const { return sizeof(mBit); };
     // Reset bit value to zero
     inline void    reset()       { mBit = 0;            };
-    // }}}
 
-    // return func {{{
     // Return          short value
     inline short           to_short  () { return           (short)mBit; };
     // Return unsigned short value
     inline unsigned short  to_ushort () { return  (unsigned short)mBit; };
-    // }}}
 
-    // Set value {{{
     // Set bit value
     inline void Set(const short            sVal) { mBit = mBit |  sVal; };
     // Set bit value
@@ -170,7 +165,6 @@ public:
     // Set bit value
     inline void Set(const emBitPos        emPos) { mBit = mBit | emPos; };
 
-    // Set (01-08) {{{
     // Set bit 01 value
     inline void Set01() { ((stBit16*)&mBit)->bit01 = 1; };
     // Set bit 02 value
@@ -187,9 +181,7 @@ public:
     inline void Set07() { ((stBit16*)&mBit)->bit07 = 1; };
     // Set bit 08 value
     inline void Set08() { ((stBit16*)&mBit)->bit08 = 1; };
-    // }}}
 
-    // Set (09-16) {{{
     // Set bit 09 value
     inline void Set09() { ((stBit16*)&mBit)->bit09 = 1; };
     // Set bit 10 value
@@ -206,11 +198,7 @@ public:
     inline void Set15() { ((stBit16*)&mBit)->bit15 = 1; };
     // Set bit 16 value
     inline void Set16() { ((stBit16*)&mBit)->bit16 = 1; };
-    // }}}
 
-    // }}}
-
-    // UnSet value {{{
     // Unset bit value
     inline void unSet(const short            sVal) { mBit = mBit ^  sVal; };
     // Unset bit value
@@ -218,7 +206,6 @@ public:
     // Unset bit value
     inline void unSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
 
-    // Unset (01-08) {{{
     // Unset bit 01 value
     inline void unSet01() { ((stBit16*)&mBit)->bit01 = 0; };
     // Unset bit 02 value
@@ -235,9 +222,7 @@ public:
     inline void unSet07() { ((stBit16*)&mBit)->bit07 = 0; };
     // Unset bit 08 value
     inline void unSet08() { ((stBit16*)&mBit)->bit08 = 0; };
-    // }}}
 
-    // Unset (09-16) {{{
     // Unset bit 09 value
     inline void unSet09() { ((stBit16*)&mBit)->bit09 = 0; };
     // Unset bit 10 value
@@ -254,11 +239,7 @@ public:
     inline void unSet15() { ((stBit16*)&mBit)->bit15 = 0; };
     // Unset bit 16 value
     inline void unSet16() { ((stBit16*)&mBit)->bit16 = 0; };
-    // }}}
 
-    // }}}
-
-    // IsSet func {{{
     // Check bit is set or not
     inline bool isSet(const short            sVal) { return ((mBit) &  sVal) ? true : false; };
     // Check bit is set or not
@@ -266,7 +247,6 @@ public:
     // Check bit is set or not
     inline bool isSet(const emBitPos        emPos) { return ((mBit) & emPos) ? true : false; };
 
-    // IsSet (01-08) {{{
     // Check bit 01 is set or not
     inline bool isSet01() { return (((stBit16*)&mBit)->bit01 & 1) ? true : false; };
     // Check bit 02 is set or not
@@ -283,9 +263,7 @@ public:
     inline bool isSet07() { return (((stBit16*)&mBit)->bit07 & 1) ? true : false; };
     // Check bit 08 is set or not
     inline bool isSet08() { return (((stBit16*)&mBit)->bit08 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (09-16) {{{
     // Check bit 09 is set or not
     inline bool isSet09() { return (((stBit16*)&mBit)->bit09 & 1) ? true : false; };
     // Check bit 10 is set or not
@@ -302,9 +280,7 @@ public:
     inline bool isSet15() { return (((stBit16*)&mBit)->bit15 & 1) ? true : false; };
     // Check bit 16 is set or not
     inline bool isSet16() { return (((stBit16*)&mBit)->bit16 & 1) ? true : false; };
-    // }}}
 
-    // }}}
 // }}} ! Methods
 
 // ------------------------------------------------------------------------------------------------ //

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-12 12:07:00                                               == //
+// ==   Modify Time          : 2020-11-15 09:24:41                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -191,14 +191,11 @@ public:
     inline void    reset()       { mBit = 0;            };
     // }}}
 
-    // return func {{{
     // Return          long value
     inline long           to_long  () { return           (long)mBit; };
     // Return unsigned long value
     inline unsigned long  to_ulong () { return  (unsigned long)mBit; };
-    // }}}
 
-    // Set value {{{
     // Set bit value
     inline void Set(const long            lVal) { mBit = mBit |  lVal; };
     // Set bit value
@@ -206,7 +203,6 @@ public:
     // Set bit value
     inline void Set(const emBitPos       emPos) { mBit = mBit | emPos; };
 
-    // Set (01-08) {{{
     // Set bit 01 value
     inline void Set01() { ((stBit32*)&mBit)->bit01 = 1; };
     // Set bit 02 value
@@ -223,9 +219,7 @@ public:
     inline void Set07() { ((stBit32*)&mBit)->bit07 = 1; };
     // Set bit 08 value
     inline void Set08() { ((stBit32*)&mBit)->bit08 = 1; };
-    // }}}
 
-    // Set (09-16) {{{
     // Set bit 09 value
     inline void Set09() { ((stBit32*)&mBit)->bit09 = 1; };
     // Set bit 10 value
@@ -242,9 +236,7 @@ public:
     inline void Set15() { ((stBit32*)&mBit)->bit15 = 1; };
     // Set bit 16 value
     inline void Set16() { ((stBit32*)&mBit)->bit16 = 1; };
-    // }}}
 
-    // Set (17-24) {{{
     // Set bit 17 value
     inline void Set17() { ((stBit32*)&mBit)->bit17 = 1; };
     // Set bit 18 value
@@ -261,9 +253,7 @@ public:
     inline void Set23() { ((stBit32*)&mBit)->bit23 = 1; };
     // Set bit 24 value
     inline void Set24() { ((stBit32*)&mBit)->bit24 = 1; };
-    // }}}
 
-    // Set (25-32) {{{
     // Set bit 25 value
     inline void Set25() { ((stBit32*)&mBit)->bit25 = 1; };
     // Set bit 26 value
@@ -280,11 +270,7 @@ public:
     inline void Set31() { ((stBit32*)&mBit)->bit31 = 1; };
     // Set bit 32 value
     inline void Set32() { ((stBit32*)&mBit)->bit32 = 1; };
-    // }}}
 
-    // }}}
-
-    // UnSet value {{{
     // Unset bit value
     inline void unSet(const long            lVal) { mBit = mBit ^  lVal; };
     // Unset bit value
@@ -292,7 +278,6 @@ public:
     // Unset bit value
     inline void unSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
 
-    // Unset (01-08) {{{
     // Unset bit 01 value
     inline void unSet01() { ((stBit32*)&mBit)->bit01 = 0; };
     // Unset bit 02 value
@@ -309,9 +294,7 @@ public:
     inline void unSet07() { ((stBit32*)&mBit)->bit07 = 0; };
     // Unset bit 08 value
     inline void unSet08() { ((stBit32*)&mBit)->bit08 = 0; };
-    // }}}
 
-    // Unset (09-16) {{{
     // Unset bit 09 value
     inline void unSet09() { ((stBit32*)&mBit)->bit09 = 0; };
     // Unset bit 10 value
@@ -328,9 +311,7 @@ public:
     inline void unSet15() { ((stBit32*)&mBit)->bit15 = 0; };
     // Unset bit 16 value
     inline void unSet16() { ((stBit32*)&mBit)->bit16 = 0; };
-    // }}}
 
-    // Unset (17-24) {{{
     // Unset bit 17 value
     inline void unSet17() { ((stBit32*)&mBit)->bit17 = 0; };
     // Unset bit 18 value
@@ -347,9 +328,7 @@ public:
     inline void unSet23() { ((stBit32*)&mBit)->bit23 = 0; };
     // Unset bit 24 value
     inline void unSet24() { ((stBit32*)&mBit)->bit24 = 0; };
-    // }}}
 
-    // Unset (25-32) {{{
     // Unset bit 25 value
     inline void unSet25() { ((stBit32*)&mBit)->bit25 = 0; };
     // Unset bit 26 value
@@ -366,11 +345,7 @@ public:
     inline void unSet31() { ((stBit32*)&mBit)->bit31 = 0; };
     // Unset bit 32 value
     inline void unSet32() { ((stBit32*)&mBit)->bit32 = 0; };
-    // }}}
 
-    // }}}
-
-    // IsSet func {{{
     // Check bit is set or not
     inline bool isSet(const long            lVal) { return ((mBit) &  lVal) ? true : false; };
     // Check bit is set or not
@@ -378,7 +353,6 @@ public:
     // Check bit is set or not
     inline bool isSet(const emBitPos        emPos) { return ((mBit) & emPos) ? true : false; };
 
-    // IsSet (01-08) {{{
     // Check bit 01 is set or not
     inline bool isSet01() { return (((stBit32*)&mBit)->bit01 & 1) ? true : false; };
     // Check bit 02 is set or not
@@ -395,9 +369,7 @@ public:
     inline bool isSet07() { return (((stBit32*)&mBit)->bit07 & 1) ? true : false; };
     // Check bit 08 is set or not
     inline bool isSet08() { return (((stBit32*)&mBit)->bit08 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (09-16) {{{
     // Check bit 09 is set or not
     inline bool isSet09() { return (((stBit32*)&mBit)->bit09 & 1) ? true : false; };
     // Check bit 10 is set or not
@@ -414,9 +386,7 @@ public:
     inline bool isSet15() { return (((stBit32*)&mBit)->bit15 & 1) ? true : false; };
     // Check bit 16 is set or not
     inline bool isSet16() { return (((stBit32*)&mBit)->bit16 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (17-24) {{{
     // Check bit 17 is set or not
     inline bool isSet17() { return (((stBit32*)&mBit)->bit17 & 1) ? true : false; };
     // Check bit 18 is set or not
@@ -433,9 +403,7 @@ public:
     inline bool isSet23() { return (((stBit32*)&mBit)->bit23 & 1) ? true : false; };
     // Check bit 24 is set or not
     inline bool isSet24() { return (((stBit32*)&mBit)->bit24 & 1) ? true : false; };
-    // }}}
 
-    // IsSet (25-32) {{{
     // Check bit 25 is set or not
     inline bool isSet25() { return (((stBit32*)&mBit)->bit25 & 1) ? true : false; };
     // Check bit 26 is set or not
@@ -452,9 +420,7 @@ public:
     inline bool isSet31() { return (((stBit32*)&mBit)->bit31 & 1) ? true : false; };
     // Check bit 32 is set or not
     inline bool isSet32() { return (((stBit32*)&mBit)->bit32 & 1) ? true : false; };
-    // }}}
 
-    // }}}
 // }}} ! Methods
 
 // ------------------------------------------------------------------------------------------------ //

@@ -31,7 +31,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # set c++ flags
-set(CMAKE_CXX_FLAGS "-std=c++11 -g ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-std=c++11 -g -m64 ${CMAKE_CXX_FLAGS}")
 
 # add include directories for projects and submudules
 include_directories(${HOME} ${PROJECT_SOURCE_DIR})
@@ -51,10 +51,10 @@ add_subdirectory(${HOME}/tst/tst_stdmap)
 add_subdirectory(${HOME}/tst/tst_prfmt)
 add_subdirectory(${HOME}/tst/tst_cycbuf)
 add_subdirectory(${HOME}/tst/tst_singleton)
-add_subdirectory(${HOME}/tst/tst_bits)
 ]]
-add_subdirectory(${HOME}/tst/tst_string)
+add_subdirectory(${HOME}/tst/tst_bits)
 #[[
+add_subdirectory(${HOME}/tst/tst_string)
 add_subdirectory(${HOME}/tst/tst_file)
 #add_subdirectory(${HOME}/tst/tst_util)
 #add_subdirectory(${HOME}/tst/tst_kernal)

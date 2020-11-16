@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-11 20:24:02                                               == //
+// ==   Modify Time          : 2020-11-15 10:50:39                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -50,21 +50,6 @@ template< typename CBitType >
 class CBitStr
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
-// Typedefs  : {{{
-public:
-    // enum emRet : this enum define return value for class CBitStr
-    enum emRet
-    // {{{
-    {
-        emSucess = 0,
-
-        emError         = vMaxsLong -1,
-        emErrFmtFailed  =    emError-1,
-
-        emWarns         = vMaxsLong -20
-    };
-    // }}} End of def enum emRet
 // }}} ! Typedefs
 // ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
@@ -97,45 +82,19 @@ private:
 // Methods   : {{{
 public:
     // Output bit value by bin string
-    inline tchar* toBin();
+    inline tchar* toBin   (                                            );
 
     // Output bit value by oct string
-    inline tchar* toOct04();
-    // Output bit value by oct string
-    inline tchar* toOct08();
+    inline tchar* toOct   ( const tchar* const cpStrFmt=vT(vStrFmtOct) );
 
     // Output bit value by dec string
-    inline tchar* toDec();
-    // Output bit value by dec string
-    inline tchar* toDec04();
-    // Output bit value by dec string
-    inline tchar* toDec08();
+    inline tchar* toDec   ( const tchar* const cpStrFmt=vT(vStrFmtInt) );
 
     // Output bit value by hex string
-    inline tchar* toHex02();
-    // Output bit value by hex string
-    inline tchar* toHex04();
-    // Output bit value by hex string
-    inline tchar* toHex08();
-    // Output bit value by hex string
-    inline tchar* toHeX02();
-    // Output bit value by hex string
-    inline tchar* toHeX04();
-    // Output bit value by hex string
-    inline tchar* toHeX08();
-
+    inline tchar* toHex   ( const tchar* const cpStrFmt=vT(vStrFmtHeX) );
+    //
     // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex08();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX02();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX04();
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHeX08();
+    inline tchar* to0xHex ( const tchar* const cpStrFmt=vT(vStrFmtHeX) );
 
 // }}} ! Methods
 

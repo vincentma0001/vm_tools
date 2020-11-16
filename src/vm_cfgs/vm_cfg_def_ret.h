@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CPrFmt.hpp                                          == //
+// ==                                     vm_cfg_def_ret.h                                       == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-05 10:51                                                  == //
-// ==   Modify Time          : 2020-11-05 10:51                                                  == //
+// ==   Create Time          : 2020-11-15 10:55                                                  == //
+// ==   Modify Time          : 2020-11-15 10:55                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,96 +18,87 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CPRFMT_HPP__
-#define  __CPRFMT_HPP__
+#ifndef  __VM_CFG_DEF_RET_H__
+#define  __VM_CFG_DEF_RET_H__
 
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
-#include <vm_cfgs.h>
+#include "vm_cfg_def_lmt.h"
 // }}}
 // ================================================================================================ //
+
 
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
 
-// ================================================================================================ //
-// ==  Class CPrFmt : This class deal with printf funcs's input format                           == //
 // ------------------------------------------------------------------------------------------------ //
-template< size_t tsztBufSize >
-class CPrFmt
+// Macrodefs : {{{
+#ifndef    vRetSucess
+#   define vRetSucess      0
+#endif // !vRetSucess
+
+#ifndef    vErrOffSet
+#   define vErrOffSet      1
+#endif // !vErrOffSet
+
+#ifndef    vWrnOffSet
+#   define vWrnOffSet      50
+#endif // !vWrnOffSet
+// }}} ! Macrodefs
+// ------------------------------------------------------------------------------------------------ //
+
+// ------------------------------------------------------------------------------------------------ //
+// enum emRet : this enum define function error, warn info
+enum emRet
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
-// Construct & Destruct : {{{
-public:
-    // Construct define
-    inline          CPrFmt    (                   );
-    // Destruct define
-    inline virtual ~CPrFmt    (                   );
+    // no errer
+    emSucess            = vRetSucess,
 
-private:
-    // Copy construct define
-    inline CPrFmt             ( const CPrFmt &obj );
-    // Assignment operation
-    inline CPrFmt& operator = ( const CPrFmt &obj );
-// }}} ! Construct & Destruct
-// ------------------------------------------------------------------------------------------------ //
-// Operators : {{{
-public:
-    inline tchar*  operator * (                   );
-    inline CPrFmt& operator( )( const tchar* const cpStr ){};
-// }}} ! Operators
+    // error return
+    emError             = vMaxuLong - vErrOffSet,
+    // error return for vm::v_sprintf
+    emErrStrFmt         = emError   - 1,
 
-// ------------------------------------------------------------------------------------------------ //
-// Menbers   : {{{
-private:
-    size_t              msztOffset;
-    tchar               mszBuf[tsztBufSize];
-// }}} ! Members
-
-// ------------------------------------------------------------------------------------------------ //
-// Methods   : 
-public:
-    // Get Buffer size in CPrFmt
-    size_t Size( void );
-    // Get string length in CPrFmt buffer
-    size_t Len ( void );
-
-    CPrFmt& Str    ( const size_t csztWidth=0,                             const bool bLeft=false );
-    CPrFmt& Char   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UChar  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Short  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UShort ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Int    ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& UInt   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Long   ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& ULong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& LLong  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& ULLong ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& TSize  ( const size_t csztWidth=0, const bool bFillZero=false, const bool bLeft=false );
-    CPrFmt& Float  ();
-    CPrFmt& Double ();
-    CPrFmt& LDouble();
-//  ! Methods
-
+    // warn return
+    emWarns             = vMaxuLong - vWrnOffSet
 };
-// }}} ! [ class CPrFmt ]
+// }}} End of def enum emErrRet
+// ------------------------------------------------------------------------------------------------ //
+
+// ================================================================================================ //
+// [ emRet macro defines ] {{{
+
+#ifndef    vRetErr
+#   define vRetErr                  vMakeLLong( vm::emRet::emError,             errno )
+#endif // !vRetErr
+
+#ifndef    vRetWrn
+#   define vRetWrn                  vMakeLLong( vm::emRet::emWarns,             errno )
+#endif // !vRetWrn
+
+#ifndef    vRetErrStrFmt
+#   define vRetErrStrFmt            vMakeLLong( vm::emRet::emErrStrFmt,         errno )
+#endif // !vRetErrStrFmt
+
+#ifndef    vCheckStrFmtRet
+#   define vCheckStrFmtRet( bRet, cllErrCode )      if(bRet==false){cllErrCode=vRetErrStrFmt;}
+#endif // !vCheckFmtStrRet
+
+// }}} ! emRet macro defines
 // ================================================================================================ //
 
 };
 // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
-#include "CPrFmt.hpp.inl"
-// ================================================================================================ //
 
 
-#endif // ! __CPRFMT_HPP__
+#endif // ! __VM_CFG_DEF_RET_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

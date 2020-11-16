@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-12 12:06:15                                               == //
+// ==   Modify Time          : 2020-11-14 21:31:28                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -118,7 +118,7 @@ public:
     inline char          operator ^ (const char             cVal) {          char  lcValue = mBit ^ cVal;     return  lcValue; };
 
     // Bit operation (~) [~00000011 = 11111100]
-    inline unsigned char operator ~ ()                            { unsigned char lucValue = ~mBit; return lucValue; };
+    inline unsigned char operator ~ (                           ) { unsigned char lucValue = ~mBit;           return lucValue; };
 // }}} ! Operators
 
 // ------------------------------------------------------------------------------------------------ //
@@ -130,21 +130,16 @@ private:
 // ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // normal func {{{
     // Return bit size
     inline size_t  size () const { return sizeof(mBit); };
     // Reset bit value to zero
     inline void    reset()       { mBit = 0;            };
-    // }}}
 
-    // return func {{{
     // Return          char value
     inline char           to_char  () { return           (char)mBit; };
     // Return unsigned char value
     inline unsigned char  to_uchar () { return  (unsigned char)mBit; };
-    // }}}
 
-    // Set value {{{
     // Set bit value
     inline void Set(const char            cVal) { mBit = mBit |  cVal; };
     // Set bit value
@@ -168,9 +163,7 @@ public:
     inline void Set07() { ((stBit08*)&mBit)->bit07 = 1; };
     // Set bit 08 value
     inline void Set08() { ((stBit08*)&mBit)->bit08 = 1; };
-    // }}}
 
-    // UnSet value {{{
     // Unset bit value
     inline void unSet(const char            cVal) { mBit = mBit ^  cVal; };
     // Unset bit value
@@ -194,9 +187,7 @@ public:
     inline void unSet07() { ((stBit08*)&mBit)->bit07 = 0; };
     // Unset bit 08 value
     inline void unSet08() { ((stBit08*)&mBit)->bit08 = 0; };
-    // }}}
 
-    // IsSet func {{{
     // Check bit is set or not
     inline bool isSet(const char            cVal) { return ((mBit) &  cVal) ? true : false; };
     // Check bit is set or not
@@ -220,7 +211,6 @@ public:
     inline bool isSet07() { return (((stBit08*)&mBit)->bit07 & 1) ? true : false; };
     // Check bit 08 is set or not
     inline bool isSet08() { return (((stBit08*)&mBit)->bit08 & 1) ? true : false; };
-    // }}}
 // }}} ! Methods
 
 // ------------------------------------------------------------------------------------------------ //
