@@ -17,38 +17,38 @@ vTry
     vLine( "*******************************************" );
 
     loBit08.Set01();
-    vOutput( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    vLine( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
     loBit08.Set02();
-    vOutput( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    vLine( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
     loBit08.Set03();
-    vOutput( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    vLine( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
     loBit08.Set04();
-    vOutput( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    vLine( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
     loBit08.Set05();
-    vOutput( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    vLine( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
     loBit08.Set06();
-    vOutput( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    vLine( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
     loBit08.Set07();
-    vOutput( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    vLine( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
     loBit08.Set08();
-    vOutput( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
+    vLine( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
 
     loBit08.UnSet01();
-    vOutput( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    vLine( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
     loBit08.UnSet02();
-    vOutput( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    vLine( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
     loBit08.UnSet03();
-    vOutput( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    vLine( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
     loBit08.UnSet04();
-    vOutput( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    vLine( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
     loBit08.UnSet05();
-    vOutput( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    vLine( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
     loBit08.UnSet06();
-    vOutput( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    vLine( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
     loBit08.UnSet07();
-    vOutput( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    vLine( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
     loBit08.UnSet08();
-    vOutput( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
+    vLine( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
 
 vCatch(...)
     return false;
@@ -66,27 +66,45 @@ UT_FUNC_BEGIN( ut_cbit08_2 )
 vTry
 
     // Add unit test coder here
-    unsigned char  lucValue = 0;
-    vCout << vT("Size of           char : ") << sizeof(char)            << vEndl;
-    vm::CBit08 loBit08(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit08);
+    char  lcValue = 0;
+    vm::CBit08 loBit08(lcValue);
+    vm::CBitStr<vm::CBit08> loBitStr08(loBit08);
+    vLine( "Size of value : %zu", loBit08.size()  );
+    vLine( "*******************************************" );
 
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit unsigned char - zero") << vEndl;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
-    
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit unsigned char - max unsigned char") << vEndl;
-    lucValue = vMaxuChar;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
+    loBit08.Set( vm::CBit08::emBitPos::Pos01 );
+    vLine( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos02 );
+    vLine( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos03 );
+    vLine( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos04 );
+    vLine( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos05 );
+    vLine( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos06 );
+    vLine( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos07 );
+    vLine( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    loBit08.Set( vm::CBit08::emBitPos::Pos08 );
+    vLine( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
+
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos01 );
+    vLine( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos02 );
+    vLine( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos03 );
+    vLine( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos04 );
+    vLine( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos05 );
+    vLine( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos06 );
+    vLine( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos07 );
+    vLine( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    loBit08.UnSet( vm::CBit08::emBitPos::Pos08 );
+    vLine( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
 
 vCatch(...)
     return false;
@@ -104,44 +122,33 @@ UT_FUNC_BEGIN( ut_cbit08_3 )
 vTry
 
     // Add unit test coder here
-    unsigned char lcValue=0;
-    vm::CBit08 loBit(lcValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
+    unsigned char           lcVal1=0;
+    vm::CBit08              loBit1(lcVal1);
+    vm::CBitStr<vm::CBit08> loBitStr1(loBit1);
+    loBit1.Set01();
+    loBit1.Set02();
 
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set01();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set02();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set03();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set04();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set05();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set06();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set07();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set08();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet01();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet02();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet03();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet04();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet05();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet06();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet07();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet08();
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
+    unsigned char           lcVal2=0;
+    vm::CBit08              loBit2(lcVal2);
+    vm::CBitStr<vm::CBit08> loBitStr2(loBit2);
+    loBit2.Set01();
+    loBit2.Set03();
 
+    unsigned char           lcVal3=0;
+    vm::CBit08              loBit3(lcVal3);
+    vm::CBitStr<vm::CBit08> loBitStr3(loBit3);
+
+    lcVal3  = loBit1 & loBit2;
+    vLine( vT(" %s & %s = %s "), loBitStr1.toBin(), loBitStr2.toBin(), loBitStr3.toBin() );
+
+    lcVal3 = loBit1 | loBit2;
+    vLine( vT(" %s | %s = %s "), loBitStr1.toBin(), loBitStr2.toBin(), loBitStr3.toBin() );
+
+    lcVal3 = loBit1 ^ loBit2;
+    vLine( vT(" %s ^ %s = %s "), loBitStr1.toBin(), loBitStr2.toBin(), loBitStr3.toBin() );
+
+    lcVal3 = ~loBit1;
+    vLine( vT(" %s = ~%s " ),    loBitStr3.toBin(), loBitStr1.toBin() );
 
 vCatch(...)
     return false;
@@ -152,344 +159,6 @@ UT_FUNC_ENDED
 // }}} ! ut_cbit08_3
 // ================================================================================================ //
 
-// ================================================================================================ //
-// [ ut_cbit08_4 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_4 )
-
-vTry
-
-    // Add unit test coder here
-    unsigned char           lucValue = 0;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    vCout << vT("Bit           : ") << loBitStr.toBin() << vEndl;
-    vCout << vT("Bit 01 is set : ") << vStrBool( loBit.isSet01() ) << vEndl;
-    vCout << vT("Bit 02 is set : ") << vStrBool( loBit.isSet02() ) << vEndl;
-    vCout << vT("Bit 03 is set : ") << vStrBool( loBit.isSet03() ) << vEndl;
-    vCout << vT("Bit 04 is set : ") << vStrBool( loBit.isSet04() ) << vEndl;
-    vCout << vT("Bit 05 is set : ") << vStrBool( loBit.isSet05() ) << vEndl;
-    vCout << vT("Bit 06 is set : ") << vStrBool( loBit.isSet06() ) << vEndl;
-    vCout << vT("Bit 07 is set : ") << vStrBool( loBit.isSet07() ) << vEndl;
-    vCout << vT("Bit 08 is set : ") << vStrBool( loBit.isSet08() ) << vEndl;
-
-    vCout << vT("------------------------------------------") << vEndl;
-    lucValue = 255;
-
-    vCout << vT("Bit           : ") << loBitStr.toBin() << vEndl;
-    vCout << vT("Bit 01 is set : ") << vStrBool( loBit.isSet01() ) << vEndl;
-    vCout << vT("Bit 02 is set : ") << vStrBool( loBit.isSet02() ) << vEndl;
-    vCout << vT("Bit 03 is set : ") << vStrBool( loBit.isSet03() ) << vEndl;
-    vCout << vT("Bit 04 is set : ") << vStrBool( loBit.isSet04() ) << vEndl;
-    vCout << vT("Bit 05 is set : ") << vStrBool( loBit.isSet05() ) << vEndl;
-    vCout << vT("Bit 06 is set : ") << vStrBool( loBit.isSet06() ) << vEndl;
-    vCout << vT("Bit 07 is set : ") << vStrBool( loBit.isSet07() ) << vEndl;
-    vCout << vT("Bit 08 is set : ") << vStrBool( loBit.isSet08() ) << vEndl;
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_4
-// ================================================================================================ //
-// ================================================================================================ //
-// [ ut_cbit08_5 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_5 )
-
-vTry
-
-    // Add unit test coder here
-    unsigned char           lucValue = 0;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    loBit.Set01();
-    loBit.Set03();
-    vCout << vT("Bit  : ") << loBitStr.toBin() << vEndl;
-
-    unsigned char           lucValue1 = 0;
-    vm::CBit08              loBit1(lucValue1);
-    vm::CBitStr<vm::CBit08> loBitStr1(loBit1);
-
-    lucValue1 = ~loBit;
-    vCout << vT("~Bit : ") << loBitStr1.toBin() << vEndl;
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_5
-// ================================================================================================ //
-
-// ================================================================================================ //
-// [ ut_cbit08_6 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_6 )
-
-vTry
-
-// ------------------------------------------------------------------------------------------------ //
-    // Add unit test coder here
-    unsigned char           lucValue;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    unsigned char           lucValue1 = 0;
-    vm::CBit08              loBit1(lucValue1);
-    vm::CBitStr<vm::CBit08> loBitStr1(loBit1);
-    loBit1.Set01();
-    loBit1.Set03();
-
-// ------------------------------------------------------------------------------------------------ //
-
-    unsigned char           lucValue2 = 0;
-    vm::CBit08              loBit2(lucValue2);
-    vm::CBitStr<vm::CBit08> loBitStr2(loBit2);
-    loBit2.Set01();
-    loBit2.Set02();
-
-    loBit = loBit1 & loBit2;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit2 : ") << loBitStr2.toBin() << vEndl;
-    vCout << vT("Bit1 & Bit2 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-    vCout << vT("------------------------------------------") << vEndl;
-
-    unsigned char           lucValue3 = 0;
-    vm::CBit08              loBit3(lucValue3);
-    vm::CBitStr<vm::CBit08> loBitStr3(loBit3);
-
-    loBit3.Set02();
-
-    lucValue = loBit1 & loBit3;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit3 : ") << loBitStr3.toBin() << vEndl;
-    vCout << vT("Bit1 & Bit3 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_6
-// ================================================================================================ //
-
-// ================================================================================================ //
-// [ ut_cbit08_7 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_7 )
-
-vTry
-
-// ------------------------------------------------------------------------------------------------ //
-    // Add unit test coder here
-    unsigned char           lucValue;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    unsigned char           lucValue1 = 0;
-    vm::CBit08              loBit1(lucValue1);
-    vm::CBitStr<vm::CBit08> loBitStr1(loBit1);
-    loBit1.Set01();
-    loBit1.Set03();
-
-// ------------------------------------------------------------------------------------------------ //
-
-    unsigned char           lucValue2 = 0;
-    vm::CBit08              loBit2(lucValue2);
-    vm::CBitStr<vm::CBit08> loBitStr2(loBit2);
-    loBit2.Set01();
-    loBit2.Set02();
-
-    loBit = loBit1 | loBit2;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit2 : ") << loBitStr2.toBin() << vEndl;
-    vCout << vT("Bit1 | Bit2 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-    vCout << vT("------------------------------------------") << vEndl;
-
-    unsigned char           lucValue3 = 0;
-    vm::CBit08              loBit3(lucValue3);
-    vm::CBitStr<vm::CBit08> loBitStr3(loBit3);
-
-    loBit3.Set02();
-
-    lucValue = loBit1 | loBit3;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit3 : ") << loBitStr3.toBin() << vEndl;
-    vCout << vT("Bit1 | Bit3 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-    
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_7
-// ================================================================================================ //
-
-// ================================================================================================ //
-// [ ut_cbit08_8 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_8 )
-
-vTry
-
-// ------------------------------------------------------------------------------------------------ //
-    // Add unit test coder here
-    unsigned char           lucValue;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    unsigned char           lucValue1 = 0;
-    vm::CBit08              loBit1(lucValue1);
-    vm::CBitStr<vm::CBit08> loBitStr1(loBit1);
-    loBit1.Set01();
-    loBit1.Set03();
-
-// ------------------------------------------------------------------------------------------------ //
-
-    unsigned char           lucValue2 = 0;
-    vm::CBit08              loBit2(lucValue2);
-    vm::CBitStr<vm::CBit08> loBitStr2(loBit2);
-    loBit2.Set01();
-    loBit2.Set02();
-
-    loBit = loBit1 ^ loBit2;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit2 : ") << loBitStr2.toBin() << vEndl;
-    vCout << vT("Bit1 ^ Bit2 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-    vCout << vT("------------------------------------------") << vEndl;
-
-    unsigned char           lucValue3 = 0;
-    vm::CBit08              loBit3(lucValue3);
-    vm::CBitStr<vm::CBit08> loBitStr3(loBit3);
-
-    loBit3.Set02();
-
-    lucValue = loBit1 ^ loBit3;
-    vCout << vT("Bit1 : ") << loBitStr1.toBin() << vEndl;
-    vCout << vT("Bit3 : ") << loBitStr3.toBin() << vEndl;
-    vCout << vT("Bit1 ^ Bit3 : ") << loBitStr.toBin() << vEndl;
-
-// ------------------------------------------------------------------------------------------------ //
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_8
-// ================================================================================================ //
-
-// ================================================================================================ //
-// [ ut_cbit08_9 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_9 )
-
-vTry
-
-    // Add unit test coder here
-    unsigned char lcValue=0;
-    vm::CBit08 loBit(lcValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos01 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos02 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos03 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos04 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos05 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos06 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos07 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.Set( vm::CBit08::emBitPos::Pos08 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos01 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos02 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos03 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos04 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos05 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos06 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos07 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-    loBit.unSet( vm::CBit08::emBitPos::Pos08 );
-    vCout << vT("Bit : ") << loBitStr.toBin() << vEndl;
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_9
-// ================================================================================================ //
-
-// ================================================================================================ //
-// [ ut_cbit08_10 ] {{{
-UT_FUNC_BEGIN( ut_cbit08_10 )
-
-vTry
-
-    // Add unit test coder here
-    unsigned char           lucValue = 0;
-    vm::CBit08              loBit(lucValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit);
-
-    vCout << vT("Bit           : ") << loBitStr.toBin() << vEndl;
-    vCout << vT("Bit 01 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 02 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 03 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 04 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 05 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 06 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 07 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 08 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-
-    vCout << vT("------------------------------------------") << vEndl;
-    lucValue = 255;
-
-    vCout << vT("Bit           : ") << loBitStr.toBin() << vEndl;
-    vCout << vT("Bit 01 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 02 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 03 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 04 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 05 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 06 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 07 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-    vCout << vT("Bit 08 is set : ") << vStrBool( loBit.isSet(vm::CBit08::emBitPos::Pos01) ) << vEndl;
-
-vCatch(...)
-    return false;
-vEnd
-    return true;
-
-UT_FUNC_ENDED
-// }}} ! ut_cbit08_10
-// ================================================================================================ //
 
 // ================================================================================================ //
 // ==  unit test frame tst_frame_cbit                                                            == //
@@ -499,13 +168,6 @@ UT_FRAME_BEGIN ( tst_frame_cbit08 )
 UT_FRAME_REGIST( ut_cbit08_1 )
 UT_FRAME_REGIST( ut_cbit08_2 )
 UT_FRAME_REGIST( ut_cbit08_3 )
-UT_FRAME_REGIST( ut_cbit08_4 )
-UT_FRAME_REGIST( ut_cbit08_5 )
-UT_FRAME_REGIST( ut_cbit08_6 )
-UT_FRAME_REGIST( ut_cbit08_7 )
-UT_FRAME_REGIST( ut_cbit08_8 )
-UT_FRAME_REGIST( ut_cbit08_9 )
-UT_FRAME_REGIST( ut_cbit08_10 )
 UT_FRAME_ENDED
 // }}} ![ tst_frame_cbit ]
 // ================================================================================================ //

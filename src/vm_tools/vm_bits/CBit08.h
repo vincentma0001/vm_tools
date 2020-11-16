@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-16 09:12:09                                               == //
+// ==   Modify Time          : 2020-11-16 09:59:03                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,16 +33,12 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
 
-// ================================================================================================ //
-// ==  Class CBit08 : This class deal with Bit operation for 8bit(char type)                     == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CBit08 : This class deal with Bit operation for 8bit(char type)
 class CBit08
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // Bit struct
@@ -74,7 +70,7 @@ public:
         Pos08 = 0x80
     };
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -88,7 +84,6 @@ private:
     inline CBit08             ( const CBit08 &obj ):mBit(obj.mBit){};
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
     // Assignment operation
@@ -121,13 +116,11 @@ public:
     inline unsigned char operator ~ (                           ) { unsigned char lucValue = ~mBit;           return lucValue; };
 // }}} ! Operators
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     unsigned char&   mBit;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Return bit size
@@ -213,16 +206,13 @@ public:
     inline bool isSet08() { return (((stBit08*)&mBit)->bit08 & 1) ? true : false; };
 // }}} ! Methods
 
-// ------------------------------------------------------------------------------------------------ //
 // Friendefs : {{{
 friend class CBitStr<CBit08>;
 // }}} ! Friendefs
-};
-// }}} ! [ class CBit08 ]
-// ================================================================================================ /
 
-}; 
-// }}} End of namespace vm
+}; // }}} End of class CBit08
+
+}; // }}} End of namespace vm
 // ================================================================================================ //
 
 #endif // ! __CBIT08_H__

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-16 09:15:26                                               == //
+// ==   Modify Time          : 2020-11-16 09:57:02                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,16 +33,12 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
 
-// ================================================================================================ //
-// ==  Class CBit64 : This class deal with Bit operation for 8bit(long long type)                == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CBit64 : This class deal with Bit operation for 8bit(long long type)
 class CBit64
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // Bit struct
@@ -201,7 +197,6 @@ public:
     };
 // }}} ! Typedefs
 
-// ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -215,7 +210,6 @@ private:
     inline CBit64             ( const CBit64 &obj ):mBit(obj.mBit){};
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
     // Assignment operation
@@ -248,13 +242,11 @@ public:
     inline unsigned long long operator ~ ()                            { unsigned long long lulVal = ~mBit; return lulVal; };
 // }}} ! Operators
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     unsigned long long&      mBit;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Return bit size
@@ -698,16 +690,13 @@ public:
 
 // }}} ! Methods
 
-// ------------------------------------------------------------------------------------------------ //
 // Friendefs : {{{
 friend class CBitStr<CBit64>;
 // }}} ! Friendefs
-};
-// }}} ! [ class CBit64 ]
-// ================================================================================================ /
 
-}; 
-// }}} End of namespace vm
+}; // }}} End of class CBit64
+
+}; // }}} End of namespace vm
 // ================================================================================================ //
 
 #endif // ! __CBIT64_H__

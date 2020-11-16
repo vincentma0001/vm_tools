@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-16 08:48:56                                               == //
+// ==   Modify Time          : 2020-11-16 09:56:45                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -35,23 +35,18 @@
 namespace vm
 {
 
-// ------------------------------------------------------------------------------------------------ //
+
+// Class CBitStr : This class convert CBitType's value to string
+template< typename CBitType >
+class CBitStr
+{ // {{{
+
 // Macrodefs : {{{
 #ifndef    _V_CBITSTR_MAX_BUF_
 #   define _V_CBITSTR_MAX_BUF_ 128
 #endif // !_V_CBITSTR_MAX_BUF_
 // }}} ! Macrodefs
 
-// ================================================================================================ //
-// ==  Class CBitStr : This class convert CBitType's valu to string                              == //
-// ------------------------------------------------------------------------------------------------ //
-//template< typename CBitType, size_t tsztBufSize >
-template< typename CBitType >
-class CBitStr
-// {{{
-{
-// }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -66,7 +61,6 @@ private:
     inline CBitStr& operator = ( const CBitStr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // BitType
@@ -78,7 +72,6 @@ private:
     long long       mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Output bit value by bin string
@@ -95,12 +88,9 @@ public:
 
 // }}} ! Methods
 
-};
-// }}} ! [ class CBitStr ]
-// ================================================================================================ //
+}; // }}} End of class CBitStr
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CBitStr.hpp.inl"
