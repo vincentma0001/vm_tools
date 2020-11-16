@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-15 10:55                                                  == //
-// ==   Modify Time          : 2020-11-16 15:32                                                  == //
+// ==   Modify Time          : 2020-11-16 17:43                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -62,18 +62,18 @@ enum emRet
 
 // ------------------------------------------------------------------------------------------------ //
     // Common error return
-    emErrorCom          = vMinsLong + vErrOffSet,
+    emErrorCom          = vMinsInt + vErrOffSet,
     // error return for vm::v_sprintf
     emErrStrFmt         = emErrorCom + 1,
 
     // Common error trturn
-    emWarnsCom          = vMinsLong + vWrnOffSet,
+    emWarnsCom          = vMinsInt + vWrnOffSet,
 
 // ------------------------------------------------------------------------------------------------ //
     // error return
-    emError             = vMaxuLong - vErrOffSet,
+    emError             = vMaxuInt - vErrOffSet,
     // warn return
-    emWarns             = vMaxuLong - vWrnOffSet
+    emWarns             = vMaxuInt - vWrnOffSet
 };
 // }}} End of def enum emErrRet
 // ------------------------------------------------------------------------------------------------ //
