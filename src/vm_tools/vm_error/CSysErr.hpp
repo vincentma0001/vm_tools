@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:45                                                  == //
-// ==   Modify Time          : 2020-11-16 15:54                                                  == //
+// ==   Modify Time          : 2020-11-16 17:47                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -36,6 +36,7 @@
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
 // Macrodefs : {{{
 #ifndef    _V_CSYSERR_BUF_SIZE_
@@ -58,6 +59,8 @@ namespace vm {
 #   define vSysErrMsgD( llErrCode )                     vm::CSysErr<_V_CSYSERR_BUF_SIZE_>(llErrCode).toString()
 #endif // !vSysErrMsgD
 // }}} ! Macrodefs
+
+// ------------------------------------------------------------------------------------------------ //
 
 // Class CSysErr : this class deal with systime error
 template< size_t tsztBufSize >
@@ -94,6 +97,7 @@ public:
 
 }; // }}} End of class CSysErr
 
+// ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :

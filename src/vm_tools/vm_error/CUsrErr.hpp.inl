@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-16 15:52                                                  == //
+// ==   Modify Time          : 2020-11-16 18:28                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -34,17 +34,17 @@
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> Construct && Destruct realization                                    == //
+// ==  Class CUsrErr<tType,tsztBufSize> Construct && Destruct realization                        == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> Construct && Destruct realization ] {{{
+// [ Class CUsrErr<tType,tsztBufSize> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::CUsrErr()                                                       == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::CUsrErr()                                           == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-template< class tType >
-inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
-    : mlErrCode( clErrCode )
+template< typename tType, size_t tsztBufSize >
+inline vm::CUsrErr< tType,tsztBufSize >::CUsrErr( const long clErrCode )
+    : mszBuf{0x00},mlErrCode( clErrCode )
 // {{{
 {
     // Regist common error information
@@ -56,87 +56,87 @@ inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
     // Regist other error information for different object
     this->Regist();
 }
-// }}} End of func CUsrErr<tType>::CUsrErr()
+// }}} End of func CUsrErr<tType,tsztBufSize>::CUsrErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CUsrErr<tType>::~CUsrErr()                                              == //
+// ==  Methord : virtual CUsrErr<tType,tsztBufSize>::~CUsrErr()                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< class tType >
-inline vm::CUsrErr< tType >::~CUsrErr(  )
+template< typename tType, size_t tsztBufSize >
+inline vm::CUsrErr< tType,tsztBufSize >::~CUsrErr(  )
 // {{{
 {
 }
-// }}} End of func CUsrErr<tType>::~CUsrErr()
+// }}} End of func CUsrErr<tType,tsztBufSize>::~CUsrErr()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::CUsrErr( const CUsrErr &obj )                                   == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::CUsrErr( const CUsrErr &obj )                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< class tType >
-inline vm::CUsrErr< tType >::CUsrErr( const CUsrErr &obj )
+template< typename tType, size_t tsztBufSize >
+inline vm::CUsrErr< tType,tsztBufSize >::CUsrErr( const CUsrErr &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CUsrErr<tType>::CUsrErr()
+// }}} End of func CUsrErr<tType,tsztBufSize>::CUsrErr()
 // ================================================================================================ //
 
-// }}} ![ Class CUsrErr<tType> Construct && Destruct realization ]
+// }}} ![ Class CUsrErr<tType,tsztBufSize> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> operator realization                                                 == //
+// ==  Class CUsrErr<tType,tsztBufSize> operator realization                                     == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> operator realization ] {{{
+// [ Class CUsrErr<tType,tsztBufSize> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::operator = ()                                                   == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::operator = ()                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CUsrErr<tType>&  - [O] this object
-template< class tType >
-inline vm::CUsrErr< tType >& vm::CUsrErr< tType >::operator = ( const CUsrErr &obj )
+// ==  Return  : CUsrErr<tType,tsztBufSize>&  - [O] this object
+template< typename tType, size_t tsztBufSize >
+inline vm::CUsrErr< tType,tsztBufSize >& vm::CUsrErr< tType,tsztBufSize >::operator = ( const CUsrErr &obj )
 // {{{
 {
     return *this;
 }
-// }}} End of func CUsrErr<tType>::operator=()
+// }}} End of func CUsrErr<tType,tsztBufSize>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CUsrErr<tType> operator realization ]
+// }}} ![ Class CUsrErr<tType,tsztBufSize> operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CUsrErr<tType> Functional realization                                               == //
+// ==  Class CUsrErr<tType,tsztBufSize> Functional realization                                   == //
 // ================================================================================================ //
-// [ Class CUsrErr<tType> Functional realization ] {{{
+// [ Class CUsrErr<tType,tsztBufSize> Functional realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::toCode(...)                                                     == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::toCode(...)                                         == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Output error code
 // ==  Return  : long             - [O] error code
-template< class tType >
-inline long vm::CUsrErr< tType >::toCode( void )
+template< typename tType, size_t tsztBufSize >
+inline long vm::CUsrErr< tType,tsztBufSize >::toCode( void )
 // {{{ 
 {
     return mlErrCode;
 }
-// }}} end of func CUsrErr<tType>::toCode(...)
+// }}} end of func CUsrErr<tType,tsztBufSize>::toCode(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::toString(...)                                                   == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::toString(...)                                       == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Output error message
 // ==  Return  : const tchar*     - [O] error message
-template< class tType >
-inline const tchar* vm::CUsrErr< tType >::toString( void )
+template< typename tType, size_t tsztBufSize >
+inline const tchar* vm::CUsrErr< tType,tsztBufSize >::toString( void )
 // {{{ 
 {
         vString* lpStr = mpUsrErrMap.Find( mlErrCode );
@@ -146,35 +146,35 @@ inline const tchar* vm::CUsrErr< tType >::toString( void )
         return lpStr->c_str();
     
 }
-// }}} end of func CUsrErr<tType>::toString(...)
+// }}} end of func CUsrErr<tType,tsztBufSize>::toString(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tType>::RegMsg(...)                                                     == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::RegMsg(...)                                         == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Regist a user defined message
 // ==  Return  : bool             - [O] true  - regist sucess
 // ==                                   false - regist failed
 // ==  Params  : clErrCode        - [I] error code
 // ==            cstrErrMsg       - [I] error messaage
-template< class tType >
-inline bool vm::CUsrErr< tType >::RegMsg( const long clErrCode, const vString cstrErrMsg )
+template< typename tType, size_t tsztBufSize >
+inline bool vm::CUsrErr< tType,tsztBufSize >::RegMsg( const long clErrCode, const vString cstrErrMsg )
 // {{{ 
 {
     return mpUsrErrMap.Insert( clErrCode, cstrErrMsg );
 }
-// }}} end of func CUsrErr<tType>::RegMsg(...)
+// }}} end of func CUsrErr<tType,tsztBufSize>::RegMsg(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CUsrErr<tsztBufSize>::Fmt(...)                                                  == //
+// ==  Methord : CUsrErr<tType,tsztBufSize>::Fmt(...)                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Format ouput error message
 // ==  Return  : tchar*           - [O] Formated string
 // ==  Params  : cpFmt            - [I] string's format
 // ==            ...              - [I] string's format paramters
-template< clas tType >
-inline tchar* vm::CUsrErr< tTypei >::Fmt( const tchar* const cpFmt, ... )
+template< typename tType, size_t tsztBufSize >
+inline tchar* vm::CUsrErr< tType,tsztBufSize >::Fmt( const tchar* const cpFmt, ... )
 // {{{ 
 {
     tchar lszBuf[tsztBufSize]  = {0x00};
@@ -197,10 +197,10 @@ inline tchar* vm::CUsrErr< tTypei >::Fmt( const tchar* const cpFmt, ... )
 
     return mszBuf;
 }
-// }}} end of func CUsrErr<tsztBufSize>::Fmt(...)
+// }}} end of func CUsrErr<tType,tsztBufSize>::Fmt(...)
 // ================================================================================================ //
 
-// }}} ![ Class CUsrErr<tType> Functional realization ]
+// }}} ![ Class CUsrErr<tType,tsztBufSize> Functional realization ]
 // ================================================================================================ //
 
 

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-04 11:11                                                  == //
-// ==   Modify Time          : 2020-11-04 11:11                                                  == //
+// ==   Modify Time          : 2020-11-16 18:00                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,7 +26,9 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
 #include "CMemPtr.h"
 // }}}
 // ================================================================================================ //

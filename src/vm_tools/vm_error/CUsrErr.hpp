@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-16 15:52                                                  == //
+// ==   Modify Time          : 2020-11-16 18:29                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -34,11 +34,19 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
+
+// Macrodefs : {{{
+#ifndef    _V_CUSEERR_BUF_SIZE_
+#   define _V_CUSEERR_BUF_SIZE_      1024
+#endif // !_V_CUSEERR_BUF_SIZE_
+// }}} ! Macrodefs
+
+// ------------------------------------------------------------------------------------------------ //
 
 // Class CUsrErr : this class deal with usr defined error info
-template< class tType >
+template< typename tType, size_t tsztBufSize >
 class CUsrErr
 { // {{{
 
@@ -58,6 +66,9 @@ private:
 
 // Menbers   : {{{
 private:
+    // buffer
+    tchar                           mszBuf[tsztBufSize];
+
     // Error code
     const long                      mlErrCode;
     // Error infomation
@@ -84,6 +95,7 @@ public:
 
 }; // }}} End of class CUsrErr
 
+// ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
