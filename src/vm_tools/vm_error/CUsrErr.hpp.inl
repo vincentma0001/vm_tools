@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-16 13:47                                                  == //
+// ==   Modify Time          : 2020-11-16 15:52                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,6 +28,7 @@
 // [ Include files ] {{{
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util/CParser.h>
 // }}}
 // ================================================================================================ //
 
@@ -46,11 +47,13 @@ inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
     : mlErrCode( clErrCode )
 // {{{
 {
+    // Regist common error information
     this->RegMsg( vm::emRet::emSucess,      vT("No error return.") );
-    this->RegMsg( vm::emRet::emError,       vT("Error return, see syserr for info.") );
-    this->RegMsg( vm::emRet::emWarns,       vT("Warns return.") );
-    this->RegMsg( vm::emRet::emErrStrFmt,   vT("Error return, Format string failed."));
+    this->RegMsg( vm::emRet::emError,       vT("Error return, lookfor syserr for more information.") );
+    this->RegMsg( vm::emRet::emWarns,       vT("Warns return, lookfor syserr for more information.") );
+    this->RegMsg( vm::emRet::emErrStrFmt,   vT("Format string failed."));
 
+    // Regist other error information for different object
     this->Regist();
 }
 // }}} End of func CUsrErr<tType>::CUsrErr()
@@ -161,6 +164,40 @@ inline bool vm::CUsrErr< tType >::RegMsg( const long clErrCode, const vString cs
     return mpUsrErrMap.Insert( clErrCode, cstrErrMsg );
 }
 // }}} end of func CUsrErr<tType>::RegMsg(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CUsrErr<tsztBufSize>::Fmt(...)                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Format ouput error message
+// ==  Return  : tchar*           - [O] Formated string
+// ==  Params  : cpFmt            - [I] string's format
+// ==            ...              - [I] string's format paramters
+template< clas tType >
+inline tchar* vm::CUsrErr< tTypei >::Fmt( const tchar* const cpFmt, ... )
+// {{{ 
+{
+    tchar lszBuf[tsztBufSize]  = {0x00};
+
+    // prepare pattern
+    vm::CPattern loPattern1( vT("%EC"), vAnyToStr(256,   this->toCode()) );
+    vm::CPattern loPattern2( vT("%EM"),                this->toString()  );
+
+    // replace pattern from format string
+    vm::CParser  loParser( vT('%'), cpFmt );
+    loParser.Regist( loPattern1 );
+    loParser.Regist( loPattern2 );
+    loParser.Parse( lszBuf, sizeof(lszBuf) );
+
+    // format string with paramters
+    va_list lvList;
+    va_start( lvList, cpFmt );
+    vm::v_sprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
+    va_end( lvList );
+
+    return mszBuf;
+}
+// }}} end of func CUsrErr<tsztBufSize>::Fmt(...)
 // ================================================================================================ //
 
 // }}} ![ Class CUsrErr<tType> Functional realization ]

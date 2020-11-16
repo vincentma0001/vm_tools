@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-16 13:42                                                  == //
+// ==   Modify Time          : 2020-11-16 15:52                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -71,11 +71,15 @@ public:
     // Output error message
     inline const tchar* toString ( void );
 
+    // Format output error message, 
+    //      $EC = error code, $EM = error message
+    inline tchar*       Fmt      ( const tchar* const cpFmt=vT("%EC:%EM"), ... );
+
     // Regist a user defined message
     inline bool         RegMsg   ( const long clErrCode, const vString cstrErrMsg );
 
 public:
-    inline virtual bool Regist   ( void ) = 0;
+    inline virtual bool Regist   ( void ) {};
 // }}} ! Methods
 
 }; // }}} End of class CUsrErr
@@ -88,9 +92,9 @@ public:
 
 // ================================================================================================ //
 // [ class CUsrErr define macros ] {{{
-#define DEF_CUSRERR_BEGIN( tUsrErr ) class e#tUsrErr : public CUsrErr<e#tUsrErr>{ \
-    public: inline e#tUsrErr(const long clErrCode):mlErrCode(clErrCode){};\
-            inline virtual ~e#tUsrErr(){};\
+#define DEF_CUSRERR_BEGIN( tUsrErr ) class tUsrErr : public vm::CUsrErr<tUsrErr>{ \
+    public: inline tUsrErr(const long clErrCode):CUsrErr(clErrCode){};\
+            inline virtual ~tUsrErr(){};\
     public: inline virtual bool Regist( void ) {
 #define DEF_CUSRERR_REGMEG( clErrCode, cstrErrMsg ) { RegMsg( clErrCode, cstrErrMsg ); }
 #define DEF_CUSRERR_ENDED }};

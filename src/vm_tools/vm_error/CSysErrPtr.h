@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 09:29                                                  == //
-// ==   Modify Time          : 2020-11-16 13:47                                                  == //
+// ==   Modify Time          : 2020-11-16 14:20                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -45,11 +45,11 @@ public:
     // Construct define
     inline          CSysErrPtr(const long clErrCode, tchar* const pBuf, const size_t csztBufSize);
     // Destruct define
-    inline virtual ~CSysErrPtr();
+    inline virtual ~CSysErrPtr(                                                                 );
 
 private:
     // Copy construct define
-    inline CSysErrPtr( const CSysErrPtr &obj );
+    inline CSysErrPtr             ( const CSysErrPtr &obj );
     // Assignment operation
     inline CSysErrPtr& operator = ( const CSysErrPtr &obj );
 // }}} ! Construct & Destruct

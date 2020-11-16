@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:00                                                  == //
-// ==   Modify Time          : 2020-11-16 13:45                                                  == //
+// ==   Modify Time          : 2020-11-16 14:21                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -29,7 +29,7 @@
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 //.vm's.function.files.inlcuded
-#include "CSysErrPtr.h"
+#include "CSysErr.hpp"
 // }}}
 // ================================================================================================ //
 
@@ -39,30 +39,25 @@ namespace vm
 {
 
 // Class CWinErr : this class deal with windows error
-template< size_t tszBufSize >
-class CWinErr : public CSysErrPtr
+template< size_t tsztBufSize>
+class CWinErr : public CSysErr<tsztBufSize>
 { // {{{
 
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CWinErr();
+    inline          CWinErr(                            );
     // Construct define
     inline          CWinErr( const long long cllErrCode );
     // Destruct define
-    inline virtual ~CWinErr();
+    inline virtual ~CWinErr(                            );
 
 private:
     // Copy construct define
-    inline CWinErr( const CWinErr &obj );
+    inline CWinErr             ( const CWinErr &obj );
     // Assignment operation
     inline CWinErr& operator = ( const CWinErr &obj );
 // }}} ! Construct & Destruct
-
-// Menbers   : {{{
-private:
-    tchar       mBuf[tszBufSize];
-// }}} ! Members
 
 // Methods   : {{{
 protected:

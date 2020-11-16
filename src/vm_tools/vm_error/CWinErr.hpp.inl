@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 19:06                                                  == //
-// ==   Modify Time          : 2020-11-16 13:46                                                  == //
+// ==   Modify Time          : 2020-11-16 14:07                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,84 +28,87 @@
 // [ Include files ] {{{
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
+#include "CSysErr.hpp"
+#include "vm_tools/vm_string/CStrPtr.h"
 // }}}
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CWinErr<tszBufSize> Construct && Destruct realization                               == //
+// ==  Class CWinErr<tsztBufSize> Construct && Destruct realization                               == //
 // ================================================================================================ //
-// [ Class CWinErr<tszBufSize> Construct && Destruct realization ] {{{
+// [ Class CWinErr<tsztBufSize> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CWinErr<tszBufSize>::CWinErr()                                                  == //
+// ==  Methord : CWinErr<tsztBufSize>::CWinErr()                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-template< size_t tszBufSize >
-inline vm::CWinErr<tszBufSize>::CWinErr(  )
-    : vm::CErrPtr( ::GetLastError(), mBuf, sizeof(mBuf) ),mBuf{0x00}
+template< size_t tsztBufSize >
+inline vm::CWinErr<tsztBufSize>::CWinErr(  )
+    : vm::CSysErr<tsztBufSize>( ::GetLastError() )
 // {{{
 {
 }
-// }}} End of func CWinErr<tszBufSize>::CWinErr<tszBufSize>()
+// }}} End of func CWinErr<tsztBufSize>::CWinErr<tsztBufSize>()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinErr<tszBufSize>::CWinErr(...)                                               == //
+// ==  Methord : CWinErr<tsztBufSize>::CWinErr(...)                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : # TODO : Add function brief #
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : cllErrCode       - [I] Error code
-template< size_t tszBufSize >
-inline vm::CWinErr<tszBufSize>::CWinErr( const long long cllErrCode )
-    : vm::CErrPtr( cllErrCode, mBuf, sizeof(mBuf) ),mBuf{0x00}
+template< size_t tsztBufSize >
+inline vm::CWinErr<tsztBufSize>::CWinErr( const long long cllErrCode )
+    : vm::CSysErr<tsztBufSize>( cllErrCode )
 // {{{
 {
 }
-// }}} end of func CWinErr<tszBufSize>::CWinErr(...)
+// }}} end of func CWinErr<tsztBufSize>::CWinErr(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CWinErr<tszBufSize>::CWinErr()                                          == //
+// ==  Methord : virtual CWinErr<tsztBufSize>::CWinErr()                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< size_t tszBufSize >
-inline vm::CWinErr<tszBufSize>::~CWinErr(  )
+template< size_t tsztBufSize >
+inline vm::CWinErr<tsztBufSize>::~CWinErr(  )
 // {{{
 {
 }
-// }}} End of func CWinErr<tszBufSize>::~CWinErr<tszBufSize>()
+// }}} End of func CWinErr<tsztBufSize>::~CWinErr<tsztBufSize>()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CWinErr<tszBufSize>::CWinErr()                                                  == //
+// ==  Methord : CWinErr<tsztBufSize>::CWinErr()                                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< size_t tszBufSize >
-inline vm::CWinErr<tszBufSize>::CWinErr( const vm::CWinErr<tszBufSize> &obj )
+template< size_t tsztBufSize >
+inline vm::CWinErr<tsztBufSize>::CWinErr( const vm::CWinErr<tsztBufSize> &obj )
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CWinErr<tszBufSize>::~CWinErr<tszBufSize>()
+// }}} End of func CWinErr<tsztBufSize>::~CWinErr<tsztBufSize>()
 // ================================================================================================ //
 
-// }}} ![ Class CWinErr<tszBufSize> Construct && Destruct realization ]
+// }}} ![ Class CWinErr<tsztBufSize> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CWinErr<tszBufSize> operator realization                                            == //
+// ==  Class CWinErr<tsztBufSize> operator realization                                            == //
 // ================================================================================================ //
-// [ Class CWinErr<tszBufSize> operator realization ] {{{
+// [ Class CWinErr<tsztBufSize> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CWinErr<tszBufSize>::operator = ()                                              == //
+// ==  Methord : CWinErr<tsztBufSize>::operator = ()                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CWinErr<tszBufSize>& - [O] this object
-template< size_t tszBufSize >
-inline vm::CWinErr<tszBufSize>& vm::CWinErr<tszBufSize>::operator = ( const vm::CWinErr<tszBufSize> &obj )
+// ==  Return  : CWinErr<tsztBufSize>& - [O] this object
+template< size_t tsztBufSize >
+inline vm::CWinErr<tsztBufSize>& vm::CWinErr<tsztBufSize>::operator = ( const vm::CWinErr<tsztBufSize> &obj )
 // {{{
 {
     mllErrCode = obj.mllErrCode;
@@ -115,25 +118,25 @@ inline vm::CWinErr<tszBufSize>& vm::CWinErr<tszBufSize>::operator = ( const vm::
 // }}} End of func CWinErr::~CWinErr()
 // ================================================================================================ //
 
-// }}} ![ Class CWinErr<tszBufSize> operator realization ]
+// }}} ![ Class CWinErr<tsztBufSize> operator realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CWinErr<tszBufSize> Functional realization                                          == //
+// ==  Class CWinErr<tsztBufSize> Functional realization                                          == //
 // ================================================================================================ //
-// [ Class CWinErr<tszBufSize> Functional realization ] {{{
+// [ Class CWinErr<tsztBufSize> Functional realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CWinErr<tszBufSize>::GetErrStr(...)                                             == //
+// ==  Methord : CWinErr<tsztBufSize>::GetErrStr(...)                                             == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Get error string
 // ==  Return  : tchar*           - [O] Error message
 // ==  Params  : pBuf             - [O] Error message buffer address
-// ==            tszBufSize      - [I] Error message buffer size
+// ==            tsztBufSize      - [I] Error message buffer size
 // ==            sztStrLen        - [O] Error message length
-template< size_t tszBufSize >
-inline tchar* vm::CWinErr<tszBufSize>::GetErrStr( tchar* const pBuf, const size_t tszBufSize, size_t& sztStrLen )
+template< size_t tsztBufSize >
+inline tchar* vm::CWinErr<tsztBufSize>::GetErrStr( tchar* const pBuf, const size_t tsztBufSize, size_t& sztStrLen )
 // {{{
 {
     try
@@ -279,7 +282,7 @@ inline tchar* vm::CWinErr<tszBufSize>::GetErrStr( tchar* const pBuf, const size_
 // }}} end of func CErrPtr::GetErrStr(...)
 // ================================================================================================ //
 
-// }}} ![ Class CWinErr<tszBufSize> Functional realization ]
+// }}} ![ Class CWinErr<tsztBufSize> Functional realization ]
 // ================================================================================================ //
 
 

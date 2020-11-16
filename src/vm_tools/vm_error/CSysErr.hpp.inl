@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:46                                                  == //
-// ==   Modify Time          : 2020-11-16 13:00                                                  == //
+// ==   Modify Time          : 2020-11-16 14:17                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,7 +26,9 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+#include <vm_tools/vm_util/CParser.h>
 // }}}
 // ================================================================================================ //
 
@@ -125,7 +127,39 @@ inline vm::CSysErr< tsztBufSize >& vm::CSysErr< tsztBufSize >::operator = ( cons
 // ================================================================================================ //
 // [ Class CSysErr<tsztBufSize> Functional realization ] {{{
 
+// ================================================================================================ //
+// ==  Methord : CSysErr<tsztBufSize>::Fmt(...)                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Format ouput error message
+// ==  Return  : tchar*           - [O] Formated string
+// ==  Params  : cpFmt            - [I] string's format
+// ==            ...              - [I] string's format paramters
+template< size_t tsztBufSize >
+inline tchar* vm::CSysErr< tsztBufSize >::Fmt( const tchar* const cpFmt, ... )
+// {{{ 
+{
+    tchar lszBuf[tsztBufSize]  = {0x00};
 
+    // prepare pattern
+    vm::CPattern loPattern1( vT("%EC"), vAnyToStr(256,   this->toCode()) );
+    vm::CPattern loPattern2( vT("%EM"),                this->toString()  );
+
+    // replace pattern from format string
+    vm::CParser  loParser( vT('%'), cpFmt );
+    loParser.Regist( loPattern1 );
+    loParser.Regist( loPattern2 );
+    loParser.Parse( lszBuf, sizeof(lszBuf) );
+
+    // format string with paramters
+    va_list lvList;
+    va_start( lvList, cpFmt );
+    vm::v_sprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
+    va_end( lvList );
+
+    return mszBuf;
+}
+// }}} end of func CSysErr<tsztBufSize>::Fmt(...)
+// ================================================================================================ //
 
 // }}} ![ Class CSysErr<tsztBufSize> Functional realization ]
 // ================================================================================================ //

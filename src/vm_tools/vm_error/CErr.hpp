@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 10:45                                                  == //
-// ==   Modify Time          : 2020-11-16 13:48                                                  == //
+// ==   Modify Time          : 2020-11-16 15:23                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -39,20 +39,40 @@ namespace vm {
 
 // Macrodefs : {{{
 #ifndef    _V_CERR_BUF_SIZE_
-#   define _V_CERR_BUF_SIZE_ 1024
+#   define _V_CERR_BUF_SIZE_        1024
 #endif // !_V_CERR_BUF_SIZE_
 
-#ifndef    vErrThrow
-#   define vErrThrow(tBufSize, eErrCode)        vm::CErr<tBufSize>(eErrCode).Throw()
-#endif // !vErrThrow
+#ifndef    _V_CERR_DEF_FMT_
+#   define _V_CERR_DEF_FMT_         vT("%ESC:%ESM - %EUC:%ESM")
+#endif // !_V_CERR_DEF_FMT_
 
 #ifndef    vErr
-#   define vErr(tSysErr,tUsrErr,llErrCode)      vm::CErr<tSysErr,tUsrErr>(llErrCode)
+#   define vErr(tSysErr,tUsrErr,tBufSize,eErrCode)      vm::CErr<tSysErr,tUsrErr,tBufSize,eErrCode>(eErrCode)
 #endif // !vErr
+
+#ifndef    vErrD
+#   define vErrD(tUsrErr,eErrCode)                      vm::CErr<vm::CSysErr<_V_CERR_BUF_SIZE_>,tUsrErr,_V_CERR_BUF_SIZE_>(eErrCode)
+#endif // !vErrD
+
+#ifndef    vErrDD
+#   define vErrDD(eErrCode)                             vm::CErr<vm::CSysErr<_V_CERR_BUF_SIZE_>,vm::CUsrErr<int>,_V_CERR_BUF_SIZE_>(eErrCode)
+#endif // !vErrDD
+
+#ifndef    eThrow
+#   define eThrow(tSysErr,tUsrErr,tBufSize,eErrCode)    vm::CErr<tSysErr,tUsrErr,tBufSize>(emError).Throw()
+#endif // !eThrow
+
+#ifndef    eThrowD
+#   define eThrowD(tUsrErr,eErrCode)                    vm::CErr<vm::CSysErr<_V_CERR_BUF_SIZE_>,tUsrErr,_V_CERR_BUF_SIZE_>(emError).Throw()
+#endif // !eThrowD
+
+#ifndef    eThrowDD
+#   define eThrowDD(eErrCode)                           vm::CErr<vm::CSysErr<_V_CERR_BUF_SIZE_>,vm::CUsrErr<int>,_V_CERR_BUF_SIZE_>(emError).Throw()
+#endif // !eThrowDD
 // }}} ! Macrodefs
 
 // Class CErr : this class deal with error operattion
-template< class tSysErr, class tUsrErr >
+template< class tSysErr, class tUsrErr, size_t tsztBufSize >
 class CErr
 { // {{{
 
@@ -72,7 +92,7 @@ private:
 
 // Menbers   : {{{
 private:
-    tchar               mszBuf[_V_CERR_BUF_SIZE_];
+    tchar               mszBuf[tsztBufSize];
 
     tSysErr             mSysErr;
     tUsrErr             mUsrErr;
@@ -83,7 +103,17 @@ public:
     // Format output error message, 
     //      $ESC = sys error code, $ESM = sys error message
     //      $EUC = usr error code, $EUM = use error message
-    tchar* Fmt( const tchar* const cpFmt=vT("%ESC:%ESM - %EUC:%EUM"), ... );
+    inline tchar* Fmt( const tchar* const cpFmt=_V_CERR_DEF_FMT_, ... );
+    // Format output error message, 
+    //      $ESC = sys error code, $ESM = sys error message
+    //      $EUC = usr error code, $EUM = use error message
+    inline tchar* Fmt( const tchar* const cpFmt,       va_list& vList );
+
+    // Check CErr object has error or not
+    inline bool HasErr ( void );
+
+    // Check CErr object has error or not, if has error throw a format errror string
+    inline void Throw  ( const tchar* const cpFmt=_V_CERR_DEF_FMT_, ... );
 // }}} ! Methods
 
 }; // }}} End of class CErr

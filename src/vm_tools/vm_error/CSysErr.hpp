@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:45                                                  == //
-// ==   Modify Time          : 2020-11-16 13:48                                                  == //
+// ==   Modify Time          : 2020-11-16 15:54                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -84,6 +84,13 @@ private:
 private:
     tchar       mszBuf[tsztBufSize];
 // }}} ! Members
+
+// Methods   : {{{
+public:
+    // Format output error message, 
+    //      $EC = error code, $EM = error message
+    inline tchar* Fmt( const tchar* const cpFmt=vT("%EC:%EM"), ... );
+// }}} ! Methods
 
 }; // }}} End of class CSysErr
 
