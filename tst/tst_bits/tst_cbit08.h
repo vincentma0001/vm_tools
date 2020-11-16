@@ -11,44 +11,44 @@ vTry
 
     // Add unit test coder here
     char  lcValue = 0;
-    vCout << vT("Size of           char : ") << sizeof(char)            << vEndl;
     vm::CBit08 loBit08(lcValue);
-    vm::CBitStr<vm::CBit08> loBitStr(loBit08);
+    vm::CBitStr<vm::CBit08> loBitStr08(loBit08);
+    vLine( "Size of value : %zu", loBit08.size()  );
+    vLine( "*******************************************" );
 
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit char - zero") << vEndl;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
-    
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit char - min char") << vEndl;
-    lcValue = vMinsChar;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
+    loBit08.Set01();
+    vOutput( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    loBit08.Set02();
+    vOutput( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    loBit08.Set03();
+    vOutput( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    loBit08.Set04();
+    vOutput( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    loBit08.Set05();
+    vOutput( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    loBit08.Set06();
+    vOutput( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    loBit08.Set07();
+    vOutput( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    loBit08.Set08();
+    vOutput( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
 
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit char - max char") << vEndl;
-    lcValue = vMaxsChar;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
-
-    vCout << vT("------------------------------------------") << vEndl;
-    vCout << vT("Bit char - -1") << vEndl;
-    lcValue = -1;
-    vCout << vT("Bin     : ") << loBitStr.toBin()   << vEndl;
-    vCout << vT("Oct     : ") << loBitStr.toOct()   << vEndl;
-    vCout << vT("Dec     : ") << loBitStr.toDec()   << vEndl;
-    vCout << vT("Hex     : ") << loBitStr.toHex()   << vEndl;
-    vCout << vT("0xHex   : ") << loBitStr.to0xHex() << vEndl;
+    loBit08.UnSet01();
+    vOutput( vT("%s | IsSet01(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet01()) );
+    loBit08.UnSet02();
+    vOutput( vT("%s | IsSet02(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet02()) );
+    loBit08.UnSet03();
+    vOutput( vT("%s | IsSet03(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet03()) );
+    loBit08.UnSet04();
+    vOutput( vT("%s | IsSet04(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet04()) );
+    loBit08.UnSet05();
+    vOutput( vT("%s | IsSet05(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet05()) );
+    loBit08.UnSet06();
+    vOutput( vT("%s | IsSet06(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet06()) );
+    loBit08.UnSet07();
+    vOutput( vT("%s | IsSet07(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet07()) );
+    loBit08.UnSet08();
+    vOutput( vT("%s | IsSet08(%s)"), loBitStr08.toBin(), vStrBool(loBit08.isSet08()) );
 
 vCatch(...)
     return false;

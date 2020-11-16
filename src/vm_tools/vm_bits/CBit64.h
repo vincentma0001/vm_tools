@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-15 09:26:51                                               == //
+// ==   Modify Time          : 2020-11-16 09:15:26                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -410,148 +410,148 @@ public:
     // Set bit 64 value
     inline void Set64() { ((stBit64*)&mBit)->bit64 = 1; };
 
-    // Unset bit value
-    inline void unSet(const long long            lVal) { mBit = mBit ^  lVal; };
-    // Unset bit value
-    inline void unSet(const unsigned long long  ulVal) { mBit = mBit ^ ulVal; };
-    // Unset bit value
-    inline void unSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
+    // UnSet bit value
+    inline void UnSet(const long long            lVal) { mBit = mBit ^  lVal; };
+    // UnSet bit value
+    inline void UnSet(const unsigned long long  ulVal) { mBit = mBit ^ ulVal; };
+    // UnSet bit value
+    inline void UnSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
 
-    // Unset bit 01 value
-    inline void unSet01() { ((stBit64*)&mBit)->bit01 = 0; };
-    // Unset bit 02 value
-    inline void unSet02() { ((stBit64*)&mBit)->bit02 = 0; };
-    // Unset bit 03 value
-    inline void unSet03() { ((stBit64*)&mBit)->bit03 = 0; };
-    // Unset bit 04 value
-    inline void unSet04() { ((stBit64*)&mBit)->bit04 = 0; };
-    // Unset bit 05 value
-    inline void unSet05() { ((stBit64*)&mBit)->bit05 = 0; };
-    // Unset bit 06 value
-    inline void unSet06() { ((stBit64*)&mBit)->bit06 = 0; };
-    // Unset bit 07 value
-    inline void unSet07() { ((stBit64*)&mBit)->bit07 = 0; };
-    // Unset bit 08 value
-    inline void unSet08() { ((stBit64*)&mBit)->bit08 = 0; };
+    // UnSet bit 01 value
+    inline void UnSet01() { ((stBit64*)&mBit)->bit01 = 0; };
+    // UnSet bit 02 value
+    inline void UnSet02() { ((stBit64*)&mBit)->bit02 = 0; };
+    // UnSet bit 03 value
+    inline void UnSet03() { ((stBit64*)&mBit)->bit03 = 0; };
+    // UnSet bit 04 value
+    inline void UnSet04() { ((stBit64*)&mBit)->bit04 = 0; };
+    // UnSet bit 05 value
+    inline void UnSet05() { ((stBit64*)&mBit)->bit05 = 0; };
+    // UnSet bit 06 value
+    inline void UnSet06() { ((stBit64*)&mBit)->bit06 = 0; };
+    // UnSet bit 07 value
+    inline void UnSet07() { ((stBit64*)&mBit)->bit07 = 0; };
+    // UnSet bit 08 value
+    inline void UnSet08() { ((stBit64*)&mBit)->bit08 = 0; };
 
-    // Unset bit 09 value
-    inline void unSet09() { ((stBit64*)&mBit)->bit09 = 0; };
-    // Unset bit 10 value
-    inline void unSet10() { ((stBit64*)&mBit)->bit10 = 0; };
-    // Unset bit 11 value
-    inline void unSet11() { ((stBit64*)&mBit)->bit11 = 0; };
-    // Unset bit 12 value
-    inline void unSet12() { ((stBit64*)&mBit)->bit12 = 0; };
-    // Unset bit 13 value
-    inline void unSet13() { ((stBit64*)&mBit)->bit13 = 0; };
-    // Unset bit 14 value
-    inline void unSet14() { ((stBit64*)&mBit)->bit14 = 0; };
-    // Unset bit 15 value
-    inline void unSet15() { ((stBit64*)&mBit)->bit15 = 0; };
-    // Unset bit 16 value
-    inline void unSet16() { ((stBit64*)&mBit)->bit16 = 0; };
+    // UnSet bit 09 value
+    inline void UnSet09() { ((stBit64*)&mBit)->bit09 = 0; };
+    // UnSet bit 10 value
+    inline void UnSet10() { ((stBit64*)&mBit)->bit10 = 0; };
+    // UnSet bit 11 value
+    inline void UnSet11() { ((stBit64*)&mBit)->bit11 = 0; };
+    // UnSet bit 12 value
+    inline void UnSet12() { ((stBit64*)&mBit)->bit12 = 0; };
+    // UnSet bit 13 value
+    inline void UnSet13() { ((stBit64*)&mBit)->bit13 = 0; };
+    // UnSet bit 14 value
+    inline void UnSet14() { ((stBit64*)&mBit)->bit14 = 0; };
+    // UnSet bit 15 value
+    inline void UnSet15() { ((stBit64*)&mBit)->bit15 = 0; };
+    // UnSet bit 16 value
+    inline void UnSet16() { ((stBit64*)&mBit)->bit16 = 0; };
 
-    // Unset bit 17 value
-    inline void unSet17() { ((stBit64*)&mBit)->bit17 = 0; };
-    // Unset bit 18 value
-    inline void unSet18() { ((stBit64*)&mBit)->bit18 = 0; };
-    // Unset bit 19 value
-    inline void unSet19() { ((stBit64*)&mBit)->bit19 = 0; };
-    // Unset bit 20 value
-    inline void unSet20() { ((stBit64*)&mBit)->bit20 = 0; };
-    // Unset bit 21 value
-    inline void unSet21() { ((stBit64*)&mBit)->bit21 = 0; };
-    // Unset bit 22 value
-    inline void unSet22() { ((stBit64*)&mBit)->bit22 = 0; };
-    // Unset bit 23 value
-    inline void unSet23() { ((stBit64*)&mBit)->bit23 = 0; };
-    // Unset bit 24 value
-    inline void unSet24() { ((stBit64*)&mBit)->bit24 = 0; };
+    // UnSet bit 17 value
+    inline void UnSet17() { ((stBit64*)&mBit)->bit17 = 0; };
+    // UnSet bit 18 value
+    inline void UnSet18() { ((stBit64*)&mBit)->bit18 = 0; };
+    // UnSet bit 19 value
+    inline void UnSet19() { ((stBit64*)&mBit)->bit19 = 0; };
+    // UnSet bit 20 value
+    inline void UnSet20() { ((stBit64*)&mBit)->bit20 = 0; };
+    // UnSet bit 21 value
+    inline void UnSet21() { ((stBit64*)&mBit)->bit21 = 0; };
+    // UnSet bit 22 value
+    inline void UnSet22() { ((stBit64*)&mBit)->bit22 = 0; };
+    // UnSet bit 23 value
+    inline void UnSet23() { ((stBit64*)&mBit)->bit23 = 0; };
+    // UnSet bit 24 value
+    inline void UnSet24() { ((stBit64*)&mBit)->bit24 = 0; };
 
-    // Unset bit 25 value
-    inline void unSet25() { ((stBit64*)&mBit)->bit25 = 0; };
-    // Unset bit 26 value
-    inline void unSet26() { ((stBit64*)&mBit)->bit26 = 0; };
-    // Unset bit 27 value
-    inline void unSet27() { ((stBit64*)&mBit)->bit27 = 0; };
-    // Unset bit 28 value
-    inline void unSet28() { ((stBit64*)&mBit)->bit28 = 0; };
-    // Unset bit 29 value
-    inline void unSet29() { ((stBit64*)&mBit)->bit29 = 0; };
-    // Unset bit 30 value
-    inline void unSet30() { ((stBit64*)&mBit)->bit30 = 0; };
-    // Unset bit 31 value
-    inline void unSet31() { ((stBit64*)&mBit)->bit31 = 0; };
-    // Unset bit 32 value
-    inline void unSet32() { ((stBit64*)&mBit)->bit32 = 0; };
+    // UnSet bit 25 value
+    inline void UnSet25() { ((stBit64*)&mBit)->bit25 = 0; };
+    // UnSet bit 26 value
+    inline void UnSet26() { ((stBit64*)&mBit)->bit26 = 0; };
+    // UnSet bit 27 value
+    inline void UnSet27() { ((stBit64*)&mBit)->bit27 = 0; };
+    // UnSet bit 28 value
+    inline void UnSet28() { ((stBit64*)&mBit)->bit28 = 0; };
+    // UnSet bit 29 value
+    inline void UnSet29() { ((stBit64*)&mBit)->bit29 = 0; };
+    // UnSet bit 30 value
+    inline void UnSet30() { ((stBit64*)&mBit)->bit30 = 0; };
+    // UnSet bit 31 value
+    inline void UnSet31() { ((stBit64*)&mBit)->bit31 = 0; };
+    // UnSet bit 32 value
+    inline void UnSet32() { ((stBit64*)&mBit)->bit32 = 0; };
 
-    // Unset bit 33 value
-    inline void unSet33() { ((stBit64*)&mBit)->bit33 = 0; };
-    // Unset bit 34 value
-    inline void unSet34() { ((stBit64*)&mBit)->bit34 = 0; };
-    // Unset bit 35 value
-    inline void unSet35() { ((stBit64*)&mBit)->bit35 = 0; };
-    // Unset bit 36 value
-    inline void unSet36() { ((stBit64*)&mBit)->bit36 = 0; };
-    // Unset bit 37 value
-    inline void unSet37() { ((stBit64*)&mBit)->bit37 = 0; };
-    // Unset bit 38 value
-    inline void unSet38() { ((stBit64*)&mBit)->bit38 = 0; };
-    // Unset bit 39 value
-    inline void unSet39() { ((stBit64*)&mBit)->bit39 = 0; };
-    // Unset bit 40 value
-    inline void unSet40() { ((stBit64*)&mBit)->bit40 = 0; };
+    // UnSet bit 33 value
+    inline void UnSet33() { ((stBit64*)&mBit)->bit33 = 0; };
+    // UnSet bit 34 value
+    inline void UnSet34() { ((stBit64*)&mBit)->bit34 = 0; };
+    // UnSet bit 35 value
+    inline void UnSet35() { ((stBit64*)&mBit)->bit35 = 0; };
+    // UnSet bit 36 value
+    inline void UnSet36() { ((stBit64*)&mBit)->bit36 = 0; };
+    // UnSet bit 37 value
+    inline void UnSet37() { ((stBit64*)&mBit)->bit37 = 0; };
+    // UnSet bit 38 value
+    inline void UnSet38() { ((stBit64*)&mBit)->bit38 = 0; };
+    // UnSet bit 39 value
+    inline void UnSet39() { ((stBit64*)&mBit)->bit39 = 0; };
+    // UnSet bit 40 value
+    inline void UnSet40() { ((stBit64*)&mBit)->bit40 = 0; };
 
-    // Unset bit 41 value
-    inline void unSet41() { ((stBit64*)&mBit)->bit41 = 0; };
-    // Unset bit 42 value
-    inline void unSet42() { ((stBit64*)&mBit)->bit42 = 0; };
-    // Unset bit 43 value
-    inline void unSet43() { ((stBit64*)&mBit)->bit43 = 0; };
-    // Unset bit 44 value
-    inline void unSet44() { ((stBit64*)&mBit)->bit44 = 0; };
-    // Unset bit 45 value
-    inline void unSet45() { ((stBit64*)&mBit)->bit45 = 0; };
-    // Unset bit 46 value
-    inline void unSet46() { ((stBit64*)&mBit)->bit46 = 0; };
-    // Unset bit 47 value
-    inline void unSet47() { ((stBit64*)&mBit)->bit47 = 0; };
-    // Unset bit 48 value
-    inline void unSet48() { ((stBit64*)&mBit)->bit48 = 0; };
+    // UnSet bit 41 value
+    inline void UnSet41() { ((stBit64*)&mBit)->bit41 = 0; };
+    // UnSet bit 42 value
+    inline void UnSet42() { ((stBit64*)&mBit)->bit42 = 0; };
+    // UnSet bit 43 value
+    inline void UnSet43() { ((stBit64*)&mBit)->bit43 = 0; };
+    // UnSet bit 44 value
+    inline void UnSet44() { ((stBit64*)&mBit)->bit44 = 0; };
+    // UnSet bit 45 value
+    inline void UnSet45() { ((stBit64*)&mBit)->bit45 = 0; };
+    // UnSet bit 46 value
+    inline void UnSet46() { ((stBit64*)&mBit)->bit46 = 0; };
+    // UnSet bit 47 value
+    inline void UnSet47() { ((stBit64*)&mBit)->bit47 = 0; };
+    // UnSet bit 48 value
+    inline void UnSet48() { ((stBit64*)&mBit)->bit48 = 0; };
 
-    // Unset bit 49 value
-    inline void unSet49() { ((stBit64*)&mBit)->bit49 = 0; };
-    // Unset bit 50 value
-    inline void unSet50() { ((stBit64*)&mBit)->bit50 = 0; };
-    // Unset bit 51 value
-    inline void unSet51() { ((stBit64*)&mBit)->bit51 = 0; };
-    // Unset bit 52 value
-    inline void unSet52() { ((stBit64*)&mBit)->bit52 = 0; };
-    // Unset bit 53 value
-    inline void unSet53() { ((stBit64*)&mBit)->bit53 = 0; };
-    // Unset bit 54 value
-    inline void unSet54() { ((stBit64*)&mBit)->bit54 = 0; };
-    // Unset bit 55 value
-    inline void unSet55() { ((stBit64*)&mBit)->bit55 = 0; };
-    // Unset bit 56 value
-    inline void unSet56() { ((stBit64*)&mBit)->bit56 = 0; };
+    // UnSet bit 49 value
+    inline void UnSet49() { ((stBit64*)&mBit)->bit49 = 0; };
+    // UnSet bit 50 value
+    inline void UnSet50() { ((stBit64*)&mBit)->bit50 = 0; };
+    // UnSet bit 51 value
+    inline void UnSet51() { ((stBit64*)&mBit)->bit51 = 0; };
+    // UnSet bit 52 value
+    inline void UnSet52() { ((stBit64*)&mBit)->bit52 = 0; };
+    // UnSet bit 53 value
+    inline void UnSet53() { ((stBit64*)&mBit)->bit53 = 0; };
+    // UnSet bit 54 value
+    inline void UnSet54() { ((stBit64*)&mBit)->bit54 = 0; };
+    // UnSet bit 55 value
+    inline void UnSet55() { ((stBit64*)&mBit)->bit55 = 0; };
+    // UnSet bit 56 value
+    inline void UnSet56() { ((stBit64*)&mBit)->bit56 = 0; };
 
-    // Unset bit 57 value
-    inline void unSet57() { ((stBit64*)&mBit)->bit57 = 0; };
-    // Unset bit 58 value
-    inline void unSet58() { ((stBit64*)&mBit)->bit58 = 0; };
-    // Unset bit 59 value
-    inline void unSet59() { ((stBit64*)&mBit)->bit59 = 0; };
-    // Unset bit 60 value
-    inline void unSet60() { ((stBit64*)&mBit)->bit60 = 0; };
-    // Unset bit 61 value
-    inline void unSet61() { ((stBit64*)&mBit)->bit61 = 0; };
-    // Unset bit 62 value
-    inline void unSet62() { ((stBit64*)&mBit)->bit62 = 0; };
-    // Unset bit 63 value
-    inline void unSet63() { ((stBit64*)&mBit)->bit63 = 0; };
-    // Unset bit 64 value
-    inline void unSet64() { ((stBit64*)&mBit)->bit64 = 0; };
+    // UnSet bit 57 value
+    inline void UnSet57() { ((stBit64*)&mBit)->bit57 = 0; };
+    // UnSet bit 58 value
+    inline void UnSet58() { ((stBit64*)&mBit)->bit58 = 0; };
+    // UnSet bit 59 value
+    inline void UnSet59() { ((stBit64*)&mBit)->bit59 = 0; };
+    // UnSet bit 60 value
+    inline void UnSet60() { ((stBit64*)&mBit)->bit60 = 0; };
+    // UnSet bit 61 value
+    inline void UnSet61() { ((stBit64*)&mBit)->bit61 = 0; };
+    // UnSet bit 62 value
+    inline void UnSet62() { ((stBit64*)&mBit)->bit62 = 0; };
+    // UnSet bit 63 value
+    inline void UnSet63() { ((stBit64*)&mBit)->bit63 = 0; };
+    // UnSet bit 64 value
+    inline void UnSet64() { ((stBit64*)&mBit)->bit64 = 0; };
 
     // Check bit is set or not
     inline bool isSet(const long long            lVal) { return ((mBit) &  lVal) ? true : false; };

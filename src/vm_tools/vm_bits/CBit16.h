@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-15 09:23:00                                               == //
+// ==   Modify Time          : 2020-11-16 09:13:05                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -199,46 +199,46 @@ public:
     // Set bit 16 value
     inline void Set16() { ((stBit16*)&mBit)->bit16 = 1; };
 
-    // Unset bit value
-    inline void unSet(const short            sVal) { mBit = mBit ^  sVal; };
-    // Unset bit value
-    inline void unSet(const unsigned short  usVal) { mBit = mBit ^ usVal; };
-    // Unset bit value
-    inline void unSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
+    // UnSet bit value
+    inline void UnSet(const short            sVal) { mBit = mBit ^  sVal; };
+    // UnSet bit value
+    inline void UnSet(const unsigned short  usVal) { mBit = mBit ^ usVal; };
+    // UnSet bit value
+    inline void UnSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
 
-    // Unset bit 01 value
-    inline void unSet01() { ((stBit16*)&mBit)->bit01 = 0; };
-    // Unset bit 02 value
-    inline void unSet02() { ((stBit16*)&mBit)->bit02 = 0; };
-    // Unset bit 03 value
-    inline void unSet03() { ((stBit16*)&mBit)->bit03 = 0; };
-    // Unset bit 04 value
-    inline void unSet04() { ((stBit16*)&mBit)->bit04 = 0; };
-    // Unset bit 05 value
-    inline void unSet05() { ((stBit16*)&mBit)->bit05 = 0; };
-    // Unset bit 06 value
-    inline void unSet06() { ((stBit16*)&mBit)->bit06 = 0; };
-    // Unset bit 07 value
-    inline void unSet07() { ((stBit16*)&mBit)->bit07 = 0; };
-    // Unset bit 08 value
-    inline void unSet08() { ((stBit16*)&mBit)->bit08 = 0; };
+    // UnSet bit 01 value
+    inline void UnSet01() { ((stBit16*)&mBit)->bit01 = 0; };
+    // UnSet bit 02 value
+    inline void UnSet02() { ((stBit16*)&mBit)->bit02 = 0; };
+    // UnSet bit 03 value
+    inline void UnSet03() { ((stBit16*)&mBit)->bit03 = 0; };
+    // UnSet bit 04 value
+    inline void UnSet04() { ((stBit16*)&mBit)->bit04 = 0; };
+    // UnSet bit 05 value
+    inline void UnSet05() { ((stBit16*)&mBit)->bit05 = 0; };
+    // UnSet bit 06 value
+    inline void UnSet06() { ((stBit16*)&mBit)->bit06 = 0; };
+    // UnSet bit 07 value
+    inline void UnSet07() { ((stBit16*)&mBit)->bit07 = 0; };
+    // UnSet bit 08 value
+    inline void UnSet08() { ((stBit16*)&mBit)->bit08 = 0; };
 
-    // Unset bit 09 value
-    inline void unSet09() { ((stBit16*)&mBit)->bit09 = 0; };
-    // Unset bit 10 value
-    inline void unSet10() { ((stBit16*)&mBit)->bit10 = 0; };
-    // Unset bit 11 value
-    inline void unSet11() { ((stBit16*)&mBit)->bit11 = 0; };
-    // Unset bit 12 value
-    inline void unSet12() { ((stBit16*)&mBit)->bit12 = 0; };
-    // Unset bit 13 value
-    inline void unSet13() { ((stBit16*)&mBit)->bit13 = 0; };
-    // Unset bit 14 value
-    inline void unSet14() { ((stBit16*)&mBit)->bit14 = 0; };
-    // Unset bit 15 value
-    inline void unSet15() { ((stBit16*)&mBit)->bit15 = 0; };
-    // Unset bit 16 value
-    inline void unSet16() { ((stBit16*)&mBit)->bit16 = 0; };
+    // UnSet bit 09 value
+    inline void UnSet09() { ((stBit16*)&mBit)->bit09 = 0; };
+    // UnSet bit 10 value
+    inline void UnSet10() { ((stBit16*)&mBit)->bit10 = 0; };
+    // UnSet bit 11 value
+    inline void UnSet11() { ((stBit16*)&mBit)->bit11 = 0; };
+    // UnSet bit 12 value
+    inline void UnSet12() { ((stBit16*)&mBit)->bit12 = 0; };
+    // UnSet bit 13 value
+    inline void UnSet13() { ((stBit16*)&mBit)->bit13 = 0; };
+    // UnSet bit 14 value
+    inline void UnSet14() { ((stBit16*)&mBit)->bit14 = 0; };
+    // UnSet bit 15 value
+    inline void UnSet15() { ((stBit16*)&mBit)->bit15 = 0; };
+    // UnSet bit 16 value
+    inline void UnSet16() { ((stBit16*)&mBit)->bit16 = 0; };
 
     // Check bit is set or not
     inline bool isSet(const short            sVal) { return ((mBit) &  sVal) ? true : false; };
