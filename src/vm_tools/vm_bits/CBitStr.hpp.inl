@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:16:00                                               == //
-// ==   Modify Time          : 2020-11-16 08:40:57                                               == //
+// ==   Modify Time          : 2020-11-16 08:47:26                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -179,24 +179,6 @@ inline tchar* vm::CBitStr< CBitType >::toHex( const tchar* const cpStrFmt )
     return mszBuf;
 }
 // }}} end of func CBitStr<CBitType>::toHex02(...)
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Methord : CBitStr<CBitType>::to0xHex02(...)                                               == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output bit value by hex string, and start by 0x
-// ==  Return  : tchar*           - [O] hex string
-template< typename CBitType >
-inline tchar* vm::CBitStr< CBitType >::to0xHex( const tchar* const cpStrFmt )
-// {{{ 
-{
-    vMemZero(mszBuf);
-    bool lbRet = vm::v_sprintf(mszBuf, sizeof(mszBuf), vT("0x")cpStrFmt, mBitType.mBit);
-    vCheckStrFmtRet( lbRet, mllErrCode );
-
-    return mszBuf;
-}
-// }}} end of func CBitStr<CBitType>::to0xHex02(...)
 // ================================================================================================ //
 
 // }}} ![ Class CBitStr<CBitType> Functional realization ]

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 14:07:00                                               == //
-// ==   Modify Time          : 2020-11-15 10:50:39                                               == //
+// ==   Modify Time          : 2020-11-16 08:47:52                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -92,9 +92,6 @@ public:
 
     // Output bit value by hex string
     inline tchar* toHex   ( const tchar* const cpStrFmt=vT(vStrFmtHeX) );
-    //
-    // Output bit value by hex string, and start by 0x
-    inline tchar* to0xHex ( const tchar* const cpStrFmt=vT(vStrFmtHeX) );
 
 // }}} ! Methods
 
