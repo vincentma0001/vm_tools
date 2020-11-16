@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-30 08:49:00                                               == //
-// ==   Modify Time          : 2020-11-16 09:57:51                                               == //
+// ==   Modify Time          : 2020-11-16 10:26:12                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -35,7 +35,7 @@
 // using namespace vm {{{
 namespace vm {
 
-// Class CBit32 : This class deal with Bit operation for 8bit(long type)
+// Class CBit32 : This class deal with Bit operation for 8bit(int type)
 class CBit32
 { // {{{
 
@@ -128,8 +128,8 @@ public:
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CBit32(           long&  lVal ):mBit(*((unsigned long*) &lVal)){};
-    inline          CBit32( unsigned  long& ulVal ):mBit(*((unsigned long*)&ulVal)){};
+    inline          CBit32(           int&  iVal ):mBit(*((unsigned int*) &iVal)){};
+    inline          CBit32( unsigned  int& uiVal ):mBit(*((unsigned int*)&uiVal)){};
     // Destruct define
     inline virtual ~CBit32(){};
 
@@ -141,60 +141,58 @@ private:
 // Operators : {{{
 public:
     // Assignment operation
-    inline CBit32& operator = ( const        CBit32   &obj ){ mBit = obj.mBit; return *this;};
+    inline CBit32& operator = ( const       CBit32   &obj ){ mBit = obj.mBit; return *this;};
     // Assignment operation
-    inline CBit32& operator = ( const unsigned long  ulVal ){ mBit =    ulVal; return *this;};
+    inline CBit32& operator = ( const unsigned int  uiVal ){ mBit =    uiVal; return *this;};
     // Assignment operation
-    inline CBit32& operator = ( const          long   lVal ){ mBit =     lVal; return *this;};
+    inline CBit32& operator = ( const          int   iVal ){ mBit =     iVal; return *this;};
 
     // Bit operation (&) [00000011 & 00000101 = 00000001]
-    inline unsigned long operator & (const CBit32          &obj) { unsigned long lulVal = mBit & obj.mBit; return lulVal; };
+    inline unsigned int operator & (const CBit32         &obj) { unsigned int luiVal = mBit & obj.mBit; return luiVal; };
     // Bit operation (&) [00000011 & 00000101 = 00000001]
-    inline unsigned long operator & (const unsigned long  ulVal) { unsigned long lulVal = mBit & ulVal;    return lulVal; };
+    inline unsigned int operator & (const unsigned int  uiVal) { unsigned int luiVal = mBit & uiVal;    return luiVal; };
     // Bit operation (&) [00000011 & 00000101 = 00000001]
-    inline long          operator & (const long            lVal) {          long  llVal = mBit & lVal;     return  llVal; };
+    inline int          operator & (const int            iVal) {          int  liVal = mBit & iVal;     return  liVal; };
     // Bit operation (|) [00000011 | 00000101 = 00000111]
-    inline unsigned long operator | (const CBit32          &obj) { unsigned long lulVal = mBit | obj.mBit; return lulVal; };
+    inline unsigned int operator | (const CBit32         &obj) { unsigned int luiVal = mBit | obj.mBit; return luiVal; };
     // Bit operation (|) [00000011 | 00000101 = 00000111]
-    inline unsigned long operator | (const unsigned long  ulVal) { unsigned long lulVal = mBit | ulVal;    return lulVal; };
+    inline unsigned int operator | (const unsigned int  uiVal) { unsigned int luiVal = mBit | uiVal;    return luiVal; };
     // Bit operation (|) [00000011 | 00000101 = 00000111]
-    inline long          operator | (const long            lVal) {          long  llVal = mBit | lVal;     return  llVal; };
+    inline int          operator | (const int            iVal) {          int  liVal = mBit | iVal;     return  liVal; };
     // Bit operation (^) [00000011 ^ 00000101 = 00000110]
-    inline unsigned long operator ^ (const CBit32          &obj) { unsigned long lulVal = mBit ^ obj.mBit; return lulVal; };
+    inline unsigned int operator ^ (const CBit32         &obj) { unsigned int luiVal = mBit ^ obj.mBit; return luiVal; };
     // Bit operation (^) [00000011 ^ 00000101 = 00000110]
-    inline unsigned long operator ^ (const unsigned long  ulVal) { unsigned long lulVal = mBit ^ ulVal;    return lulVal; };
+    inline unsigned int operator ^ (const unsigned int  uiVal) { unsigned int luiVal = mBit ^ uiVal;    return luiVal; };
     // Bit operation (^) [00000011 ^ 00000101 = 00000110]
-    inline long          operator ^ (const long            lVal) {          long  llVal = mBit ^ lVal;     return  llVal; };
+    inline int          operator ^ (const int            iVal) {          int  liVal = mBit ^ iVal;     return  liVal; };
 
     // Bit operation (~) [~00000011 = 11111100]
-    inline unsigned long operator ~ ()                            { unsigned long lulVal = ~mBit; return lulVal; };
+    inline unsigned int operator ~ ()                          { unsigned int luiVal = ~mBit; return luiVal; };
 // }}} ! Operators
 
 // Menbers   : {{{
 private:
-    unsigned long&      mBit;
+    unsigned int&      mBit;
 // }}} ! Members
 
 // Methods   : {{{
 public:
-    // normal func {{{
     // Return bit size
     inline size_t  size () const { return sizeof(mBit); };
     // Reset bit value to zero
     inline void    reset()       { mBit = 0;            };
-    // }}}
 
-    // Return          long value
-    inline long           to_long  () { return           (long)mBit; };
-    // Return unsigned long value
-    inline unsigned long  to_ulong () { return  (unsigned long)mBit; };
+    // Return          int value
+    inline int           to_int  () { return           (int)mBit; };
+    // Return unsigned int value
+    inline unsigned int  to_uint () { return  (unsigned int)mBit; };
 
     // Set bit value
-    inline void Set(const long            lVal) { mBit = mBit |  lVal; };
+    inline void Set(const int            iVal) { mBit = mBit |  iVal; };
     // Set bit value
-    inline void Set(const unsigned long  ulVal) { mBit = mBit | ulVal; };
+    inline void Set(const unsigned int  uiVal) { mBit = mBit | uiVal; };
     // Set bit value
-    inline void Set(const emBitPos       emPos) { mBit = mBit | emPos; };
+    inline void Set(const emBitPos      emPos) { mBit = mBit | emPos; };
 
     // Set bit 01 value
     inline void Set01() { ((stBit32*)&mBit)->bit01 = 1; };
@@ -265,11 +263,11 @@ public:
     inline void Set32() { ((stBit32*)&mBit)->bit32 = 1; };
 
     // UnSet bit value
-    inline void UnSet(const long            lVal) { mBit = mBit ^  lVal; };
+    inline void UnSet(const int            iVal) { mBit = mBit ^  iVal; };
     // UnSet bit value
-    inline void UnSet(const unsigned long  ulVal) { mBit = mBit ^ ulVal; };
+    inline void UnSet(const unsigned int  uiVal) { mBit = mBit ^ uiVal; };
     // UnSet bit value
-    inline void UnSet(const emBitPos        emPos) { mBit = mBit ^ emPos; };
+    inline void UnSet(const emBitPos      emPos) { mBit = mBit ^ emPos; };
 
     // UnSet bit 01 value
     inline void UnSet01() { ((stBit32*)&mBit)->bit01 = 0; };
@@ -340,11 +338,11 @@ public:
     inline void UnSet32() { ((stBit32*)&mBit)->bit32 = 0; };
 
     // Check bit is set or not
-    inline bool isSet(const long            lVal) { return ((mBit) &  lVal) ? true : false; };
+    inline bool isSet(const int            iVal) { return ((mBit) &  iVal) ? true : false; };
     // Check bit is set or not
-    inline bool isSet(const unsigned long  ulVal) { return ((mBit) & ulVal) ? true : false; };
+    inline bool isSet(const unsigned int  uiVal) { return ((mBit) & uiVal) ? true : false; };
     // Check bit is set or not
-    inline bool isSet(const emBitPos        emPos) { return ((mBit) & emPos) ? true : false; };
+    inline bool isSet(const emBitPos      emPos) { return ((mBit) & emPos) ? true : false; };
 
     // Check bit 01 is set or not
     inline bool isSet01() { return (((stBit32*)&mBit)->bit01 & 1) ? true : false; };
@@ -431,8 +429,8 @@ friend class CBitStr<CBit32>;
 // == ------------------------------------------------------------------------------------------ == //
 // [ Usage ] {{{ /*
 //
-//  unsigned long           lulValue = 0;
-//  vm::CBit32              loBit(lulValue);
+//  unsigned int           luiValue = 0;
+//  vm::CBit32              loBit(luiValue);
 //  vm::CBitStr<vm::CBit32> loBitStr(loBit);
 //
 //  loBit.Set01();
