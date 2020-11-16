@@ -21,9 +21,47 @@ vTry
     vLine( vT("Bit dec   str : %s"), loBitStr08.toDec() );
     vLine( vT("Bit hex   str : %s"), loBitStr08.toHex() );
     vLine( vT("Bit 0xHex str ：%s"), loBitStr08.toHex( vT("0x" vStrFmtHeX) ) );
+    vLine( vT("") );
 
+    lcVal  = -1;
+    vLine( vT("Bit " vStrFmtCharNum), lcVal  );
+    vLine( "***********************************************" );
+    vLine( vT("Bit bin   str : %s"), loBitStr08.toBin() );
+    vLine( vT("Bit oct   str : %s"), loBitStr08.toOct() );
+    vLine( vT("Bit dec   str : %s"), loBitStr08.toDec() );
+    vLine( vT("Bit hex   str : %s"), loBitStr08.toHex() );
+    vLine( vT("Bit 0xHex str ：%s"), loBitStr08.toHex( vT("0x" vStrFmtHeX) ) );
+    vLine( vT("") );
 
+    lcVal  = 0;
+    vLine( vT("Bit " vStrFmtCharNum), lcVal  );
+    vLine( "***********************************************" );
+    vLine( vT("Bit bin   str : %s"), loBitStr08.toBin() );
+    vLine( vT("Bit oct   str : %s"), loBitStr08.toOct() );
+    vLine( vT("Bit dec   str : %s"), loBitStr08.toDec() );
+    vLine( vT("Bit hex   str : %s"), loBitStr08.toHex() );
+    vLine( vT("Bit 0xHex str ：%s"), loBitStr08.toHex( vT("0x" vStrFmtHeX) ) );
+    vLine( vT("") );
 
+    lcVal  = vMaxsChar;
+    vLine( vT("Bit " vStrFmtCharNum), lcVal  );
+    vLine( "***********************************************" );
+    vLine( vT("Bit bin   str : %s"), loBitStr08.toBin() );
+    vLine( vT("Bit oct   str : %s"), loBitStr08.toOct() );
+    vLine( vT("Bit dec   str : %s"), loBitStr08.toDec() );
+    vLine( vT("Bit hex   str : %s"), loBitStr08.toHex() );
+    vLine( vT("Bit 0xHex str ：%s"), loBitStr08.toHex( vT("0x" vStrFmtHeX) ) );
+    vLine( vT("") );
+
+    lcVal  = vMinsChar;
+    vLine( vT("Bit " vStrFmtCharNum), lcVal  );
+    vLine( "***********************************************" );
+    vLine( vT("Bit bin   str : %s"), loBitStr08.toBin() );
+    vLine( vT("Bit oct   str : %s"), loBitStr08.toOct() );
+    vLine( vT("Bit dec   str : %s"), loBitStr08.toDec() );
+    vLine( vT("Bit hex   str : %s"), loBitStr08.toHex() );
+    vLine( vT("Bit 0xHex str ：%s"), loBitStr08.toHex( vT("0x" vStrFmtHeX) ) );
+    vLine( vT("") );
 
 vCatch(...)
     return false;
