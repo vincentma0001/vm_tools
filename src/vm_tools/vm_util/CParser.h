@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-15 09:18:59                                               == //
+// ==   Modify Time          : 2020-11-16 17:33:59                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,19 +30,17 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
 
-// ================================================================================================ //
-// ==  Class CPattern : TODO add class brief here                                                == //
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CPattern : TODO add class brief here
 class CPattern
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -60,7 +58,6 @@ private:
     inline CPattern& operator = ( const CPattern &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Flag string's address
@@ -77,46 +74,41 @@ private:
     CPattern*       mpPattern;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 private:
     // Get last Pattern in pattern list
     CPattern*&      GetLast();
 // }}} ! Methods
 
-// ------------------------------------------------------------------------------------------------ //
 // Friendefs : {{{
 friend class CParser;
 // }}} ! Friendefs
 
-};
-// }}} ! [ class CPattern ]
-// ================================================================================================ //
+}; // }}} End of class CPattern
 
-// ================================================================================================ //
-// ==  Class CParser : this class parse format string                                            == //
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CParser : this class parse format string
 class CParser
 // {{{
 {
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
     inline          CParser( const tchar cszSpecifier, const tchar* const cpFmt, const size_t csztFmtLen);
     // Construct define
-    inline          CParser( const tchar cszSpecifier, const tchar* const cpFmt);
+    inline          CParser( const tchar cszSpecifier, const tchar* const cpFmt                         );
     // Destruct define
-    inline virtual ~CParser();
+    inline virtual ~CParser(                                                                            );
 
 private:
     // Copy construct define
-    inline CParser( const CParser &obj );
+    inline CParser             ( const CParser &obj );
     // Assignment operation
     inline CParser& operator = ( const CParser &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Format specify letter
@@ -131,25 +123,25 @@ private:
     CPattern*       mpPattern;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Regis a CPattern object
-    void   Regist( CPattern& oFlag );
+    void   Regist ( CPattern& oFlag );
+
     // Parse format string
-    tchar* Parse ( tchar* const pOutBuf, const size_t csztOutBufLen );
+    tchar* Parse  ( tchar* const pOutBuf, const size_t csztOutBufLen );
 // }}} ! Methods
 
-};
-// }}} ! [ class CParser ]
-// ================================================================================================ //
+}; // }}} End of class CParser
 
-}
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CParser.h.inl"
 // ================================================================================================ //
+
 
 #endif // ! __CPARSER_H__
 // ================================================================================================ //

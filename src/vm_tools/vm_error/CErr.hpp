@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 10:45                                                  == //
-// ==   Modify Time          : 2020-11-16 15:23                                                  == //
+// ==   Modify Time          : 2020-11-16 17:35                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -36,6 +36,7 @@
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
 // Macrodefs : {{{
 #ifndef    _V_CERR_BUF_SIZE_
@@ -70,6 +71,8 @@ namespace vm {
 #   define eThrowDD(eErrCode)                           vm::CErr<vm::CSysErr<_V_CERR_BUF_SIZE_>,vm::CUsrErr<int>,_V_CERR_BUF_SIZE_>(emError).Throw()
 #endif // !eThrowDD
 // }}} ! Macrodefs
+
+// ------------------------------------------------------------------------------------------------ //
 
 // Class CErr : this class deal with error operattion
 template< class tSysErr, class tUsrErr, size_t tsztBufSize >
@@ -118,6 +121,7 @@ public:
 
 }; // }}} End of class CErr
 
+// ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :

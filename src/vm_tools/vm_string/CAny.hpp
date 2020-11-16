@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-05 10:06                                                  == //
-// ==   Modify Time          : 2020-11-05 10:06                                                  == //
+// ==   Modify Time          : 2020-11-16 16:00                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -31,12 +31,10 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-// ------------------------------------------------------------------------------------------------ //
+namespace vm {
+
 // Macrodefs : {{{
 #ifndef    vAnyToStr
 #   define vAnyToStr(tsztBufSize,val)           vm::CAny<tsztBufSize>( val ).toStr()
@@ -93,22 +91,17 @@ namespace vm
 #ifndef    vStrToLDouble
 #   define vStrToLDouble (tsztBufSize,str)      vm::CAny<tsztBufSize>( str ).toLDouble()
 #endif // !vStrToLDouble
-
 // }}} ! Macrodefs
-// ================================================================================================ //
-// ==  Class CAny : This class deal with convent operation between string and other types        == //
-// ------------------------------------------------------------------------------------------------ //
+
+// Class CAny : This class deal with convent operation between string and other types
 template< size_t tsztBufSize >
 class CAny : public CAnyPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construc define 
     inline CAny(const bool               Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
-    // Construc define 
-//  inline CAny(const size_t             Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
     inline CAny(const char               Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
@@ -151,19 +144,16 @@ private:
     inline CAny& operator = ( const CAny &obj ){ return *this; };
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar       mszBuf[tsztBufSize];
 // }}} ! Members
 
-};
-// }}} ! [ class CAny ]
+}; // }}} End of class CAny
+
+};// }}} End of namespace vm
 // ================================================================================================ //
 
-};
-// }}} End of namespace vm
-// ================================================================================================ //
 
 #endif // ! __CANY_HPP__
 // ================================================================================================ //
