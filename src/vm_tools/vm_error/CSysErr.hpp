@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:45                                                  == //
-// ==   Modify Time          : 2020-11-11 10:45                                                  == //
+// ==   Modify Time          : 2020-11-16 13:48                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,17 +26,17 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
 #include "CSysErrPtr.h"
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-// ------------------------------------------------------------------------------------------------ //
+namespace vm {
+
 // Macrodefs : {{{
 #ifndef    _V_CSYSERR_BUF_SIZE_
 #   define _V_CSYSERR_BUF_SIZE_      256
@@ -57,17 +57,13 @@ namespace vm
 #ifndef    vSysErrMsgD
 #   define vSysErrMsgD( llErrCode )                     vm::CSysErr<_V_CSYSERR_BUF_SIZE_>(llErrCode).toString()
 #endif // !vSysErrMsgD
-
 // }}} ! Macrodefs
 
-// ================================================================================================ //
-// ==  Class CSysErr : this class deal with systime error                                        == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CSysErr : this class deal with systime error
 template< size_t tsztBufSize >
 class CSysErr : public CSysErrPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -84,18 +80,14 @@ private:
     inline CSysErr& operator = ( const CSysErr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar       mszBuf[tsztBufSize];
 // }}} ! Members
 
-};
-// }}} ! [ class CSysErr ]
-// ================================================================================================ //
+}; // }}} End of class CSysErr
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CSysErr.hpp.inl"

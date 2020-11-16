@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-11 11:07                                                  == //
+// ==   Modify Time          : 2020-11-16 13:47                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,7 +23,13 @@
 
 
 // ================================================================================================ //
-// [ Comment info ] {{{
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+//.vm's.function.depend.on.included
+#include <vm_cfgs.h>
+// }}}
+// ================================================================================================ //
 
 
 // ================================================================================================ //
@@ -40,7 +46,12 @@ inline vm::CUsrErr< tType >::CUsrErr( const long clErrCode )
     : mlErrCode( clErrCode )
 // {{{
 {
-    Regist();
+    this->RegMsg( vm::emRet::emSucess,      vT("No error return.") );
+    this->RegMsg( vm::emRet::emError,       vT("Error return, see syserr for info.") );
+    this->RegMsg( vm::emRet::emWarns,       vT("Warns return.") );
+    this->RegMsg( vm::emRet::emErrStrFmt,   vT("Error return, Format string failed."));
+
+    this->Regist();
 }
 // }}} End of func CUsrErr<tType>::CUsrErr()
 // ================================================================================================ //
@@ -153,9 +164,6 @@ inline bool vm::CUsrErr< tType >::RegMsg( const long clErrCode, const vString cs
 // ================================================================================================ //
 
 // }}} ![ Class CUsrErr<tType> Functional realization ]
-// ================================================================================================ //
-
-// }}} ! Comment info
 // ================================================================================================ //
 
 

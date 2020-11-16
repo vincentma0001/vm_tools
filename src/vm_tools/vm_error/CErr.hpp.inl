@@ -6,8 +6,8 @@
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 11:04:28                                               == //
-// ==   Modify Time          : 2020-11-15 09:19:45                                               == //
+// ==   Create Time          : 2020-10-05 11:04                                                  == //
+// ==   Modify Time          : 2020-11-16 13:16                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -139,7 +139,7 @@ inline tchar* vm::CErr< tSysErr,tUsrErr >::Fmt( const tchar* const cpFmt, ... )
     loParser.Parse( lszBuf, sizeof(lszBuf) );
 
     va_list lvList;
-    va_start( lvList, lszBuf );
+    va_start( lvList, cpFmt );
     vm::v_sprintf( mszBuf, sizeof(mszBuf), lszBuf, lvList );
     va_end( lvList );
 

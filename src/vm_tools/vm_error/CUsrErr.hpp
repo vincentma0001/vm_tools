@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-06 08:30                                                  == //
+// ==   Modify Time          : 2020-11-16 13:42                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,25 +26,22 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
-#include <vm_tools/vm_util.h>
+#include <vm_tools/vm_util/CStdMap.hpp>
 // }}}
 // ================================================================================================ //
-
 
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm
 {
 
-// ================================================================================================ //
-// ==  Class CUsrErr : this class deal with usr defined error info                               == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CUsrErr : this class deal with usr defined error info
 template< class tType >
 class CUsrErr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -59,7 +56,6 @@ private:
     inline CUsrErr& operator = ( const CUsrErr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Error code
@@ -68,7 +64,6 @@ private:
     vm::CStdMap<long, vString>      mpUsrErrMap;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Output error code
@@ -83,12 +78,9 @@ public:
     inline virtual bool Regist   ( void ) = 0;
 // }}} ! Methods
 
-};
-// }}} ! [ class CUsrErr ]
-// ================================================================================================ //
+}; // }}} End of class CUsrErr
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CUsrErr.hpp.inl"
@@ -96,16 +88,15 @@ public:
 
 // ================================================================================================ //
 // [ class CUsrErr define macros ] {{{
-
 #define DEF_CUSRERR_BEGIN( tUsrErr ) class e#tUsrErr : public CUsrErr<e#tUsrErr>{ \
     public: inline e#tUsrErr(const long clErrCode):mlErrCode(clErrCode){};\
             inline virtual ~e#tUsrErr(){};\
     public: inline virtual bool Regist( void ) {
 #define DEF_CUSRERR_REGMEG( clErrCode, cstrErrMsg ) { RegMsg( clErrCode, cstrErrMsg ); }
 #define DEF_CUSRERR_ENDED }};
-
 // }}} ! class CUsrErr define macros
 // ================================================================================================ //
+
 
 #endif // ! __CUSRERR_HPP__
 // ================================================================================================ //

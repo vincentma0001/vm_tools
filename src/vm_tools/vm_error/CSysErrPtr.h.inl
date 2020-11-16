@@ -6,8 +6,8 @@
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 09:44:45                                               == //
-// ==   Modify Time          : 2020-11-13 10:47:47                                               == //
+// ==   Create Time          : 2020-10-05 09:44                                                  == //
+// ==   Modify Time          : 2020-11-16 13:47                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 #include <vm_tools/vm_funcs.h>
 // }}}

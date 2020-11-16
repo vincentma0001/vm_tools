@@ -6,8 +6,8 @@
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-10-05 10:45:11                                               == //
-// ==   Modify Time          : 2020-11-11 12:22:04                                               == //
+// ==   Create Time          : 2020-10-05 10:45                                                  == //
+// ==   Modify Time          : 2020-11-16 13:48                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,17 +26,17 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
 #include "CSysErr.hpp"
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-// ------------------------------------------------------------------------------------------------ //
+namespace vm {
+
 // Macrodefs : {{{
 #ifndef    _V_CERR_BUF_SIZE_
 #   define _V_CERR_BUF_SIZE_ 1024
@@ -51,14 +51,11 @@ namespace vm
 #endif // !vErr
 // }}} ! Macrodefs
 
-// ================================================================================================ //
-// ==  Class CErr : this class deal with error operattion                                        == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CErr : this class deal with error operattion
 template< class tSysErr, class tUsrErr >
 class CErr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -73,7 +70,6 @@ private:
     inline CErr& operator = ( const CErr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar               mszBuf[_V_CERR_BUF_SIZE_];
@@ -81,7 +77,7 @@ private:
     tSysErr             mSysErr;
     tUsrErr             mUsrErr;
 // }}} ! Members
-// ------------------------------------------------------------------------------------------------ //
+
 // Methods   : {{{
 public:
     // Format output error message, 
@@ -90,17 +86,14 @@ public:
     tchar* Fmt( const tchar* const cpFmt=vT("%ESC:%ESM - %EUC:%EUM"), ... );
 // }}} ! Methods
 
+}; // }}} End of class CErr
 
-};
-// }}} ! [ class CErr ]
-// ================================================================================================ //
-
-} 
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CErr.hpp.inl"
 // ================================================================================================ //
+
 
 #endif // ! __CERR_H__
 // ================================================================================================ //
