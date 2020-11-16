@@ -10,7 +10,7 @@ UT_FUNC_BEGIN( ut_cbit32_1 )
 vTry
 
     // Add unit test coder here
-    long                    lValue = 0;
+    int                     lValue = 0;
     vm::CBit32              loBit(lValue);
     vm::CBitStr<vm::CBit32> loBitStr(loBit);
     vLine( "Size of value : %zu", loBit.size()  );
@@ -66,7 +66,7 @@ UT_FUNC_BEGIN( ut_cbit32_2 )
 vTry
 
     // Add unit test coder here
-    long                    lValue = 0;
+    int                     lValue = 0;
     vm::CBit32              loBit(lValue);
     vm::CBitStr<vm::CBit32> loBitStr(loBit);
     vLine( "Size of value : %zu", loBit.size()  );
@@ -122,19 +122,19 @@ UT_FUNC_BEGIN( ut_cbit32_3 )
 vTry
 
     // Add unit test coder here
-    unsigned long           lVal1=0;
+    unsigned int            lVal1=0;
     vm::CBit32              loBit1(lVal1);
     vm::CBitStr<vm::CBit32> loBitStr1(loBit1);
     loBit1.Set01();
     loBit1.Set02();
 
-    unsigned long           lVal2=0;
+    unsigned int            lVal2=0;
     vm::CBit32              loBit2(lVal2);
     vm::CBitStr<vm::CBit32> loBitStr2(loBit2);
     loBit2.Set01();
     loBit2.Set03();
 
-    unsigned long           lVal3=0;
+    unsigned int            lVal3=0;
     vm::CBit32              loBit3(lVal3);
     vm::CBitStr<vm::CBit32> loBitStr3(loBit3);
 
@@ -163,7 +163,7 @@ UT_FUNC_ENDED
 // ================================================================================================ //
 // ==  unit test frame tst_frame_cbit                                                            == //
 // ================================================================================================ //
-// [ tst_frame_cbit ] {{{
+// [ tst_frame_cbit / {{{
 UT_FRAME_BEGIN ( tst_frame_cbit32 )
 UT_FRAME_REGIST( ut_cbit32_1 )
 UT_FRAME_REGIST( ut_cbit32_2 )

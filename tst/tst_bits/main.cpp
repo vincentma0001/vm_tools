@@ -9,9 +9,9 @@
 int main(int argc, char *argv[])
 {
     RUN_UNITTEST( tst_frame_cbitstr );
-//    RUN_UNITTEST( tst_frame_cbit08 );
-//    RUN_UNITTEST( tst_frame_cbit16 );
-//    RUN_UNITTEST( tst_frame_cbit32 );
+    RUN_UNITTEST( tst_frame_cbit08 );
+    RUN_UNITTEST( tst_frame_cbit16 );
+    RUN_UNITTEST( tst_frame_cbit32 );
     RUN_UNITTEST( tst_frame_cbit64 );
     return 0;
 }
