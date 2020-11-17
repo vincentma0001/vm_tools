@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-17 17:32                                                  == //
+// ==   Modify Time          : 2020-11-17 17:46                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -203,6 +203,9 @@ inline tchar* vm::CUsrErr< tType,tsztBufSize >::Fmt( const tchar* const cpFmt, .
 
     return mszBuf;
 }
+// }}} end of func CUsrErr<tType,tsztBufSize>::Fmt(...)
+// ================================================================================================ //
+
 // }}} end of func CUsrErr<tType,tsztBufSize>::Fmt(...)
 // ================================================================================================ //
 

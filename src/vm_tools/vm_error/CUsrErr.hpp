@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-17 11:36                                                  == //
+// ==   Modify Time          : 2020-11-17 17:47                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -83,7 +83,8 @@ public:
     // Output error message
     inline const tchar* toString ( void );
 
-// Format output error message,     //      $EC = error code, $EM = error message
+    // Format output error message
+    //      $EC = error code, $EM = error message
     inline tchar*       Fmt      ( const tchar* const cpFmt=vT("%EC:%EM"), ... );
 
     // Regist a user defined message
