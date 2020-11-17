@@ -1,6 +1,7 @@
 
-#include <vm_cfgs.h>
-#include <vm_tools/vm_util.h>
+#include "TstRet.h"
+#include <vm_tools/vm_error.h>
+#include <vm_tools/vm_funcs.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //
@@ -10,11 +11,13 @@ UT_FUNC_BEGIN( ut_err_1 )
 vTry
 
     // Add unit test coder here
-    long long lllErrCode = vMakeLLong( 10, 20 );
-    long       llUsrCode = vHighLLong( lllErrCode );
-    long       llSysCode =  vLowLLong( lllErrCode );
+    long long lllErrCode = vMakeLLong( vm::emTstRet::emErrRet1, errno );
+    long       llUsrCode =  vLowLLong( lllErrCode );
+    long       llSysCode = vHighLLong( lllErrCode );
+    vLine( vT("Err(%lld) -> UseErr(%ld):SysErr(%ld) "), lllErrCode, llUsrCode, llSysCode );
 
-    vm::v_output_line( vT("Err(%lld) -> UseErr(%ld):SysErr(%ld) "), lllErrCode, llUsrCode, llSysCode );
+    vm::CErr<vm::eSysErr, vm::eTstRet,_V_CERR_BUF_SIZE_> loErr(lllErrCode);
+    vLine( loErr.Fmt() );
 
 vCatch(...)
     return false;

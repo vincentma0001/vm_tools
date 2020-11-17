@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:45                                                  == //
-// ==   Modify Time          : 2020-11-16 18:32                                                  == //
+// ==   Modify Time          : 2020-11-17 17:05                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -96,6 +96,28 @@ public:
 // }}} ! Methods
 
 }; // }}} End of class CSysErr
+
+// ------------------------------------------------------------------------------------------------ //
+
+// Class eSysErr : this class define a class CSysErr with _V_CSYSERR_BUF_SIZE_
+class eSysErr : public CSysErr<_V_CSYSERR_BUF_SIZE_>
+{ // {{{
+
+// Construct & Destruct : {{{
+public:
+    // Construct define
+    inline          eSysErr( const long clErrCode ):CSysErr<_V_CSYSERR_BUF_SIZE_>(clErrCode){};
+    // Destruct define
+    inline virtual ~eSysErr(){};
+
+private:
+    // Copy construct define
+    inline eSysErr             ( const eSysErr &obj ){};
+    // Assignment operation
+    inline eSysErr& operator = ( const eSysErr &obj ){return*this;};
+// }}} ! Construct & Destruct
+
+}; // }}} End of class eSysErr
 
 // ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm

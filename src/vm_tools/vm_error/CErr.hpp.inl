@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04                                                  == //
-// ==   Modify Time          : 2020-11-16 15:21                                                  == //
+// ==   Modify Time          : 2020-11-17 17:37                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -45,7 +45,7 @@
 // ==  Brief   : Construct define
 template< class tSysErr, class tUsrErr, size_t tsztBufSize >
 inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::CErr( const long long cllErrCode )
-    : tSysErr( vLowLLong(cllErrCode) ), tUsrErr( vHighLLong(cllErrCode) )
+    : mSysErr( vHighLLong(cllErrCode) ), mUsrErr( vLowLLong(cllErrCode) )
 // {{{
 {
 }

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-16 18:28                                                  == //
+// ==   Modify Time          : 2020-11-17 17:32                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,6 +27,8 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 //.vm's.function.depend.on.included
+#include "vm_tools/vm_funcs/v_funcs_mem.h"
+#include "vm_tools/vm_funcs/v_funcs_str.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_util/CParser.h>
 // }}}
@@ -44,17 +46,17 @@
 // ==  Brief   : Construct define
 template< typename tType, size_t tsztBufSize >
 inline vm::CUsrErr< tType,tsztBufSize >::CUsrErr( const long clErrCode )
-    : mszBuf{0x00},mlErrCode( clErrCode )
+    : mlErrCode(clErrCode), mszBuf{0x00}
 // {{{
 {
     // Regist common error information
-    this->RegMsg( vm::emRet::emSucess,      vT("No error return.") );
-    this->RegMsg( vm::emRet::emError,       vT("Error return, lookfor syserr for more information.") );
-    this->RegMsg( vm::emRet::emWarns,       vT("Warns return, lookfor syserr for more information.") );
-    this->RegMsg( vm::emRet::emErrStrFmt,   vT("Format string failed."));
+    RegMsg( vm::emRet::emSucess,      vT("No error return.") );
+    RegMsg( vm::emRet::emError,       vT("Error return, lookfor syserr for more information.") );
+    RegMsg( vm::emRet::emWarns,       vT("Warns return, lookfor syserr for more information.") );
+    RegMsg( vm::emRet::emErrStrFmt,   vT("Format string failed."));
 
     // Regist other error information for different object
-    this->Regist();
+    //Regist();
 }
 // }}} End of func CUsrErr<tType,tsztBufSize>::CUsrErr()
 // ================================================================================================ //
@@ -141,7 +143,11 @@ inline const tchar* vm::CUsrErr< tType,tsztBufSize >::toString( void )
 {
         vString* lpStr = mpUsrErrMap.Find( mlErrCode );
         if( lpStr==nullptr )
-            return nullptr;
+        {
+            vm::v_memzero( mszBuf, sizeof(mszBuf) );
+            vm::v_strcpy( mszBuf, sizeof(mszBuf), vT("this error isn't regist.") );
+            return mszBuf;
+        }
     
         return lpStr->c_str();
     
@@ -198,9 +204,6 @@ inline tchar* vm::CUsrErr< tType,tsztBufSize >::Fmt( const tchar* const cpFmt, .
     return mszBuf;
 }
 // }}} end of func CUsrErr<tType,tsztBufSize>::Fmt(...)
-// ================================================================================================ //
-
-// }}} ![ Class CUsrErr<tType,tsztBufSize> Functional realization ]
 // ================================================================================================ //
 
 

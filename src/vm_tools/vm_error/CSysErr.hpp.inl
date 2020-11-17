@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 10:46                                                  == //
-// ==   Modify Time          : 2020-11-16 14:17                                                  == //
+// ==   Modify Time          : 2020-11-17 11:34                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,6 +28,7 @@
 // [ Include files ] {{{
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+#include <vm_tools/vm_string/CAny.hpp>
 #include <vm_tools/vm_util/CParser.h>
 // }}}
 // ================================================================================================ //
@@ -138,16 +139,23 @@ template< size_t tsztBufSize >
 inline tchar* vm::CSysErr< tsztBufSize >::Fmt( const tchar* const cpFmt, ... )
 // {{{ 
 {
-    tchar lszBuf[tsztBufSize]  = {0x00};
+
+    // get error striing
+    tchar lszErrStr[tsztBufSize] = {0x00};
+    size_t lszGetErrStrSize      = 0;
+    GetErrStr( lszErrStr, sizeof(lszErrStr), lszGetErrStrSize );
 
     // prepare pattern
-    vm::CPattern loPattern1( vT("%EC"), vAnyToStr(256,   this->toCode()) );
-    vm::CPattern loPattern2( vT("%EM"),                this->toString()  );
+    vm::CPattern loPattern1( vT("%EC"), vAnyToStr(256,mlErrCode) );
+    vm::CPattern loPattern2( vT("%EM"), lszErrStr                );
 
-    // replace pattern from format string
+    // regist patterns to parser
     vm::CParser  loParser( vT('%'), cpFmt );
     loParser.Regist( loPattern1 );
     loParser.Regist( loPattern2 );
+
+    // replace pattern from format string
+    tchar lszBuf[tsztBufSize]  = {0x00};
     loParser.Parse( lszBuf, sizeof(lszBuf) );
 
     // format string with paramters

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:31:55                                               == //
-// ==   Modify Time          : 2020-11-16 17:33:59                                               == //
+// ==   Modify Time          : 2020-11-16 19:57:59                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -74,12 +74,6 @@ private:
     CPattern*       mpPattern;
 // }}} ! Members
 
-// Methods   : {{{
-private:
-    // Get last Pattern in pattern list
-    CPattern*&      GetLast();
-// }}} ! Methods
-
 // Friendefs : {{{
 friend class CParser;
 // }}} ! Friendefs
@@ -125,6 +119,13 @@ private:
 
 // Methods   : {{{
 public:
+    CPattern*&  LastPattern( CPattern* &pPattern )
+    {
+        if( pPattern == nullptr )
+            return pPattern;
+
+        return LastPattern( pPattern->mpPattern );
+    }
     // Regis a CPattern object
     void   Regist ( CPattern& oFlag );
 

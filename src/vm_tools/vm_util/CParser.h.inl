@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 21:48:08                                               == //
-// ==   Modify Time          : 2020-11-16 17:30:25                                               == //
+// ==   Modify Time          : 2020-11-17 17:26:25                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,6 +26,7 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_tools/vm_util/CParser.h"
 #include <vm_cfgs.h>
 #include <vm_tools/vm_string/CStrPtr.h>
 // }}}
@@ -60,11 +61,16 @@ inline vm::CPattern::CPattern( const tchar* const cpFlg, const size_t csztFlgLen
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CPattern::CPattern( const tchar* const cpFlg, const tchar* const cpRpl )
-                             : mpFlg(cpFlg), msztFlgLen(vStrlen(cpFlg)),
-                               mpRpl(cpRpl), msztRplLen(vStrlen(cpRpl)),
+                             : mpFlg(cpFlg), msztFlgLen(0),
+                               mpRpl(cpRpl), msztRplLen(0),
                                mpPattern(nullptr)
 // {{{
 {
+    if(mpFlg!=nullptr)
+      msztFlgLen = vStrlen(cpFlg);
+
+    if(mpRpl!=nullptr)
+      msztRplLen = vStrlen(cpRpl);
 }
 // }}} End of func CPattern::CPattern()
 // ================================================================================================ //
@@ -115,32 +121,6 @@ inline vm::CPattern& vm::CPattern::operator = ( const vm::CPattern &obj )
 // ================================================================================================ //
 
 // }}} ![ Class CPattern operator realization ]
-// ================================================================================================ //
-
-
-// ================================================================================================ //
-// ==  Class CPattern Functional realization                                                     == //
-// ================================================================================================ //
-// [ Class CPattern Functional realization ] {{{
-
-// ================================================================================================ //
-// ==  Methord : CPattern::GetLast(...)                                                          == //
-// == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Get last CPattern in pattern
-// ==  Return  : CPattern*&   - [O] the last CPattern pointer
-// ==  Params  : 
-inline vm::CPattern*& vm::CPattern::GetLast(  )
-// {{{
-{
-    if (mpPattern == nullptr)
-        return mpPattern;
-
-    return mpPattern->GetLast();
-}
-// }}} end of func CPattern::GetLast(...)
-// ================================================================================================ //
-
-// }}} ![ Class CPattern Functional realization ]
 // ================================================================================================ //
 
 // }}} ! CPattern
@@ -245,23 +225,8 @@ inline vm::CParser& vm::CParser::operator = ( const vm::CParser &obj )
 inline void vm::CParser::Regist( vm::CPattern& oFlag )
 // {{{
 {
-/*
-    if (mpPatterns == nullptr)
-    {
-        mpPatterns = &oFlag; 
-        return;
-    }; // End of if(...)
-
-    vm::CPattern*& lpFlag = mpPatterns->GetLast();
-    lpFlag = &oFlag;
-//*/
-  vm::CPattern* lpPattern = mpPattern;
-  while( lpPattern != nullptr )
-  {
-      lpPattern = lpPattern->mpPattern;
-  }
-
-  lpPattern = &oFlag;
+    vm::CPattern*& lpPattern = LastPattern( mpPattern );
+    lpPattern = &oFlag;
 }
 // }}} end of func CParser::Regist(...)
 // ================================================================================================ //
@@ -318,7 +283,7 @@ inline tchar* vm::CParser::Parse( tchar* const pOutBuf, const size_t csztOutBufL
         } // End of while ( lpPattern ...
 
         // 查找下一个标识符所在的位置
-        tchar* lpNextPos = const_cast<tchar*>(loFmt.Find(lsztFmtOffSet, mszSpecifier));
+        tchar* lpNextPos = const_cast<tchar*>(loFmt.Find( mszSpecifier, lsztFmtOffSet ));
         if (lpNextPos != lpPos)
         {
             // 将当前标识符与下一个标识符中的数据复制到目标数据中

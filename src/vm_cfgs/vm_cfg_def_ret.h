@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-15 10:55                                                  == //
-// ==   Modify Time          : 2020-11-16 17:43                                                  == //
+// ==   Modify Time          : 2020-11-17 11:33                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -55,8 +55,7 @@ namespace vm
 // ------------------------------------------------------------------------------------------------ //
 // enum emRet : this enum define function error, warn info
 enum emRet
-// {{{
-{
+{ // {{{
     // no errer
     emSucess            = vRetSucess,
 
@@ -74,8 +73,7 @@ enum emRet
     emError             = vMaxuInt - vErrOffSet,
     // warn return
     emWarns             = vMaxuInt - vWrnOffSet
-};
-// }}} End of def enum emErrRet
+}; // }}} End of def enum emErrRet
 // ------------------------------------------------------------------------------------------------ //
 
 // ================================================================================================ //

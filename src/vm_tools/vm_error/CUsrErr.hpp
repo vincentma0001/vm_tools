@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-16 18:32                                                  == //
+// ==   Modify Time          : 2020-11-17 11:36                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -66,13 +66,14 @@ private:
 
 // Menbers   : {{{
 private:
+    // Error code
+    const long                      mlErrCode;
     // buffer
     tchar                           mszBuf[tsztBufSize];
 
-    // Error code
-    const long                      mlErrCode;
     // Error infomation
     vm::CStdMap<long, vString>      mpUsrErrMap;
+
 // }}} ! Members
 
 // Methods   : {{{
@@ -82,15 +83,12 @@ public:
     // Output error message
     inline const tchar* toString ( void );
 
-    // Format output error message, 
-    //      $EC = error code, $EM = error message
+// Format output error message,     //      $EC = error code, $EM = error message
     inline tchar*       Fmt      ( const tchar* const cpFmt=vT("%EC:%EM"), ... );
 
     // Regist a user defined message
     inline bool         RegMsg   ( const long clErrCode, const vString cstrErrMsg );
 
-public:
-    inline virtual bool Regist   ( void ) {};
 // }}} ! Methods
 
 }; // }}} End of class CUsrErr
@@ -104,12 +102,10 @@ public:
 
 // ================================================================================================ //
 // [ class CUsrErr define macros ] {{{
-#define DEF_CUSRERR_BEGIN( tUsrErr ) class tUsrErr : public vm::CUsrErr<tUsrErr>{ \
-    public: inline tUsrErr(const long clErrCode):CUsrErr(clErrCode){};\
-            inline virtual ~tUsrErr(){};\
-    public: inline virtual bool Regist( void ) {
+#define DEF_CUSRERR_BEGIN( tUsrErr, tBufSize )      class tUsrErr : public vm::CUsrErr<tUsrErr,tBufSize> \
+                            { public: inline tUsrErr(const long clErrCode):CUsrErr(clErrCode){
 #define DEF_CUSRERR_REGMEG( clErrCode, cstrErrMsg ) { RegMsg( clErrCode, cstrErrMsg ); }
-#define DEF_CUSRERR_ENDED }};
+#define DEF_CUSRERR_ENDED( tUsrErr )                }; inline virtual ~tUsrErr(){};};
 // }}} ! class CUsrErr define macros
 // ================================================================================================ //
 
