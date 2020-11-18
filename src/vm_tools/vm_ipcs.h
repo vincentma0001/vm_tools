@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-04 09:05                                                  == //
-// ==   Modify Time          : 2020-11-18 09:33                                                  == //
+// ==   Modify Time          : 2020-11-18 17:46                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,7 +25,7 @@
 // [ inlucde files ] {{{
 // vm's function files inlcuded
 #include <vm_tools/vm_ipcs/CLocker.hpp>
-#include <vm_tools/vm_ipcs/CMutex_null.h>
+#include <vm_tools/vm_ipcs/CMtxNul.h>
 // }}} ! inlucde files
 // ================================================================================================ //
 

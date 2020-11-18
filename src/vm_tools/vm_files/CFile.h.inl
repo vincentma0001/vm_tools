@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:12:32                                               == //
-// ==   Modify Time          : 2020-11-12 13:11:10                                               == //
+// ==   Modify Time          : 2020-11-18 18:14:10                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,15 +18,14 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CFILE_H_INL__
-#define  __CFILE_H_INL__
-
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.files.inlcuded
 #include "CFileMode.h"
+#include "CFile.h"
 // }}}
 // ================================================================================================ //
 
@@ -322,7 +321,7 @@ inline bool vm::CFile::Put_w( _vIn_ const wchar_t cVal )
     if( mpFile == nullptr )
         return false;
     
-    int liRet = fputwc( cVal, mpFile );
+    wint_t liRet = fputwc( cVal, mpFile );
     if( liRet == WEOF )
     {
         HasErr();
@@ -397,7 +396,7 @@ inline bool vm::CFile::Put_w( _vIn_ const wchar_t* const cpStr )
     if( mpFile == nullptr )
         return false;
     
-    int liRet = fputws( cpStr, mpFile );
+    wint_t liRet = fputws( cpStr, mpFile );
     if( liRet == WEOF )
     {
         HasErr();
@@ -649,7 +648,7 @@ inline bool vm::CFile::Write_w( _vIn_ const wchar_t* const cpFmt, _vIn_ va_list&
 // ==  Params  : cpFmt            - [I] input string's format
 // ==            ...              - [I] input string's format paramters
 inline bool vm::CFile::Line_w( _vIn_ const wchar_t* const cpFmt, _vIn_ ... )
-// {
+// {{{
 {
     va_list vList;
     va_start( vList, cpFmt );
@@ -851,12 +850,6 @@ inline wchar_t* vm::CFile::Get_w( _vOt_ wchar_t* const pBuf, const size_t csztBu
 // ================================================================================================ //
 
 
-#endif // ! __CFILE_H_INL__
-// ================================================================================================ //
-// ==  Usage :                                                                                   == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Usage ] {{{ /*
-// }}} */
 // ================================================================================================ //
 // ==                                        End of file                                         == //
 // ================================================================================================ //

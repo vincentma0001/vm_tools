@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:43:57                                               == //
-// ==   Modify Time          : 2020-11-09 12:39:08                                               == //
+// ==   Modify Time          : 2020-11-18 18:01:08                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,11 +30,10 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
 // enum emFileMode : File mode List
 enum emFileMode
@@ -71,20 +70,18 @@ enum emFileMode
 };
 // }}} End of def enum emFileMode
 
-// ================================================================================================ //
-// ==  Class CFileMode : the class change enfileMode to string                                   == //
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CFileMode : the class change enfileMode to string
 class CFileMode
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Macrodefs : {{{
 #ifndef    _V_CFILEMODE_MAX_BUF_
 #   define _V_CFILEMODE_MAX_BUF_     32
 #endif // !_V_CFILEMODE_MAX_BUF_
 // }}} ! Macrodefs
 
-// ------------------------------------------------------------------------------------------------ //
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -99,25 +96,21 @@ private:
     inline CFileMode& operator = ( const CFileMode &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar   mszFileMode[_V_CFILEMODE_MAX_BUF_];
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Tranform emFileMode flag to string
     tchar* Tranformat( const short csFileMode );
 // }}} ! Methods
 
-};
-// }}} ! [ class CFileMode ]
-// ================================================================================================ //
+}; // }}} End of class CFileMode
 
-}
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CFileMode.h.inl"

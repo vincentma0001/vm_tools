@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:10:23                                               == //
-// ==   Modify Time          : 2020-11-11 16:06:33                                               == //
+// ==   Modify Time          : 2020-11-18 18:14:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,26 +30,21 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
-// ================================================================================================ //
-// ==  Class CFile : this class deal with stdc file operation                                    == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CFile : this class deal with stdc file operation
 class CFile
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Macrodefs : {{{
 #ifndef    vFEndl
 #   define vFEndl vT('\n')
 #endif // !vFEndl
 // }}} ! Macrodefs
 
-// ------------------------------------------------------------------------------------------------ //
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define return value of CFile
@@ -60,7 +55,7 @@ public:
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -75,8 +70,6 @@ private:
     inline CFile& operator = ( const CFile &obj );
 // }}} ! Construct & Destruct
 
-public:
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // File handle
@@ -87,17 +80,13 @@ public:
     long long   mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // [ Normal function ] {{{
     // Check has eror in file stream or not
     inline bool HasErr();
     // Check it's file stream's
     inline bool IsEof();
-    // }}}
 
-    // [ Open && Close file ]{{{
     // Open a file, with string modes
     // modes : read        - 'r', write     - 'w', append     - 'a', update   - '+',
     //         binary file - 'b', text file - 't', file exist - 'x'
@@ -110,9 +99,7 @@ public:
     inline bool Temp  (  );
     // Close file, with emFileMode
     inline void Close (  );
-    // }}}
 
-    // [ Write funcs ] {{{
     // Write a formated string to file stream
     inline bool Write   ( _vIn_ const tchar*   const cpFmt, _vIn_            ... );
     // Write a formated string to file stream
@@ -138,9 +125,7 @@ public:
     inline bool Line_w ( _vIn_ const wchar_t* const cpFmt, _vIn_            ... );
     // Write a formated char string line to file stream
     inline bool Line_w ( _vIn_ const wchar_t* const cpFmt, _vIn_ va_list& vList );
-    // }}}
 
-    // [ Put funcs ] {{{
     // Write a tchar letter to file stream
     inline bool Put    ( _vIn_ const tchar           cVal );
     // Write a char letter to file stream
@@ -154,9 +139,7 @@ public:
     inline bool Put_c  ( _vIn_ const char*    const cpStr );
     // Write a wchar string to file stream
     inline bool Put_w  ( _vIn_ const wchar_t* const cpStr );
-    // }}}
 
-    // [ Get funcs ] {{{
     // Get a tchar letter from file stream
     inline tchar    Get   ( _vOt_   tchar cVal );
     // Get a  char letter from file stream
@@ -170,7 +153,6 @@ public:
     inline char*    Get_c ( _vOt_    char* const pBuf, _vIn_ const size_t csztBufSize );
     // Get a wchar string from file stream
     inline wchar_t* Get_w ( _vOt_ wchar_t* const pBuf, _vIn_ const size_t csztBufSize );
-    // }}}
     /*
     unsigned long Seek(  );
     unsigned long Pos(  );
@@ -179,12 +161,10 @@ public:
     //*/
 // }}} ! Methods
 
-};
-// }}} ! [ class CFile ]
-// ================================================================================================ /
+}; // }}} End of class CFile
 
-}; 
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CFile.h.inl"

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:09:55                                               == //
-// ==   Modify Time          : 2020-11-12 13:07:46                                               == //
+// ==   Modify Time          : 2020-11-18 17:57:46                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,23 +28,20 @@
 // [ Include files ] {{{
 #include <dirent.h>
 #include <vm_cfgs.h>
-#include <vm_tools/vm_string/v_funcs_str.h>
 // }}}
 // ================================================================================================ //
 
+#include <vm_tools/vm_funcs.h>
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
-// ================================================================================================ //
-// ==  Class CFileSys : This class deal with file systime operation                              == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CFileSys : This class deal with file systime operation
 class CFileSys
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define class CFileSys error info
@@ -57,6 +54,7 @@ public:
         emOpenDirFailed = vMaxsLong-2
     };
     // }}} End of def enum emRet
+
     // enum emType : this enum defined file type
     enum emType
     // {{{
@@ -69,7 +67,7 @@ public:
     };
     // }}} End of def enum emType
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -85,7 +83,6 @@ private:
     inline CFileSys& operator = ( const CFileSys &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // file full name
@@ -113,7 +110,6 @@ private:
     long long   mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // [ Get filesys string ] {{{
@@ -209,7 +205,7 @@ public:
     // }}}
 
 public:
-    // [ Normal funcs ] {{{
+    // reset data in object
     inline void Reset( void )
     {
         vMemZero( mszFullName );
@@ -229,15 +225,12 @@ public:
 
         mllErrCode = 0;
     }
-    // }}}
-    // [ Check file full name funcs ] {{{
+
     // Check has path name in file name or not
     static inline bool HasDir  ( _vIn_ const tchar* const cpFileName );
     // Check has ext in file name or not
     static inline bool HasExt  ( _vIn_ const tchar* const cpFileName );
-    // }}}
 
-    // [ Get file names funcs ] {{{
     // Get file name from file full name
     static inline size_t GetFileName( _vOt_       tchar* const pFileName , _vIn_ const size_t csztFileNameSize,
                                       _vIn_ const tchar* const cpFullName, _vIn_ const size_t csztFullNameLen   );
@@ -250,18 +243,14 @@ public:
     // Get file type name from file full name
     static inline size_t GetFileExt ( _vOt_       tchar* const pFileExt  , _vIn_ const size_t csztFileExtSize ,
                                       _vIn_ const tchar* const cpFileName, _vIn_ const size_t csztFullNameLen   );
-    // }}}
 
-    // [ Get current funcs ] {{{
     // Get current module full name
     static inline size_t GetExecFull( _vOt_ tchar* const pFullName, _vIn_ const size_t csztFullNameSize );
     // Get current module file path
     static inline size_t GetExecPath( _vOt_ tchar* const pPathName, _vIn_ const size_t csztPathNameSize );
     // Get current module file name
     static inline size_t GetExecName( _vOt_ tchar* const pFileName, _vIn_ const size_t csztFileNameSize );
-    // }}}
 
-    // [ Dir && file funcs ] {{{
     // Remove a file by name
     static inline bool         Remove     ( _vIn_ const tchar* const cpFileName                                     );
     // Rename file name from oldname to newname
@@ -274,9 +263,7 @@ public:
     static inline bool         ChgWorkDir ( _vIn_ const tchar* const  cpWorkDir                                     );
     // Get curent work dirtory
     static inline const tchar* GetWorkDir ( _vIn_       tchar* const      cpBuf, _vIn_ const size_t     csztBufSize );
-    // }}}
 
-    // [ IsXXX funcs && CanXXX funcs ] {{{
     // Decide name is exist or not    , 1 is exist, 0 isn;t exist, -1 error.
     static inline int IsExist( _vIn_ const tchar* const cpName );
     // Decide name is exectable or not, 1 is bin  , 0 isn's bin  , -1 error. if cpName is dirtory, it's means can be searched
@@ -292,20 +279,17 @@ public:
     static inline bool CanWrite     ( _vIn_ const tchar* const cpName );
     // Dicide name has write/read right
     static inline bool CanReadWrite ( _vIn_ const tchar* const cpName );
-    // }}}
 
 // }}} ! Methods
 
-};
-// }}} ! [ class CFileSys ]
-// ================================================================================================ //
+}; // }}} End of class CFileSys
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CFileSys.h.inl"
 // ================================================================================================ //
+
 
 #endif // ! __CFILESYS_H__
 // ================================================================================================ //
