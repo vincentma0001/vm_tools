@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 23:00                                                  == //
-// ==   Modify Time          : 2020-11-12 23:00                                                  == //
+// ==   Modify Time          : 2020-11-18 08:30                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,13 +18,17 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CARGS_HPP_INL__
-#define  __CARGS_HPP_INL__
-
 
 // ================================================================================================ //
-// [ Comment info ] {{{
-
+// == Include files :                                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// [ Include files ] {{{
+//.vm's.function.depend.on.included
+#include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
+#include "CArgs.hpp"
+// }}}
+// ================================================================================================ //
 
 // ================================================================================================ //
 // ==  Class CArgs<tuiMaxArgvs> Construct && Destruct realization                                == //
@@ -147,13 +151,13 @@ inline unsigned int vm::CArgs< tuiMaxArgvs >::Splite( _vIn_  const tchar* const 
     tchar* lpch   = nullptr;
     tchar* lpNext = nullptr;
     
-    lpch = vStrtok_s( const_cast<tchar*>(pString), cpszDelimiters, &lpNext);
-    while ( (lpch!=nullptr) && (muiArgc<tuiMaxArgvs) )
+    lpch = vStrtok_s( const_cast<tchar*>(pString), cpszDelimiters, &lpNext );
+    while ( (lpch != nullptr) && (muiArgc < tuiMaxArgvs) )
     {
         mpArgvs[muiArgc++] = lpch;
         lpch = vStrtok_s(NULL, cpszDelimiters, &lpNext);
-    }
-    
+    } // End of while( ... )
+
     return muiArgc;
 }
 // }}} end of func CArgs<tuiMaxArgvs>::Splite(...)
@@ -162,11 +166,7 @@ inline unsigned int vm::CArgs< tuiMaxArgvs >::Splite( _vIn_  const tchar* const 
 // }}} ![ Class CArgs<tuiMaxArgvs> Functional realization ]
 // ================================================================================================ //
 
-// }}} ! Comment info
-// ================================================================================================ //
 
-
-#endif // ! __CARGS_HPP_INL__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

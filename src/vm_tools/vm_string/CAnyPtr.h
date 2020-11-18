@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-10 23:54                                                  == //
-// ==   Modify Time          : 2020-11-16 18:46                                                  == //
+// ==   Modify Time          : 2020-11-18 08:50                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,24 +30,21 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-// ================================================================================================ //
-// ==  Class CAnyPtr : this class deal with data convet between any type and string              == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CAnyPtr : this class deal with data convet between any type and string
 class CAnyPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // enum emType : this enum define data types
     enum emType
-    // {{{
-    {
+    { // {{{
+
         emBool      = 0,
 
         emChar      = 1,
@@ -73,13 +70,11 @@ public:
 
         emSize      = 15,
         emStr       = 99
-    };
-    // }}} End of def enum emType
+    }; // }}} End of def enum emType
 
     // union unVal : this union inlude value in class CAny
     union unVal
-    // {{{
-    {
+    { // {{{
         bool                bValue;
         size_t              sztValue;
 
@@ -103,26 +98,21 @@ public:
         float               fValue;
         double              dValue;
         long double         ldValue;
-    };
-    // }}} End of def union unVal
+    }; // }}} End of def union unVal
 
-    // enum emRet : this enum define return value for class CMemPtr
+    // enum emRet : this enum define return information for class CAny, CAnyPtr
     enum emRet
-    // {{{
-    {
-        emSucess           = 0,
+    {  // {{{$
+        // Example for define error return for special object
+        emErrUnknowType         = vm::emRet::emError - 1,
+        emErrConvertFailed      = vm::emRet::emError - 2,
 
-        emError            = vMaxsLong - 1,
-        emErrUnknowType    = emError   - 1,
-        emErrConvertFailed = emError   - 2,
-        emErrFmtFailed     = emError   - 3,
+        emWrnDiffType           = vm::emRet::emWarns - 1
 
-        emWarns            = vMaxsLong - 20,
-        emWrnDiffType      = emWarns   - 1
-    };
-    // }}} End of def enum emRet
+    }; // }}} End of def enum emCAnyRetRet
+
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construc define 
@@ -168,7 +158,6 @@ private:
     inline CAnyPtr& operator = ( const CAnyPtr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Data value
@@ -186,7 +175,6 @@ public:
     long long       mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     //  Get data's type
@@ -243,14 +231,12 @@ public:
     inline static tchar* toStr( tchar* const pDst, const size_t csztDstSize, const long double        Val );
 // }}} ! Methods
 
-};
-// }}} ! [ class CAnyPtr ]
-// ================================================================================================ //
+}; // }}} End of class CAnyPtr
 
-};
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CAnyPtr.h.inl"
 // ================================================================================================ //
 

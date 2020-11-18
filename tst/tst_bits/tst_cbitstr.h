@@ -1,6 +1,5 @@
 
-#include "vm_tools/vm_bits/CBit08.h"
-#include "vm_tools/vm_bits/CBitStr.hpp"
+#include <vm_tools/vm_bits.h>
 #include <vm_tools/vm_utst.h>
 
 // ================================================================================================ //

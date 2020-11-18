@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 20:53:24                                               == //
-// ==   Modify Time          : 2020-11-13 10:10:15                                               == //
+// ==   Modify Time          : 2020-11-18 09:35:15                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,14 +23,10 @@
 
 // ================================================================================================ //
 // [ Include files ] {{{
-
-// vm's function depend on included
-
 // vm's function files inlcuded
-
 #include <vm_tools/vm_string/CStrPtr.h>
 #include <vm_tools/vm_string/CString.hpp>
-
+#include <vm_tools/vm_string/CStrFmtPtr.h>
 #include <vm_tools/vm_string/CAnyPtr.h>
 #include <vm_tools/vm_string/CAny.hpp>
 // }}} ! Include files

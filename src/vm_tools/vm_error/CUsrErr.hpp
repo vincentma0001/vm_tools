@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:30                                                  == //
-// ==   Modify Time          : 2020-11-17 17:47                                                  == //
+// ==   Modify Time          : 2020-11-18 09:51                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -73,7 +73,6 @@ private:
 
     // Error infomation
     vm::CStdMap<long, vString>      mpUsrErrMap;
-
 // }}} ! Members
 
 // Methods   : {{{
@@ -89,7 +88,6 @@ public:
 
     // Regist a user defined message
     inline bool         RegMsg   ( const long clErrCode, const vString cstrErrMsg );
-
 // }}} ! Methods
 
 }; // }}} End of class CUsrErr
@@ -97,7 +95,7 @@ public:
 // ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CUsrErr.hpp.inl"
 // ================================================================================================ //
 

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 23:00                                                  == //
-// ==   Modify Time          : 2020-11-12 23:00                                                  == //
+// ==   Modify Time          : 2020-11-18 09:14                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,20 +30,16 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-
-// ================================================================================================ //
-// ==  Class CArgs : This class splite string by spliter, It will be easy to acess string parts  == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CArgs : This class splite string by spliter, It will be easy to acess string parts
 template< unsigned int tuiMaxArgvs >
 class CArgs
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -58,14 +54,12 @@ private:
     inline CArgs& operator = ( const CArgs &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
     // Get argv in CArgs by postion
     inline tchar* operator [] ( const unsigned int uiPos );
 // }}} ! Operators
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Argc in string
@@ -74,7 +68,6 @@ private:
     tchar*              mpArgvs[tuiMaxArgvs];
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Get argc in string
@@ -83,14 +76,12 @@ public:
     unsigned int Splite( const tchar* pString, const tchar* const cpszDelimiters );
 // }}} ! Methods
 
-};
-// }}} ! [ class CArgs ]
-// ================================================================================================ //
+}; // }}} End of class CArgs
 
-};
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CArgs.hpp.inl"
 // ================================================================================================ //
 

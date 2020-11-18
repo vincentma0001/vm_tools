@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-03 15:24:04                                               == //
-// ==   Modify Time          : 2020-11-03 08:37:07                                               == //
+// ==   Modify Time          : 2020-11-18 09:14:07                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -21,22 +21,106 @@
 #ifndef  __CUNITTESTFRAME_H__
 #define  __CUNITTESTFRAME_H__
 
-// ================================================================================================ //
-// Disable warnings :
-#if defined (_MSC_VER)
-#   pragma warning(disable:4996)
-#endif
-
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+// crt, std files included
 #include <list>
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
 
+// ================================================================================================ //
+// using namespace vm {{{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
+
+// Class CUnit : this is a test unit for unit test frame
+class CUnit
+{ // {{{
+
+// Construct & Destruct : {{{
+public:
+    // Construct & Destruct define
+    inline          CUnit( const tchar* const cpName );
+    inline virtual ~CUnit();
+
+private:
+    // Copy construct define
+    inline CUnit( const CUnit &obj );
+    // Assignment operation
+    inline CUnit& operator = ( const CUnit &obj );
+// }}} ! Construct & Destruct
+
+// Menbers   : {{{
+private:
+    tchar mszName[256];
+// }}} ! Members
+
+// Methods   : {{{
+public:
+    virtual bool todo(void) = 0;
+// }}} ! Methods
+
+// Friendefs : {{{
+friend class CUnitTestFrame;
+// }}} ! Friendefs
+
+}; // }}} End of class CUnit
+
+// ------------------------------------------------------------------------------------------------ //
+
+// Class CUnitTestFrame : Unit test frame
+class CUnitTestFrame
+{ // {{{
+
+// Typedefs  : {{{
+public:
+    typedef typename std::list<CUnit*>              tList;
+    typedef typename std::list<CUnit*>::iterator    tListItor;
+// }}} ! Typedefs
+
+// Construct & Destruct : {{{
+public:
+    // Construct & Destruct define
+    inline          CUnitTestFrame();
+    inline virtual ~CUnitTestFrame();
+
+private:
+    // Copy construct define
+    inline CUnitTestFrame( const CUnitTestFrame &obj );
+    // Assignment operation
+    inline CUnitTestFrame& operator = ( const CUnitTestFrame &obj );
+// }}} ! Construct & Destruct
+
+// Menbers   : {{{
+protected:
+    tList  mListUnits;
+// }}} ! Members
+
+// Methods   : {{{
+public:
+    // Run all unit test
+    inline void Run(  );
+private:
+    // Write text to console
+    inline void Log( const tchar* const cpFmt, ... );
+public:
+    // Regist a unit test function class to test frame
+    virtual void Regist( void ) = 0;
+// }}} ! Methods
+
+}; // }}} End of class CUnitTestFrame
+
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
+// ================================================================================================ //
+// class realization
+#include "CUnitTestFrame.h.inl"
+// ================================================================================================ //
 
 // ================================================================================================ //
 // [ Macro defines ] {{{
@@ -54,108 +138,6 @@
 // }}} ! Macro defines
 // ================================================================================================ //
 
-// ================================================================================================ //
-// using namespace vm {{{
-namespace vm
-{
-
-// ================================================================================================ //
-// ==  Class CUnit : this is a test unit for unit test frame                                     == //
-// ------------------------------------------------------------------------------------------------ //
-class CUnit
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
-// Friendefs : {{{
-friend class CUnitTestFrame;
-// }}} ! Friendefs
-
-// ------------------------------------------------------------------------------------------------ //
-// Construct & Destruct : {{{
-public:
-    // Construct & Destruct define
-    inline          CUnit( const tchar* const cpName );
-    inline virtual ~CUnit();
-
-private:
-    // Copy construct define
-    inline CUnit( const CUnit &obj );
-    // Assignment operation
-    inline CUnit& operator = ( const CUnit &obj );
-// }}} ! Construct & Destruct
-
-// ------------------------------------------------------------------------------------------------ //
-// Menbers   : {{{
-private:
-    tchar mszName[256];
-// }}} ! Members
-
-// ------------------------------------------------------------------------------------------------ //
-// Methods   : {{{
-public:
-    virtual bool todo(void) = 0;
-// }}} ! Methods
-
-};
-// }}} ! [ class CUnit ]
-// ================================================================================================ //
-
-// ================================================================================================ //
-// ==  Class CUnitTestFrame : Unit test frame                                                    == //
-// ------------------------------------------------------------------------------------------------ //
-class CUnitTestFrame
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
-// Typedefs  : {{{
-public:
-    typedef typename std::list<CUnit*>              tList;
-    typedef typename std::list<CUnit*>::iterator    tListItor;
-// }}} ! Typedefs
-
-// ------------------------------------------------------------------------------------------------ //
-// Construct & Destruct : {{{
-public:
-    // Construct & Destruct define
-    inline          CUnitTestFrame();
-    inline virtual ~CUnitTestFrame();
-
-private:
-    // Copy construct define
-    inline CUnitTestFrame( const CUnitTestFrame &obj );
-    // Assignment operation
-    inline CUnitTestFrame& operator = ( const CUnitTestFrame &obj );
-// }}} ! Construct & Destruct
-
-// ------------------------------------------------------------------------------------------------ //
-// Menbers   : {{{
-protected:
-    tList  mListUnits;
-// }}} ! Members
-
-// ------------------------------------------------------------------------------------------------ //
-// Methods   : {{{
-public:
-    // Run all unit test
-    inline void Run(  );
-private:
-    // Write text to console
-    inline void Log( const tchar* const cpFmt, ... );
-public:
-    // Regist a unit test function class to test frame
-    virtual void Regist( void ) = 0;
-// }}} ! Methods
-
-};
-// }}} ! [ class CUnitTestFrame ]
-// ================================================================================================ //
-
-}
-// }}} End of namespace vm
-// ================================================================================================ //
-// Class realization :
-#include "CUnitTestFrame.h.inl"
-// ================================================================================================ //
 
 #endif // ! __CUNITTESTFRAME_H__
 // ================================================================================================ //

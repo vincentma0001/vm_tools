@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:36                                               == //
-// ==   Modify Time          : 2020-11-16 18:01:10                                               == //
+// ==   Modify Time          : 2020-11-18 09:18:10                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,19 +30,15 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
-// ================================================================================================ //
-// ==  Class CMemPtr : this class deal with memory buffer operation                              == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CMemPtr : this class deal with memory buffer operation
 class CMemPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define return value for class CMemPtr
@@ -63,7 +59,7 @@ public:
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -84,7 +80,6 @@ public:
     inline void*        operator [] (const size_t csztPos);
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Buffer's address
@@ -96,10 +91,8 @@ private:
     long long        mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
-    // [ normal func ] {{{
     // Get string in buffer
     inline const tchar* c_str();
     //  Clear data in buffer
@@ -109,7 +102,6 @@ public:
     inline size_t       size ();
     // Get string's length in buffer
     inline size_t       len  ();
-    // }}}
 
 public:
     // Get buffer offset's address
@@ -173,14 +165,12 @@ public:
     inline size_t Fmt2   ( const size_t csztBufOffset, const tchar* const cpFmt, va_list& vList );
 // }}} ! Methods
 
-};
-// }}} ! [ class CMemPtr ]
-// ================================================================================================ /
+}; // }}} End of class CMemPtr
 
-}; 
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CMemPtr.h.inl"
 // ================================================================================================ //
 

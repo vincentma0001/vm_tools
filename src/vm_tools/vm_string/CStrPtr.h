@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-07 18:38:04                                               == //
-// ==   Modify Time          : 2020-11-13 10:31:14                                               == //
+// ==   Modify Time          : 2020-11-18 09:15:14                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,18 +30,15 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-// ================================================================================================ //
-// ==  Class CStrPtr : this class deal with string's operations                                  == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CStrPtr : this class deal with string's operations
 class CStrPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{  // {{{
+
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define return value for class CMemPtr
@@ -63,7 +60,7 @@ public:
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -101,7 +98,6 @@ public:
     inline CStrPtr& operator +  ( const tchar* const  cpSrc );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 protected:
     // String buffer's address
@@ -114,7 +110,6 @@ public:
     long long   mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Get buffer's address
@@ -191,14 +186,12 @@ public:
     inline size_t CopyTo( tchar* const  pDst, const size_t csztDstSize, const size_t csztDataLen, const size_t csztBufOffset = 0 );
 // }}} ! Methods
 
-};
-// }}} ! [ class CStrPtr ]
-// ================================================================================================ /
+}; // }}} End of class CStrPtr
 
-};
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CStrPtr.h.inl"
 // ================================================================================================ //
 

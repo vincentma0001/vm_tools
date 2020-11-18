@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-25 11:40                                                  == //
-// ==   Modify Time          : 2020-10-25 11:40                                                  == //
+// ==   Modify Time          : 2020-11-18 09:09                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -33,17 +33,14 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-
-// ================================================================================================ //
-// ==  Class CTerm : This class deal with system termial functions                               == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CTerm : This class deal with system termial functions
 template< size_t tsztBufSize >
 class CTerm
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -58,13 +55,11 @@ private:
     inline CTerm& operator = ( const CTerm &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar       mszBuf[tsztBufSize];
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Write letters to terminal
@@ -73,12 +68,9 @@ public:
     inline void Write( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 // }}} ! Methods
 
-};
-// }}} ! [ class CTerm ]
-// ================================================================================================ //
+}; // }}} End of class CTerm
 
-}; 
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 // Class realization :
 #include "CTerm.h.inl"

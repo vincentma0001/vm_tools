@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-10 08:51                                                  == //
-// ==   Modify Time          : 2020-11-10 08:51                                                  == //
+// ==   Modify Time          : 2020-11-18 09:48                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -32,9 +32,9 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
-// ================================================================================================ //
 // Typedefs  : {{{
 // struct stListNote : This struct defined list note
 template< typename tType >
@@ -49,10 +49,8 @@ struct stListNote
     stListNote*     mpNext;
 }; // End of def struct stListNote
 // }}} ! Typedefs
-// ================================================================================================ //
 
-// ================================================================================================ //
-// [ list funcs ] {{{
+// ------------------------------------------------------------------------------------------------ //
 
 // Initialize a list note
 template< typename tType >
@@ -111,13 +109,9 @@ inline stListNote<tType>* vl_prev ( _vIn_ const stListNote<tType>* const pNote )
 template< typename tType >
 inline stListNote<tType>* vl_next ( _vIn_ const stListNote<tType>* const pNote );
 
-// }}} ! list funcs
+}; // }}} End of namespace vm
 // ================================================================================================ //
-
-};
-// }}} End of namespace vm
-// ================================================================================================ //
-// function realization :
+// functions realization
 #include "v_funcs_list.h.inl"
 // ================================================================================================ //
 

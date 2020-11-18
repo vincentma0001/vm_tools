@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 0.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-01 19:46:15                                               == //
-// ==   Modify Time          : 2020-11-05 08:58:47                                               == //
+// ==   Modify Time          : 2020-11-18 09:26:47                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,15 +18,15 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef   __CWINTERM_H_INL__
-#define   __CWINTERM_H_INL__
-
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
+#include "CWinTerm.h"
 // }}}
 // ================================================================================================ //
 
@@ -40,7 +40,7 @@
 // ==  Methord : CWinTerm::CWinTerm()                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline CWinTerm::CWinTerm(  )
+inline vm::CWinTerm::CWinTerm(  )
 // {{{
 {
     mhHandle =::GetStdHandle(STD_OUTPUT_HANDLE);
@@ -52,7 +52,7 @@ inline CWinTerm::CWinTerm(  )
 // ==  Methord : virtual CWinTerm::CWinTerm()                                                    == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline CWinTerm::~CWinTerm(  )
+inline vm::CWinTerm::~CWinTerm(  )
 // {{{
 {
     mhHandle = nullptr;
@@ -64,7 +64,7 @@ inline CWinTerm::~CWinTerm(  )
 // ==  Methord : CWinTerm::CWinTerm()                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline CWinTerm::CWinTerm( const CWinTerm &obj )
+inline vm::CWinTerm::CWinTerm( const CWinTerm &obj )
 // {{{
 {
     *this = obj;
@@ -86,7 +86,7 @@ inline CWinTerm::CWinTerm( const CWinTerm &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CWinTerm&         - [O] this object
-inline CWinTerm& CWinTerm::operator = ( const CWinTerm &obj )
+inline vm::CWinTerm& CWinTerm::operator = ( const CWinTerm &obj )
 // {{{
 {
     return *this;
@@ -110,7 +110,7 @@ inline CWinTerm& CWinTerm::operator = ( const CWinTerm &obj )
 // ==  Return  : bool             - [O] true  for sucess
 // ==                                   false fot failed
 // ==  Params  : csColor          - [I] txt color, for example emColor::vf_lWhitr|emColore::vb_lYellow
-inline bool CWinTerm::SetTxtColor( const short csColor )
+inline bool vm::CWinTerm::SetTxtColor( const short csColor )
 // {{{
 {
     mulErrCode = 0;
@@ -132,7 +132,7 @@ inline bool CWinTerm::SetTxtColor( const short csColor )
 // ==  Params  : csColor          - [X] Text color
 // ==            cpFmt            - [X] Letter format string
 // ==            ...              - [X] Letter format string paramters
-inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, ... )
+inline int vm::CWinTerm::Write( const short csColor, const tchar* const cpFmt, ... )
 // {{{
 {
     bool lbRet = SetTxtColor( csColor );
@@ -162,7 +162,7 @@ inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, ... )
 // ==  Params  : csColor          - [X] Text color
 // ==            cpFmt            - [X] Letter format string
 // ==            vList            - [X] Letter format string paramters
-inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, va_list& vList )
+inline int vm::CWinTerm::Write( const short csColor, const tchar* const cpFmt, va_list& vList )
 // {{{
 {
     bool lbRet = SetTxtColor(csColor);
@@ -187,7 +187,7 @@ inline int CWinTerm::Write( const short csColor, const tchar* const cpFmt, va_li
 // ==  Return  : void             - [O] true  for sucess
 // ==                                   false for failed
 // ==  Params  : cpTitile         - [X] Console titile string
-inline bool CWinTerm::SetTitile( const tchar* const cpTitile )
+inline bool vm::CWinTerm::SetTitile( const tchar* const cpTitile )
 // {{{
 {
     BOOL lbRet = ::SetConsoleTitle( cpTitile );
@@ -206,7 +206,7 @@ inline bool CWinTerm::SetTitile( const tchar* const cpTitile )
 // ==  Brief   : Get console titile
 // ==  Return  : tchar*           - [O] Current console titile
 // ==  Params  : 
-inline tchar* CWinTerm::GetTitile(  )
+inline tchar* vm::CWinTerm::GetTitile(  )
 // {{{
 {
     vMemZero(mszBuf);
@@ -219,7 +219,7 @@ inline tchar* CWinTerm::GetTitile(  )
 // }}} ![ Class CWinTerm Functional realization ]
 // ================================================================================================ //
 
-#endif // __CWINTERM_H_INL__
+
 // ================================================================================================ //
 // ==                                        End of file                                         == //
 // ================================================================================================ //

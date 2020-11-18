@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-04 11:04                                                  == //
-// ==   Modify Time          : 2020-11-04 11:04                                                  == //
+// ==   Modify Time          : 2020-11-18 09:20                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,25 +30,23 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
 // Macrodefs : {{{
 #ifndef    vCycBufRemoveAfterGet
 #   define vCycBufRemoveAfterGet      1
 #endif // !vCycBufRemoveAfterGet
 // }}} ! Macrodefs
 
-// ================================================================================================ //
-// ==  Class CCycBufPtr : This class deal with cyc buffer                                        == //
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CCycBufPtr : This class deal with cyc buffer
 class CCycBufPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define return value for class CCycBufPtr
@@ -69,7 +67,7 @@ public:
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -84,13 +82,11 @@ private:
     inline CCycBufPtr& operator = ( const CCycBufPtr &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Operators : {{{
 public:
     inline const tchar* operator * () { return mpBufStart; }
 // }}} ! Operators
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // Cyc buffer start pointer
@@ -110,7 +106,6 @@ private:
     long long          mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Get buffer size
@@ -146,17 +141,13 @@ public:
     inline bool Peek ( tType                                       &tData );
 // }}} ! Methods
 
-};
-// }}} ! [ class CCycBufPtr ]
-// ================================================================================================ //
+}; // }}} End of class CCycBufPtr
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CCycBufPtr.h.inl"
 // ================================================================================================ //
-
 
 #endif // ! __CCYCBUFPTR_H__
 // ================================================================================================ //

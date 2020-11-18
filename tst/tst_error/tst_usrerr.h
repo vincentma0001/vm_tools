@@ -2,7 +2,7 @@
 #ifndef  __TST_USRERR_H__
 #define  __TST_USRERR_H__
 
-#include "TstRet.h"
+#include "eTstRet.h"
 #include <vm_tools/vm_utst.h>
 #include <vm_tools/vm_funcs.h>
 

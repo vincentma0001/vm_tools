@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-05 10:06                                                  == //
-// ==   Modify Time          : 2020-11-16 16:00                                                  == //
+// ==   Modify Time          : 2020-11-18 09:21                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -34,6 +34,7 @@
 // ================================================================================================ //
 // using namespace vm {{{
 namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
 // Macrodefs : {{{
 #ifndef    vAnyToStr
@@ -93,6 +94,8 @@ namespace vm {
 #endif // !vStrToLDouble
 // }}} ! Macrodefs
 
+// ------------------------------------------------------------------------------------------------ //
+
 // Class CAny : This class deal with convent operation between string and other types
 template< size_t tsztBufSize >
 class CAny : public CAnyPtr
@@ -151,6 +154,7 @@ private:
 
 }; // }}} End of class CAny
 
+// ------------------------------------------------------------------------------------------------ //
 };// }}} End of namespace vm
 // ================================================================================================ //
 

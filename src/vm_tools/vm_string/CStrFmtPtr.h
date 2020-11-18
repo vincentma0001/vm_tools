@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-13 09:03                                                  == //
-// ==   Modify Time          : 2020-11-13 09:03                                                  == //
+// ==   Modify Time          : 2020-11-18 09:17                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,19 +30,15 @@
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
+namespace vm {
+// ------------------------------------------------------------------------------------------------ //
 
-// ================================================================================================ //
-// ==  Class CStrFmtPtr : this class deal with create format string                              == //
-// ------------------------------------------------------------------------------------------------ //
+// Class CStrFmtPtr : this class deal with create format string
 class CStrFmtPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Typedefs  : {{{
 public:
     // enum emRet : this enum define return value for class CMemPtr
@@ -61,7 +57,7 @@ public:
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
-// ------------------------------------------------------------------------------------------------ //
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -75,7 +71,7 @@ private:
     // Assignment operation
     inline CStrFmtPtr& operator = ( const CStrFmtPtr &obj );
 // }}} ! Construct & Destruct
-// ------------------------------------------------------------------------------------------------ //
+
 // Operators : {{{
 public:
     // string pointer
@@ -87,7 +83,6 @@ public:
     inline CStrFmtPtr& operator () ( const tchar* const cpStr                          );
 // }}} ! Operators
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     // string buffer pointer
@@ -103,7 +98,6 @@ public:
     long long       mllErrCode;
 // }}} ! Members
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     // Get buffer's address
@@ -174,20 +168,16 @@ public:
     // Create a formated string for double
     template< size_t tsztTmpBufSize >
     inline CStrFmtPtr& fmt_d   ( const size_t csztWidth=0, const size_t csztWidthDecimal=0, const bool bFillZero=false, const bool bLeft=false );
-
 // }}} ! Methods
 
-};
-// }}} ! [ class CStrFmtPtr ]
-// ================================================================================================ //
+}; // }}} End of class CStrFmtPtr
 
-};
-// }}} End of namespace vm
+// ------------------------------------------------------------------------------------------------ //
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CStrFmtPtr.h.inl"
 // ================================================================================================ //
-
 
 #endif // ! __CSTRFMTPTR_H__
 // ================================================================================================ //

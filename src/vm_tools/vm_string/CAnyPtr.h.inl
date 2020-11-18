@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-10 23:55                                                  == //
-// ==   Modify Time          : 2020-11-10 23:55                                                  == //
+// ==   Modify Time          : 2020-11-18 09:07                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,22 +18,18 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CANYPTR_H_INL__
-#define  __CANYPTR_H_INL__
-
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 #include <vm_tools/vm_funcs.h>
+//.vm's.function.files.inlcuded
+#include "CAnyPtr.h"
 // }}}
 // ================================================================================================ //
-
-
-// ================================================================================================ //
-// [ Comment info ] {{{
 
 
 // ================================================================================================ //
@@ -315,103 +311,56 @@ inline vm::CAnyPtr& vm::CAnyPtr::operator = ( const CAnyPtr &obj )
 inline const tchar* vm::CAnyPtr::cs_type(  )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
-    vm::v_memzero( mpBuf, msztBufSize );
-    
+    mllErrCode = vm::emRet::emSucess;
+
     switch ( memType ) {
     // {{{
         case emType::emBool:
         { return  vT("bool"); }
         case emType::emSize:
         { return vT("size_t"); }
-    
+
         case emType::emChar:
         { return vT("char"); }
         case emType::emUChar:
         { return vT("unsigned char"); }
         case emType::emWChar:
         { return vT("wchar_t"); }
-    
+
         case emType::emShort:
         { return vT("short"); }
         case emType::emUShort:
         { return vT("unsigned short"); }
-    
+
         case emType::emInt:
         { return vT("int"); }
         case emType::emUInt:
         { return vT("unsigned int"); }
-    
+
         case emType::emLong:
         { return vT("long"); }
         case emType::emULong:
         { return vT("unsigned long"); }
-    
+
         case emType::emLLong:
         { return vT("long long"); }
         case emType::emULLong:
         { return vT("unsigned long long"); }
-    
+
         case emType::emFloat:
         { return vT("float"); }
         case emType::emDouble:
         { return vT("double"); }
         case emType::emLDouble:
         { return vT("long double"); }
-    
+
         case emType::emStr:
         { return vT("string"); }
-    
+
         default:
         { return vT("unknow"); }
-/*
-        case emType::emBool:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("bool")                ); break; }
-        case emType::emSize:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("size_t")              ); break; }
-    
-        case emType::emChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("char")                ); break; }
-        case emType::emUChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned char")       ); break; }
-        case emType::emWChar:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("wchar_t")             ); break; }
-    
-        case emType::emShort:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("short")               ); break; }
-        case emType::emUShort:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned short")      ); break; }
-    
-        case emType::emInt:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("int")                 ); break; }
-        case emType::emUInt:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned int")        ); break; }
-    
-        case emType::emLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("long")                ); break; }
-        case emType::emULong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned long")       ); break; }
-    
-        case emType::emLLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("long long")           ); break; }
-        case emType::emULLong:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unsigned long long")  ); break; }
-    
-        case emType::emFloat:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("float")               ); break; }
-        case emType::emDouble:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("double")              ); break; }
-        case emType::emLDouble:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("long double")         ); break; }
-    
-        case emType::emStr:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("string")              ); break; }
-    
-        default:
-        { vm::v_sprintf( mpBuf, msztBufSize, vT("unknow")              ); }
-//*/
     } // }}} End of switch( emType )
-    
+
     return mpBuf;
 }
 // }}} end of func CAnyPtr::cs_type(...)
@@ -426,7 +375,7 @@ inline const tchar* vm::CAnyPtr::cs_type(  )
 inline tchar* vm::CAnyPtr::toStr( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
     vm::v_memzero( mpBuf, msztBufSize );
 
     switch ( memType ) {
@@ -490,7 +439,7 @@ inline tchar* vm::CAnyPtr::toStr( void )
 inline bool vm::CAnyPtr::toBool( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if( memType == emType::emStr )
     {
@@ -526,7 +475,7 @@ inline bool vm::CAnyPtr::toBool( void )
 inline size_t vm::CAnyPtr::toSize( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
     
     if( memType == emType::emStr )
     {
@@ -565,7 +514,7 @@ inline wchar_t vm::CAnyPtr::toWchar( void )
 inline char vm::CAnyPtr::toChar( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -590,7 +539,7 @@ inline char vm::CAnyPtr::toChar( void )
 inline unsigned char vm::CAnyPtr::toUChar( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -615,7 +564,7 @@ inline unsigned char vm::CAnyPtr::toUChar( void )
 inline short vm::CAnyPtr::toShort( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -640,7 +589,7 @@ inline short vm::CAnyPtr::toShort( void )
 inline unsigned short vm::CAnyPtr::toUShort( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -665,7 +614,7 @@ inline unsigned short vm::CAnyPtr::toUShort( void )
 inline int vm::CAnyPtr::toInt( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -690,7 +639,7 @@ inline int vm::CAnyPtr::toInt( void )
 inline unsigned int vm::CAnyPtr::toUInt( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -715,7 +664,7 @@ inline unsigned int vm::CAnyPtr::toUInt( void )
 inline long vm::CAnyPtr::toLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -740,7 +689,7 @@ inline long vm::CAnyPtr::toLong( void )
 inline unsigned long vm::CAnyPtr::toULong( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -765,7 +714,7 @@ inline unsigned long vm::CAnyPtr::toULong( void )
 inline long long vm::CAnyPtr::toLLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -790,7 +739,7 @@ inline long long vm::CAnyPtr::toLLong( void )
 inline unsigned long long vm::CAnyPtr::toULLong( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -815,7 +764,7 @@ inline unsigned long long vm::CAnyPtr::toULLong( void )
 inline float vm::CAnyPtr::toFloat( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -840,7 +789,7 @@ inline float vm::CAnyPtr::toFloat( void )
 inline double vm::CAnyPtr::toDouble( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -865,7 +814,7 @@ inline double vm::CAnyPtr::toDouble( void )
 inline long double vm::CAnyPtr::toLDouble( void )
 // {{{
 {
-    mllErrCode = emRet::emSucess;
+    mllErrCode = vm::emRet::emSucess;
 
     if(memType==emType::emStr)
     {
@@ -1141,16 +1090,6 @@ inline tchar* vm::CAnyPtr::toStr( tchar* const pDst, const size_t csztDstSize, c
 // ================================================================================================ //
 
 
-// }}} ! Comment info
-// ================================================================================================ //
-
-
-#endif // ! __CANYPTR_H_INL__
-// ================================================================================================ //
-// ==  Usage :                                                                                   == //
-// == ------------------------------------------------------------------------------------------ == //
-// [ Usage ] {{{ /*
-// }}} */
 // ================================================================================================ //
 // ==                                        End of file                                         == //
 // ================================================================================================ //

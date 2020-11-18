@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 13:39:35                                               == //
-// ==   Modify Time          : 2020-11-03 09:22:57                                               == //
+// ==   Modify Time          : 2020-11-18 09:19:57                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,25 +26,23 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+//.vm's.function.depend.on.included
 #include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
 #include "CMemPtr.h"
 // }}}
 // ================================================================================================ //
 
-
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-
-// ================================================================================================ //
-// ==  Class CMem : This class deal with memory operation                                        == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CMem : This class deal with memory operation
 template< size_t tsztBufSize >
 class CMem : public CMemPtr
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -59,20 +57,16 @@ private:
     inline CMem& operator = ( const CMem &obj );
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tchar  mBuf[tsztBufSize];
 // }}} ! Members
 
-};
-// }}} ! [ class CMem ]
-// ================================================================================================ /
+}; // }}} End of class CMem
 
-}; 
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
-// Class realization :
+// class realization
 #include "CMem.hpp.inl"
 // ================================================================================================ //
 
