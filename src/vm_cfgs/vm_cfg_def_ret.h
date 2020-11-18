@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-15 10:55                                                  == //
-// ==   Modify Time          : 2020-11-17 11:33                                                  == //
+// ==   Modify Time          : 2020-11-18 17:16                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -38,16 +38,24 @@ namespace vm
 
 // ------------------------------------------------------------------------------------------------ //
 // Macrodefs : {{{
-#ifndef    vRetSucess
-#   define vRetSucess      0
-#endif // !vRetSucess
+#ifndef    _V_RET_SUCESS_
+#   define _V_RET_SUCESS_       0
+#endif // !_V_RET_SUCESS_
+
+#ifndef    vErrComOffSet
+#   define vErrComOffSet        1
+#endif // !vErrComOffSet
 
 #ifndef    vErrOffSet
-#   define vErrOffSet      1
+#   define vErrOffSet           100
 #endif // !vErrOffSet
 
+#ifndef    vWrmComOffset
+#   define vWrmComOffset        200
+#endif // !vWrmComOffset
+
 #ifndef    vWrnOffSet
-#   define vWrnOffSet      50
+#   define vWrnOffSet           300
 #endif // !vWrnOffSet
 // }}} ! Macrodefs
 // ------------------------------------------------------------------------------------------------ //
@@ -57,22 +65,22 @@ namespace vm
 enum emRet
 { // {{{
     // no errer
-    emSucess            = vRetSucess,
+    emSucess            = _V_RET_SUCESS_,
 
 // ------------------------------------------------------------------------------------------------ //
     // Common error return
-    emErrorCom          = vMinsInt + vErrOffSet,
+    emErrorCom          = vMaxsInt - vErrComOffSet,
     // error return for vm::v_sprintf
-    emErrStrFmt         = emErrorCom + 1,
+    emErrStrFmt         = emErrorCom - 1,
 
     // Common error trturn
-    emWarnsCom          = vMinsInt + vWrnOffSet,
+    emWarnsCom          = vMaxsInt - vErrComOffSet,
 
 // ------------------------------------------------------------------------------------------------ //
     // error return
-    emError             = vMaxuInt - vErrOffSet,
+    emError             = vMaxsInt - vErrOffSet,
     // warn return
-    emWarns             = vMaxuInt - vWrnOffSet
+    emWarns             = vMaxsInt - vWrnOffSet
 }; // }}} End of def enum emErrRet
 // ------------------------------------------------------------------------------------------------ //
 

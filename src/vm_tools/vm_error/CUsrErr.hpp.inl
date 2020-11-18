@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 11:07                                                  == //
-// ==   Modify Time          : 2020-11-18 08:56                                                  == //
+// ==   Modify Time          : 2020-11-18 17:14                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -49,9 +49,14 @@ inline vm::CUsrErr< tType,tsztBufSize >::CUsrErr( const long clErrCode )
 {
     // Regist common error information
     RegMsg( vm::emRet::emSucess,      vT("No error return.") );
+
+    RegMsg( vm::emRet::emErrorCom,    vT("Common Error return, lookfor syserr for more information.") );
+    RegMsg( vm::emRet::emWarnsCom,    vT("Common Warns return, lookfor syserr for more information.") );
+
     RegMsg( vm::emRet::emError,       vT("Error return, lookfor syserr for more information.") );
-    RegMsg( vm::emRet::emWarns,       vT("Warns return, lookfor syserr for more information.") );
     RegMsg( vm::emRet::emErrStrFmt,   vT("Format string failed."));
+
+    RegMsg( vm::emRet::emWarns,       vT("Warns return, lookfor syserr for more information.") );
 
     // Regist other error information for different object
     //Regist();
