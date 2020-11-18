@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-17 18:05                                                  == //
-// ==   Modify Time          : 2020-11-18 14:02                                                  == //
+// ==   Modify Time          : 2020-11-18 17:18                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -42,9 +42,9 @@ namespace vm {
 // define user error infomation for special object
 DEF_CUSRERR_BEGIN(  CAnyRet, _V_CUSEERR_BUF_SIZE_ )
 
-DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emErrUnknowType,         vT("data type is unkonwn in class CAny") )
-DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emErrConvertFailed,      vT("data convert failed") )
-DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emWrnDiffType,           vT("convernt data between different types") )
+DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emErrUnknowType,         vT("data type is unkonwn in class CAny")       );
+DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emErrConvertFailed,      vT("data convert failed")                      );
+DEF_CUSRERR_REGMEG( vm::CAnyPtr::emRet::emWrnDiffType,           vT("convernt data between different types")    );
 
 DEF_CUSRERR_ENDED(  CAnyRet )
 
