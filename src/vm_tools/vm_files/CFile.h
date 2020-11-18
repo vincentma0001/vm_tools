@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-09 09:10:23                                               == //
-// ==   Modify Time          : 2020-11-18 18:14:33                                               == //
+// ==   Modify Time          : 2020-11-18 18:17:33                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -35,15 +35,17 @@
 namespace vm {
 // ------------------------------------------------------------------------------------------------ //
 
-// Class CFile : this class deal with stdc file operation
-class CFile
-{ // {{{
-
 // Macrodefs : {{{
 #ifndef    vFEndl
 #   define vFEndl vT('\n')
 #endif // !vFEndl
 // }}} ! Macrodefs
+
+// ------------------------------------------------------------------------------------------------ //
+
+// Class CFile : this class deal with stdc file operation
+class CFile
+{ // {{{
 
 // Typedefs  : {{{
 public:
@@ -51,7 +53,7 @@ public:
     enum emRet
     // {{{
     {
-        emRetNoInit = vMaxsLLong-1
+        emErrCFileNoInit = vm::emRet::emError-1
     };
     // }}} End of def enum emRet
 // }}} ! Typedefs
