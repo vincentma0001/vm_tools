@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                       CMutex_null.h                                        == //
+// ==                                         CMtxNul.h                                          == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-04 09:15                                                  == //
-// ==   Modify Time          : 2020-11-04 09:15                                                  == //
+// ==   Modify Time          : 2020-11-18 17:41                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,8 +18,8 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CMUTEX_NULL_H__
-#define  __CMUTEX_NULL_H__
+#ifndef  __CMTXNUL_H__
+#define  __CMTXNUL_H__
 
 
 // ================================================================================================ //
@@ -27,44 +27,37 @@
 namespace vm
 {
 
-// ================================================================================================ //
-// ==  Class CMutex_null : This calls wraped a empty mutex                                       == //
-// ------------------------------------------------------------------------------------------------ //
-class CMutex_null
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+// Class CMtxNul : This calls wraped a empty mutex
+class CMtxNul
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CMutex_null(){};
+    inline          CMtxNul(){};
     // Destruct define
-    inline virtual ~CMutex_null(){};
+    inline virtual ~CMtxNul(){};
 
 public:
     // Copy construct define
-    inline CMutex_null             ( const CMutex_null &obj ){             };
+    inline CMtxNul             ( const CMtxNul &obj ){             };
     // Assignment operation
-    inline CMutex_null& operator = ( const CMutex_null &obj ){return *this;};
+    inline CMtxNul& operator = ( const CMtxNul &obj ){return *this;};
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Methods   : {{{
 public:
     inline void Enter(){};
     inline void Leave(){};
 // }}} ! Methods
 
-};
-// }}} ! [ class CMutex_null ]
-// ================================================================================================ //
+}; // }}} End of class CMtxNul
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 
 
-#endif // ! __CMUTEX_NULL_H__
+#endif // ! __CMTXNUL_H__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

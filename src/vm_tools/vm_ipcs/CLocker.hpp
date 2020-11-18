@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-04 08:39                                                  == //
-// ==   Modify Time          : 2020-11-04 08:39                                                  == //
+// ==   Modify Time          : 2020-11-18 17:38                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,17 +24,14 @@
 
 // ================================================================================================ //
 // using namespace vm {{{
-namespace vm
-{
-
-// ================================================================================================ //
-// ==  Class CLocker : This class deal with mutex operation                                      == //
+namespace vm {
 // ------------------------------------------------------------------------------------------------ //
+
+// Class CLocker : This class deal with mutex operation
 template< class tMutex >
 class CLocker
-// {{{
-{
-// ------------------------------------------------------------------------------------------------ //
+{ // {{{
+
 // Construct & Destruct : {{{
 public:
     // Construct define
@@ -49,18 +46,14 @@ private:
     inline CLocker& operator = ( const CLocker &obj ){ return *this; };
 // }}} ! Construct & Destruct
 
-// ------------------------------------------------------------------------------------------------ //
 // Menbers   : {{{
 private:
     tMutex&         mMutex;
 // }}} ! Members
 
-};
-// }}} ! [ class CLocker ]
-// ================================================================================================ //
+}; // }}} End of class CLocker
 
-};
-// }}} End of namespace vm
+}; // }}} End of namespace vm
 // ================================================================================================ //
 
 
