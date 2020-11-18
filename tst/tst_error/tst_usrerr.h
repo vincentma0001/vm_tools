@@ -16,7 +16,7 @@ vTry
     vm::eTstRet loTstErr(vm::emRet::emSucess);
     vLine( loTstErr.Fmt ( vT("[%s:%d] - This is a test! [%EC:%EM]"), vT("func"), 10 ) );
 
-    vm::eTstRet loTstErr2(vm::emTstRet::emErrRet1);
+    vm::eTstRet loTstErr2(emTstRet::emErrRet1);
     vLine( loTstErr2.Fmt( vT("[%s:%d] - This is a test! [%EC:%EM]"), vT("func"), 20 ) );
 
 

@@ -11,7 +11,7 @@ UT_FUNC_BEGIN( ut_err_1 )
 vTry
 
     // Add unit test coder here
-    long long lllErrCode = vMakeLLong( vm::emTstRet::emErrRet1, errno );
+    long long lllErrCode = vMakeLLong( emTstRet::emErrRet1, errno );
     long       llUsrCode =  vLowLLong( lllErrCode );
     long       llSysCode = vHighLLong( lllErrCode );
     vLine( vT("Err(%lld) -> UseErr(%ld):SysErr(%ld) "), lllErrCode, llUsrCode, llSysCode );
