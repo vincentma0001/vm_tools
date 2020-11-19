@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 10:45                                                  == //
-// ==   Modify Time          : 2020-11-18 09:38                                                  == //
+// ==   Modify Time          : 2020-11-19 11:51                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -75,7 +75,7 @@ namespace vm {
 // ------------------------------------------------------------------------------------------------ //
 
 // Class CErr : this class deal with error operattion
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 class CErr
 { // {{{
 

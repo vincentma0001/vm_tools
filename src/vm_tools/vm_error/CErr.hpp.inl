@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-05 11:04                                                  == //
-// ==   Modify Time          : 2020-11-18 09:38                                                  == //
+// ==   Modify Time          : 2020-11-19 11:52                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -42,7 +42,7 @@
 // ==  Methord : CErr<tSysErr,tUsrErr>::CErr()                                                   == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::CErr( const long long cllErrCode )
     : mSysErr( vHighLLong(cllErrCode) ), mUsrErr( vLowLLong(cllErrCode) )
 // {{{
@@ -55,7 +55,7 @@ inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::CErr( const long long cllErrCode
 // ==  Methord : virtual CErr<tSysErr,tUsrErr>::~CErr()                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::~CErr(  )
 // {{{
 {
@@ -67,7 +67,7 @@ inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::~CErr(  )
 // ==  Methord : CErr<tSysErr,tUsrErr>::CErr( const CErr &obj )                                  == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::CErr( const CErr &obj )
 // {{{
 {
@@ -90,7 +90,7 @@ inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >::CErr( const CErr &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
 // ==  Return  : CErr<tSysErr,tUsrErr>& - [O] this object
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >& vm::CErr< tSysErr,tUsrErr,tsztBufSize >::operator = ( const CErr &obj )
 // {{{
 {
@@ -119,7 +119,7 @@ inline vm::CErr< tSysErr,tUsrErr,tsztBufSize >& vm::CErr< tSysErr,tUsrErr,tsztBu
 // ==            %ESM = system error message
 // ==            %EUC = user error code
 // ==            %EUM = user error message
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline tchar* vm::CErr< tSysErr,tUsrErr,tsztBufSize >::Fmt( const tchar* const cpFmt, ... )
 // {{{ 
 {
@@ -145,7 +145,7 @@ inline tchar* vm::CErr< tSysErr,tUsrErr,tsztBufSize >::Fmt( const tchar* const c
 // ==            %ESM = system error message
 // ==            %EUC = user error code
 // ==            %EUM = user error message
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline tchar* vm::CErr< tSysErr,tUsrErr,tsztBufSize >::Fmt( const tchar* const cpFmt, va_list& vList )
 // {{{ 
 {
@@ -179,7 +179,7 @@ inline tchar* vm::CErr< tSysErr,tUsrErr,tsztBufSize >::Fmt( const tchar* const c
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Check CErr object has error or not
 // ==  Return  : bool             - [O] treu  - has error
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline bool vm::CErr< tSysErr,tUsrErr,tsztBufSize >::HasErr( void )
 // {{{ 
 {
@@ -201,7 +201,7 @@ inline bool vm::CErr< tSysErr,tUsrErr,tsztBufSize >::HasErr( void )
 // ==  Return  : void             - [O] Nothing for return
 // ==  Params  : cpFmt            - [I] string's format
 // ==            ...              - [I] string's format paramters
-template< class tSysErr, class tUsrErr, size_t tsztBufSize >
+template< typename tSysErr, typename tUsrErr, size_t tsztBufSize >
 inline void vm::CErr< tSysErr,tUsrErr,tsztBufSize >::Throw( const tchar* const cpFmt, ... )
 // {{{ 
 {
