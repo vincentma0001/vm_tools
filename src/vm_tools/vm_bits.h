@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-31 20:06                                                  == //
-// ==   Modify Time          : 2020-11-18 09:33                                                  == //
+// ==   Modify Time          : 2020-11-19 10:32                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,11 +24,11 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 // vm's function files inlcuded
-#include <vm_tools/vm_bits/CBitStr.hpp>
-#include <vm_tools/vm_bits/CBit08.h>
-#include <vm_tools/vm_bits/CBit16.h>
-#include <vm_tools/vm_bits/CBit32.h>
-#include <vm_tools/vm_bits/CBit64.h>
+#include "./vm_bits/CBitStr.hpp"
+#include "./vm_bits/CBit08.h"
+#include "./vm_bits/CBit16.h"
+#include "./vm_bits/CBit32.h"
+#include "./vm_bits/CBit64.h"
 // }}} ! Include files
 // ================================================================================================ //
 

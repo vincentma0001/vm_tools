@@ -44,11 +44,9 @@ configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 
 # set sub modules
 #[[
-add_subdirectory(${HOME}/tst/tst_prfmt)
 add_subdirectory(${HOME}/tst/tst_file)
 #add_subdirectory(${HOME}/tst/tst_util)
 #add_subdirectory(${HOME}/tst/tst_kernal)
-]]
 add_subdirectory(${HOME}/tst/tst_list)
 add_subdirectory(${HOME}/tst/tst_stdmap)
 #add_subdirectory(${HOME}/tst/tst_parser)
@@ -59,11 +57,12 @@ add_subdirectory(${HOME}/tst/tst_any)
 add_subdirectory(${HOME}/tst/tst_string)
 add_subdirectory(${HOME}/tst/tst_cycbuf)
 #add_subdirectory(${HOME}/tst/tst_memory)
-add_subdirectory(${HOME}/tst/tst_error)
-add_subdirectory(${HOME}/tst/tst_bits)
+]]
+// basical funcs test
+add_subdirectory(${HOME}/tst/vm_error)
+add_subdirectory(${HOME}/tst/vm_bits)
 #[[
 add_subdirectory(${HOME}/tst/tst_funcs)
-add_subdirectory(${HOME}/tst/tst_utst)
 add_subdirectory(${HOME}/tst/tst_lib/lib)
 add_subdirectory(${HOME}/tst/tst_lib/bin)
 add_subdirectory(${HOME}/tst/tst_cfgs_w)

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 19:18:50                                               == //
-// ==   Modify Time          : 2020-11-15 11:14:56                                               == //
+// ==   Modify Time          : 2020-11-19 10:36:56                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,36 +25,36 @@
 // [ Include files ] {{{
 
 // vm's verify file included
-#include <vm_verify.h>
+#include "./vm_verify.h"
 
 // vm's configure files included
-#include <vm_cfgs/vm_cfg_def_sys.h>
+#include "./vm_cfgs/vm_cfg_def_sys.h"
 
 // vm's library macro define file include
-#include <vm_cfgs/vm_lib_def_mcr.h>
+#include "./vm_cfgs/vm_lib_def_mcr.h"
 
-#include <vm_cfgs/vm_cfg_def_err.h>
-#include <vm_cfgs/vm_cfg_def_exp.h>
-#include <vm_cfgs/vm_cfg_def_mcr.h>
-#include <vm_cfgs/vm_cfg_def_typ.h>
-#include <vm_cfgs/vm_cfg_def_str.h>
-#include <vm_cfgs/vm_cfg_def_str_fmt.h>
-#include <vm_cfgs/vm_cfg_def_str_fmt_oct.h>
-#include <vm_cfgs/vm_cfg_def_str_fmt_hex.h>
-#include <vm_cfgs/vm_cfg_def_lmt.h>
-#include <vm_cfgs/vm_cfg_def_ret.h>
-#include <vm_cfgs/vm_cfg_def_mth.h>
-#include <vm_cfgs/vm_cfg_def_time.h>
-#include <vm_cfgs/vm_cfg_def_file.h>
+#include "./vm_cfgs/vm_cfg_def_err.h"
+#include "./vm_cfgs/vm_cfg_def_exp.h"
+#include "./vm_cfgs/vm_cfg_def_mcr.h"
+#include "./vm_cfgs/vm_cfg_def_typ.h"
+#include "./vm_cfgs/vm_cfg_def_str.h"
+#include "./vm_cfgs/vm_cfg_def_str_fmt.h"
+#include "./vm_cfgs/vm_cfg_def_str_fmt_oct.h"
+#include "./vm_cfgs/vm_cfg_def_str_fmt_hex.h"
+#include "./vm_cfgs/vm_cfg_def_lmt.h"
+#include "./vm_cfgs/vm_cfg_def_ret.h"
+#include "./vm_cfgs/vm_cfg_def_mth.h"
+#include "./vm_cfgs/vm_cfg_def_time.h"
+#include "./vm_cfgs/vm_cfg_def_file.h"
 
-#include <vm_cfgs/vm_cfg_def_func_str.h>
-#include <vm_cfgs/vm_cfg_def_func_mem.h>
-#include <vm_cfgs/vm_cfg_def_func_fmt.h>
-#include <vm_cfgs/vm_cfg_def_func_cvt.h>
-#include <vm_cfgs/vm_cfg_def_func_file.h>
+#include "./vm_cfgs/vm_cfg_def_func_str.h"
+#include "./vm_cfgs/vm_cfg_def_func_mem.h"
+#include "./vm_cfgs/vm_cfg_def_func_fmt.h"
+#include "./vm_cfgs/vm_cfg_def_func_cvt.h"
+#include "./vm_cfgs/vm_cfg_def_func_file.h"
 
 // std c++ configur file included
-#include <vm_cfgs/vm_cfg_def_std.h>
+#include "./vm_cfgs/vm_cfg_def_std.h"
 
 // }}} ! Include files
 // ================================================================================================ //

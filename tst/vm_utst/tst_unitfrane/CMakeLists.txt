@@ -1,6 +1,6 @@
 
 # set module name
-set(MODULE_NAME tst_utst)
+set(MODULE_NAME tst_unitframe)
 
 # get src file for current directories
 aux_source_directory(. SRCS)

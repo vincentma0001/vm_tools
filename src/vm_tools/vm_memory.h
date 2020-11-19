@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-10-08 20:51:37                                               == //
-// ==   Modify Time          : 2020-11-18 09:35:38                                               == //
+// ==   Modify Time          : 2020-11-19 10:33:38                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,10 +24,10 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 // vm's function files inlcuded
-#include <vm_tools/vm_memory/CMemPtr.h>
-#include <vm_tools/vm_memory/CMem.hpp>
-#include <vm_tools/vm_memory/CCycBufPtr.h>
-#include <vm_tools/vm_memory/CMemMgr.h>
+#include "./vm_memory/CMemPtr.h"
+#include "./vm_memory/CMem.hpp"
+#include "./vm_memory/CCycBufPtr.h"
+#include "./vm_memory/CMemMgr.h"
 // }}} ! Include files
 // ================================================================================================ //
 

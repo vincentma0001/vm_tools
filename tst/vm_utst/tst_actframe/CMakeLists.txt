@@ -1,6 +1,6 @@
 
 # set module name
-set(MODULE_NAME tst_lib_bin)
+set(MODULE_NAME tst_actframe)
 
 # define txt encoding
 #ADD_DEFINITIONS(-DUNICODE)
@@ -12,7 +12,7 @@ aux_source_directory(. SRCS)
 add_executable(${MODULE_NAME} ${SRCS})
 
 # link library
-target_link_libraries(${MODULE_NAME}
-    ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libtst_lib.so
-)
+#target_link_libraries(${MODULE_NAME}
+#    ${PROJECT_SOURCE_DIR}/lib/lib_name.lib
+#)
 

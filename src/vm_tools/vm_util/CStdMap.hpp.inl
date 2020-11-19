@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 09:04                                                  == //
-// ==   Modify Time          : 2020-11-18 09:02                                                  == //
+// ==   Modify Time          : 2020-11-19 09:50                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -166,9 +166,9 @@ inline bool vm::CStdMap< tKey,tData >::IsExist( tKey oKey ) const
 // ==  Return  : bool             - [O] true  - sucess
 // ==                                   false - failed
 // ==  Params  : oKey             - [I] key object
-// ==            oData            - [I] Data object
+// ==            &oData           - [I] Data object
 template< typename tKey, typename tData >
-inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData oData )
+inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData &oData )
 // {{{ 
 {
     std::pair<tMapItor, bool> temp_pair = mMap.insert(tMapValue(oKey,oData));

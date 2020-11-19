@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-09-30 22:36:53                                               == //
-// ==   Modify Time          : 2020-11-18 09:38:20                                               == //
+// ==   Modify Time          : 2020-11-19 10:34:20                                               == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,11 +24,11 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 // vm's function files inlcuded
-#include <vm_tools/vm_util/CArgs.hpp>
-#include <vm_tools/vm_util/CSingleton.hpp>
-#include <vm_tools/vm_util/CStdMap.hpp>
-#include <vm_tools/vm_util/CStdMapPtr.hpp>
-#include <vm_tools/vm_util/CParser.h>
+#include "./vm_util/CArgs.hpp"
+#include "./vm_util/CSingleton.hpp"
+#include "./vm_util/CStdMap.hpp"
+#include "./vm_util/CStdMapPtr.hpp"
+#include "./vm_util/CParser.h"
 // }}} ! Include files
 // ================================================================================================ //
 

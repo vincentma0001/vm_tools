@@ -1,8 +1,8 @@
 
-#include "../lib/tst_lib.h"
+#include "tst_actframe.h"
 
 int main(int argc, char *argv[])
 {
-    printmsg();
+    acTestFrame.Action();
     return 0;
 }

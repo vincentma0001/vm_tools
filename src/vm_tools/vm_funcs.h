@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-13 09:58                                                  == //
-// ==   Modify Time          : 2020-11-18 09:34                                                  == //
+// ==   Modify Time          : 2020-11-19 10:33                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,10 +26,10 @@
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
 // vm's function files inlcuded
-#include <vm_tools/vm_funcs/v_funcs_io.h>
-#include <vm_tools/vm_funcs/v_funcs_mem.h>
-#include <vm_tools/vm_funcs/v_funcs_str.h>
-#include <vm_tools/vm_funcs/v_funcs_list.h>
+#include "./vm_funcs/v_funcs_io.h"
+#include "./vm_funcs/v_funcs_mem.h"
+#include "./vm_funcs/v_funcs_str.h"
+#include "./vm_funcs/v_funcs_list.h"
 // }}}
 // ================================================================================================ //
 
