@@ -1,6 +1,5 @@
 
 #include "eTstRet.h"
-#include "vm_cfgs/vm_cfg_def_ret.h"
 #include <vm_tools/vm_funcs.h>
 #include <vm_tools/vm_utst.h>
 

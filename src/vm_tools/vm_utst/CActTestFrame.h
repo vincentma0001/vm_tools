@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 22:42                                                  == //
-// ==   Modify Time          : 2020-11-19 10:03                                                  == //
+// ==   Modify Time          : 2020-11-21 13:27                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,6 +30,25 @@
 #include <vm_cfgs.h>
 #include <vm_tools/vm_util.h>
 // }}}
+// ================================================================================================ //
+
+// ================================================================================================ //
+// [ Macro defines ] {{{
+#ifndef   __V_ACT_TEST_MACRO__
+#define   __V_ACT_TEST_MACRO__
+
+#define AC_FUNC_BEGIN(func, name )      class func : public vm::CAct \
+                                 { public: inline          func():CAct(vT(#name)){}; \
+                                           inline virtual ~func(){}; \
+                                   public: virtual bool todo( vm::CActTestFrame* pFrame, const vm::CArgs<128> &oArgs ) { bool lbRet = true;
+#define AC_FUNC_ENDED            return lbRet; }};
+#define AC_FRAME_BEGIN(utFrame)  class utFrame : public vm::CActTestFrame{ virtual bool Regist() { bool lbRet = true;
+#define AC_FRAME_REGIST(Act)    { lbRet = RegAct<Act>();}
+#define AC_FRAME_ENDED           return lbRet; }};
+#define RUN_ACTTEST(acFrame)    utFrame lo##utFrame; lo##utFrame.Run();
+
+#endif // __V_UNIT_TEST_MACRO__
+// }}} ! Macro defines
 // ================================================================================================ //
 
 // ================================================================================================ //
@@ -124,33 +143,6 @@ public:
 #include "CActTestFrame.h.inl"
 // ================================================================================================ //
 
-// ================================================================================================ //
-// [ Macro defines ] {{{
-#ifndef   __V_ACT_TEST_MACRO__
-#define   __V_ACT_TEST_MACRO__
-
-#define AC_FUNC_BEGIN(func, name )      class func : public vm::CAct \
-                                 { public: inline          func():CAct(vT(#name)){}; \
-                                           inline virtual ~func(){}; \
-                                   public: virtual bool todo( vm::CActTestFrame* pFrame, const vm::CArgs<128> &oArgs ) { bool lbRet = true;
-#define AC_FUNC_ENDED            return lbRet; }};
-#define AC_FRAME_BEGIN(utFrame)  class utFrame : public vm::CActTestFrame{ virtual bool Regist() { bool lbRet = true;
-#define AC_FRAME_REGIST(Act)    { lbRet = RegAct<Act>();}
-#define AC_FRAME_ENDED           return lbRet; }};
-#define RUN_ACTTEST(acFrame)    utFrame lo##utFrame; lo##utFrame.Run();
-
-#endif // __V_UNIT_TEST_MACRO__
-// }}} ! Macro defines
-// ================================================================================================ //
-
-// ================================================================================================ //
-AC_FUNC_BEGIN( ac_func_list_acts, "help" )
-AC_FUNC_ENDED
-
-AC_FUNC_BEGIN( ac_func_stop, "stop" )
-    pFrame->StopLoop();
-AC_FUNC_ENDED
-// ================================================================================================ //
 
 #endif // ! __CACTTESTFRAME_H__
 // ================================================================================================ //

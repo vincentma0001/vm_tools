@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 22:42                                                  == //
-// ==   Modify Time          : 2020-11-19 10:00                                                  == //
+// ==   Modify Time          : 2020-11-21 13:19                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -30,6 +30,16 @@
 #include "CActTestFrame.h"
 // }}}
 // ================================================================================================ //
+
+// ================================================================================================ //
+AC_FUNC_BEGIN( ac_func_list_acts, "help" )
+AC_FUNC_ENDED
+
+AC_FUNC_BEGIN( ac_func_stop, "stop" )
+    pFrame->StopLoop();
+AC_FUNC_ENDED
+// ================================================================================================ //
+
 
 // ================================================================================================ //
 // [ CAct realization ] {{{
@@ -244,7 +254,7 @@ inline void vm::CActTestFrame::Action( void )
 // {{{
 {
     bool lbRetForRegAct = RegAct<ac_func_stop>( );
-    if( lbRetForRegAct = false )
+    if( lbRetForRegAct == false )
     {
         return;
     }
@@ -261,7 +271,7 @@ inline void vm::CActTestFrame::Action( void )
         loArgs.Splite( lszBuf, vT(" ") );
 
         tchar* lpName = loArgs[0];
-        vm::CAct* lpAction = *mActMap.Find( lpName );
+        vm::CAct* lpAction = mActMap.Find( lpName );
         if( lpAction == nullptr )
             continue;
 
