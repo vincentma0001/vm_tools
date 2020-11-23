@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-23 22:44                                                  == //
-// ==   Modify Time          : 2020-11-23 22:47                                                  == //
+// ==   Modify Time          : 2020-11-24 00:26                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -25,6 +25,7 @@
 // ================================================================================================ //
 // [ Include files ] {{{
 // vm's function files inlcuded
+#include "./../vm_cfgs.h"
 #include "./vm_tools/vm_time/CCrtClock.h"
 #if        ( _V_SYS_ == _V_WIN_ )
 // Win coders {{{
@@ -36,6 +37,7 @@
 #include "./vm_tools/vm_time/CLuxClock2.h"
 // }}}
 #endif // !( _V_SYS_ == _V_WIN_ )
+#include "./vm_tools/vm_time/CTimePtr.h"
 // }}} ! Include files
 // ================================================================================================ //
 

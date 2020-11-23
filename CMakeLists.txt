@@ -46,11 +46,12 @@ configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 #[[
 
 ]]
+add_subdirectory(${HOME}/tst/vm_time/tst_time)
+#[[
 add_subdirectory(${HOME}/tst/vm_time/tst_luxclock2)
 add_subdirectory(${HOME}/tst/vm_time/tst_luxclock)
 add_subdirectory(${HOME}/tst/vm_time/tst_crtclock)
 
-#[[
 add_subdirectory(${HOME}/tst/tst_file)
 add_subdirectory(${HOME}/tst/tst_util)
 add_subdirectory(${HOME}/tst/tst_kernal)
