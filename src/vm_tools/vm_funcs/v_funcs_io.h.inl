@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-18 08:57                                                  == //
+// ==   Modify Time          : 2020-11-23 10:31                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -165,6 +165,80 @@ inline bool vm::v_output_line ( _vIn_ const tchar* const cpFmt, _vIn_ ... )
     return lbRet;
 }
 // }}} end of func v_output_line(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_input_char_unshow(...)                                                        == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a char from input stream, and don't display on termainal
+// ==  Return  : inline char      - [O] char geted from input stream
+inline char vm::v_input_char_unshow ( void )
+// {{{
+{
+    char lcVal = 0x00;
+    system("stty -echo");
+    system("stty -icanon");
+    lcVal = getchar();
+    system("stty icanon");
+    system("stty echo");
+    return lcVal;
+}
+// }}} end of func v_input_char_unshow(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_inpput_line(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Get a string line form input stream
+// ==  Return  : size_t           - [O] letters in line string
+// ==  Params  : pBuf             - [O] string line's buffer
+// ==            csztBufSize      - [I] string line's buffer size
+size_t vm::v_inpput_line ( tchar* const pBuf, const size_t csztBufSize )
+// {{{
+{
+    bool lbLoop            = true;
+    size_t lsztOffset      = 0;
+
+    while ( lbLoop == true ) 
+    { // {{{
+
+        if( lsztOffset >= csztBufSize )
+        {
+            char &lVal = *(pBuf+csztBufSize);
+            lVal = 0x00;
+            break;
+        }
+
+        char &lVal = *(pBuf+lsztOffset);
+        lVal = vm::v_input_char_unshow();
+        switch (lVal) 
+        { // {{{
+            case '\b':
+            {
+                printf( "\033[1D \033[1D" );
+                lVal = ' ';
+                lsztOffset--;
+                break; 
+            }
+            case '\n':
+            {
+                putc('\n',stdout);
+                lVal = 0x00;
+                lbLoop = false;
+                break;
+            }
+            default:
+            {
+                putc(lVal,stdout);
+                lsztOffset++;
+            }
+        } // }}} End of switch(lVal)
+
+    }; // }}} End of while(  lbLoop == true  )
+
+    return lsztOffset;
+}
+// }}} end of func v_inpput_line(...)
 // ================================================================================================ //
 
 

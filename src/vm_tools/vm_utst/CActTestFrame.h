@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 22:42                                                  == //
-// ==   Modify Time          : 2020-11-21 13:27                                                  == //
+// ==   Modify Time          : 2020-11-23 11:45                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -29,23 +29,31 @@
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 #include <vm_tools/vm_util.h>
+#include <vm_tools/vm_string.h>
 // }}}
 // ================================================================================================ //
 
 // ================================================================================================ //
 // [ Macro defines ] {{{
+
+#ifndef    _CACTTESTFRAME_MAX_ARGS_
+#   define _CACTTESTFRAME_MAX_ARGS_      36
+#endif // !_CACTTESTFRAME_MAX_ARGS_
+
 #ifndef   __V_ACT_TEST_MACRO__
 #define   __V_ACT_TEST_MACRO__
 
-#define AC_FUNC_BEGIN(func, name )      class func : public vm::CAct \
-                                 { public: inline          func():CAct(vT(#name)){}; \
-                                           inline virtual ~func(){}; \
-                                   public: virtual bool todo( vm::CActTestFrame* pFrame, const vm::CArgs<128> &oArgs ) { bool lbRet = true;
-#define AC_FUNC_ENDED            return lbRet; }};
-#define AC_FRAME_BEGIN(utFrame)  class utFrame : public vm::CActTestFrame{ virtual bool Regist() { bool lbRet = true;
-#define AC_FRAME_REGIST(Act)    { lbRet = RegAct<Act>();}
-#define AC_FRAME_ENDED           return lbRet; }};
-#define RUN_ACTTEST(acFrame)    utFrame lo##utFrame; lo##utFrame.Run();
+#define AC_FUNC_BEGIN(func, name )      class func : public vm::CAct { \
+                                            public: inline          func():CAct(vT(name)){}; \
+                                                    inline virtual ~func(){};\
+                                            public: virtual void todo( vm::CActTestFrame* pFrame, const vm::CArgs<_CACTTESTFRAME_MAX_ARGS_> &oArgs ) { 
+#define AC_FUNC_ENDED                   };};
+
+#define AC_FRAME_BEGIN(acFrame)         class acFrame : public vm::CActTestFrame{ virtual bool Regist() { bool lbRet = true;
+#define AC_FRAME_REGIST(Act)            { lbRet = RegAct<Act>();}
+#define AC_FRAME_ENDED                  return lbRet; }};
+
+#define RUN_ACTTEST(acFrame)            acFrame lo##acFrame; lo##acFrame.Run();
 
 #endif // __V_UNIT_TEST_MACRO__
 // }}} ! Macro defines
@@ -89,7 +97,7 @@ public:
     const tchar* cs_name();
 
 public:
-    virtual bool todo( vm::CActTestFrame* pFrame, const vm::CArgs<128> &oArgs ) = 0;
+    virtual void todo( vm::CActTestFrame* pFrame, const vm::CArgs<_CACTTESTFRAME_MAX_ARGS_> &oArgs ) = 0;
 // }}} ! Methods
 
 // Friendefs : {{{
@@ -103,6 +111,13 @@ friend class CActTestFrame;
 // Class CActTestFrame : this class define act test frame
 class CActTestFrame
 { // {{{
+
+// Typedefs  : {{{
+public:
+    typedef typename vm::CStdMap<vString, vm::CAct*>              tMap;
+    typedef typename vm::CStdMap<vString, vm::CAct*>::tMapItor    tMapItor;
+    typedef typename vm::CStdMap<vString, vm::CAct*>::tMapValue   tMapValue;
+// }}} ! Typedefs
 
 // Construct & Destruct : {{{
 public:
@@ -119,21 +134,52 @@ private:
 // }}} ! Construct & Destruct
 
 // Menbers   : {{{
-private:
-    bool                                   mbLoop;
-    vm::CStdMapPtr<vString, vm::CAct>      mActMap;
+public:
+    bool        mbLoop;
+    tMap        mActMap;
 // }}} ! Members
 
 // Methods   : {{{
 public:
     inline void StopLoop( void );
+    template<size_t tsztTmpBufSize>
+    inline void ShowHelps( const size_t csztCmdWidth=30, const size_t csztCmdsInLine=4 )
+    {
+        tMapItor loIter = mActMap.First();
+        size_t lsztCmdCount = 0;
+
+        for( ;loIter!=mActMap.Last(); lsztCmdCount++ )
+        {
+            if( lsztCmdCount > csztCmdsInLine )
+            {
+                vOutput(vT("\n"));
+                lsztCmdCount = 0;
+                continue;
+            }
+
+            tchar lszBuf[tsztTmpBufSize] = {0x00};
+            vm::CStrFmtPtr loStrFmt( lszBuf, sizeof(lszBuf) );
+            vOutput( *loStrFmt.fmt_str<tsztTmpBufSize>(csztCmdWidth, true), vStdMapKey(loIter).c_str() );
+
+            loIter++;
+        }
+
+        if( lsztCmdCount != 0 )
+        {
+            vOutput(vT("\n"));
+        }
+    };
     template< typename tAct >
     inline bool RegAct( void );
-    inline void Action( void );
+    inline void Run( void );
 
 public:
     virtual bool Regist( void ) = 0;
 // }}} ! Methods
+
+// Friendefs : {{{
+friend class CAct;
+// }}} ! Friendefs
 
 }; // }}} End of class CActTestFrame
 

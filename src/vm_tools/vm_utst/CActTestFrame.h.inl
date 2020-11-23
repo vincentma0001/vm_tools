@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-12 22:42                                                  == //
-// ==   Modify Time          : 2020-11-21 13:19                                                  == //
+// ==   Modify Time          : 2020-11-23 13:01                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,17 +26,19 @@
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 #include <vm_tools/vm_util.h>
+#include <vm_tools/vm_funcs.h>
 //.vm's.function.files.inlcuded
 #include "CActTestFrame.h"
 // }}}
 // ================================================================================================ //
 
 // ================================================================================================ //
-AC_FUNC_BEGIN( ac_func_list_acts, "help" )
+AC_FUNC_BEGIN( ac_func_help, "help" )
+    pFrame->ShowHelps<128>();
 AC_FUNC_ENDED
 
 AC_FUNC_BEGIN( ac_func_stop, "stop" )
-    pFrame->StopLoop();
+    pFrame->mbLoop = false;
 AC_FUNC_ENDED
 // ================================================================================================ //
 
@@ -157,6 +159,7 @@ inline const tchar* vm::CAct::cs_name( void )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
 inline vm::CActTestFrame::CActTestFrame(  )
+    : mbLoop(true)
 // {{{
 {
 }
@@ -239,8 +242,8 @@ template< typename tAct  >
 inline bool vm::CActTestFrame::RegAct( void )
 // {{{
 {
-    tAct* lpAction = new tAct;
-    bool lbRet = mActMap.Insert( lpAction->cs_name(), lpAction );
+    vm::CAct* lpAction = new tAct;
+    bool lbRet = mActMap.Insert( lpAction->mstrActName, lpAction );
     return lbRet;
 }
 // }}} end of func CActTestFrame::RegAct(...)
@@ -250,14 +253,15 @@ inline bool vm::CActTestFrame::RegAct( void )
 // ==  Methord : CActTestFrame::Action(...)                                                      == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Do CActTestFrame main loop
-inline void vm::CActTestFrame::Action( void )
+inline void vm::CActTestFrame::Run( void )
 // {{{
 {
     bool lbRetForRegAct = RegAct<ac_func_stop>( );
     if( lbRetForRegAct == false )
-    {
         return;
-    }
+    lbRetForRegAct      = RegAct<ac_func_help>( );
+    if( lbRetForRegAct == false )
+        return;
 
     bool lbRetForReg = Regist();
     if( lbRetForReg == false )
@@ -265,17 +269,28 @@ inline void vm::CActTestFrame::Action( void )
 
     while( mbLoop == true )
     {
+        // Show title
+        fputs( vT("CMD > "), stdout);
+
+        // Get input line
         tchar lszBuf[2048] = {0x00};
-        fgets( lszBuf, sizeof(lszBuf), stdin );
-        vm::CArgs<128> loArgs;
+        vm::v_inpput_line( lszBuf, sizeof(lszBuf) );
+        vm::CArgs<_CACTTESTFRAME_MAX_ARGS_> loArgs;
         loArgs.Splite( lszBuf, vT(" ") );
 
-        tchar* lpName = loArgs[0];
-        vm::CAct* lpAction = mActMap.Find( lpName );
-        if( lpAction == nullptr )
-            continue;
+        vString lstrName = vT("");
+        if( loArgs[0] != nullptr )
+            lstrName = loArgs[0];
 
-        lpAction->todo( this, loArgs );
+        vm::CActTestFrame::tMapItor loIter = mActMap.Find( lstrName );
+        if( loIter == mActMap.Last() )
+        {
+            vLine(vT("Unknown cmd : %s"), lstrName.c_str() );
+            ShowHelps<128>();
+            continue;
+        }
+
+        vStdMapVal(loIter)->todo( this, loArgs );
 
     }
 }

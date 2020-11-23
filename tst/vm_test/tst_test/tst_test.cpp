@@ -1,14 +1,15 @@
 
-#include "tst_test.h"
+//#include "tst_test.h"
+#include <cstdlib>
+#include <curses.h>
+#include <vm_tools/vm_funcs.h>
 
 int main(int argc, char *argv[])
 {
 
-    CTst<int,1024> loTst1;
-    loTst1.Print();
+    tchar lszBuf[10] = {0x00};
+    vm::v_inpput_line( lszBuf, sizeof(lszBuf) );
 
-    CUsrTst loTst2;
-    loTst2.Print();
-
+    vLine( vT("Input : %s"), lszBuf );
     return 0;
 }

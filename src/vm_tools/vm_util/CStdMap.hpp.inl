@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 09:04                                                  == //
-// ==   Modify Time          : 2020-11-19 09:50                                                  == //
+// ==   Modify Time          : 2020-11-22 22:39                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -168,10 +168,28 @@ inline bool vm::CStdMap< tKey,tData >::IsExist( tKey oKey ) const
 // ==  Params  : oKey             - [I] key object
 // ==            &oData           - [I] Data object
 template< typename tKey, typename tData >
-inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData &oData )
+inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData oData )
 // {{{ 
 {
     std::pair<tMapItor, bool> temp_pair = mMap.insert(tMapValue(oKey,oData));
+    return temp_pair.second;
+}
+// }}} end of func CStdMap<tKey,tData>::Insert(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CStdMap<tKey,tData>::Insert(...)                                                == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Add data to map
+// ==  Return  : bool             - [O] ture  - sucess
+// ==                                   false - failed
+// ==  Params  : oKey             - [I] Key object
+// ==            pData            - [I] Data object pointer
+template< typename tKey, typename tData >
+inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData* pData )
+// {{{ 
+{
+    std::pair<tMapItor, bool> temp_pair = mMap.insert(tMapValue(oKey,*pData));
     return temp_pair.second;
 }
 // }}} end of func CStdMap<tKey,tData>::Insert(...)
@@ -184,23 +202,12 @@ inline bool vm::CStdMap< tKey,tData >::Insert( tKey oKey, tData &oData )
 // ==  Return  : tData*           - [O] Data pointer
 // ==  Params  : oKey             - [I] Key object
 template< typename tKey, typename tData >
-inline tData* vm::CStdMap< tKey,tData >::Find( tKey oKey )
+inline typename vm::CStdMap<tKey,tData>::tMapItor vm::CStdMap< tKey,tData >::Find( tKey oKey )
 // {{{ 
 {
-    tData* pData = nullptr;
-
-    // Confirm map is empty or not
-    if (this->IsEmpty())
-        return nullptr;
-
     // Find data by key in map
-    tMapItor iter = mMap.find(oKey);
-    if (iter == mMap.end())
-        return nullptr;
-    else
-        pData = &vStdMapVal(iter);
-
-    return pData;
+    tMapItor loIter = mMap.find(oKey);
+    return loIter;
 }
 // }}} end of func CStdMap<tKey,tData>::GetDA(...)
 // ================================================================================================ //

@@ -3,6 +3,6 @@
 
 int main(int argc, char *argv[])
 {
-    acTestFrame.Action();
+    RUN_ACTTEST( acTestFrame );
     return 0;
 }

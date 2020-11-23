@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-18 09:48                                                  == //
+// ==   Modify Time          : 2020-11-23 10:30                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -61,6 +61,13 @@ inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_            ...
 // Output a formated string line
 inline bool v_output_line ( _vIn_ const tchar* const cpFmt, _vIn_            ... );
 
+// Get a char from input stream, and don't display on terminal
+inline char   v_input_char_unshow ( void );
+
+// Get a string line from input stream
+inline size_t v_inpput_line ( tchar* const pBuf, const size_t csztBufSize );
+
+// ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
 // functions realization

@@ -2,11 +2,13 @@
 #ifndef  __TST_ACTFRAME_H__
 #define  __TST_ACTFRAME_H__
 
+#include <vm_tools/vm_util.h>
 #include <vm_tools/vm_utst.h>
 
 // ------------------------------------------------------------------------------------------------ //
 
-AC_FUNC_BEGIN( act_func_tst1 )
+AC_FUNC_BEGIN( act_func_tst1, "test" )
+    vLine( vT("this is a test!") );
 AC_FUNC_ENDED;
 
 // ------------------------------------------------------------------------------------------------ //

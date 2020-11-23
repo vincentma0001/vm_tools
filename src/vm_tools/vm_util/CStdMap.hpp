@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-06 08:46                                                  == //
-// ==   Modify Time          : 2020-11-19 09:50                                                  == //
+// ==   Modify Time          : 2020-11-22 22:38                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -94,9 +94,10 @@ public:
     inline bool     IsExist(tKey oKey) const;
 
     // Add data to map
-    inline bool     Insert (tKey oKey, tData &oData);
+    inline bool     Insert (tKey oKey, tData  oData);
+    inline bool     Insert (tKey oKey, tData *pData);
     // Get data pointer by key from map 
-    inline tData*   Find   (tKey oKey);
+    inline tMapItor Find   (tKey oKey);
     // Rempve data by key from map
     inline bool     Remove (tKey oKey);
 
