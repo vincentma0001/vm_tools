@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-23 10:31                                                  == //
+// ==   Modify Time          : 2020-11-23 14:21                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -193,7 +193,7 @@ inline char vm::v_input_char_unshow ( void )
 // ==  Return  : size_t           - [O] letters in line string
 // ==  Params  : pBuf             - [O] string line's buffer
 // ==            csztBufSize      - [I] string line's buffer size
-size_t vm::v_inpput_line ( tchar* const pBuf, const size_t csztBufSize )
+inline size_t vm::v_inpput_line ( tchar* const pBuf, const size_t csztBufSize )
 // {{{
 {
     bool lbLoop            = true;
@@ -216,8 +216,10 @@ size_t vm::v_inpput_line ( tchar* const pBuf, const size_t csztBufSize )
             case '\b':
             {
                 printf( "\033[1D \033[1D" );
-                lVal = ' ';
+                lVal = 0x00;
                 lsztOffset--;
+                char& lTmp = *(pBuf+lsztOffset);
+                lTmp = 0x00;
                 break; 
             }
             case '\n':
