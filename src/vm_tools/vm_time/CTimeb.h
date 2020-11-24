@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 00:05                                                  == //
-// ==   Modify Time          : 2020-11-24 23:41                                                  == //
+// ==   Modify Time          : 2020-11-24 23:42                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -57,7 +57,7 @@ public:
     // Construct define
     inline          CMinute(                              ):muiMinutes(0)             {};
     inline          CMinute( const unsigned int cuiMinute ):muiMinutes(cuiMinute)     {};
-    inline          CMinute( const CMinute       &obj ):muiMinutes(obj.muiMinutes){};
+    inline          CMinute( const CMinute           &obj ):muiMinutes(obj.muiMinutes){};
     // Destruct define
     inline virtual ~CMinute(                              ){};
 // }}} ! Construct & Destruct
@@ -104,7 +104,7 @@ public:
     // Construct define
     inline          CHour(                              ):muiHours(0)            {};
     inline          CHour( const unsigned int cuiMinute ):muiHours(cuiMinute)    {};
-    inline          CHour( const CHour         &obj ):muiHours(obj.muiHours) {};
+    inline          CHour( const CHour             &obj ):muiHours(obj.muiHours) {};
     // Destruct define
     inline virtual ~CHour(){};
 // }}} ! Construct & Destruct
@@ -151,7 +151,7 @@ public:
     // Construct define
     inline          CDay(                              ):muiDays(0)            {};
     inline          CDay( const unsigned int cuiMinute ):muiDays(cuiMinute)    {};
-    inline          CDay( const CDay          &obj ):muiDays(obj.muiDays)  {};
+    inline          CDay( const CDay              &obj ):muiDays(obj.muiDays)  {};
     // Destruct define
     inline virtual ~CDay(){};
 // }}} ! Construct & Destruct
