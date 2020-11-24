@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 10:34                                                  == //
-// ==   Modify Time          : 2020-11-24 19:29                                                  == //
+// ==   Modify Time          : 2020-11-24 23:45                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -79,7 +79,6 @@ public:
 // }}} ! Methods
 
 }; // }}} End of class CTimeStr
-
 
 // ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
