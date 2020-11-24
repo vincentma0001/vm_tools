@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                        CLuxClock.h                                         == //
+// ==                                         CTime.hpp                                          == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-23 20:00                                                  == //
-// ==   Modify Time          : 2020-11-24 09:31                                                  == //
+// ==   Create Time          : 2020-11-24 17:46                                                  == //
+// ==   Modify Time          : 2020-11-24 23:08                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -18,16 +18,18 @@
 // ==                                                                                            == //
 // ================================================================================================ //
 
-#ifndef  __CLUXCLOCK_H__
-#define  __CLUXCLOCK_H__
+#ifndef  __CTIME_HPP__
+#define  __CTIME_HPP__
 
 
 // ================================================================================================ //
 // == Include files :                                                                            == //
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
-// crt, std files included
-#include <time.h>
+//.vm's.function.depend.on.included
+#include <vm_cfgs.h>
+//.vm's.function.files.inlcuded
+#include "CTimeb.h"
 // }}}
 // ================================================================================================ //
 
@@ -36,61 +38,64 @@
 namespace vm {
 // ------------------------------------------------------------------------------------------------ //
 
-// Class CLuxClock : this class wrap linux clock_gettime functions
-class CLuxClock
+// Class CTime : this class deal with time function
+template< size_t tsztBufSize >
+class CTime : public CTimeb
 { // {{{
 
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline explicit CLuxClock();
+    inline          CTime(                  );
     // Destruct define
-    inline virtual ~CLuxClock();
+    inline virtual ~CTime(                  );
 
 private:
     // Copy construct define
-    inline CLuxClock             ( const CLuxClock &obj );
-    // Assignment operation
-    inline CLuxClock& operator = ( const CLuxClock &obj );
+    inline          CTime( const CTime &obj );
 // }}} ! Construct & Destruct
+
+// Operators : {{{
+public:
+    // Assignment operation
+    inline tTimeb& operator =  ( const CTime &obj );
+    inline tTimeb& operator +  ( const CTime &obj );
+    inline tTimeb& operator += ( const CTime &obj );
+    inline tTimeb& operator -  ( const CTime &obj );
+    inline tTimeb& operator -= ( const CTime &obj );
+
+    inline bool    operator == ( const CTime &obj );
+    inline bool    operator != ( const CTime &obj );
+    inline bool    operator >  ( const CTime &obj );
+    inline bool    operator <  ( const CTime &obj );
+// }}} ! Operators
 
 // Menbers   : {{{
 private:
-    struct timespec         mtStart;
-    struct timespec         mtEnded;
-    unsigned long long      mullTimeDiff;
+    // timeb object
+    tTimeb        mstTimeb;
+    // buffers
+    tchar         mszBuf[tsztBufSize];
 // }}} ! Members
 
 // Methods   : {{{
 public:
-    // Start count clock
-    inline void               Start( void );
-    // Ended count clock
-    inline unsigned long long Ended( void );
-
-    // Ouput time different by double type, unit of time is second
-    inline double           d_sec  ( void );
-    // Ouput time different by unsigned long long type, unit of time is second
-    inline unsigned long long sec  ( void );
-    // Output time different by unsigned long long type, unit of time is millisecond
-    inline unsigned long long msec ( void );
-    // Ouput time different by unsigned long long type, unit of time is microsecond
-    inline unsigned long long usec ( void );
-    // Output time different by unsigned long long type, unit of time is nanosecond
-    inline unsigned long long nsec ( void );
+    // Output formated string of CTime object, more format info see this file's note
+    // Format : %Y4 = %Y, %Y2 = %y, %MM = %m, %DD = %d, %HH = %H, %MM = %M, %SS = %S.
+    inline tchar* Fmt( const tchar* const cpFmt );
 // }}} ! Methods
 
-}; // }}} End of class CLuxClock
+}; // }}} End of class CTime
 
 // ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
 // ================================================================================================ //
 // file realization
-#include "CLuxClock.h.inl"
+#include "CTime.hpp.inl"
 // ================================================================================================ //
 
 
-#endif // ! __CLUXCLOCK_H__
+#endif // ! __CTIME_HPP__
 // ================================================================================================ //
 // ==  Usage :                                                                                   == //
 // == ------------------------------------------------------------------------------------------ == //

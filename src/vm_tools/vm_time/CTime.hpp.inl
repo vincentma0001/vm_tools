@@ -1,13 +1,13 @@
 // ================================================================================================ //
 // ==                                                                                            == //
-// ==                                      CLuxClock.h.inl                                       == //
+// ==                                       CTime.hpp.inl                                        == //
 // ==                                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-23 20:00                                                  == //
-// ==   Modify Time          : 2020-11-24 09:29                                                  == //
+// ==   Create Time          : 2020-11-24 17:47                                                  == //
+// ==   Modify Time          : 2020-11-24 23:06                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -23,176 +23,206 @@
 // == Include files :                                                                            == //
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
-#include "CLuxClock.h"
+#include "CTime.hpp"
 // }}}
 // ================================================================================================ //
 
 
+// ================================================================================================ //
+// ==  Class CTime<tsztBufSize> Construct && Destruct realization                                == //
+// ================================================================================================ //
+// [ Class CTime<tsztBufSize> Construct && Destruct realization ] {{{
 
 // ================================================================================================ //
-// ==  Class CLuxClock Construct && Destruct realization                                         == //
-// ================================================================================================ //
-// [ Class CLuxClock Construct && Destruct realization ] {{{
-
-// ================================================================================================ //
-// ==  Methord : CLuxClock::CLuxClock()                                                          == //
+// ==  Methord : CTime<tsztBufSize>::CTime()                                                     == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Construct define
-inline vm::CLuxClock::CLuxClock(  )
+template< size_t tsztBufSize >
+inline vm::CTime< tsztBufSize >::CTime(  ) 
+    : CTimeb(mstTimeb), mszBuf{0x00}
 // {{{
 {
 }
-// }}} End of func CLuxClock::CLuxClock()
+// }}} End of func CTime<tsztBufSize>::CTime()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : virtual CLuxClock::CLuxClock()                                                  == //
+// ==  Methord : virtual CTime<tsztBufSize>::~CTime()                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Destruct define
-inline vm::CLuxClock::~CLuxClock(  )
+template< size_t tsztBufSize >
+inline vm::CTime< tsztBufSize >::~CTime(  )
 // {{{
 {
 }
-// }}} End of func CLuxClock::~CLuxClock()
+// }}} End of func CTime<tsztBufSize>::~CTime()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::CLuxClock()                                                          == //
+// ==  Methord : CTime<tsztBufSize>::CTime( const CTime &obj )                                   == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Copy construct define
-inline vm::CLuxClock::CLuxClock( const CLuxClock &obj )
+template< size_t tsztBufSize >
+inline vm::CTime< tsztBufSize >::CTime( const CTime &obj )
+    : CTimeb(obj.mstTimeb), mszBuf{0x00}
 // {{{
 {
     *this = obj;
 }
-// }}} End of func CLuxClock::CLuxClock()
+// }}} End of func CTime<tsztBufSize>::CTime()
 // ================================================================================================ //
 
-// }}} ![ Class CLuxClock Construct && Destruct realization ]
+// }}} ![ Class CTime<tsztBufSize> Construct && Destruct realization ]
 // ================================================================================================ //
 
 
 // ================================================================================================ //
-// ==  Class CLuxClock operator realization                                                      == //
+// ==  Class CTime<tsztBufSize> operator realization                                             == //
 // ================================================================================================ //
-// [ Class CLuxClock operator realization ] {{{
+// [ Class CTime<tsztBufSize> operator realization ] {{{
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::operator = ()                                                        == //
+// ==  Methord : CTime<tsztBufSize>::operator = ()                                               == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Assignment operation
-// ==  Return  : CLuxClock&       - [O] this object
-inline vm::CLuxClock& vm::CLuxClock::operator = ( const CLuxClock &obj )
+// ==  Return  : tTimeb&            - [O] timeb object
+template< size_t tsztBufSize >
+inline tTimeb& vm::CTime< tsztBufSize >::operator = ( const CTime &obj )
 // {{{
 {
-    return *this;
+    return (*(CTimeb*)this) = obj.mstTimeb;
 }
-// }}} End of func CLuxClock::operator=()
+// }}} End of func CTime<tsztBufSize>::operator=()
 // ================================================================================================ //
 
-// }}} ![ Class CLuxClock operator realization ]
 // ================================================================================================ //
-
-
-// ================================================================================================ //
-// ==  Class CLuxClock Functional realization                                                    == //
-// ================================================================================================ //
-// [ Class CLuxClock Functional realization ] {{{
-
-// ================================================================================================ //
-// ==  Methord : CLuxClock::Start(...)                                                           == //
+// ==  Methord : CTime<tsztBufSize>::operator + ()                                               == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Start count clock
-inline void vm::CLuxClock::Start( void )
+// ==  Brief   :  operation +
+// ==  Return  : tTimeb&            - [O] timeb object
+template< size_t tsztBufSize >
+inline tTimeb& vm::CTime< tsztBufSize >::operator + ( const CTime &obj )
 // {{{
 {
-    ::clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &mtStart);
+    return (*(CTimeb*)this) + obj.mstTimeb;
 }
-// }}} end of func CLuxClock::Start(...)
+// }}} End of func CTime<tsztBufSize>::operator+()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::Ended(...)                                                           == //
+// ==  Methord : CTime<tsztBufSize>::operator += ()                                              == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ended count clock
-// ==  Return  : unsigned long long        - [O] time different, unit of time is nanesecond
-inline unsigned long long vm::CLuxClock::Ended( void )
+// ==  Brief   :  operation +=
+// ==  Return  : tTimeb&            - [O] timeb object
+template< size_t tsztBufSize >
+inline tTimeb& vm::CTime< tsztBufSize >::operator += ( const CTime &obj )
 // {{{
 {
-    ::clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &mtEnded);
-    mullTimeDiff = (((unsigned long long)mtEnded.tv_sec)*1000000000+mtEnded.tv_nsec)-(((unsigned long long)mtStart.tv_sec)*1000000000+mtStart.tv_nsec);
-    return mullTimeDiff;
+    return (*(CTimeb*)this) += obj.mstTimeb;
 }
-// }}} end of func CLuxClock::Ended(...)
+// }}} End of func CTime<tsztBufSize>::operator+=()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::d_sec(...)                                                           == //
+// ==  Methord : CTime<tsztBufSize>::operator - ()                                               == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by double type, unit of time is second
-// ==  Return  : double           - [O] double type time different, unit of time is second
-// ==  Params  : void             - [X] # TODO : Add comment for void #
-inline double vm::CLuxClock::d_sec( void )
+// ==  Brief   :  operation -
+// ==  Return  : tTimeb&            - [O] timeb object
+template< size_t tsztBufSize >
+inline tTimeb& vm::CTime< tsztBufSize >::operator - ( const CTime &obj )
 // {{{
 {
-    return (  double )  mullTimeDiff/1000000000 ;
+    return (*(CTimeb*)this) - obj.mstTimeb;
 }
-// }}} end of func CLuxClock::d_sec(...)
+// }}} End of func CTime<tsztBufSize>::operator-()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::sec(...)                                                             == //
+// ==  Methord : CTime<tsztBufSize>::operator -= ()                                              == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by unsigned long long type, unit of time is second
-// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time is second
-inline unsigned long long vm::CLuxClock::sec( void )
+// ==  Brief   :  operation -=
+// ==  Return  : tTimeb&            - [O] timeb object
+template< size_t tsztBufSize >
+inline tTimeb& vm::CTime< tsztBufSize >::operator -= ( const CTime &obj )
 // {{{
 {
-    return (unsigned long long)( mullTimeDiff/1000000000 );
+    return (*(CTimeb*)this) -= obj.mstTimeb;
 }
-// }}} end of func CLuxClock::sec(...)
+// }}} End of func CTime<tsztBufSize>::operator-=()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::msec(...)                                                            == //
+// ==  Methord : CTime<tsztBufSize>::operator == ()                                              == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by unsigned long long type, unit of time is millisecond
-// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time millisecond
-inline unsigned long long vm::CLuxClock::msec( void )
+// ==  Brief   : operation ==
+// ==  Return  : bool                 - [O] true  - sucess
+// ==                                       false - failed
+template< size_t tsztBufSize >
+inline bool vm::CTime< tsztBufSize >::operator == ( const CTime &obj )
 // {{{
 {
-    return (unsigned long long)( mullTimeDiff/1000000    );
+    return (*(CTimeb*)this) == obj.mstTimeb;
 }
-// }}} end of func CLuxClock::msec(...)
+// }}} End of func CTime<tsztBufSize>::operator==()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::usec(...)                                                            == //
+// ==  Methord : CTime<tsztBufSize>::operator != ()                                              == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by unsigned long long type, unit of time is microsecond
-// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time microsecond
-inline unsigned long long vm::CLuxClock::usec( void )
+// ==  Brief   : operation !=
+// ==  Return  : bool                 - [O] true  - sucess
+// ==                                       false - failed
+template< size_t tsztBufSize >
+inline bool vm::CTime< tsztBufSize >::operator != ( const CTime &obj )
 // {{{
 {
-    return (unsigned long long)( mullTimeDiff/1000       );
+    return (*(CTimeb*)this) != obj.mstTimeb;
 }
-// }}} end of func CLuxClock::usec(...)
+// }}} End of func CTime<tsztBufSize>::operator!=()
 // ================================================================================================ //
 
 // ================================================================================================ //
-// ==  Methord : CLuxClock::nsec(...)                                                            == //
+// ==  Methord : CTime<tsztBufSize>::operator > ()                                               == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by unsigned long long type, unit of time is nanosecond
-// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time nanosecond
-inline unsigned long long vm::CLuxClock::nsec( void )
+// ==  Brief   : operation >
+// ==  Return  : bool                 - [O] true  - sucess
+// ==                                       false - failed
+template< size_t tsztBufSize >
+inline bool vm::CTime< tsztBufSize >::operator > ( const CTime &obj )
 // {{{
 {
-    return mullTimeDiff;
+    return (*(CTimeb*)this) > obj.mstTimeb;
 }
-// }}} end of func CLuxClock::nsec(...)
+// }}} End of func CTime<tsztBufSize>::operator>()
 // ================================================================================================ //
 
-// }}} ![ Class CLuxClock Functional realization ]
+// ================================================================================================ //
+// ==  Methord : CTime<tsztBufSize>::operator < ()                                               == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : operation <
+// ==  Return  : bool                 - [O] true  - sucess
+// ==                                       false - failed
+template< size_t tsztBufSize >
+inline bool vm::CTime< tsztBufSize >::operator < ( const CTime &obj )
+// {{{
+{
+    return (*(CTimeb*)this) < obj.mstTimeb;
+}
+// }}} End of func CTime<tsztBufSize>::operator<()
+// ================================================================================================ //
+
+// }}} ![ Class CTime<tsztBufSize> operator realization ]
+// ================================================================================================ //
+
+
+// ================================================================================================ //
+// ==  Class CTime<tsztBufSize> Functional realization                                           == //
+// ================================================================================================ //
+// [ Class CTime<tsztBufSize> Functional realization ] {{{
+
+
+
+// }}} ![ Class CTime<tsztBufSize> Functional realization ]
 // ================================================================================================ //
 
 

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-23 21:15                                                  == //
-// ==   Modify Time          : 2020-11-23 22:10                                                  == //
+// ==   Modify Time          : 2020-11-24 09:28                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -115,14 +115,14 @@ inline void vm::CLuxClock2::Start( void )
 // ==  Methord : CLuxClock2::Ended(...)                                                          == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Ended count clock
-// ==  Return  : long long        - [O] time different, unit of time is nanesecond
-inline long long vm::CLuxClock2::Ended( void )
+// ==  Return  : unsigned long long        - [O] time different, unit of time is nanesecond
+inline unsigned long long vm::CLuxClock2::Ended( void )
 // {{{
 {
     ::gettimeofday(&mtEnded, &mtTimeZone);
-    mllTimeDiff = (((long long)mtEnded.tv_sec)*1000000000+((long long)mtEnded.tv_usec)*1000 ) - 
-                  (((long long)mtStart.tv_sec)*1000000000+((long long)mtStart.tv_usec)*1000 );
-    return mllTimeDiff;
+    mullTimeDiff = (((unsigned long long)mtEnded.tv_sec)*1000000000+((unsigned long long)mtEnded.tv_usec)*1000 ) - 
+                  (((unsigned long long)mtStart.tv_sec)*1000000000+((unsigned long long)mtStart.tv_usec)*1000 );
+    return mullTimeDiff;
 }
 // }}} end of func CLuxClock2::Ended(...)
 // ================================================================================================ //
@@ -136,7 +136,7 @@ inline long long vm::CLuxClock2::Ended( void )
 inline double vm::CLuxClock2::d_sec( void )
 // {{{
 {
-    return (  double )  mllTimeDiff/1000000000  ;
+    return (  double )  mullTimeDiff/1000000000  ;
 }
 // }}} end of func CLuxClock2::d_sec(...)
 // ================================================================================================ //
@@ -144,12 +144,12 @@ inline double vm::CLuxClock2::d_sec( void )
 // ================================================================================================ //
 // ==  Methord : CLuxClock2::sec(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by long long type, unit of time is second
-// ==  Return  : long long        - [O] long long type time different, unit of time is second
-inline long long vm::CLuxClock2::sec( void )
+// ==  Brief   : Ouput time different by unsigned long long type, unit of time is second
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time is second
+inline unsigned long long vm::CLuxClock2::sec( void )
 // {{{
 {
-    return (long long)( mllTimeDiff/1000000000 );
+    return (unsigned long long)( mullTimeDiff/1000000000 );
 }
 // }}} end of func CLuxClock2::sec(...)
 // ================================================================================================ //
@@ -157,12 +157,12 @@ inline long long vm::CLuxClock2::sec( void )
 // ================================================================================================ //
 // ==  Methord : CLuxClock2::msec(...)                                                           == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by long long type, unit of time is millisecond
-// ==  Return  : long long        - [O] long long type time different, unit of time millisecond
-inline long long vm::CLuxClock2::msec( void )
+// ==  Brief   : Output time different by unsigned long long type, unit of time is millisecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time millisecond
+inline unsigned long long vm::CLuxClock2::msec( void )
 // {{{
 {
-    return (long long)( mllTimeDiff/1000000    );
+    return (unsigned long long)( mullTimeDiff/1000000    );
 }
 // }}} end of func CLuxClock2::msec(...)
 // ================================================================================================ //
@@ -170,12 +170,12 @@ inline long long vm::CLuxClock2::msec( void )
 // ================================================================================================ //
 // ==  Methord : CLuxClock2::usec(...)                                                           == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by long long type, unit of time is microsecond
-// ==  Return  : long long        - [O] long long type time different, unit of time microsecond
-inline long long vm::CLuxClock2::usec( void )
+// ==  Brief   : Ouput time different by unsigned long long type, unit of time is microsecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time microsecond
+inline unsigned long long vm::CLuxClock2::usec( void )
 // {{{
 {
-    return (long long)( mllTimeDiff/1000       );
+    return (unsigned long long)( mullTimeDiff/1000       );
 }
 // }}} end of func CLuxClock2::usec(...)
 // ================================================================================================ //
@@ -183,12 +183,12 @@ inline long long vm::CLuxClock2::usec( void )
 // ================================================================================================ //
 // ==  Methord : CLuxClock2::nsec(...)                                                           == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by long long type, unit of time is nanosecond
-// ==  Return  : long long        - [O] long long type time different, unit of time nanosecond
-inline long long vm::CLuxClock2::nsec( void )
+// ==  Brief   : Output time different by unsigned long long type, unit of time is nanosecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time nanosecond
+inline unsigned long long vm::CLuxClock2::nsec( void )
 // {{{
 {
-    return mllTimeDiff;
+    return mullTimeDiff;
 }
 // }}} end of func CLuxClock2::nsec(...)
 // ================================================================================================ //

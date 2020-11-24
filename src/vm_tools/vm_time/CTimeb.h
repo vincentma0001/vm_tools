@@ -6,8 +6,8 @@
 // ==                                                                                            == //
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
-// ==   Create Time          : 2020-11-23 23:22                                                  == //
-// ==   Modify Time          : 2020-11-23 23:57                                                  == //
+// ==   Create Time          : 2020-11-24 00:05                                                  == //
+// ==   Modify Time          : 2020-11-24 23:22                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,9 +26,6 @@
 // == Include files :                                                                            == //
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
-// system files inlcuded
-#include "vm_cfgs/vm_cfg_def_ret.h"
-#include <sys/timeb.h>
 //.vm's.function.depend.on.included
 #include <vm_cfgs.h>
 // }}}
@@ -39,86 +36,278 @@
 namespace vm {
 // ------------------------------------------------------------------------------------------------ //
 
+// Class CTimeMinute : this class define a minute object
+class CTimeMinute
+{ // {{{
+
 // Macrodefs : {{{
-#if        ( _V_SYS_ == _V_WIN_ )
-// Win coders {{{
-//  TODO : add windows codes
-// }}}
-#elif      ( _V_SYS_ == _V_LUX_ )
-// Lux codes {{{
-#   define  tTimeb   ::timeb
-#   define  tTimet   ::time_t
-// }}}
-#endif // !( _V_SYS_ == _V_WIN_ )
+#ifndef    vSecondOfMinute
+// second of minute = 60
+#   define vSecondOfMinute              60
+#endif // !vSecondOfMinute
+
+#ifndef    vMilliSecondOfMinute
+// millisecond of minute = 60*1000
+#   define vMilliSecondOfMinute         60000
+#endif // !vMilliSecondOfMinute
 // }}} ! Macrodefs
+
+// Construct & Destruct : {{{
+public:
+    // Construct define
+    inline          CTimeMinute(                              ):muiMinutes(0)             {};
+    inline          CTimeMinute( const unsigned int cuiMinute ):muiMinutes(cuiMinute)     {};
+    inline          CTimeMinute( const CTimeMinute       &obj ):muiMinutes(obj.muiMinutes){};
+    // Destruct define
+    inline virtual ~CTimeMinute(                              ){};
+// }}} ! Construct & Destruct
+
+// Operators : {{{
+public:
+    // Assignment operation
+    inline CTimeMinute& operator = ( const CTimeMinute &obj ){ muiMinutes=obj.muiMinutes; return *this; };
+// }}} ! Operators
+
+// Menbers   : {{{
+private:
+    unsigned int        muiMinutes;
+// }}} ! Members
+
+// Methods   : {{{
+public:
+    unsigned long long  sec() const { return ((unsigned long long)muiMinutes)*vSecondOfMinute;     };
+    unsigned long long msec() const { return ((unsigned long long)muiMinutes)*vMilliSecondOfMinute;};
+// }}} ! Methods
+
+}; // }}} End of class CTimeMinute
 
 // ------------------------------------------------------------------------------------------------ //
 
-// Class CTimeb : this class deal with about timeb's functions
+// Class CTimeHour : this class define a hour object
+class CTimeHour
+{ // {{{
+
+// Macrodefs : {{{
+#ifndef    vSecondOfHour
+// second in hour = 60*60
+#   define vSecondOfHour                3600
+#endif // !vSecondOfHour
+
+#ifndef    vMilliSecondOfHour
+// millisecond of hour = 60*60*1000
+#   define vMilliSecondOfHour           3600000
+#endif // !vMilliSecondOfHour
+// }}} ! Macrodefs
+
+// Construct & Destruct : {{{
+public:
+    // Construct define
+    inline          CTimeHour(                              ):muiHours(0)            {};
+    inline          CTimeHour( const unsigned int cuiMinute ):muiHours(cuiMinute)    {};
+    inline          CTimeHour( const CTimeHour         &obj ):muiHours(obj.muiHours) {};
+    // Destruct define
+    inline virtual ~CTimeHour(){};
+// }}} ! Construct & Destruct
+
+// Operators : {{{
+public:
+    // Assignment operation
+    inline CTimeHour& operator = ( const CTimeHour &obj ){ muiHours=obj.muiHours; return *this; };
+// }}} ! Operators
+
+// Menbers   : {{{
+private:
+    unsigned int        muiHours;
+// }}} ! Members
+
+// Methods   : {{{
+public:
+    unsigned long long  sec() const { return ((unsigned long long)muiHours)*vSecondOfHour;     };
+    unsigned long long msec() const { return ((unsigned long long)muiHours)*vMilliSecondOfHour;};
+// }}} ! Methods
+
+}; // }}} End of class CTimeHour
+
+// ------------------------------------------------------------------------------------------------ //
+
+// Class CTimeDay : this class define a day object
+class CTimeDay
+{ // {{{
+
+// Macrodefs : {{{
+#ifndef    vSecondOfDay
+// second in day = 24*60*60
+#   define vSecondOfDay                 86400
+#endif // !vSecondOfDay
+
+#ifndef    vMilliSecondOfDay
+// millisecond in day = 24*60*60*1000
+#   define vMilliSecondOfDay            86400000
+#endif // !vMilliSecondOfDay
+// }}} ! Macrodefs
+
+// Construct & Destruct : {{{
+public:
+    // Construct define
+    inline          CTimeDay(                              ):muiDays(0)            {};
+    inline          CTimeDay( const unsigned int cuiMinute ):muiDays(cuiMinute)    {};
+    inline          CTimeDay( const CTimeDay          &obj ):muiDays(obj.muiDays)  {};
+    // Destruct define
+    inline virtual ~CTimeDay(){};
+// }}} ! Construct & Destruct
+
+// Operators : {{{
+public:
+    // Assignment operation
+    inline CTimeDay& operator = ( const CTimeDay &obj ){ muiDays=obj.muiDays; return *this; };
+// }}} ! Operators
+
+// Menbers   : {{{
+private:
+    unsigned int        muiDays;
+// }}} ! Members
+
+// Methods   : {{{
+public:
+    unsigned long long  sec() const { return ((unsigned long long)muiDays)*vSecondOfDay;     };
+    unsigned long long msec() const { return ((unsigned long long)muiDays)*vMilliSecondOfDay;};
+// }}} ! Methods
+
+}; // }}} End of class CTimeDay
+
+// ------------------------------------------------------------------------------------------------ //
+
+// Class CTimeb : this class deal with functions about time
 class CTimeb
 { // {{{
 
 // Construct & Destruct : {{{
 public:
     // Construct define
-    inline          CTimeb( tTimeb &Timeb );
+    inline          CTimeb ( tTimeb &stTimeb );
     // Destruct define
-    inline virtual ~CTimeb();
+    inline virtual ~CTimeb (                 );
 
 private:
     // Copy construct define
-    inline CTimeb             ( const CTimeb &obj );
-    // Assignment operation
-    inline CTimeb& operator = ( const CTimeb &obj );
+    inline          CTimeb ( const CTimeb &obj );
 // }}} ! Construct & Destruct
 
-// Menbers   : {{{
-private:
-    tTimeb          &mTimeb;
+// Operators : {{{
+public:
+    // Get current timeb object
+    inline tTimeb& operator &  ();
+    // Get current timeb object pointer
+    inline tTimeb* operator *  ();
 
+    // Assignment operation
+    inline tTimeb& operator =  ( const CTimeb                        &obj );
+    // Assignment operation
+    inline tTimeb& operator =  ( const unsigned long long cullMilliSecond );
+    // Assignment operation
+    inline tTimeb& operator =  ( const tTimeb                    &stTimeb );
+    // Assignment operation
+    inline tTimeb& operator =  ( const tTimet                    &stTimet );
+
+    inline tTimeb& operator +  ( const CTimeb                        &obj );
+    inline tTimeb& operator +  ( const unsigned long long cullMilliSecond );
+    inline tTimeb& operator +  ( const tTimet                     tSecond );
+    inline tTimeb& operator +  ( const CTimeDay                     cDays );
+    inline tTimeb& operator +  ( const CTimeHour                   cHours );
+    inline tTimeb& operator +  ( const CTimeMinute               cMinutes );
+
+    inline tTimeb& operator += ( const CTimeb                        &obj );
+    inline tTimeb& operator += ( const unsigned long long cullMilliSecond );
+    inline tTimeb& operator += ( const tTimet                     tSecond );
+    inline tTimeb& operator += ( const CTimeDay                     cDays );
+    inline tTimeb& operator += ( const CTimeHour                   cHours );
+    inline tTimeb& operator += ( const CTimeMinute               cMinutes );
+
+    inline tTimeb& operator -  ( const CTimeb                        &obj );
+    inline tTimeb& operator -  ( const unsigned long long cullMilliSecond );
+    inline tTimeb& operator -  ( const tTimet                     tSecond );
+    inline tTimeb& operator -  ( const CTimeDay                     cDays );
+    inline tTimeb& operator -  ( const CTimeHour                   cHours );
+    inline tTimeb& operator -  ( const CTimeMinute               cMinutes );
+
+    inline tTimeb& operator -= ( const CTimeb                        &obj );
+    inline tTimeb& operator -= ( const unsigned long long cullMilliSecond );
+    inline tTimeb& operator -= ( const tTimet                     tSecond );
+    inline tTimeb& operator -= ( const CTimeDay                     cDays );
+    inline tTimeb& operator -= ( const CTimeHour                   cHours );
+    inline tTimeb& operator -= ( const CTimeMinute               cMinutes );
+
+    inline bool    operator == ( const CTimeb      &obj );
+    inline bool    operator != ( const CTimeb      &obj );
+    inline bool    operator >  ( const CTimeb      &obj );
+    inline bool    operator <  ( const CTimeb      &obj );
+
+    inline bool    operator == ( const tTimeb  &stTimeb );
+    inline bool    operator != ( const tTimeb  &stTimeb );
+    inline bool    operator >  ( const tTimeb  &stTimeb );
+    inline bool    operator <  ( const tTimeb  &stTimeb );
+// }}} ! Operators
+
+// Menbers   : {{{
+protected:
+    // timeb value
+    tTimeb          &mstTimeb;
+
+public:
+    // Error code
     long long       mllErrCode;
 // }}} ! Members
 
 // Methods   : {{{
 public:
-    inline tTimet&          GetTimet  ( void ){ return mTimeb.time;    };
-    inline tTimeb&          GetTimeb  ( void ){ return mTimeb;         };
-    inline unsigned short&  GetMillitm( void ){ return mTimeb.millitm; };
+    // object's time_t value
+    inline tTimet&             timet ( void ) const;
+    // object's timeb value
+    inline tTimeb&             timeb ( void ) const;
+    // object's millitm value
+    inline unsigned short    millitm ( void ) const;
 
-    inline tTimeb& Now()
-    {
-        bool lbRet = vm::CTimeb::Now( mTimeb );
-        if( lbRet == false )
-        {
-            mllErrCode = vMakeLLong( vm::emRet::emError, errno );
-        } // End of if( lbRet ... )
+    // object's seconde value
+    inline unsigned long long    sec ( void ) const;
+    // object's millisecond value
+    inline unsigned long long   msec ( void ) const;
 
-        return mTimeb;
-    }
+    // Get current time
+    inline tTimeb&               Now ( void );
 
+    inline bool isAfter( tTimeb &szTimeb ) { return ( *this < szTimeb );  }
+    inline bool isBefor( tTimeb &szTimeb ) { return ( *this > szTimeb );  }
+
+    inline bool SetTime ( unsigned int    uiYear, unsigned int  uiMonth, unsigned int  uiDay,
+                          unsigned int    uiHour, unsigned int    uiMin, unsigned int  uiSec,
+                          unsigned short  usMSec = 0 );
+    inline bool GetTime ( unsigned int   &uiYear, unsigned int &uiMonth, unsigned int &uiDay, 
+                          unsigned int   &uiHour, unsigned int   &uiMin, unsigned int &uiSec, 
+                          unsigned short &usMSec );
 
 public:
-    inline static bool Now( tTimeb &Timeb )
+    // Get current timeb
+    inline static bool Now( tTimeb &stTimeb );
+    inline static void Set( tTimeb &stTimebDst, const tTimeb &stTimebSrc )
     {
-        #if        ( _V_SYS_ == _V_WIN_ )
-        // Win coders {{{
-        //  TODO : add windows codes
-        // }}}
-        #elif      ( _V_SYS_ == _V_LUX_ )
-        // Lux codes {{{
-            int liRet = ftime( &Timeb );
-            if( liRet != 0 )
-                return false;
-        // }}}
-        #endif // !( _V_SYS_ == _V_WIN_ )
-
-        return true;
+        stTimebDst.time     = stTimebSrc.time;
+        stTimebDst.millitm  = stTimebSrc.millitm;
+        stTimebDst.timezone = stTimebSrc.timezone;
+        stTimebDst.dstflag  = stTimebSrc.dstflag;
     }
 
+    // Convert millisecond to tTimeb
+    inline static void mSecToTimeb( const unsigned long long &cullMilliSecond, tTimeb &stTimeb );
+    // Convert tTimeb to millisecond
+    inline static void TimebToMSec( tTimeb &stTimeb,         unsigned long long ullMilliSecond );
+
+    // Convert struct time_t to struct tm
+    inline static bool TimetToTm( tTimet &stTimet, tTimetm  &stTm );
+    // Convert struct tm to struct time_t
+    inline static bool TmToTimet( tTimetm  &stTm, tTimet &stTimet );
 // }}} ! Methods
 
 }; // }}} End of class CTimeb
-
 
 // ------------------------------------------------------------------------------------------------ //
 }; // }}} End of namespace vm
@@ -126,6 +315,7 @@ public:
 // file realization
 #include "CTimeb.h.inl"
 // ================================================================================================ //
+
 
 #endif // ! __CTIMEB_H__
 // ================================================================================================ //

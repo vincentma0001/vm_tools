@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-23 19:20                                                  == //
-// ==   Modify Time          : 2020-11-23 22:13                                                  == //
+// ==   Modify Time          : 2020-11-24 09:28                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -114,13 +114,13 @@ inline void vm::CCrtClock::Start( void )
 // ==  Methord : CCrtClock::Ended(...)                                                           == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Ended count clock
-// ==  Return  : long long        - [O] time different, unit of time is nanesecond
-inline long long vm::CCrtClock::Ended( void )
+// ==  Return  : unsigned long long        - [O] time different, unit of time is nanesecond
+inline unsigned long long vm::CCrtClock::Ended( void )
 // {{{
 {
     mtEnded = clock();
     mtTimeDiff = mtEnded-mtStart;
-    return ((long long) mtTimeDiff*1000000000)/CLOCKS_PER_SEC;
+    return ((unsigned long long) mtTimeDiff*1000000000)/CLOCKS_PER_SEC;
 }
 // }}} end of func CCrtClock::Ended(...)
 // ================================================================================================ //
@@ -142,12 +142,12 @@ inline double vm::CCrtClock::d_sec( void )
 // ================================================================================================ //
 // ==  Methord : CCrtClock::sec(...)                                                             == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by long long type, unit of time is second
-// ==  Return  : long long        - [O] long long type time different, unit of time is second
-inline long long vm::CCrtClock::sec( void )
+// ==  Brief   : Ouput time different by unsigned long long type, unit of time is second
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time is second
+inline unsigned long long vm::CCrtClock::sec( void )
 // {{{
 {
-    return ((long long)mtTimeDiff)/CLOCKS_PER_SEC;
+    return ((unsigned long long)mtTimeDiff)/CLOCKS_PER_SEC;
 }
 // }}} end of func CCrtClock::sec(...)
 // ================================================================================================ //
@@ -155,12 +155,12 @@ inline long long vm::CCrtClock::sec( void )
 // ================================================================================================ //
 // ==  Methord : CCrtClock::msec(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by long long type, unit of time is millisecond
-// ==  Return  : long long        - [O] long long type time different, unit of time millisecond
-inline long long vm::CCrtClock::msec( void )
+// ==  Brief   : Output time different by unsigned long long type, unit of time is millisecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time millisecond
+inline unsigned long long vm::CCrtClock::msec( void )
 // {{{
 {
-    return ((long long)mtTimeDiff*1000)/CLOCKS_PER_SEC;
+    return ((unsigned long long)mtTimeDiff*1000)/CLOCKS_PER_SEC;
 }
 // }}} end of func CCrtClock::msec(...)
 // ================================================================================================ //
@@ -168,12 +168,12 @@ inline long long vm::CCrtClock::msec( void )
 // ================================================================================================ //
 // ==  Methord : CCrtClock::usec(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Ouput time different by long long type, unit of time is microsecond
-// ==  Return  : long long        - [O] long long type time different, unit of time microsecond
-inline long long vm::CCrtClock::usec( void )
+// ==  Brief   : Ouput time different by unsigned long long type, unit of time is microsecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time microsecond
+inline unsigned long long vm::CCrtClock::usec( void )
 // {{{
 {
-    return ((long long)mtTimeDiff*1000000)/CLOCKS_PER_SEC;
+    return ((unsigned long long)mtTimeDiff*1000000)/CLOCKS_PER_SEC;
 }
 // }}} end of func CCrtClock::usec(...)
 // ================================================================================================ //
@@ -181,12 +181,12 @@ inline long long vm::CCrtClock::usec( void )
 // ================================================================================================ //
 // ==  Methord : CCrtClock::nsec(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
-// ==  Brief   : Output time different by long long type, unit of time is nanosecond
-// ==  Return  : long long        - [O] long long type time different, unit of time nanosecond
-inline long long vm::CCrtClock::nsec( void )
+// ==  Brief   : Output time different by unsigned long long type, unit of time is nanosecond
+// ==  Return  : unsigned long long        - [O] unsigned long long type time different, unit of time nanosecond
+inline unsigned long long vm::CCrtClock::nsec( void )
 // {{{
 {
-    return ((long long)mtTimeDiff*1000000000)/CLOCKS_PER_SEC;
+    return ((unsigned long long)mtTimeDiff*1000000000)/CLOCKS_PER_SEC;
 }
 // }}} end of func CCrtClock::nsec(...)
 // ================================================================================================ //

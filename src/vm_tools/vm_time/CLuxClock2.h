@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-23 20:58                                                  == //
-// ==   Modify Time          : 2020-11-23 22:12                                                  == //
+// ==   Modify Time          : 2020-11-24 09:30                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -59,26 +59,26 @@ private:
     struct timeval          mtStart;
     struct timeval          mtEnded;
     struct timezone         mtTimeZone;
-    long long               mllTimeDiff;
+    unsigned long long      mullTimeDiff;
 // }}} ! Members
 
 // Methods   : {{{
 public:
     // Start count clock
-    inline void      Start( void );
+    inline void               Start( void );
     // Ended count clock
-    inline long long Ended( void );
+    inline unsigned long long Ended( void );
 
     // Ouput time different by double type, unit of time is second
-    inline double  d_sec  ( void );
-    // Ouput time different by long long type, unit of time is second
-    inline long long sec  ( void );
-    // Output time different by long long type, unit of time is millisecond
-    inline long long msec ( void );
-    // Ouput time different by long long type, unit of time is microsecond
-    inline long long usec ( void );
-    // Output time different by long long type, unit of time is nanosecond
-    inline long long nsec ( void );
+    inline double           d_sec  ( void );
+    // Ouput time different by unsigned long long type, unit of time is second
+    inline unsigned long long sec  ( void );
+    // Output time different by unsigned long long type, unit of time is millisecond
+    inline unsigned long long msec ( void );
+    // Ouput time different by unsigned long long type, unit of time is microsecond
+    inline unsigned long long usec ( void );
+    // Output time different by unsigned long long type, unit of time is nanosecond
+    inline unsigned long long nsec ( void );
 // }}} ! Methods
 
 }; // }}} End of class CLuxClock2
