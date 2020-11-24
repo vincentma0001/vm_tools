@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 00:05                                                  == //
-// ==   Modify Time          : 2020-11-24 23:42                                                  == //
+// ==   Modify Time          : 2020-11-24 23:43                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -237,15 +237,15 @@ public:
     inline tTimeb& operator -= ( const CHour                       cHours );
     inline tTimeb& operator -= ( const CMinute                   cMinutes );
 
-    inline bool    operator == ( const CTimeb      &obj );
-    inline bool    operator != ( const CTimeb      &obj );
-    inline bool    operator >  ( const CTimeb      &obj );
-    inline bool    operator <  ( const CTimeb      &obj );
+    inline bool    operator == ( const CTimeb                        &obj );
+    inline bool    operator != ( const CTimeb                        &obj );
+    inline bool    operator >  ( const CTimeb                        &obj );
+    inline bool    operator <  ( const CTimeb                        &obj );
 
-    inline bool    operator == ( const tTimeb  &stTimeb );
-    inline bool    operator != ( const tTimeb  &stTimeb );
-    inline bool    operator >  ( const tTimeb  &stTimeb );
-    inline bool    operator <  ( const tTimeb  &stTimeb );
+    inline bool    operator == ( const tTimeb                    &stTimeb );
+    inline bool    operator != ( const tTimeb                    &stTimeb );
+    inline bool    operator >  ( const tTimeb                    &stTimeb );
+    inline bool    operator <  ( const tTimeb                    &stTimeb );
 // }}} ! Operators
 
 // Menbers   : {{{
