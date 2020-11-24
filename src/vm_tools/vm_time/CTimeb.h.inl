@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 00:26                                                  == //
-// ==   Modify Time          : 2020-11-24 23:24                                                  == //
+// ==   Modify Time          : 2020-11-24 23:39                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -220,8 +220,8 @@ inline tTimeb& vm::CTimeb::operator+( const tTimet tSecond )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation + 
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeDay object
-inline tTimeb& vm::CTimeb::operator+( const vm::CTimeDay cDays )
+// ==  Params  : &obj             - [I] CDay object
+inline tTimeb& vm::CTimeb::operator+( const vm::CDay cDays )
 // {{{
 {
     mstTimeb.time += cDays.sec();
@@ -235,8 +235,8 @@ inline tTimeb& vm::CTimeb::operator+( const vm::CTimeDay cDays )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation + 
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator+( const vm::CTimeHour cHours )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator+( const vm::CHour cHours )
 // {{{
 {
     mstTimeb.time += cHours.sec();
@@ -250,8 +250,8 @@ inline tTimeb& vm::CTimeb::operator+( const vm::CTimeHour cHours )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation + 
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator+( const vm::CTimeMinute cMinutes )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator+( const vm::CMinute cMinutes )
 // {{{
 {
     mstTimeb.time += cMinutes.sec();
@@ -314,8 +314,8 @@ inline tTimeb& vm::CTimeb::operator+=( const tTimet tSecond )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation +=
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeDay object
-inline tTimeb& vm::CTimeb::operator+=( const vm::CTimeDay cDays )
+// ==  Params  : &obj             - [I] CDay object
+inline tTimeb& vm::CTimeb::operator+=( const vm::CDay cDays )
 // {{{
 {
     mstTimeb.time += cDays.sec();
@@ -329,8 +329,8 @@ inline tTimeb& vm::CTimeb::operator+=( const vm::CTimeDay cDays )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation +=
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator+=( const vm::CTimeHour cHours )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator+=( const vm::CHour cHours )
 // {{{
 {
     mstTimeb.time += cHours.sec();
@@ -344,8 +344,8 @@ inline tTimeb& vm::CTimeb::operator+=( const vm::CTimeHour cHours )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation +=
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator+=( const vm::CTimeMinute cMinutes )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator+=( const vm::CMinute cMinutes )
 // {{{
 {
     mstTimeb.time += cMinutes.sec();
@@ -408,8 +408,8 @@ inline tTimeb& vm::CTimeb::operator-( const tTimet tSecond )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeDay object
-inline tTimeb& vm::CTimeb::operator-( const vm::CTimeDay cDays )
+// ==  Params  : &obj             - [I] CDay object
+inline tTimeb& vm::CTimeb::operator-( const vm::CDay cDays )
 // {{{
 {
     mstTimeb.time -= cDays.sec();
@@ -423,8 +423,8 @@ inline tTimeb& vm::CTimeb::operator-( const vm::CTimeDay cDays )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator-( const vm::CTimeHour cHours )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator-( const vm::CHour cHours )
 // {{{
 {
     mstTimeb.time -= cHours.sec();
@@ -438,8 +438,8 @@ inline tTimeb& vm::CTimeb::operator-( const vm::CTimeHour cHours )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator-( const vm::CTimeMinute cMinutes )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator-( const vm::CMinute cMinutes )
 // {{{
 {
     mstTimeb.time -= cMinutes.sec();
@@ -502,8 +502,8 @@ inline tTimeb& vm::CTimeb::operator-=( const tTimet tSecond )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeDay object
-inline tTimeb& vm::CTimeb::operator-=( const vm::CTimeDay cDays )
+// ==  Params  : &obj             - [I] CDay object
+inline tTimeb& vm::CTimeb::operator-=( const vm::CDay cDays )
 // {{{
 {
     mstTimeb.time -= cDays.sec();
@@ -517,8 +517,8 @@ inline tTimeb& vm::CTimeb::operator-=( const vm::CTimeDay cDays )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator-=( const vm::CTimeHour cHours )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator-=( const vm::CHour cHours )
 // {{{
 {
     mstTimeb.time -= cHours.sec();
@@ -532,8 +532,8 @@ inline tTimeb& vm::CTimeb::operator-=( const vm::CTimeHour cHours )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
-// ==  Params  : &obj             - [I] CTimeHour object
-inline tTimeb& vm::CTimeb::operator-=( const vm::CTimeMinute cMinutes )
+// ==  Params  : &obj             - [I] CHour object
+inline tTimeb& vm::CTimeb::operator-=( const vm::CMinute cMinutes )
 // {{{
 {
     mstTimeb.time -= cMinutes.sec();
@@ -771,6 +771,36 @@ inline tTimeb& vm::CTimeb::Now( void )
 // ================================================================================================ //
 
 // ================================================================================================ //
+// ==  Methord : CTimeb::isAfter(...)                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Decide this object is after stTimeb or not
+// ==  Return  : bool             - [O] true  - this object is after of stTimeb
+// ==                                   false - this object isn't after of stTimeb
+// ==  Params  : &stTimeb         - [I] secend timeb object
+inline bool vm::CTimeb::isAfter( tTimeb &stTimeb )
+// {{{
+{
+    return ( *this > stTimeb );
+}
+// }}} end of func CTimeb::isAfter(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CTimeb::isBefor(...)                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Decide this object is before stTimeb or not
+// ==  Return  : bool             - [O] true  - this object is before of stTimeb
+// ==                                   false - this object isn't before of stTimeb
+// ==  Params  : &stTimeb         - [I] secend timeb object
+inline bool vm::CTimeb::isBefor( tTimeb &stTimeb )
+// {{{
+{
+    return ( *this < stTimeb );
+}
+// }}} end of func CTimeb::isBefore(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
 // ==  Methord : CTimeb::SetTime(...)                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Set timeb value
@@ -886,6 +916,24 @@ inline bool vm::CTimeb::Now( tTimeb &stTimeb )
     return true;
 }
 // }}} end of func CTimeb::Now(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CTimeb::Set(...)                                                                == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Set timeb value
+// ==  Return  : void             - [O] Nothing for return
+// ==  Params  : &stTimebDst      - [I] dst timeb object
+// ==            &stTimebSrc      - [I] src timeb object
+inline void vm::CTimeb::Set( tTimeb &stTimebDst, const tTimeb &stTimebSrc )
+// {{{
+{
+        stTimebDst.time     = stTimebSrc.time;
+        stTimebDst.millitm  = stTimebSrc.millitm;
+        stTimebDst.timezone = stTimebSrc.timezone;
+        stTimebDst.dstflag  = stTimebSrc.dstflag;
+}
+// }}} end of func CTimeb::Set(...)
 // ================================================================================================ //
 
 // ================================================================================================ //
