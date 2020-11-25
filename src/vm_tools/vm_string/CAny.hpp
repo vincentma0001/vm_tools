@@ -42,7 +42,7 @@ namespace vm {
 #endif // !vAnyToStr
 
 #ifndef    vAnyToStr2
-#   define vAnyToStr2(tsztBufSize,val, fmt)     vm::CAny<tsztBufSize>( val ).toStr2(fmt)
+#   define vAnyToStr2(tsztBufSize,val,fmt)      vm::CAny<tsztBufSize>( val ).toStr2(fmt)
 #endif // !vAnyToStr2
 
 #ifndef    vStrToChar
