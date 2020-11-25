@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 10:35                                                  == //
-// ==   Modify Time          : 2020-11-25 13:27                                                  == //
+// ==   Modify Time          : 2020-11-25 19:03                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -157,7 +157,7 @@ inline tchar* vm::CTimeStr::Fmt( const tchar* const cpFmt )
     vm::CPattern loPatternDTForss(vT("%ss"), vT("%S"));
     loParser.Regist(loPatternDTForss);
     //      %ms  (millisecond                    e.g.                  000-999)
-    vm::CPattern loPatternDTForms(vT("%ms"), vm::CAny<128>(musMillitm).toStr());
+    vm::CPattern loPatternDTForms(vT("%ms"), vm::CAny<128>(musMillitm).toStr2( vStrFmtUShort_zw(3) ));
     loParser.Regist(loPatternDTForms);
     //      %WY  (Week based year                e.g.                    00-99)  = %g
     vm::CPattern loPatternDTForWY(vT("%WY"), vT("%g"));

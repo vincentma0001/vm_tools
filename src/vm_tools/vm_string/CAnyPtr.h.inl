@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-10 23:55                                                  == //
-// ==   Modify Time          : 2020-11-18 09:07                                                  == //
+// ==   Modify Time          : 2020-11-25 19:16                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -28,6 +28,7 @@
 #include <vm_tools/vm_funcs.h>
 //.vm's.function.files.inlcuded
 #include "CAnyPtr.h"
+#include "vm_tools/vm_funcs/v_funcs_io.h"
 // }}}
 // ================================================================================================ //
 
@@ -430,6 +431,75 @@ inline tchar* vm::CAnyPtr::toStr( void )
 }
 // }}} end of func CAnyPtr::toStr(...)
 // ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CAnyPtr::toStr2(...)                                                            == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Convert any type to string
+// ==  Return  : tchar*           - [O] new string
+// ==  Params  : cpFmt            - [I] string's format
+inline tchar* vm::CAnyPtr::toStr2( const tchar* const cpFmt )
+// {{{
+{
+    mllErrCode = vm::emRet::emSucess;
+    vm::v_memzero( mpBuf, msztBufSize );
+
+    switch ( memType ) {
+    // {{{
+        case emType::emBool:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.bValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emSize:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.sztValue   ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emChar:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.cValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emUChar:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.ucValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emWChar:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.wcValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emShort:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.sValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emUShort:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.usValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emInt:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.iValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emUInt:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.uiValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emLong:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.lValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emULong:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.ulValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emLLong:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.llValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emULLong:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.ullValue   ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emFloat:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.fValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emDouble:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.dValue     ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+        case emType::emLDouble:
+        { int liRet = vm::v_sprintf( mpBuf, msztBufSize, cpFmt, munValue.ldValue    ); if(liRet<=0) { mllErrCode = vMakeLLong( vm::emRet::emError, errno ); } break; }
+
+        case emType::emStr:
+        { break; }
+
+        default:
+        { mllErrCode = vMakeLLong( emRet::emErrUnknowType, errno ); }
+    } // }}} End of switch( emType )
+
+    return mpBuf;
+}
+// }}} end of func CAnyPtr::toStr2(...)
+// ================================================================================================ //
+
+// }}} end of func Class_Name<size_t>::Func_name(...)
+// ================================================================================================ //
+
 
 // ================================================================================================ //
 // ==  Methord : CAnyPtr::toBool(...)                                                            == //

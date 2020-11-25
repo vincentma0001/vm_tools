@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-10 23:54                                                  == //
-// ==   Modify Time          : 2020-11-18 17:23                                                  == //
+// ==   Modify Time          : 2020-11-25 19:15                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -26,6 +26,8 @@
 // == Include files :                                                                            == //
 // == ------------------------------------------------------------------------------------------ == //
 // [ Include files ] {{{
+#include "vm_cfgs/vm_cfg_def_ret.h"
+#include "vm_tools/vm_funcs/v_funcs_io.h"
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
@@ -182,6 +184,7 @@ public:
 
     // Get data value by string
     inline tchar*                 toStr( void );
+    inline tchar*                 toStr2( const tchar* const cpFmt );
 
     inline bool                  toBool( void );
     inline size_t                toSize( void );

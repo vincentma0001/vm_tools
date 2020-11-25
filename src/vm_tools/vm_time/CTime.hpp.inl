@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 17:47                                                  == //
-// ==   Modify Time          : 2020-11-25 18:49                                                  == //
+// ==   Modify Time          : 2020-11-25 18:53                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -232,7 +232,7 @@ inline tchar* vm::CTime< tsztBufSize >::Fmt( const tchar* const cpFmt )
 // {{{
 {
     vm::CTimeStr loTimeStr( mstTimeb, mszBuf, sizeof(mszBuf) );
-    loTimeStr.Fmt<tsztBufSize>( cpFmt );
+    return loTimeStr.Fmt<tsztBufSize>( cpFmt );
 }
 // }}} end of func CTime::Fmt(...)
 // ================================================================================================ //
