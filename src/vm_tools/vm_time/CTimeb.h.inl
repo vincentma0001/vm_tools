@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 00:26                                                  == //
-// ==   Modify Time          : 2020-11-24 23:46                                                  == //
+// ==   Modify Time          : 2020-11-25 12:53                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -175,9 +175,30 @@ inline tTimeb& vm::CTimeb::operator = ( const tTimet &stTimet )
 inline tTimeb& vm::CTimeb::operator+( const CTimeb &obj )
 // {{{
 {
-    unsigned long long lullMilliSecond  = msec();
-    lullMilliSecond                    += obj.msec();
-    vm::CTimeb::mSecToTimeb( lullMilliSecond, mstTimeb );
+    unsigned long long lullMilliSecond1 = msec();
+    unsigned long long lullMilliSecond2 = obj.msec();
+    lullMilliSecond1 += lullMilliSecond2;
+    vm::CTimeb::mSecToTimeb( lullMilliSecond1, mstTimeb );
+    return mstTimeb;
+}
+// }}} end of func CTimeb::operator+(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : CTimeb::operator+(...)                                                          == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : operation + 
+// ==  Return  : tTimeb&          - [O] this timeb object
+// ==  Params  : &tTimeb          - [I] tTimeb object
+inline tTimeb& vm::CTimeb::operator+( const tTimeb &stTimeb )
+// {{{
+{
+    unsigned long long lullMilliSecond1 = msec();
+    unsigned long long lullMilliSecond2 = 0;
+    vm::CTimeb::TimebToMSec( stTimeb, lullMilliSecond2 );
+
+    lullMilliSecond1 += lullMilliSecond2;
+    vm::CTimeb::mSecToTimeb( lullMilliSecond1, mstTimeb );
     return mstTimeb;
 }
 // }}} end of func CTimeb::operator+(...)
@@ -282,6 +303,25 @@ inline tTimeb& vm::CTimeb::operator+=( const CTimeb &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation +=
 // ==  Return  : tTimeb&          - [O] this timeb object
+// ==  Params  : &stTimeb         - [I] tTimeb object
+inline tTimeb& vm::CTimeb::operator+=( const tTimeb &stTimeb )
+// {{{
+{
+    unsigned long long lullMilliSecond1  = msec();
+    unsigned long long lullMilliSecond2  = 0;
+    vm::CTimeb::TimebToMSec( stTimeb, lullMilliSecond2 );
+
+    lullMilliSecond1 += lullMilliSecond2;
+    vm::CTimeb::mSecToTimeb( lullMilliSecond1, mstTimeb );
+    return mstTimeb;
+}
+// }}} end of func CTimeb::operator+=(...)
+// ================================================================================================ //
+// ================================================================================================ //
+// ==  Methord : CTimeb::operator+=(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : operation +=
+// ==  Return  : tTimeb&          - [O] this timeb object
 // ==  Params  : &obj             - [I] millisecond value
 inline tTimeb& vm::CTimeb::operator+=( const unsigned long long cullMilliSecond )
 // {{{
@@ -376,6 +416,25 @@ inline tTimeb& vm::CTimeb::operator-( const CTimeb &obj )
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : operation -
 // ==  Return  : tTimeb&          - [O] this timeb object
+// ==  Params  : &stTimeb         - [I] tTimeb object
+inline tTimeb& vm::CTimeb::operator-( const tTimeb &stTimeb )
+// {{{
+{
+    unsigned long long lullMilliSecond1 = msec();
+    unsigned long long lullMilliSecond2 = 0;
+    vm::CTimeb::TimebToMSec( stTimeb, lullMilliSecond2 );
+
+    lullMilliSecond1 -= lullMilliSecond2;
+    vm::CTimeb::mSecToTimeb( lullMilliSecond1, mstTimeb );
+    return mstTimeb;
+}
+// }}} end of func CTimeb::operator-(...)
+// ================================================================================================ //
+// ================================================================================================ //
+// ==  Methord : CTimeb::operator-(...)                                                          == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : operation -
+// ==  Return  : tTimeb&          - [O] this timeb object
 // ==  Params  : &obj             - [I] millisecond value
 inline tTimeb& vm::CTimeb::operator-( const unsigned long long cullMilliSecond )
 // {{{
@@ -465,6 +524,25 @@ inline tTimeb& vm::CTimeb::operator-=( const CTimeb &obj )
 // }}} end of func CTimeb::operator-=(...)
 // ================================================================================================ //
 
+// ================================================================================================ //
+// ==  Methord : CTimeb::operator-=(...)                                                         == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : operation -
+// ==  Return  : tTimeb&          - [O] this timeb object
+// ==  Params  : &stTimeb         - [I] tTimeb object
+inline tTimeb& vm::CTimeb::operator-=( const tTimeb &stTimeb )
+// {{{
+{
+    unsigned long long lullMilliSecond1 = msec();
+    unsigned long long lullMilliSecond2 = 0;
+    vm::CTimeb::TimebToMSec( stTimeb, lullMilliSecond2 );
+
+    lullMilliSecond1 -= lullMilliSecond2;
+    vm::CTimeb::mSecToTimeb( lullMilliSecond1, mstTimeb );
+    return mstTimeb;
+}
+// }}} end of func CTimeb::operator-=(...)
+// ================================================================================================ //
 // ================================================================================================ //
 // ==  Methord : CTimeb::operator-=(...)                                                         == //
 // == ------------------------------------------------------------------------------------------ == //
@@ -687,6 +765,23 @@ inline bool vm::CTimeb::operator<( const CTimeb &obj )
 // [ Class CTimeb Functional realization ] {{{
 
 // ================================================================================================ //
+// ==  Methord : CTimeb::Reset(...)                                                              == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Reset timeb value
+inline void vm::CTimeb::Reset( void )
+// {{{
+{
+    mstTimeb.time     = 0;
+    mstTimeb.millitm  = 0;
+    mstTimeb.timezone = 0;
+    mstTimeb.dstflag  = 0;
+
+    mllErrCode        = vm::emRet::emSucess;
+}
+// }}} end of func CTimeb::Reset(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
 // ==  Methord : CTimeb::timet(...)                                                              == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Object's time_t value
@@ -759,8 +854,8 @@ inline unsigned long long vm::CTimeb::msec( void ) const
 inline tTimeb& vm::CTimeb::Now( void )
 // {{{
 {
-    bool lbRet = vm::CTimeb::Now( mstTimeb );
-    if( lbRet == false )
+    mstTimeb = vm::CTimeb::TimeNow( );
+    if( errno != 0 )
     {
         mllErrCode = vMakeLLong( vm::emRet::emError, errno );
     } // End of if( lbRet ... )
@@ -898,22 +993,21 @@ inline bool vm::CTimeb::GetTime( unsigned int   &uiYear, unsigned int &uiMonth, 
 // ==  Return  : bool             - [O] true  - operation sucess
 // ==                                   false - operation failed
 // ==  Params  : &Timeb           - [O] tTimeb object
-inline bool vm::CTimeb::Now( tTimeb &stTimeb )
+inline tTimeb vm::CTimeb::TimeNow( void )
 // {{{
 {
+    tTimeb  lstTimeb;
 #if        ( _V_SYS_ == _V_WIN_ )
     // Win coders {{{
     //  TODO : add windows codes
     // }}}
 #elif      ( _V_SYS_ == _V_LUX_ )
     // Lux codes {{{
-    int liRet = ftime( &stTimeb );
-    if( liRet != 0 )
-        return false;
+    ftime( &lstTimeb );
     // }}}
 #endif // !( _V_SYS_ == _V_WIN_ )
 
-    return true;
+    return lstTimeb;
 }
 // }}} end of func CTimeb::Now(...)
 // ================================================================================================ //
@@ -957,13 +1051,14 @@ inline void vm::CTimeb::mSecToTimeb( const unsigned long long &cullMilliSecond, 
 // ==  Methord : CTimeb::TimebToMSec(...)                                                        == //
 // == ------------------------------------------------------------------------------------------ == //
 // ==  Brief   : Convert tTimeb to millisecond
-// ==  Return  : void             - [O] Nothing for return
-// ==  Params  : &stTimeb         - [I] Timeb object
-// ==            ullMilliSecond   - [I] millisecond value
-inline void vm::CTimeb::TimebToMSec( tTimeb &stTimeb, unsigned long long ullMilliSecond )
+// ==  Return  : unsigned long long     - [O] new millisecond value
+// ==  Params  : &stTimeb               - [I] Timeb object
+// ==            ullMilliSecond         - [I] millisecond value
+inline unsigned long long vm::CTimeb::TimebToMSec( const tTimeb &stTimeb, unsigned long long &ullMilliSecond )
 // {{{
 {
     ullMilliSecond = (unsigned long long)stTimeb.time*1000+stTimeb.millitm;
+    return ullMilliSecond;
 }
 // }}} end of func CTimeb::TimebToMSec(...)
 // ================================================================================================ //

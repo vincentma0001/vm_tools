@@ -45,9 +45,7 @@ configure_file("${TNAME}_ver.h.in" "${HOME}/${TNAME}_ver.h")
 # set sub modules
 #[[
 
-]]
 add_subdirectory(${HOME}/tst/vm_time/tst_time)
-#[[
 add_subdirectory(${HOME}/tst/vm_time/tst_luxclock2)
 add_subdirectory(${HOME}/tst/vm_time/tst_luxclock)
 add_subdirectory(${HOME}/tst/vm_time/tst_crtclock)
@@ -74,5 +72,7 @@ add_subdirectory(${HOME}/tst/tst_lib/lib)
 add_subdirectory(${HOME}/tst/tst_lib/bin)
 add_subdirectory(${HOME}/tst/tst_cfgs_w)
 add_subdirectory(${HOME}/tst/tst_cfgs)
+]]
 add_subdirectory(${HOME}/tst/vm_test/tst_test)
+#[[
 ]]

@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 00:05                                                  == //
-// ==   Modify Time          : 2020-11-24 23:46                                                  == //
+// ==   Modify Time          : 2020-11-25 12:53                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,6 +27,7 @@
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
 //.vm's.function.depend.on.included
+#include "vm_cfgs/vm_cfg_def_ret.h"
 #include <vm_cfgs.h>
 // }}}
 // ================================================================================================ //
@@ -210,6 +211,7 @@ public:
     inline tTimeb& operator =  ( const tTimet                    &stTimet );
 
     inline tTimeb& operator +  ( const CTimeb                        &obj );
+    inline tTimeb& operator +  ( const tTimeb                    &stTimeb );
     inline tTimeb& operator +  ( const unsigned long long cullMilliSecond );
     inline tTimeb& operator +  ( const tTimet                     tSecond );
     inline tTimeb& operator +  ( const CDay                         cDays );
@@ -217,6 +219,7 @@ public:
     inline tTimeb& operator +  ( const CMinute                   cMinutes );
 
     inline tTimeb& operator += ( const CTimeb                        &obj );
+    inline tTimeb& operator += ( const tTimeb                    &stTimeb );
     inline tTimeb& operator += ( const unsigned long long cullMilliSecond );
     inline tTimeb& operator += ( const tTimet                     tSecond );
     inline tTimeb& operator += ( const CDay                         cDays );
@@ -224,6 +227,7 @@ public:
     inline tTimeb& operator += ( const CMinute                   cMinutes );
 
     inline tTimeb& operator -  ( const CTimeb                        &obj );
+    inline tTimeb& operator -  ( const tTimeb                    &stTimeb );
     inline tTimeb& operator -  ( const unsigned long long cullMilliSecond );
     inline tTimeb& operator -  ( const tTimet                     tSecond );
     inline tTimeb& operator -  ( const CDay                         cDays );
@@ -231,6 +235,7 @@ public:
     inline tTimeb& operator -  ( const CMinute                   cMinutes );
 
     inline tTimeb& operator -= ( const CTimeb                        &obj );
+    inline tTimeb& operator -= ( const tTimeb                    &stTimeb );
     inline tTimeb& operator -= ( const unsigned long long cullMilliSecond );
     inline tTimeb& operator -= ( const tTimet                     tSecond );
     inline tTimeb& operator -= ( const CDay                         cDays );
@@ -260,6 +265,9 @@ public:
 
 // Methods   : {{{
 public:
+    // reset timeb value
+    inline void                Reset ( void );
+    
     // object's time_t value
     inline tTimet&             timet ( void ) const;
     // object's timeb value
@@ -291,14 +299,14 @@ public:
 
 public:
     // Get current timeb
-    inline static bool Now( tTimeb &stTimeb );
+    inline static tTimeb  TimeNow( void );
     // Set timeb value
     inline static void Set( tTimeb &stTimebDst, const tTimeb &stTimebSrc );
 
     // Convert millisecond to tTimeb
-    inline static void mSecToTimeb( const unsigned long long &cullMilliSecond, tTimeb &stTimeb );
+    inline static void               mSecToTimeb( const unsigned long long &cullMilliSecond, tTimeb &stTimeb );
     // Convert tTimeb to millisecond
-    inline static void TimebToMSec( tTimeb &stTimeb,         unsigned long long ullMilliSecond );
+    inline static unsigned long long TimebToMSec( const tTimeb &stTimeb,  unsigned long long &ullMilliSecond );
 
     // Convert struct time_t to struct tm
     inline static bool TimetToTm( tTimet &stTimet, tTimetm  &stTm );

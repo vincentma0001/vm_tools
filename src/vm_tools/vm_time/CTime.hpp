@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 17:46                                                  == //
-// ==   Modify Time          : 2020-11-24 23:08                                                  == //
+// ==   Modify Time          : 2020-11-25 18:49                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -80,7 +80,7 @@ private:
 
 // Methods   : {{{
 public:
-    // Output formated string of CTime object, more format info see this file's note
+    // Output formated string of CTime object, more format info see this file's note.
     // Format : %Y4 = %Y, %Y2 = %y, %MM = %m, %DD = %d, %HH = %H, %MM = %M, %SS = %S.
     inline tchar* Fmt( const tchar* const cpFmt );
 // }}} ! Methods

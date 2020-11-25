@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 17:47                                                  == //
-// ==   Modify Time          : 2020-11-24 23:06                                                  == //
+// ==   Modify Time          : 2020-11-25 18:49                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -24,6 +24,7 @@
 // ------------------------------------------------------------------------------------------------ //
 // [ Include files ] {{{
 #include "CTime.hpp"
+#include "CTimeStr.h"
 // }}}
 // ================================================================================================ //
 
@@ -220,7 +221,21 @@ inline bool vm::CTime< tsztBufSize >::operator < ( const CTime &obj )
 // ================================================================================================ //
 // [ Class CTime<tsztBufSize> Functional realization ] {{{
 
-
+// ================================================================================================ //
+// ==  Methord : CTime::Fmt(...)                                                                 == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Output formated string of CTime object, more format info see this file's not
+// ==  Return  : tchar*           - [O] formated string
+// ==  Params  : cpFmt            - [I] string's format
+template< size_t tsztBufSize >
+inline tchar* vm::CTime< tsztBufSize >::Fmt( const tchar* const cpFmt )
+// {{{
+{
+    vm::CTimeStr loTimeStr( mstTimeb, mszBuf, sizeof(mszBuf) );
+    loTimeStr.Fmt<tsztBufSize>( cpFmt );
+}
+// }}} end of func CTime::Fmt(...)
+// ================================================================================================ //
 
 // }}} ![ Class CTime<tsztBufSize> Functional realization ]
 // ================================================================================================ //
