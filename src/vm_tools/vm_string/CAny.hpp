@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-05 10:06                                                  == //
-// ==   Modify Time          : 2020-11-18 09:21                                                  == //
+// ==   Modify Time          : 2020-11-25 19:20                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -104,35 +104,35 @@ class CAny : public CAnyPtr
 // Construct & Destruct : {{{
 public:
     // Construc define 
-    inline CAny(const bool               Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const bool               Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const char               Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const char               Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const unsigned char      Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const unsigned char      Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const wchar_t            Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const wchar_t            Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const short              Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const short              Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const unsigned short     Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const unsigned short     Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const int                Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const int                Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const unsigned int       Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const unsigned int       Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const long               Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const long               Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const unsigned long      Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const unsigned long      Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const long long          Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const long long          Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const unsigned long long Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const unsigned long long Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const float              Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const float              Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const double             Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const double             Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
     // Construc define
-    inline CAny(const long double        Val ):CAnyPtr(Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
+    inline CAny(const long double        Val ):CAnyPtr(  Val,mszBuf,tsztBufSize),mszBuf{0x00}{};
 
     // Construc define
     inline CAny(const tchar* const     cpVal ):CAnyPtr(cpVal,mszBuf,tsztBufSize),mszBuf{0x00}{};
