@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-05 10:06                                                  == //
-// ==   Modify Time          : 2020-11-25 19:20                                                  == //
+// ==   Modify Time          : 2020-11-25 19:21                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -40,6 +40,10 @@ namespace vm {
 #ifndef    vAnyToStr
 #   define vAnyToStr(tsztBufSize,val)           vm::CAny<tsztBufSize>( val ).toStr()
 #endif // !vAnyToStr
+
+#ifndef    vAnyToStr2
+#   define vAnyToStr2(tsztBufSize,val, fmt)           vm::CAny<tsztBufSize>( val ).toStr2(fmt)
+#endif // !vAnyToStr2
 
 #ifndef    vStrToChar
 #   define vStrToChar(tsztBufSize,str)          vm::CAny<tsztBufSize>( str ).toChar()
