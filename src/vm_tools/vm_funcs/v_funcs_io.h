@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-23 14:24                                                  == //
+// ==   Modify Time          : 2020-11-26 21:19                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -51,6 +51,11 @@ namespace vm {
 inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_            ... );
 // Format string, and copy new string to dst buffer
 inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
+
+// Format string with width, and copy new string to dst buffer
+inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, const size_t csztWidth, _vIn_ const tchar* const cpFmt, _vIn_            ... );
+// Format string with width, and copy new string to dst buffer
+inline int  v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, const size_t csztWidth, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );
 
 // Output a formated string
 inline bool v_output      ( _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList );

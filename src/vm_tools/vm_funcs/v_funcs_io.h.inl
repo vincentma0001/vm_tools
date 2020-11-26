@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-11 13:01                                                  == //
-// ==   Modify Time          : 2020-11-23 14:21                                                  == //
+// ==   Modify Time          : 2020-11-26 21:28                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -27,6 +27,7 @@
 #include <vm_cfgs.h>
 //.vm's.function.files.inlcuded
 #include "v_funcs_io.h"
+#include "vm_tools/vm_funcs/v_funcs_mem.h"
 // }}}
 // ================================================================================================ //
 
@@ -80,6 +81,76 @@ inline int vm::v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSi
 #else
     int liRet = vVsprintf( pDst, cpFmt, vList );
 #endif
+
+    return liRet;
+}
+// }}} end of func v_sprintf(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_sprintf(...)                                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Format string with width, and copy new string to dst buffer
+// ==  Return  : int              - [O] >=0  - new string length
+// ==                                   <0   - format failed, lookfor errno for error infomation
+// ==  Params  : pDst             - [O] Dst buffer
+// ==            csztDstSize      - [I] Dst buffer's size
+// ==            csztwidth        - [I] String's width
+// ==            cpFmt            - [I] string's format
+// ==            ...              - [I] string's format paramters
+inline int vm::v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, const size_t csztWidth, _vIn_ const tchar* const cpFmt, _vIn_ ... )
+// {{{
+{
+    // Verify input paramters
+    _VERIFY_2_(vT("v_sprintf()"), pDst, cpFmt);
+
+    // format string
+    va_list vlist;
+    va_start( vlist, cpFmt );
+    int liRet = vm::v_sprintf( pDst, csztDstSize, csztWidth,  cpFmt, vlist );
+    va_end(vlist);
+
+
+    return liRet;
+}
+// }}} end of func v_sprintf(...)
+// ================================================================================================ //
+
+// ================================================================================================ //
+// ==  Methord : v_sprintf(...)                                                                  == //
+// == ------------------------------------------------------------------------------------------ == //
+// ==  Brief   : Format string with width, and copy new string to dst buffer
+// ==  Return  : int              - [O] >=0  - new string length
+// ==                                   <0   - format failed, lookfor errno for error infomation
+// ==  Params  : pDst             - [O] Dst buffer
+// ==            csztDstSize      - [I] Dst buffer's size
+// ==            csztwidth        - [I] String's width
+// ==            cpFmt            - [I] String's format
+// ==            vList            - [I] String's format paramters
+inline int vm::v_sprintf ( _vOt_ tchar* const pDst, _vIn_ const size_t csztDstSize, const size_t csztWidth, _vIn_ const tchar* const cpFmt, _vIn_ va_list& vList )
+// {{{
+{
+    // Verify input paramters
+    _VERIFY_2_(vT("v_vsprintf()"), pDst, cpFmt);
+
+    // format string
+#if defined (_MSC_VER) && (_MSC_VER > 1300)
+    int liRet = vVsprintf_s( pDst, csztDstSize, cpFmt, vList );
+#else
+    int liRet = vVsprintf( pDst, cpFmt, vList );
+#endif
+
+    if( liRet < (int)(csztWidth-1) && liRet > 0 )
+    {
+        tchar* lpPos = pDst+liRet;
+        size_t lszFillLen = csztWidth-liRet-1;
+
+        vm::v_memset( lpPos, vT(' '), lszFillLen );
+        tchar* lpEnd = pDst+csztWidth;
+        *lpEnd = 0x00;
+
+        return csztWidth;
+    }
 
     return liRet;
 }
