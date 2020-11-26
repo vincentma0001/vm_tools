@@ -7,7 +7,7 @@
 // ==   Author               : v.m. ( vincent_ma0001@hotmail.com )                               == //
 // ==   Version              : 1.0.0.0                                                           == //
 // ==   Create Time          : 2020-11-24 10:34                                                  == //
-// ==   Modify Time          : 2020-11-25 13:00                                                  == //
+// ==   Modify Time          : 2020-11-25 19:49                                                  == //
 // ==   Issue  List          :                                                                   == //
 // ==   Change List          :                                                                   == //
 // ==     [    0.0.0.0     ] - Basic version                                                     == //
@@ -134,6 +134,12 @@ public:
 public:
     // Output a formated string by tTimet object
     inline static size_t StrTime( const tTimet &stTimet, tchar* const pBuf, const size_t csztBufSize, const tchar* const cpFmt );
+    // Output formated string, more format info see this file's note.
+    // Formats : %Y4 = %Y, %Y2 = %y, %MM = %m, %DD = %d, %hh = %H, %mm = %M, %ss = %S, %ms = millitm
+    template< size_t tsztBufSize >
+    inline static size_t Fmt( const tTimet    &stTimet, const unsigned short cusMSec, 
+                              tchar* const        pBuf, const size_t     csztBufSize, 
+                              const tchar* const cpFmt );
 // }}} ! Methods
 
 }; // }}} End of class CTimeStr
